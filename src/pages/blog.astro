@@ -3,9 +3,38 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPost from '../components/BlogPost.astro';
 // Import meta.glob returns an array 
+
 const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+const tags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat())];
+const underline = "#D5451B"
 ---
 
-<BaseLayout pageTitle="Jojo's Korean Blog">
-	{allPosts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title}/>)}
+<BaseLayout pageTitle="Blog">
+
+	
+	<div class="flex flex-row justify-between items-start ">
+	<div class="flex flex-col">
+	{allPosts.map((post: any) => <BlogPost url={post.url}  title={post.frontmatter.title}/>)}
+	</div>
+	<div class=" tag-container px-4 py-4 border-2 border-black-200 rounded-md "> 
+		<p class="m-2 text-center"> Tags</p>
+		{tags.map((tag) => <p class="my-3 "><a class= "tag- px-4  sm:text-base  py-1  rounded-full bg-gray-100 text-gray-800 text-sm hover:bg-gray-300 cursor-pointer transition  " href={`/tags/${tag}`}>{tag}</a></p>)}</div>
+
+	
+	</div>
 </BaseLayout>	
+
+
+<style>
+
+	.tag-container {
+		background: underline
+  color: white;
+		
+		border-radius: 7% 93% 11% 89% / 97% 3% 97% 3% 
+	}
+
+
+</style>
+
+

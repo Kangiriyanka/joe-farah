@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: ../../layouts/ProjectPostLayout.astro
 title: 'My formula of life'
 pubDate: 2025-05-23
 description: 'Chasing too many rabbits.'

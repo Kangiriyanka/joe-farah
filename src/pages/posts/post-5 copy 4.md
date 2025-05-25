@@ -1,14 +1,14 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: 'Imad le Awesome'
+title: 'How many languages do you speak?'
 pubDate: 2025-05-23
-description: 'Canadian Syrian '
+description: 'A question that carries no value '
 author: 'Astro Learner'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["blogging", "learning in public"]
+tags: [ "blogging", "learning in public"]
 ---
-# My Autistic Friend Imad
+# A question that overwhelms me 
 
-He's awesome, he loves to gang up on people :D
+What is the point of quantity?

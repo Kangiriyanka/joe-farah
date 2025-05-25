@@ -1,11 +1,43 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Greeting from '../components/Greeting';
-const pageTitle = "Home Page";
+import BlogPost from '../components/BlogPost.astro';
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
+const allProjects = Object.values(import.meta.glob('./projects/*.md', { eager: true }));
+
+
+// Sort by date (newest first)
+const sortedPosts = allPosts.sort((a, b) => {
+  const dateA = new Date((a as { frontmatter: { date: string } }).frontmatter.date);
+  const dateB = new Date((b as { frontmatter: { date: string } }).frontmatter.date);
+  return dateB.getTime() - dateA.getTime();
+});
+
+// Get the last 3 posts (most recent)
+const latestPosts = sortedPosts.slice(0, 3);
+const pageTitle = "I'm Joseph 🌱";
 ---
 <BaseLayout pageTitle={pageTitle}>
-  <h2>My awesome blog subtitle</h2>
- 
-  <!-- Hydrated component -->
-  <Greeting client:load messages={["Hej", "Hallo", "Hola", "Habari"]} />
+  
+<p>
+Hey, how's it going? I'm a developer focused on making <a class= "underline " href= "/projects/"> apps</a> that allow people to learn and practice their hobbies. 
+It's a great feeling to step out from the sidelines once in a while and share what I can. 
+</p>
+
+<h1> Recent posts</h1>
+{latestPosts.map((post: any) => 
+<BlogPost 
+url={post.url} 
+date= {post.frontmatter.pubDate} 
+title={post.frontmatter.title} 
+description = {post.frontmatter.description} 
+tag= {post.frontmatter.tags[0]}/>)}
+
+<a href="/blog/"> See all posts  </a>
+
+<h1> Projects </h1>
+
+
+
+  
 </BaseLayout>
+

@@ -6,7 +6,7 @@ import preact from "@astrojs/preact";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://kangiwriteskorean.netlify.app/",
+  site: "https://joefarah.netlify.app/",
   integrations: [preact()],
   vite: {
     plugins: [tailwindcss()],

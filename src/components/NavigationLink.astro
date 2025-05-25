@@ -1,0 +1,48 @@
+---
+const { text, url} = Astro.props;
+const underline = "#D5451B"
+---
+
+
+<div class="inline-block group w-40">
+    <a href={url}>{text}</a>
+    <svg  viewBox="0 0 100 10" preserveAspectRatio="none">
+      <path
+        d="M30 5 Q50 3 50 5 T70 5"
+        class="draw-line"
+        stroke={underline}
+        stroke-width="3"
+        fill="none"
+        stroke-linecap="round"
+      />
+    </svg>
+</div>
+
+
+<style>
+
+
+
+
+a {
+  display: block;
+  text-align: center;
+  font-size: 1.3rem;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+
+
+
+.draw-line {
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.3s ease-in-out;
+  }
+
+  .group:hover .draw-line {
+    stroke-dashoffset: 0;
+  }
+
+</style>

@@ -1,9 +1,18 @@
 ---
+import NavigationLink from "./NavigationLink.astro"
 ---
-<div class="nav-links">
-<a href="/">Home</a>
-<a href="/about/">About</a>
-<a href="/blog/">Blog</a>
-<a href="/tags/">Tags</a>
-<a href="/tags/">Projects</a>
+<div class="nav-links items-end">
+
+
+<NavigationLink url= "/" text="home"/>
+<NavigationLink url= "/about" text="about"/>
+
+<NavigationLink url= "/blog/" text="blog"/>
+<NavigationLink url= "/projects" text="projects"/>
+
+
 </div>
+
+
+
+

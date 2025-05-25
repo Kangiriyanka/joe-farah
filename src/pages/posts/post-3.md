@@ -1,3 +1,12 @@
-# An outlet to express myself
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: My Fourth Blog Post
+author: Astro Learner
 
-People are amazing. The more things I learned throughout my life, the more I feel it. 
+description: "This post will show up on its own!"
+image:
+    url: "https://docs.astro.build/default-og-image.png"
+    alt: "The word astro against an illustration of planets and stars."
+pubDate: 2022-08-08
+tags: ["astro", "successes"]
+---

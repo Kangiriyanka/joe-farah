@@ -1,12 +1,8 @@
 ---
-const {url,date,title, description, tag} = Astro.props;
-const dateOptions: object = {
-	year: "numeric",
-	month: "long",
-	day: "numeric",
-};
+const {url,title, description} = Astro.props;
 
-const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOptions);
+
+
 ---
 
 
@@ -16,7 +12,7 @@ const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOpti
      
         <div class="flex flex-col">
           <a href={url} class="text-gray-800 font-semibold hover:underline"><h2>{title}</h2> </a>
-          {formattedPublishDate} 
+         
           
      
         </div>
@@ -26,7 +22,7 @@ const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOpti
         
       </div>
       {description}
-      {tag}
+   
 
     </li>
 </div>
