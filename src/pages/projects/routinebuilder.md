@@ -1,12 +1,13 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
-title: 'My formula of life'
+title: 'Music Routine'
 pubDate: 2025-05-23
-description: 'Chasing too many rabbits.'
+description: 'iOS app to create music routines for performers'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["astro", "blogging", "learning in public", "korean writing", "language learning"]
+stack: ['swift']
+
 ---
-# My formula for life
+
 

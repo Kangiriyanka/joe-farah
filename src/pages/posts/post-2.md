@@ -1,14 +1,12 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: 'Imad le Awesome'
+title: 'Trust in my ability'
 pubDate: 2025-05-23
-description: 'Canadian Syrian '
+description: 'Mental brakes imposed during focus'
 author: 'Astro Learner'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["blogging", "learning in public"]
+tags: ["learning", "self"]
 ---
-# My Autistic Friend Imad
-
-He's awesome, he loves to gang up on people :D
+# Trust in my ability

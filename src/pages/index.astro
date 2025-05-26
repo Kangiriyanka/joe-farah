@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPost from '../components/BlogPost.astro';
+import ProjectCard from '../components/ProjectCard.astro';
 const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
 const allProjects = Object.values(import.meta.glob('./projects/*.md', { eager: true }));
 
@@ -36,7 +37,15 @@ tag= {post.frontmatter.tags[0]}/>)}
 
 <h1> Projects </h1>
 
+{allProjects.map((project: any) =>
 
+<ProjectCard 
+ url = {project.url}
+ stack= {project.frontmatter.stack}
+ title = {project.frontmatter.title}
+ description = {project.frontmatter.description}/>)}
+
+ 
 
   
 </BaseLayout>

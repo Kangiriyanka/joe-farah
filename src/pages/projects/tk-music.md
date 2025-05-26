@@ -1,12 +1,11 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
-title: 'My formula of life'
-pubDate: 2025-05-23
-description: 'Chasing too many rabbits.'
+title: 'Tk-Harmonica-Guitar'
+description: 'Python GUI for applied music theory on Guitar and Harmonica'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["astro", "blogging", "learning in public", "korean writing", "language learning"]
+
+stack: ['python']
 ---
-# My formula for life
 
