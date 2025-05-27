@@ -83,7 +83,7 @@ const forcegraph = (data) => {
         .attr("height", height)
         .attr("viewBox", [-width / 2, -height / 2, width, height])
         .attr("style", "max-width: 100%; height: auto; padding: 1rem; margin: 1rem; background-color:rgb(228, 228, 228); border: 1px solid #ccc; border-radius: 2rem;");
-  
+       
     // Add a line for each link, and a circle for each node.
     const link = svg.append("g")
         .attr("stroke", "#888")
@@ -114,6 +114,13 @@ const forcegraph = (data) => {
           .attr("fill", "#000") // Text color
           .text(d => d.id); // Use the `id` property as the label
   
+      const text= svg.append("text")
+        .attr("x", -width/ 2.5 )
+        .attr("y", -height / 2.5 - 40)
+        .attr("text-anchor", "middle")
+        .attr("font-size", "16px")
+        .attr("fill", "#333")
+        .text("Endless learning");
     node.append("title")
         .text(d => d.id);
   
