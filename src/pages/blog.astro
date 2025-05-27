@@ -14,7 +14,7 @@ const underline = "#D5451B"
 	
 	<div class="flex flex-row justify-between items-start ">
 	<div class="flex flex-col">
-	{allPosts.map((post: any) => <BlogPost url={post.url}  title={post.frontmatter.title}/>)}
+	{allPosts.map((post: any) => <BlogPost url={post.url} date={post.frontmatter.pubDate} title={post.frontmatter.title}/>)}
 	</div>
 	<div class=" tag-container px-4 py-4 border-2 border-black-200 rounded-md "> 
 		<p class="m-2 text-center"> Tags</p>

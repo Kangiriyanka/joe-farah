@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: ../../layouts/ProjectPostLayout.astro
 title: 'Gameok'
 description: 'React video game library of the games you cherish'
 image:

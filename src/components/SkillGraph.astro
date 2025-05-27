@@ -1,0 +1,24 @@
+---
+
+---
+
+
+
+<div id= "chart-container"></div> 
+
+
+
+<script>
+  import forcegraph from "../scripts/forcegraph.js";
+  const container = document.getElementById("chart-container");
+  const svgElement = forcegraph;
+  if (container) {
+  console.log(svgElement);
+  container.appendChild(svgElement);
+  container.classList.add(" w");
+  } else {
+    console.error("Container not found");
+}
+
+  
+</script>
