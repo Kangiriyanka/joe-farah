@@ -11,22 +11,19 @@ const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOpti
 
 
 
-<div class="my-4 p-2  border-l-4 border-gray-600 pl-4  ">
+<a href={url} >
+<div class="my-4 p-4  border-3 pl-4 blog-container ">
     <li class= "list-none">
      
         <div class="flex flex-col">
-          <a href={url} class="text-gray-800 font-semibold hover:underline"><h2>{title}</h2> </a>
-          {formattedPublishDate} 
-          
-     
+          <h2 >{title}</h2>
+          <p class="text-sm  pubDate">{formattedPublishDate}</p>
         </div>
+     
+   
+      <p class =" text-sm">{description} </p>
+      <p class="tag"> #{tag} </p>
       </a>
-      <div class= "flex"> 
-    
-        
-      </div>
-      {description}
-      {tag}
 
     </li>
 </div>
@@ -42,6 +39,36 @@ const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOpti
 
 
 <style>
+
+.blog-container {
+  position: relative;
+  border-color: rgb(48, 48, 47);
+  background-color: rgba(241, 234, 234, 0.943);
+  border-radius: 4% 2% 73.5% 73.5% / 72% 20% 3.5% 2.5%;
+  border-width: 2px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+.blog-container:hover  {
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.blog-container:hover h2 {
+  text-decoration: underline;
+}
+
+.tag {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 1rem;
+  font-size: 1rem;
+}
+
+.pubDate {
+  font-size: 1.2rem;
+  color: "#cc5a2e";
+}
 
 
 

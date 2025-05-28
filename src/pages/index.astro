@@ -16,6 +16,7 @@ const sortedPosts = allPosts.sort((a, b) => {
 
 // Get the last 3 posts (most recent)
 const latestPosts = sortedPosts.slice(0, 3);
+const featuredProjects= allProjects.slice(0,)
 const pageTitle = "I'm Joseph 🌱";
 ---
 <BaseLayout pageTitle={pageTitle}>
@@ -41,18 +42,26 @@ tag= {post.frontmatter.tags[0]}/>)}
 
 <SketchyLine/>
 
-<div class="flex items-center gap-5">
+<div class="flex items-center gap-5 ">
   <h1 > Projects </h1>
-  <p><a class= "text-[#0077cc] no-underline font-bold hover:underline" href="/blog/"> More  </a></p>
+  <p></p>
   </div>
 
+  
+<div class="flex  gap-3 flex-wrap ">
 {allProjects.map((project: any) =>
 
-<ProjectCard 
+
+
+ (<ProjectCard 
  url = {project.url}
  stack= {project.frontmatter.stack}
  title = {project.frontmatter.title}
- description = {project.frontmatter.description}/>)}
+ description = {project.frontmatter.description}/>))}
+ 
+</div>
+<a class= "text-[#0077cc] no-underline font-bold hover:underline" href="/blog/"> All Projects  </a>
+</div>
 
  
 

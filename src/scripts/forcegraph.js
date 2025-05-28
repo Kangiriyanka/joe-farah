@@ -120,7 +120,7 @@ const forcegraph = (data) => {
         .attr("text-anchor", "middle")
         .attr("font-size", "16px")
         .attr("fill", "#333")
-        .text("Endless learning");
+        .text("いつでもどこでも");
     node.append("title")
         .text(d => d.id);
   

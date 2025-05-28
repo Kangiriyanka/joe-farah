@@ -63,12 +63,12 @@ html {
 }
 
 html.dark {
-  background-color:#1C1412;
+  background-color:#191B19;
   color: #fff;
 }
 
-.dark .nav-links a  {
-  color: #fff;
+.dark .nav-links a   {
+  color: #ebeaea;
 }
 
 

@@ -1,33 +1,73 @@
 ---
 const {url,title, description, stack} = Astro.props;
+import ReactIcon from "./icons/ReactIcon.astro"
+import PythonIcon from "./icons/PythonIcon.astro"
+import SwiftIcon from "./icons/SwiftIcon.astro"
+import FlaskIcon from "./icons/SwiftIcon.astro"
+const iconMap: Record<string, typeof ReactIcon> = {
+  react: ReactIcon,
+  python: PythonIcon,
+  swift: SwiftIcon,
+
+
+};
+
 
 ---
 
 
 
-<div class="my-4 p-2  border-l-4 border-gray-600 pl-4  ">
-    <li class= "list-none">
+<div class="my-4 p-2 border-l-4  pl-4 project-card w-[calc(50.33%-1rem)] ">
+   
      
-        <div class="flex flex-col">
-          <a href={url} class="text-gray-800 font-semibold hover:underline"><h2>{title}</h2> </a>
+        <div class="flex flex-col ">
+          <div class="flex justify-between">
+          <a href={url} class="font-semibold hover:underline"><h2>{title} </h2> </a>
+          {stack.map((tech: string) => {
+            const IconComponent = iconMap[tech.toLowerCase()];
+            return IconComponent ? <IconComponent  /> : null;
+          })}
+         </div>
+     
           <div class="flex"> 
-            {stack.map((tech: any) => <p class="">{tech}&nbsp  </p>)}
+          
           </div>
+          <hr>
          
           
      
         </div>
       </a>
-      <div class= "flex"> 
-    
-        
-      </div>
+     
       {description}
-   
-
-    </li>
+ 
 </div>
 
+
+<style>
+ .project-card {
+
+  position: relative;
+  border-color: rgb(48, 48, 47);
+  background-color: rgba(241, 234, 234, 0.943);
+  border-radius: 4% 2% 73.5% 73.5% / 72% 20% 3.5% 2.5%;
+  border-width: 2px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+}
+.project-card:hover  {
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+}
+
+.project-card:hover h2 {
+  text-decoration: underline;
+}
+
+
+
+  
+
+</style>
 
 
 
