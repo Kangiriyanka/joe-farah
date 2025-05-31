@@ -6,7 +6,7 @@ const allProjects = Object.values(import.meta.glob('./projects/*.md', { eager: t
 ---
 <BaseLayout pageTitle={pageTitle}>
 
-    <div class="flex flex-col">
+    <div class="flex flex-wrap justify-between  gap-3">
         {allProjects.map((project: any) =>
         
         

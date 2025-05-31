@@ -37,6 +37,7 @@ html {
   }
   p {
     font-size: 1.2rem;
+    word-spacing: -0.5px;
   }
 
 
@@ -70,6 +71,7 @@ html.dark {
 .dark .nav-links a   {
   color: #ebeaea;
 }
+
 
 
 

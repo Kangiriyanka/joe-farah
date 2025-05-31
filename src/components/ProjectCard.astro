@@ -11,43 +11,51 @@ const iconMap: Record<string, typeof ReactIcon> = {
 
 
 };
+const underline = "hsl(30 100% 19.1%)"
 
 
 ---
 
 
-
-<div class="my-4 p-2 border-l-4  pl-4 project-card w-[calc(50.33%-1rem)] ">
+<a class= "project-card  w-[calc(50%-1rem)]" href={url} >
+<div class="my-4 p-2 ">
    
-     
+  
         <div class="flex flex-col ">
           <div class="flex justify-between">
-          <a href={url} class="font-semibold hover:underline"><h2>{title} </h2> </a>
+          <h2>{title} </h2>
           {stack.map((tech: string) => {
             const IconComponent = iconMap[tech.toLowerCase()];
             return IconComponent ? <IconComponent  /> : null;
           })}
+        
          </div>
      
           <div class="flex"> 
           
           </div>
-          <hr>
+          
          
           
      
         </div>
-      </a>
+      
+      
      
       {description}
- 
+
+    
+  
 </div>
+</a>
 
 
 <style>
  .project-card {
 
   position: relative;
+  width: 20rem;
+  
   border-color: rgb(48, 48, 47);
   background-color: rgba(241, 234, 234, 0.943);
   border-radius: 4% 2% 73.5% 73.5% / 72% 20% 3.5% 2.5%;

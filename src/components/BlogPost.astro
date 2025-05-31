@@ -6,34 +6,29 @@ const dateOptions: object = {
 	day: "numeric",
 };
 
+
 const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOptions);
 ---
 
 
 
 <a href={url} >
-<div class="my-4 p-4  border-3 pl-4 blog-container ">
-    <li class= "list-none">
-     
+<div class=" mb-4 px-10 py-5  border-3 pl-4 blog-container ">
+    
+  
         <div class="flex flex-col">
           <h2 >{title}</h2>
           <p class="text-sm  pubDate">{formattedPublishDate}</p>
         </div>
      
    
-      <p class =" text-sm">{description} </p>
+      <p class =" text-sm text-justify">{description} </p>
       <p class="tag"> #{tag} </p>
-      </a>
+    
 
-    </li>
+
 </div>
-
-
-
-
-
-
-
+</a>
 
 
 
@@ -66,8 +61,9 @@ const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOpti
 }
 
 .pubDate {
-  font-size: 1.2rem;
-  color: "#cc5a2e";
+  font-size: 1rem;
+  color: hsla(29, 69%, 13%, 0.914);
+  
 }
 
 

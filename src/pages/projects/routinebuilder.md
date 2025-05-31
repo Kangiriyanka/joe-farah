@@ -2,7 +2,7 @@
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'Music Routine'
 pubDate: 2025-05-23
-description: 'iOS app to create music routines for performers'
+description: 'An iOS app to create music routines for performers'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'

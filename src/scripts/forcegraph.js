@@ -82,7 +82,7 @@ const forcegraph = (data) => {
         .attr("width", width)
         .attr("height", height)
         .attr("viewBox", [-width / 2, -height / 2, width, height])
-        .attr("style", "max-width: 100%; height: auto; padding: 1rem; margin: 1rem; background-color:rgb(228, 228, 228); border: 1px solid #ccc; border-radius: 2rem;");
+        .attr("style", "max-width: 100%; height: auto; padding: 1rem; margin: 1rem;");
        
     // Add a line for each link, and a circle for each node.
     const link = svg.append("g")
@@ -99,7 +99,7 @@ const forcegraph = (data) => {
       .selectAll("circle")
       .data(nodes)
       .join("circle")
-        .attr("r", d=> d.id === "Project Programming" ? 50 :35)
+        .attr("r", d=> d.id === "Project Programming" ? 80 :35)
         .attr("fill", d => color(d.group));
 
       const labels = svg.append("g")
