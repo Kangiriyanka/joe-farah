@@ -24,9 +24,7 @@ const underline = "#D5451B"
 	<div class=" tag-container px-4 py-4 border-2 border-black-200 rounded-md "> 
 		<p class="m-2 text-center"> #Tags</p>
 
-		<svg width="60" height="60" viewBox="-2.6 2 10 10 " >
-			<path fill="none" stroke= "black" stroke-width='0.20' d=" m 0 10 q 2.5 -0.2 5 0 q -1 -1 1 -5 q -4 1 -6 5"> </path>
-		</svg>
+	
 		
 		{tags.map((tag) => <p class="my-3 "><a class= "tag- px-4  sm:text-base  cursor-pointer transition  " href={`/tags/${tag}`}>{tag}</a></p>)}</div>
 

@@ -18,7 +18,10 @@ const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOpti
   
         <div class="flex flex-col">
           <h2 >{title}</h2>
+          <div class="flex gap-1">
+          <img class=" w-5 h-5"  src="../images/calendar.svg" alt="calendar">
           <p class="text-sm  pubDate">{formattedPublishDate}</p>
+          </div>
         </div>
      
    
@@ -62,7 +65,8 @@ const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOpti
 
 .pubDate {
   font-size: 1rem;
-  color: hsla(29, 69%, 13%, 0.914);
+  color: hsla(29, 69%, 10%, 0.914);
+  font-weight: bold;
   
 }
 
