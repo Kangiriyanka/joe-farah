@@ -2,11 +2,15 @@
 @import './fonts.css';
 
 
+
+
 html {
     
     
     background-color: #f4e7e1;
     font-family: 'Gabarito', sans-serif;
+ 
+    --icon-color: rgb(0, 0, 0);
    
   }
   
@@ -20,7 +24,8 @@ html {
     line-height: 1.5;
   }
   main { 
-    flex: 1
+    flex: 1;
+  
   }
   
   * {
@@ -30,20 +35,20 @@ html {
   h1 {
     margin: 1rem 0;
     font-size: 2.5rem;
+    text-align: center;
   }
   h2 {
    
     font-size: 1.7rem;
+    
   }
+
   p {
     font-size: 1.2rem;
     word-spacing: -0.5px;
   }
 
 
-  footer {
-    background-color:
-  }
 
 
 .expanded {
@@ -56,25 +61,82 @@ html {
   flex-direction: row;
 }
 
+.social-link {
+  
+  transition: 0.3s cubic-bezier(.22,.53,.51,.92);
+}
+
+.social-link:hover {
+  scale: 1.1;
+
+}
+
+
+
 
 
 
 /* When the screen's width is atleast X pixels, the web page will render with the styles below */
 @media screen and (min-width: 636px) {
+
+ 
+  body {
+
+    max-width: 80ch;
+    
+  }
+
+  h1 {
+    text-align: left;
+  }
   
   
 
 }
 
+
+
+/* Dark Mode */
 html.dark {
-  background-color:#191B19;
-  color: #fff;
-}
-
-.dark .nav-links a   {
-  color: #ebeaea;
+  background-color: #292927;
+  color: #f9f9f4;
 }
 
 
 
+html.dark  a {
+  color: #f9f9f4;
+}
 
+html.dark .social-link {
+  color: #f9f9f4;
+
+}
+
+html.dark .icon-container {
+  color: white;
+
+}
+
+
+
+
+html.dark .dark-container {
+  position: relative;
+  border-color: rgb(71, 71, 68);
+  background-color: hsl(30, 2%, 25%);
+  border-radius: 4% 2% 73.5% 73.5% / 72% 20% 3.5% 2.5%;
+  border-width: 2px;
+  box-shadow: 2px 2px 0  rgba(148, 144, 144, 0.943);
+
+}
+
+html.dark .dark-container:hover  {
+  box-shadow: 3px 3px 0   rgba(224, 221, 221, 0.943);
+}
+
+
+html.dark .svg-icon {
+  filter: invert(1);
+
+}

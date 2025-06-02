@@ -1,16 +1,17 @@
 ---
 const { text, url} = Astro.props;
-const underline = "hsl(30 100% 19.1%)"
+
 ---
 
 
 <div class="inline-block group w-40">
     <a href={url}>{text}</a>
-    <svg  viewBox="0 0 100 10" preserveAspectRatio="none">
+
+    <svg class= "underline" viewBox="0 0 100 10" preserveAspectRatio="none">
       <path
         d="M30 5 Q50 3 50 5 T70 5"
         class="draw-line"
-        stroke={underline}
+        stroke= "hsl(30 100% 19.1%)"
         stroke-width="3"
         fill="none"
         stroke-linecap="round"
@@ -43,6 +44,10 @@ a {
 
   .group:hover .draw-line {
     stroke-dashoffset: 0;
+  }
+
+html.dark .draw-line {
+    stroke: hsla(0, 0%, 100%, 0.886)
   }
 
 </style>

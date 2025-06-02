@@ -21,7 +21,7 @@ const underline = "#D5451B"
 		description = {post.frontmatter.description} 
 		tag= {post.frontmatter.tags[0]}/>)}
 	</div>
-	<div class=" tag-container px-4 py-4 border-2 border-black-200 rounded-md "> 
+	<div class=" tag-container dark-container px-4 py-4 border-2 border-black-200 rounded-md "> 
 		<p class="m-2 text-center"> #Tags</p>
 
 	
@@ -37,10 +37,9 @@ const underline = "#D5451B"
 
 	.tag-container {
 		
-		 position: relative;
+  position: relative;
   padding: 2rem 1rem 1rem 1rem;
-  background: 
-    linear-gradient(135deg, transparent 1.5rem, rgba(241, 234, 234, 0.943) 0) top left / 100% 100% no-repeat;
+  border: transparent transparent transparent black;
   background-color: rgba(241, 234, 234, 0.943);
   border: 1px solid black;
   border-radius: 0.5rem;
@@ -56,18 +55,6 @@ const underline = "#D5451B"
 	}
 
 
-	.tag-container svg {
-		background-color: rgba(241, 234, 234, 1);
-		z-index: 3;
-		position: absolute;
-		top:  -1rem;
-		left: -1rem;
-		
- 
-
-
-
-}
 
 	.blog-container {
 		
