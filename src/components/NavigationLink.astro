@@ -7,11 +7,11 @@ const { text, url} = Astro.props;
 <div class="inline-flex flex-col items-center text-center h-6  ">
     <a  href={url}>{text}
 
-    <svg class="" viewBox="30 2 50 10" preserveAspectRatio="none">
+    <svg  viewBox="30 2 50 10" preserveAspectRatio="none">
       <path
         d="M40 5 Q50 3 50 5 T70 5"
-        class="draw-line"
-        stroke= "hsl(30 100% 19.1%)"
+        class="draw-line hidden md:block"
+        stroke= "var(--soil-color)"
         stroke-width="2.5"
         fill="none"
         stroke-linecap="round"
@@ -23,9 +23,15 @@ const { text, url} = Astro.props;
 <style>
 
 
-
+svg {
+    width: 100%;
+    align-content: stretch;
+    display: block;
+    margin: 0 auto;
+  
+}
 .draw-line {
- 
+    width: 100px;
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
     transition: stroke-dashoffset 0.35s linear;

@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPost from '../components/BlogPost.astro';
 import ProjectCard from '../components/ProjectCard.astro';
-import SketchyLine from '../components/SketchyLine.astro';
+import Separator from '../components/Separator.astro';
 
 const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
 const allProjects = Object.values(import.meta.glob('./projects/*.md', { eager: true }));
@@ -28,9 +28,9 @@ const pageTitle = "I'm Joseph";
 Hi, I build  web and iOS   <a class="text-[#0077cc]  font-bold hover:underline" href= "/projects/"> apps</a> to help people track and enjoy their hobbies. 
 It's a great feeling to step out from the sidelines and share.
 </p>
-<SketchyLine/>
+<Separator/>
 
-<h1 > Posts </h1>
+<h1> Posts </h1>
 
 </div>
 {latestPosts.map((post: any) => 
@@ -44,7 +44,7 @@ tag= {post.frontmatter.tags[0]}/>)}
 <p class="text-right" ><a class= "text-[#0077cc] no-underline font-bold hover:underline" href="/blog/">All Posts </a>
 
 </p>
-<SketchyLine />
+<Separator />
 
 
 
