@@ -1,30 +1,44 @@
 import * as d3 from "d3";
 
+/*
+From: https://www.d3indepth.com/force-layout/
+
+forceCenter (for setting the center of gravity of the system)
+forceManyBody (for making elements attract or repel one another)
+forceCollide (for preventing elements overlapping)
+forceX and forceY (for attracting elements to a given point)
+forceLink (for creating a fixed distance between connected elements)
+
+
+Strength is by default 0.1
+
+*/
+
 const data = {
     
   "nodes" : [
-      {id: "Project Programming", group: "technical",fx: 0, fy: 10  },
+      {id: "Programming", group: "technical", fx: 0, fy: 0, radius: 120  },
 
       // Adding musical-related nodes
-      {id: "Musical Routine", group: "musical", },
-      {id: "Dance", group: "musical-routine", },
-      {id: "Juggling", group: "musical-routine"},
-      {id: "Instrument", group: "musical-routine", },
-      {id: "Ableton", group: "presentation", },
-      {id: "Resolve", group: "presentation" },
-      {id: "Walking", group: "dance-children", },
-      {id: "Stretching", group: "dance-children", },
-      {id: "Piano", group: "instrument-children", },
-      {id: "Guitar", group: "instrument-children", },
-      {id: "Harmonica", group: "instrument-children", },
+      {id: "Routine", group: "musical", radius: 75 },
+      {id: "Dance", group: "musical-routine",radius: 75 },
+      {id: "Juggling", group: "musical-routine", radius: 75 },
+      {id: "Music", group: "musical-routine", radius: 75 },
+      {id: "Ableton", group: "presentation",radius: 75  },
+      {id: "Resolve", group: "presentation", radius: 75  },
+      {id: "Walking", group: "dance-children", radius: 75 },
+      {id: "Stretching", group: "dance-children",radius: 75  },
+      {id: "Piano", group: "Music-children",radius: 75  },
+      {id: "Guitar", group: "Music-children", radius: 75 },
+      {id: "Harmonica", group: "Music-children",radius: 75  },
 
       // Adding cartoon-related nodes
-      {id: "Cartoon", group: "cartoon", },
-      {id: "Drawing", group: "cartoon-children", },
-      {id: "Animation", group: "cartoon-children", },
-      {id: "Languages", group: "cartoon-children", },
+      {id: "Cartoon", group: "cartoon", radius: 75 },
+      {id: "Drawing", group: "cartoon-children",radius: 75  },
+      {id: "Animation", group: "cartoon-children", radius: 75 },
+      {id: "Languages", group: "cartoon-children", radius: 75 },
       // Adding other nodes
-      {id: "Feedback", group: "feedback", },
+      {id: "Feedback", group: "feedback",radius: 75  },
 
 
   ],
@@ -32,24 +46,24 @@ const data = {
   "links" : [
 
       // Adding musical-related links
-      {source: "Project Programming", target: "Musical Routine", value: 10},
-      {source: "Dance", target: "Musical Routine", value: 1},
-      {source: "Juggling", target: "Musical Routine", value: 1},
-      {source: "Instrument", target: "Musical Routine", value: 1},
+      {source: "Programming", target: "Routine", value: 50},
+      {source: "Dance", target: "Routine", value: 1},
+      {source: "Juggling", target: "Routine", value: 1},
+      {source: "Music", target: "Routine", value: 1},
       {source: "Walking", target: "Dance", value: 1},
       {source: "Stretching", target: "Dance", value: 1},
-      {source: "Piano", target: "Instrument", value: 1},
-      {source: "Guitar", target: "Instrument", value: 1},
-      {source: "Harmonica", target: "Instrument", value: 1},
-      {source: "Ableton", target: "Musical Routine", value: 1},
-      {source: "Resolve", target: "Musical Routine", value: 1},
+      {source: "Piano", target: "Music", value: 1},
+      {source: "Guitar", target: "Music", value: 1},
+      {source: "Harmonica", target: "Music", value: 1},
+      {source: "Ableton", target: "Routine", value: 1},
+      {source: "Resolve", target: "Routine", value: 1},
       // Adding cartoon-related links
-      {source: "Project Programming", target: "Cartoon", value: 10},
+      {source: "Programming", target: "Cartoon", value: 50},
       {source: "Cartoon", target: "Drawing", value: 1},
       {source: "Cartoon", target: "Animation", value: 1},
       {source: "Cartoon", target: "Languages", value: 1},
       // Adding other links
-      {source: "Project Programming", target: "Feedback", value: 10},
+      {source: "Programming", target: "Feedback", value: 50},
   ]
 
 
@@ -57,8 +71,8 @@ const data = {
 
 const forcegraph = (data) => {
     // Specify the dimensions of the chart.
-    const width = 800;
-    const height = 600;
+    const width = 700;
+    const height = 700;
   
     // Specify the color scale.
     const color = d3.scaleOrdinal(d3.schemeTableau10);
@@ -71,18 +85,37 @@ const forcegraph = (data) => {
     // Create a simulation with several forces.
     // forceLink's id accessor allows you to use named sources and targets i.e you don't have to use indices.
     const simulation = d3.forceSimulation(nodes)
-        .force("link", d3.forceLink(links).id(d => d.id).distance(100))
-        .force("charge", d3.forceManyBody().strength(-100))
-        .force("x", d3.forceX())
-        .force("y", d3.forceY())
-        .force("collide", d3.forceCollide().radius(60));
+        .force("center", d3.forceCenter(0, 0))
+        .force("link", d3.forceLink(links).id(d => d.id).distance(50))
+        .force("charge", d3.forceManyBody().strength(-50))
+        .force("x", d3.forceX(d => {
+       
+          if (d.group === "musical") return width/2 ; 
+          if (d.group === "musical-routine") return width/2 ; 
+      
+       
+          return 0; 
+        }))
+        .force("y", d3.forceY((d => {
+       
+          if (d.group === "musical") return height ; 
+          if (d.group === "musical-routine") return height/ 4 ; 
+   
+        
+       
+          return 0; 
+        })))
+        .force("collide", d3.forceCollide()
+              .radius(d => d.radius * 0.85)
+              .strength(0.8) 
+        );
   
     // Create the SVG container.
     const svg = d3.create("svg")
         .attr("width", width)
         .attr("height", height)
-        .attr("viewBox", [-width / 2, -height / 2, width, height])
-        .attr("style", "max-width: 100%; height: auto; padding: 1rem; margin: 1rem;");
+        .attr("viewBox", [-width / 1.9, -height / 1.9, width, height])
+        .attr("style", "max-width: 95%; height: 80%; padding: 1.5em; margin: 1rem;");
        
     // Add a line for each link, and a circle for each node.
     const link = svg.append("g")
@@ -99,7 +132,7 @@ const forcegraph = (data) => {
       .selectAll("circle")
       .data(nodes)
       .join("circle")
-        .attr("r", d=> d.id === "Project Programming" ? 80 :35)
+        .attr("r", d=> d.radius/1.5 )
         .attr("fill", d => color(d.group));
 
       const labels = svg.append("g")
@@ -110,16 +143,19 @@ const forcegraph = (data) => {
           .attr("y", d => d.y) // Initial y position
           .attr("dy", 5) // Offset to center the text vertically
           .attr("text-anchor", "middle") // Center the text horizontally
-          .attr("font-size", "16px") // Font size for the labels
+          .attr("font-size", "1.2rem") // Font size for the labels
           .attr("fill", "#000") // Text color
+          .attr("padding", "1rem") // Font family for the labels
           .text(d => d.id); // Use the `id` property as the label
   
       const text= svg.append("text")
         .attr("x", -width/ 2.5 )
         .attr("y", -height / 2.5 - 40)
         .attr("text-anchor", "middle")
-        .attr("font-size", "16px")
-        .attr("fill", "#333")
+        .attr("font-size", "20x")
+        .attr("font-weight", "bold")
+        .attr("font-family", "Gabarito, sans-serif")
+      
         .text("いつでもどこでも");
     node.append("title")
         .text(d => d.id);

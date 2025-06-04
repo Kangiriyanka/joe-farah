@@ -3,14 +3,14 @@
 
 ---
 
-<div class=" separator text-center"></div>
+<div class=" separator  ">
 <svg width="100%" height="75" viewBox="0 0 30 10" xmlns="http://www.w3.org/2000/svg">
   <!-- 4 close diamonds centered -->
-  <polygon class= "diamond" points="10,5 11,4 12,5 11,6" />
-  <polygon class= "diamond"points="13,5 14,4 15,5 14,6" />
-  <polygon class= "diamond" points="16,5 17,4 18,5 17,6" />
-
+  <polygon class="diamond" points="10,5 11,4 12,5 11,6" />
+  <polygon class="diamond" points="13,5 14,4 15,5 14,6" />
+  <polygon class="diamond" points="16,5 17,4 18,5 17,6" />
 </svg>
+
 
 
 </div>
@@ -18,12 +18,20 @@
 
 <style>
 
+
+.separator {
+  width: 100%;
+  height: 5rem;
+ position: relative;
+ left: 0.5rem;
+}
 .diamond {
-  fill: hsl(30 100% 19.1%)
+  fill: hsl(30 100% 19.1%);
+
 }
 
 html.dark .diamond {
-  fill: hsla(0, 0%, 100%, 0.886)
+  fill: hsla(113, 74%, 28%, 0.886)
 }
 
 </style>

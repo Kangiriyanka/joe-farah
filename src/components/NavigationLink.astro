@@ -4,10 +4,10 @@ const { text, url} = Astro.props;
 ---
 
 
-<div class="inline-block group w-40">
+<div>
     <a href={url}>{text}</a>
 
-    <svg class= "underline" viewBox="0 0 100 10" preserveAspectRatio="none">
+    <svg class= "hidden" viewBox="0 0 100 10" preserveAspectRatio="none">
       <path
         d="M30 5 Q50 3 50 5 T70 5"
         class="draw-line"
@@ -25,14 +25,6 @@ const { text, url} = Astro.props;
 
 
 
-a {
-  display: block;
-  text-align: center;
-  font-size: 1.3rem;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
 
 
 
@@ -42,12 +34,18 @@ a {
     transition: stroke-dashoffset 0.3s ease-in-out;
   }
 
-  .group:hover .draw-line {
+   a:hover .draw-line {
     stroke-dashoffset: 0;
   }
 
 html.dark .draw-line {
     stroke: hsla(0, 0%, 100%, 0.886)
   }
+
+
+
+
+
+
 
 </style>

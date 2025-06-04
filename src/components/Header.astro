@@ -3,15 +3,21 @@
 import Navigation from "./Navigation.astro";
 import Hamburger from "./Hamburger.astro";
 import ThemeIcon from './ThemeIcon.astro';
+import SoilIcon from "./icons/SoilIcon.astro";
 ---
 
-<header> 
+<header > 
+
+    <nav class="flex justify-between items-center">
+       
+        <SoilIcon/>
+        <div>
+        <Navigation />
+        <Hamburger />
+        <div>
 
 
-    <nav class="w-30 mb-10 flex items-start">
-    <Hamburger/>
-    <Navigation/>
-    <ThemeIcon/>
+    
     </nav>
 
 

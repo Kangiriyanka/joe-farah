@@ -1,20 +1,33 @@
 ---
 import GithubIcon from "./icons/GithubIcon.astro";
 import YoutubeIcon from "./icons/YoutubeIcon.astro";
+import SketchyLine from "./SketchyLine.astro";
 import Social from "./Social.astro";
+
+const date = new Date();
+const dateOptions: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+ 
+};
+const formattedDate = date.toLocaleDateString('en-US', dateOptions);
 ---
 
-<footer class="flex justify-end gap-2 mt-1  ">
-  <!-- Props are platform and username -->
-   
-  <div class="flex p-1 gap-1" >
+<footer class="flex justify-between gap-2 my-8 items-center ">
+<div class="flex items-center" >
+<img src="/images/snail.svg" alt="snail icon" class="svg-icon w-20" />
+
+  <span>© Joseph Farah {formattedDate}</span>
+</div>
+<div class="flex p-1 gap-1" >
 <a href="https://www.github.com/kangiriyanka">
 <GithubIcon/>
 </a>
 <a href="https://www.youtube.com/@JoeTheLeaf">
 <YoutubeIcon/>
 </a>
-    
+
+</div>
+  
 </footer>
 
 

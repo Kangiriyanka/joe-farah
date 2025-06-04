@@ -3,12 +3,18 @@
 
 
 
+* {
+  
+  box-sizing: border-box;
+}
+
 
 html {
     
     
-    background-color: #f4e7e1;
+    --background-color: #f4e7e1;
     font-family: 'Gabarito', sans-serif;
+    background-color: var(--background-color);
  
     --icon-color: rgb(0, 0, 0);
    
@@ -19,8 +25,9 @@ html {
     flex-direction: column;
     margin: 0 auto;
     min-height: 100vh;
-    max-width: 80ch;
     padding: 1rem;
+    
+
     line-height: 1.5;
   }
   main { 
@@ -28,9 +35,7 @@ html {
   
   }
   
-  * {
-    box-sizing: border-box;
-  }
+
   
   h1 {
     margin: 1rem 0;
@@ -38,27 +43,64 @@ html {
     text-align: center;
   }
   h2 {
-   
     font-size: 1.7rem;
+    
     
   }
 
   p {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     word-spacing: -0.5px;
   }
 
 
 
 
-.expanded {
-  display: unset;
-}
+
 
 .nav-links {
+
   
+  width: 100%;
+  top: 5rem;
+  left: 48px;
+ 
+  display: none;
+  margin: 0;
+}
+
+.nav-links a {
+  
+ 
+  display: block;
+  padding: 10px 0;
+ 
+  font-size: 1.2rem;
+  
+  text-transform: uppercase;
+}
+
+
+
+.expanded {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  text-align: center;
+  position: absolute;
+  padding: 1rem;
+  
+  left: 0;
+  top: 30;
+  background-color: var(--background-color);
+  
+  z-index: 2;
+  
+  
+
+  
+ 
+
+
 }
 
 .social-link {
@@ -66,9 +108,33 @@ html {
   transition: 0.3s cubic-bezier(.22,.53,.51,.92);
 }
 
-.social-link:hover {
-  scale: 1.1;
 
+.social-link:hover {
+
+  scale: 1.1;
+  
+  
+
+}
+
+.hamburger {
+
+  position: absolute;
+  top:0;
+  right: 0;
+  
+  padding: 1rem;
+  cursor: pointer;
+  transform:scale(0.75)
+}
+
+.hamburger .line {
+  display: block;
+  width: 2.5rem;
+  height: 5px;
+  margin-bottom: 0.5rem;
+  background-color: #d8d1cf;
+  border-radius: 5px;
 }
 
 
@@ -89,8 +155,33 @@ html {
   h1 {
     text-align: left;
   }
+
+  .hamburger {
+    display: none;
+  }
+
+  .nav-links {
+    position: static;
+    margin-left: 5em;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: auto;
+    background-color: transparent;
+    border: none;
   
-  
+
+  }
+
+  .nav-links a {
+   
+    font-size: 1.05rem;
+    padding: 5px;
+    margin-right: 1rem;
+  }
+
+
+
 
 }
 
@@ -100,6 +191,11 @@ html {
 html.dark {
   background-color: #292927;
   color: #f9f9f4;
+}
+
+html.dark .nav-links {
+  background-color: #292927;
+  
 }
 
 

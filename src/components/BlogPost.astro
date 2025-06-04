@@ -13,7 +13,7 @@ const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOpti
 
 
 <a href={url} >
-<div class=" mb-4 px-10 py-5  border-3 pl-4 blog-container dark-container ">
+<div class=" mb-4 px-10 py-5 border-3 pl-4 blog-container dark-container ">
     
   
         <div class="flex flex-col">
@@ -51,11 +51,20 @@ const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOpti
   box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
 }
 
+.blog-container h2 {
+
+  font-size: 1.2rem;
+
+ 
+  
+  
+}
 
 
 
 
 .blog-container:hover h2 {
+  
   text-decoration: underline;
 }
 
@@ -65,10 +74,11 @@ const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOpti
   right: 0;
   padding: 1rem;
   font-size: 1rem;
+  
 }
 
 .pubDate {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: hsla(29, 69%, 10%, 0.914);
   font-weight: bold;
   
@@ -78,6 +88,24 @@ html.dark .pubDate {
   
   color: hsla(27, 15%, 88%, 0.954);
 }
+
+
+@media screen and (min-width: 636px) {
+
+  .blog-container h2 {
+    font-size: 1.4rem;
+  }
+
+  .pubDate {
+    font-size: 1rem;
+  }
+
+  
+
+}
+
+
+
 
 
 

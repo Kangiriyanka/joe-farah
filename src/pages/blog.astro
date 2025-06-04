@@ -12,7 +12,7 @@ const underline = "#D5451B"
 <BaseLayout pageTitle="Blog">
 
 	
-	<div class="flex flex-row  justify-between items-start gap-10 w-200">
+	<div class="flex md:flex-row sm:flex-col  justify-between items-start gap-10 w-200">
 	<div class="flex flex-col justify-start blog-container">
 	{allPosts.map((post: any) => <BlogPost 
 		url={post.url} 

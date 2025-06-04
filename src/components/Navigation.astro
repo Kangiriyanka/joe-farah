@@ -1,17 +1,32 @@
 ---
 import NavigationLink from "./NavigationLink.astro"
+import ThemeIcon from "./ThemeIcon.astro"
 ---
-<div class="nav-links items-end">
+<div class="nav-links">
 
 
-<NavigationLink url= "/" text="home"/>
-<NavigationLink url= "/about" text="about"/>
 
 <NavigationLink url= "/blog/" text="blog"/>
+
+
 <NavigationLink url= "/projects" text="projects"/>
 
+<NavigationLink url= "/about" text="about"/>
+
+<ThemeIcon/>
 
 </div>
+
+
+
+<style>
+
+    hr {
+        border: 0;
+        width: 5rem;
+     
+    }
+</style>
 
 
 
