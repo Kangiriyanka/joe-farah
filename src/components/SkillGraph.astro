@@ -4,7 +4,11 @@
 
 
 
-<div id= "chart-container" class="graph-container"></div> 
+<div id= "chart-container" class="graph-container">
+
+  <span class="custom-text"> いつでもどこでも - 언제든지 어디든지</span>
+  
+</div> 
 
 
 
@@ -22,8 +26,6 @@
     console.error("Container not found");
 }
 
-
-  
 </script>
 
 
@@ -37,18 +39,21 @@
 
   background-color: rgba(228, 223, 223, 0.943);
   }
+.custom-text {
+  position:relative;
+  top: 1rem;
+  left: 1rem;
+   
+ 
+}
 
-  .graph-container svg text {
-    fill: red !important;
-  }
+ 
 
   html.dark .graph-container {
     background-color: rgba(48, 48, 47, 0.943);
     border-color: rgb(241, 234, 234);
   }
-  html.dark .graph-container svg text {
-    fill: white !important;
-  }
+ 
 
 
   

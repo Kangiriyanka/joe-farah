@@ -4,47 +4,40 @@ const { text, url} = Astro.props;
 ---
 
 
-<div>
-    <a href={url}>{text}</a>
+<div class="inline-flex flex-col items-center text-center h-6  ">
+    <a  href={url}>{text}
 
-    <svg class= "hidden" viewBox="0 0 100 10" preserveAspectRatio="none">
+    <svg class="" viewBox="30 2 50 10" preserveAspectRatio="none">
       <path
-        d="M30 5 Q50 3 50 5 T70 5"
+        d="M40 5 Q50 3 50 5 T70 5"
         class="draw-line"
         stroke= "hsl(30 100% 19.1%)"
-        stroke-width="3"
+        stroke-width="2.5"
         fill="none"
         stroke-linecap="round"
       />
     </svg>
+  </a>
 </div>
-
 
 <style>
 
 
 
-
-
-
-
 .draw-line {
+ 
     stroke-dasharray: 100;
     stroke-dashoffset: 100;
-    transition: stroke-dashoffset 0.3s ease-in-out;
+    transition: stroke-dashoffset 0.35s linear;
   }
 
-   a:hover .draw-line {
+a:hover svg .draw-line {
     stroke-dashoffset: 0;
   }
 
 html.dark .draw-line {
     stroke: hsla(0, 0%, 100%, 0.886)
   }
-
-
-
-
 
 
 

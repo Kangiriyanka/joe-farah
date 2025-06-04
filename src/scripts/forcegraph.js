@@ -148,15 +148,6 @@ const forcegraph = (data) => {
           .attr("padding", "1rem") // Font family for the labels
           .text(d => d.id); // Use the `id` property as the label
   
-      const text= svg.append("text")
-        .attr("x", -width/ 2.5 )
-        .attr("y", -height / 2.5 - 40)
-        .attr("text-anchor", "middle")
-        .attr("font-size", "20x")
-        .attr("font-weight", "bold")
-        .attr("font-family", "Gabarito, sans-serif")
-      
-        .text("いつでもどこでも");
     node.append("title")
         .text(d => d.id);
   

@@ -13,6 +13,7 @@ html {
     
     
     --background-color: #f4e7e1;
+    --secondary-green: #008000;
     font-family: 'Gabarito', sans-serif;
     background-color: var(--background-color);
  
@@ -72,8 +73,10 @@ html {
 .nav-links a {
   
  
-  display: block;
+  display: inline-block;
   padding: 10px 0;
+  width: 5rem;
+  margin: 0;
  
   font-size: 1.2rem;
   
@@ -162,13 +165,13 @@ html {
 
   .nav-links {
     position: static;
-    margin-left: 5em;
     display: flex;
     flex-direction: row;
     align-items: center;
     width: auto;
     background-color: transparent;
     border: none;
+    
   
 
   }
@@ -176,8 +179,23 @@ html {
   .nav-links a {
    
     font-size: 1.05rem;
-    padding: 5px;
-    margin-right: 1rem;
+    
+    margin-right: 0.5rem;
+  }
+
+  .draw-line {
+ 
+    stroke-dasharray: 100;
+    stroke-dashoffset: 100;
+    transition: stroke-dashoffset 0.35s linear;
+  }
+
+a:hover svg .draw-line {
+    stroke-dashoffset: 0;
+  }
+
+html.dark .draw-line {
+    stroke: hsla(0, 0%, 100%, 0.886)
   }
 
 
