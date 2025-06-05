@@ -6,7 +6,7 @@ description: 'Chasing too many rabbits.'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'
-tags: ["focus"]
+tags: ["focus", "joe"]
 ---
 # My formula for life
 

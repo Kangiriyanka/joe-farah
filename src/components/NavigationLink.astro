@@ -4,7 +4,7 @@ const { text, url} = Astro.props;
 ---
 
 
-<div class="inline-flex flex-col items-center text-center h-6  ">
+<div class=" nav-link inline-flex flex-col items-center text-center h-6   ">
     <a  href={url}>{text}
 
     <svg  viewBox="30 2 50 10" preserveAspectRatio="none">
@@ -21,6 +21,8 @@ const { text, url} = Astro.props;
 </div>
 
 <style>
+
+
 
 
 svg {
@@ -44,6 +46,8 @@ a:hover svg .draw-line {
 html.dark .draw-line {
     stroke: hsla(0, 0%, 100%, 0.886)
   }
+
+
 
 
 

@@ -20,7 +20,7 @@ html {
     --light-mode-anchor: #0077cc;
     --dark-mode-anchor: 	#4a9ef3f4;
     --soil-color: hsl(31, 82%, 11%);
-    --soil-color-light: hsl(30, 93%, 38%);
+    --soil-color-light: #228B22;
     font-family: 'Gabarito', sans-serif;
     background-color: var(--background-color);
  
@@ -102,27 +102,49 @@ html {
 
 
 
+.nav-link-container {
+  display: flex;
+  flex-direction: column;
+ 
+  border-color: rgb(48, 48, 47);
+  padding: 0.5rem;
+  width: 10rem;
+  height: 4rem;
+  font-size: 1rem;
+  margin: 0 auto;
+  background-color: rgba(241, 234, 234, 0.943);
+  border-radius: 55.5% 50.5% 49.5% 53% / 1% 1% 1% 1%;
+  border-width: 2px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+
+
+}
 .expanded {
   display: flex;       
-   
+ 
+  
   flex-direction: column;
   justify-content: start;
   text-align: right;
-  gap: 2rem;
+  gap: 3rem;
   background-color: var(--background-color);
+  border-top: 1px rgb(158, 147, 147) solid;
 
-  margin-left: -1rem;
+  margin-left: -1.5rem;
   padding: 1rem;
   width: 100vw;
-  height: 100vw;
+  height: 150vw;
   position: absolute;            
   left: 0;
-  animation: fadeIn 0.2s ease-in-out; 
+  
+  animation: fadeIn 0.2s ease-in-out forwards;
 
  
+
   z-index: 3; 
 
 }
+
 
 .expanded a {
   width: 100%;
@@ -130,9 +152,18 @@ html {
 
 .expanded a:hover {
   color: var(--soil-color);
-  text-decoration: none;
+  
+  
 }
   
+
+.fade-in {
+  animation: fadeIn 0.2s ease-in-out forwards;
+}
+.fade-out {
+  animation: fadeOut 0.2s ease-in-out forwards;
+}
+
 
 @keyframes fadeIn {
   from {
@@ -144,6 +175,18 @@ html {
     transform: translateY(0);
   }
 }
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+}
+
 
 
 
@@ -175,8 +218,19 @@ html {
   margin-bottom: 0.5rem;
   background-color: var(--soil-color);
   border-radius: 5px;
+  transition: all 0.3s ease;
+}
+.hamburger.active .line:nth-child(1) {
+  transform: translateY(13px) rotate(45deg);
 }
 
+.hamburger.active .line:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .line:nth-child(3) {
+  transform: translateY(-13px) rotate(-45deg);
+}
 
 hr {
   width: 25%;
@@ -185,6 +239,7 @@ hr {
 
 
 }
+
 
 
 
@@ -214,7 +269,7 @@ hr {
     display: flex;
     flex-direction: row;
     align-items: center;
-    
+
     gap: 0.1rem;
     width: 45%;
     background-color: transparent;
@@ -326,5 +381,12 @@ html.dark .svg-icon {
 
 html.dark .expanded a:hover {
   color: var(--soil-color-light);
-  text-decoration: none;
+
+}
+
+
+html.dark .nav-link-container {
+  background-color: var(--background-dark-color);
+  color: var(--dark-white-color);
+  border: 1px solid var(--dark-white-color);
 }

@@ -22,10 +22,12 @@ const {posts} = Astro.props;
 ---
 <BaseLayout pageTitle={tag}>
 
-  <p>Posts tagged with {tag}</p>
+
 
   <ul>
-    {posts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title} date={post.frontmatter.date}/>)}
+    {posts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title} date={post.frontmatter.pubDate} tag = {tag} />)}
   </ul>
-  <a href="/blog/"> Return to posts</a>
+  <div class="text-right" >
+  <a class ="secondary-a" href="/blog/"> Return to posts</a>
+ </div>  
 </BaseLayout>
