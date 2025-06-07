@@ -26,7 +26,7 @@ const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOpti
      
    
       <p class =" text-sm text-justify">{description} </p>
-      <p class="tag"> #{tag} </p>
+      <p class="tag">{tag ? `#${tag}` : ''}</p>
     
 
 

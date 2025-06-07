@@ -13,7 +13,6 @@ html {
     
     
     --background-color: #f4e7e1;
-
     --background-dark-color: #292927;
     --secondary-green: #008000;
     --dark-white-color: #f9f9f4;
@@ -69,6 +68,10 @@ html {
     color: var(--light-mode-anchor);
   
   }
+
+  a:hover {
+    cursor:pointer;
+   }
 
 
 

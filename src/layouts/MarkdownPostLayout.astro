@@ -9,16 +9,18 @@ const dateOptions: object = {
 
 
 const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleDateString("en-US", dateOptions);
+
+
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
-  <img src={frontmatter.image.url} width="300" alt={frontmatter.image.alt} />
-  <div>
+
+
   <div class="flex gap-1">
-    <img class=" svg-icon w-5 h-5"  src="../images/calendar.svg" alt="calendar">
+    <img class=" svg-icon w-5 h-5"  src="/images/calendar.svg" alt="calendar">
     <p class="text-sm mb-2 pubDate">{formattedPublishDate}</p>
-   
-    <div class="tagsflex gap- ">
+  </div>
+    <div class="tags flex gap-2 ">
       {frontmatter.tags.map((tag: string) => (
         <p class="tag dark-container"><a href={`/tags/${tag}`}>{tag}</a></p>
       ))}
@@ -32,8 +34,27 @@ const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleDateString("e
 
 <slot />
 
-<p class=" text-right" ><a href="/blog" class="secondary-a no-underline text-right font-bold hover:underline">Return to #{frontmatter.tags[0]}</a></p>
+<p class="text-right">
+  <a id="returnLink" href="#" class="secondary-a ">
+    
+  </a>
+</p>
 </BaseLayout>
+
+
+
+
+<script>
+  const fromTag = new URLSearchParams(window.location.search).get('fromTag');
+  if (fromTag) {
+    const returnLink = document.getElementById('returnLink');
+    if (returnLink instanceof HTMLAnchorElement ) {
+      returnLink.href = `/tags/${fromTag}`;
+      returnLink.textContent = `Return to #${fromTag}`;
+    }
+  
+  }
+</script>
 
 
 <style>

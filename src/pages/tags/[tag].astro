@@ -17,17 +17,21 @@ export async function getStaticPaths() {
 }
 
 // Information to receive from the HTML template
-const { tag } = Astro.params;
+const {tag} = Astro.params;
 const {posts} = Astro.props;
 ---
-<BaseLayout pageTitle={tag}>
+<BaseLayout pageTitle={ `#${tag}`}>
 
 
 
   <ul>
-    {posts.map((post: any) => <BlogPost url={post.url} title={post.frontmatter.title} date={post.frontmatter.pubDate} tag = {tag} />)}
+    {posts.map((post: any) => <BlogPost url={`${post.url}/?fromTag=${tag}`} title={post.frontmatter.title} date={post.frontmatter.pubDate} tag={""}/>)}
   </ul>
   <div class="text-right" >
   <a class ="secondary-a" href="/blog/"> Return to posts</a>
  </div>  
 </BaseLayout>
+
+
+
+
