@@ -69,13 +69,6 @@ html {
   
   }
 
-  a:hover {
-    cursor:pointer;
-   }
-
-
-
-
 
 
 .nav-links {
@@ -101,6 +94,12 @@ html {
   font-size: 1.2rem;
   
   text-transform: uppercase;
+}
+
+footer { 
+  backdrop-filter: blur(4px);
+  
+  box-shadow: 4px 0 px 12px rgba(0, 0, 0, 0.1);
 }
 
 
