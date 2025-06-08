@@ -1,0 +1,119 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+interface Props {
+  headings: MarkdownHeading[];
+}
+
+const { headings } = Astro.props;
+const filteredHeadings = headings.filter((heading) => heading.depth <= 2);
+---
+
+<div class="toc-container  ">
+<nav class="toc">
+  <h2>Contents</h2>
+  <ul>
+    {
+      filteredHeadings.map((heading) => (
+        <li class="toc-item ">
+          <a class= "" href={`#${heading.slug}`}>{heading.text}</a>
+        </li>
+      ))
+    }
+  </ul>
+</nav>
+</div>
+
+<style>
+
+  .toc-container {
+    border-radius: 2% 2% 73.5% 73.5% / 72% 20% 3.5% 2.5%;
+    border: 1px solid var(--dark-border-color);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--white-background-color);
+
+  }
+  html.dark  .toc-container {
+  
+    background-color: var(--background-dark-light-color);
+   
+  }
+  .toc-item{
+    margin-bottom: 0.2rem;
+    font-size: 1.1rem;
+  
+  }
+
+  .toc-item a {
+    padding: 0.2rem;
+  }
+  .toc-item a:hover {
+    text-decoration: underline;
+    
+    
+  }
+  .toc-item a.active {
+
+  background-color: var(--secondary-light-green);
+  
+ 
+}
+
+@media screen and (min-width: 1280px) {
+  .toc-container {
+    position: fixed;;
+    top: 17%;
+    left: 2%;
+    width: 15rem;
+
+  }
+
+  .toc {
+ 
+    left: 0;
+    
+   
+   
+  }
+}
+</style>
+
+<script>
+
+
+const observerOptions = {
+   
+    rootMargin: '-10% 0px -20% 0px',
+    threshold: 0
+  };
+
+
+  const tocLinks = document.querySelectorAll('.toc-item a');
+  const headings = document.querySelectorAll('h2');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.getAttribute('id');
+    
+      if (entry.isIntersecting ) {
+        console.log("id is" +  id)
+        tocLinks.forEach(link => {
+          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
+        });
+        
+      }
+      
+    });
+  }, observerOptions);
+
+  headings.forEach((heading) => observer.observe(heading));
+
+  tocLinks.forEach(link => {
+  link.addEventListener('click', () => {
+    tocLinks.forEach(l => l.classList.remove('active'));
+    link.classList.add('active');
+  });
+});
+
+</script>

@@ -13,12 +13,17 @@ html {
     
     
     --background-color: #f4e7e1;
+    --white-background-color: rgba(241, 234, 234, 0.943);
+    --dark-border-color:  hsl(45, 2%, 34%);
     --background-dark-color: #292927;
+    --background-dark-light-color: hsl(30, 2%, 25%);
     --secondary-green: #008000;
+    --secondary-light-green: #0080003f;
     --dark-white-color: #f9f9f4;
     --light-mode-anchor: #0077cc;
     --dark-mode-anchor: 	#4a9ef3f4;
     --soil-color: hsl(31, 82%, 11%);
+    --light-soil-color: hsl(48,57%,20%);
     --soil-color-light: #228B22;
     font-family: 'Gabarito', sans-serif;
     background-color: var(--background-color);
@@ -33,9 +38,6 @@ html {
     margin: 0 auto;
     min-height: 100vh;
     padding: 1.2rem;
-   
-    
-
     line-height: 1.5;
   }
   main { 
@@ -98,7 +100,6 @@ html {
 
 footer { 
   backdrop-filter: blur(4px);
-  
   box-shadow: 4px 0 px 12px rgba(0, 0, 0, 0.1);
 }
 
@@ -114,7 +115,7 @@ footer {
   height: 4rem;
   font-size: 1rem;
   margin: 0 auto;
-  background-color: rgba(241, 234, 234, 0.943);
+  background-color: var(--white-background-color);
   border-radius: 55.5% 50.5% 49.5% 53% / 1% 1% 1% 1%;
   border-width: 2px;
   box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
