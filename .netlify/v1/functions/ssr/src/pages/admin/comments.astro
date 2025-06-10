@@ -10,7 +10,6 @@ const comments = await db
   .where(eq(Comment.approved, false));
 
 const dateOptions: Intl.DateTimeFormatOptions = {
-  timeZone: 'America/New_York',
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -31,7 +30,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
         <p>{comment.author}</p>
         <p>{comment.website}</p>
         <p>{comment.body}</p>
-        <p>{comment.published.toLocaleString("en-US", dateOptions)}</p>
+        <p>{comment.published.toLocaleDateString("en-US", dateOptions)}</p>
 
         <div class="approval-container">
           <button type="button" class="approve-button" data-id={comment.id}>Approve</button>

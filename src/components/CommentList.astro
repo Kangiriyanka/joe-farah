@@ -5,6 +5,7 @@ import {fetch_comments} from "../pages/api/fetch_comments"
 const { postSlug } = Astro.props;
 const comments = await fetch_comments(postSlug)
 const dateOptions: Intl.DateTimeFormatOptions = {
+  timeZone: 'America/New_York',
   year: 'numeric',
   month: 'long',
   day: 'numeric',
@@ -25,7 +26,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
             <div class=" comment-container">
                 <div class="font-bold text-lg">{comment.author}</div>
                 <div class="text-sm">
-                    {comment.published.toLocaleDateString("en-US", dateOptions)}
+                    {comment.published.toLocaleString("en-US", dateOptions)} EST
                 </div>
                 <div class="mt-2 ">
                     <p>{comment.body}</p></div>
