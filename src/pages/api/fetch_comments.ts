@@ -1,11 +1,18 @@
 
-import { db, Comment, eq, desc } from "astro:db";
+import { db, Comment, eq, desc,and  } from 'astro:db';
 
-export async function getComments(postSlug: string) {
-    console.log(postSlug)
+export async function fetch_comments(postSlug: string) {
+
   return await db
     .select()
     .from(Comment)
-    .where(eq(Comment.postSlug, postSlug))
+    .where(and(
+      eq(Comment.postSlug, postSlug),
+      eq(Comment.approved, true))
+      
+    
+    )
+  
     .orderBy(desc(Comment.published));
+  
 }

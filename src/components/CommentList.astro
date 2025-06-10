@@ -1,26 +1,33 @@
 ---
-import { getComments} from "../pages/api/fetch_comments"
+import {fetch_comments} from "../pages/api/fetch_comments"
 
 
 const { postSlug } = Astro.props;
-const comments = await getComments(postSlug)
-console.log(comments)
+const comments = await fetch_comments(postSlug)
+const dateOptions: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  hour: '2-digit',
+  minute: '2-digit',
+};
+
 
 
 ---
 
-<div class="space-y-4 comment-container">
+<div class="space-y-4 ">
     <h2> Comments </h2>
    
     {
         comments.map((comment) => (
            
-            <div class=" ">
-                <div class="font-bold">{comment.author}</div>
+            <div class=" comment-container">
+                <div class="font-bold text-lg">{comment.author}</div>
                 <div class="text-sm">
-                    {comment.published.toLocaleDateString()}
+                    {comment.published.toLocaleDateString("en-US", dateOptions)}
                 </div>
-                <div class="mt-2">
+                <div class="mt-2 ">
                     <p>{comment.body}</p></div>
             </div>
         ))
@@ -32,9 +39,25 @@ console.log(comments)
 
     .comment-container{
 
-      
-        
+    background-color: blue;
+    background-color: rgba(241, 234, 234, 0.943);
+    border-radius: 1% 1% 1% 1% / 1% 1% 2% 3%;
+    border-width: 1.5px;
+    padding: 1rem;
 
+    
+
+    
+
+    }
+
+    html.dark .comment-container {
+      
+    border-color: rgb(71, 71, 68);
+    background-color: hsl(30, 2%, 25%);
+ 
+    border-width: 2px;
+  
     }
     
 </style>
