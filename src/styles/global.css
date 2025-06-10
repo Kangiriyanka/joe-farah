@@ -19,6 +19,7 @@ html {
     --background-dark-light-color: hsl(30, 2%, 25%);
     --secondary-green: #008000;
     --secondary-light-green: #0080003f;
+    --tertiary-light-green: #03a2031d;
     --dark-white-color: #f9f9f4;
     --light-mode-anchor: #0077cc;
     --dark-mode-anchor: 	#4a9ef3f4;
@@ -367,7 +368,7 @@ html.dark .dark-container {
 }
 
 html.dark .dark-container:hover  {
-  box-shadow: 3px 3px 0   rgba(224, 221, 221, 0.943);
+  box-shadow: 4px 4px 0   rgba(224, 221, 221, 0.943);
 }
 
 html.dark .hamburger .line {

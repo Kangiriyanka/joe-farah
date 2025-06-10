@@ -1,0 +1,111 @@
+---
+
+const {postSlug} = Astro.props
+console.log("The post slug is " + {postSlug})
+---
+
+<form method="POST" class= "flex flex-col" action="/api/post_comment">
+
+    <label>
+        Message
+
+      </label>
+    <textarea name="body" rows="5" cols= "30"required></textarea>
+
+    <input type="hidden" name="postSlug" value={postSlug} />
+    <label>
+      Name
+      <input type="text" name="author" required />
+    </label>
+    <label>
+      Website
+      <input type="text" name="website" />
+    </label>
+  
+    <button id="comment-submit"  type="submit">Submit </button>
+</form>
+
+
+<style>
+
+    form {
+      width: 75%;
+    }
+    textarea {
+      padding: 1rem;
+      margin-bottom: 1rem;
+      background-color: var(--tertiary-light-green);
+      overflow: auto;
+      outline: none;
+      box-shadow: none;
+      margin: 1rem 0;
+
+     
+        padding: 0.5rem;
+        border: 1.5px solid rgb(48, 48, 47);
+        border-color: rgb(48, 48, 47);
+        padding: 0.5rem;
+        font-size: 1rem;
+      
+        background-color: var(--white-background-color);
+        border-radius: 1% 1% 1% 1%/ 2% 2% 2% 2%;
+
+    resize: none;
+    }
+
+    #comment-submit {
+      text-align: left;
+      width: fit-content;
+      border: 2px solid rgb(48, 48, 47);
+      padding: 0.5rem;
+      font-size: 1rem;
+      margin: 0.5rem 0 1rem 0;
+      background-color: var(--white-background-color);
+      border-radius: 55.5% 50.5% 49.5% 53% / 8% 1% 8% 1%;
+
+      box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.2);
+      transition: box-shadow 0.3s ease;
+    }
+  #comment-submit:hover {
+    box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.3);
+  }
+    
+    
+    
+
+    label {
+     text-transform: uppercase;
+
+    } 
+
+    input{
+        margin-bottom: 1.5rem;
+        width: 100%;
+        outline: none;
+        padding: 0.5rem;
+        border: 1.5px solid rgb(48, 48, 47);
+        padding: 0.5rem;
+        font-size: 1rem;
+        margin: 0.5rem 0 1rem 0;
+        background-color: var(--white-background-color);
+        border-radius: 1% 1% 1% 1%/ 2% 2% 2% 2%
+      
+    }
+
+  html.dark input,
+  html.dark textarea,
+  html.dark #comment-submit{
+    background-color: var(--background-dark-light-color);
+  }
+  html.dark #comment-submit {
+   box-shadow: 2px 2px 0  rgba(148, 144, 144, 0.943);
+   border-color: rgb(71, 71, 68);
+      transition: box-shadow 0.3s ease;
+    }
+  html.dark #comment-submit:hover {
+    box-shadow: 4px 4px 0   rgba(224, 221, 221, 0.943);
+  }
+
+  
+
+</style>

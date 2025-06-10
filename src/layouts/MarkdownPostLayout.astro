@@ -2,6 +2,8 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import Separator from "../components/Separator.astro";
+import CommentForm from "../components/CommentForm.astro";
+import CommentList from "../components/CommentList.astro";
 const { frontmatter, headings } = Astro.props;
 const dateOptions: object = {
 	year: "numeric",
@@ -11,7 +13,6 @@ const dateOptions: object = {
 
 
 const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleDateString("en-US", dateOptions);
-
 
 ---
 
@@ -51,7 +52,11 @@ const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleDateString("e
   </a>
 </p>
 </div>
+<Separator/>
+<CommentList  postSlug={frontmatter.postSlug} />
+<CommentForm postSlug={frontmatter.postSlug}/>
 </div>
+
 </BaseLayout>
 
 
@@ -67,6 +72,9 @@ const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleDateString("e
     }
   
   }
+
+  
+  
 </script>
 
 

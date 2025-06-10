@@ -39,6 +39,10 @@ const filteredHeadings = headings.filter((heading) => heading.depth <= 2);
     background-color: var(--background-dark-light-color);
    
   }
+
+  html.dark a.active {
+    background-color: var(--secondary-green);
+  }
   .toc-item{
     margin-bottom: 0.2rem;
     font-size: 1.1rem;
@@ -84,7 +88,7 @@ const filteredHeadings = headings.filter((heading) => heading.depth <= 2);
 
 const observerOptions = {
    
-    rootMargin: '-10% 0px -20% 0px',
+    rootMargin: '0% 0px -20% 0px',
     threshold: 0
   };
 
