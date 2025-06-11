@@ -88,8 +88,8 @@ const filteredHeadings = headings.filter((heading) => heading.depth <= 2);
 
 const observerOptions = {
    
-    rootMargin: '0% 0px -20% 0px',
-    threshold: 0
+    rootMargin: '0px 0px -10px 0px',
+    threshold: 1
   };
 
 
@@ -99,7 +99,7 @@ const observerOptions = {
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       const id = entry.target.getAttribute('id');
-    
+  
       if (entry.isIntersecting ) {
         console.log("id is" +  id)
         tocLinks.forEach(link => {

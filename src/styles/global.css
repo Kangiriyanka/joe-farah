@@ -99,10 +99,7 @@ html {
   text-transform: uppercase;
 }
 
-footer { 
-  backdrop-filter: blur(4px);
-  box-shadow: 4px 0 px 12px rgba(0, 0, 0, 0.1);
-}
+
 
 
 
@@ -195,13 +192,14 @@ footer {
 
 
 
-.social-link:hover {
-
-  scale: 1.1;
- 
-  
+.social-svg-icon:hover .social-link-path {
   
 
+  fill:  var(--soil-color-light) !important;
+}
+
+.social-svg-icon:hover {
+   scale: 1.1;
 }
 
 .hamburger {
@@ -376,12 +374,38 @@ html.dark .hamburger .line {
 }
 
 
-
-
 html.dark .svg-icon {
-  filter: invert(0.9);
+  filter: invert(0.8);
 
 }
+
+html.dark .social-svg-icon:hover .social-link-path {
+  
+
+  fill:  var(--soil-color-light) !important;
+  
+}
+
+
+
+
+
+html.dark .social-svg-icon .social-link-path {
+  
+ 
+  stroke: rgb(255, 255, 255) !important;
+  stroke-width: 3 !important;
+
+}
+html.dark .social-svg-icon .dark-social-link-path {
+  
+ 
+  stroke: rgb(255, 255, 255) !important;
+  stroke-width: 1.2 !important;
+
+}
+
+
 
 html.dark .expanded a:hover {
   color: var(--soil-color-light);

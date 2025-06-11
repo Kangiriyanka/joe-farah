@@ -12,13 +12,14 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 const formattedDate = date.toLocaleDateString('en-US', dateOptions);
 ---
 
-<footer class="flex justify-between gap-2 my-8 items-center ">
+<footer class="flex flex-col-reverse md:flex-row justify-between gap-1 my-10 items-center ">
 <div class="flex items-center" >
-<SnailIcon/>
 
-  <span><span class="text-lg" > &copy; </span> Joseph Farah {formattedDate}</span>
+
+ <p><span class="relative top-0.5"> &copy; </span>  Joseph Farah {formattedDate}</p>
+  <SnailIcon/>
 </div>
-<div class="flex p-1 gap-1" >
+<div class="flex p1 gap-1" >
 <a href="https://www.github.com/kangiriyanka">
   
 <GithubIcon/>
@@ -32,4 +33,14 @@ const formattedDate = date.toLocaleDateString('en-US', dateOptions);
 </footer>
 
 
+
+<style>
+
+
+  footer {
+
+   
+
+  }
+</style>
 

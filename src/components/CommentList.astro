@@ -25,11 +25,11 @@ const dateOptions: Intl.DateTimeFormatOptions = {
            
             <div class=" comment-container">
                 <div class="font-bold text-lg">{comment.author}</div>
-                <div class="text-sm">
-                    {comment.published.toLocaleString("en-US", dateOptions)} EST
+                <div class="">
+                    <p>{comment.published.toLocaleString("en-US", dateOptions)} EST </p>
                 </div>
-                <div class="mt-2 ">
-                    <p>{comment.body}</p></div>
+                <div class="mt-2  ">
+                    <p class="text-justify" >{comment.body}</p></div>
             </div>
         ))
     }
@@ -45,6 +45,9 @@ const dateOptions: Intl.DateTimeFormatOptions = {
     border-radius: 1% 1% 1% 1% / 1% 1% 2% 3%;
     border-width: 1.5px;
     padding: 1rem;
+    display: block;
+    word-wrap: break-word;
+
 
     
 
