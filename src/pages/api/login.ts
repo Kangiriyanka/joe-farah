@@ -13,17 +13,23 @@ export const POST: APIRoute = async ({ request, cookies }) => {
     cookies.set('admin', 'true', {
       path: '/',
       httpOnly: true,
+      sameSite: 'lax',
       secure: import.meta.env.PROD, // True if the site is running in production, false o.w.
       maxAge: 60 * 60 * 2, // 2 hours
     });
 
-    return new Response(null, {
-      status: 302,
+   return new Response(JSON.stringify({ success: true }), {
+      status: 200,
       headers: {
-        Location: '/admin/comments',
+        'Content-Type': 'application/json',
       },
     });
   }
 
-  return new Response('Unauthorized', { status: 401 });
+  return new Response(JSON.stringify({ success: false }), {
+    status: 401,
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
 };

@@ -1,10 +1,24 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-const { frontmatter } = Astro.props;
+import TableOfContents from "../components/TableOfContents.astro";
+import GithubIcon from "../components/icons/GithubIcon.astro";
+const { frontmatter, headings } = Astro.props;
 
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
+      <div class="grid">
+    <div class="toc">
+  <TableOfContents headings= {headings} />
+  </div>
+
+
+  <div class="flex items-end gap-2" > 
+    
+    <GithubIcon/>  
+    <a class="secondary-a"  href= {frontmatter.link}>Github Repo </a>
+  </div>
+  <br/>
 <slot/>
 
 

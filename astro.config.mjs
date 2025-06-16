@@ -8,6 +8,11 @@ import netlify from '@astrojs/netlify';
 
 // https://astro.build/config
 export default defineConfig({
+  markdown: {
+    shikiConfig: {
+      theme: 'dracula-soft'
+    }
+  },
   site: "https://joefarah.netlify.app/",
   integrations: [preact(), db()],
   vite: {

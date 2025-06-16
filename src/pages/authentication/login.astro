@@ -25,9 +25,33 @@ export const prerender = false;
 <p class= "text-right text-sm p underline" >   Logged in - {context ? "true" : "false"} </p>
 
 
+
 </BaseLayout>
 
 
+<script>
+
+const form = document.querySelector('form');
+if (form) {
+  form.addEventListener('submit', async (event) => {
+    event.preventDefault(); 
+    const formData = new FormData(form);
+
+    const res = await fetch('/api/login', {
+      method: 'POST',
+      body: formData,
+    });
+
+    const result = await res.json();
+
+    if (result.success) {
+      window.location.href = '/admin/comments'; 
+    } else {
+      alert('Incorrect password');
+    }
+  });
+}
+</script>
 <style>
 
     button {
