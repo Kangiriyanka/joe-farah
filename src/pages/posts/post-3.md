@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
 title: 'Personal Breakdance Tips'
-pubDate: 2025-06-16T18:30:00-04:00
+pubDate: 2025-06-19T23:30:00-04:00
 description: 'Fragments of personal notes on dance' 
 tags: ["dance"]
 postSlug: 'post-3'
@@ -12,7 +12,7 @@ postSlug: 'post-3'
 
 ## Heads up
 
-My specialty is breakdance, but feel free to read the parts that are interesting and are applicable to you. I'll be referring to breakdance as: "bboy". <sup>  <a href="#Footnotes" class="secondary-a"> 1.</a> </sup>
+My specialty is breakdance, but feel free to read the parts that are interesting and are applicable to you. Breakdance can also be referred to as : "bboy". <sup>  <a href="#footnotes" class="secondary-a"> 1.</a> </sup>
 
 &nbsp;
 
@@ -120,7 +120,7 @@ The very first movement you should turn your attention is your initial leg swing
 
 ### 意識ポイント 2: Hands and Arms
 
-Keep your hands pushing against the ground at all times. It's easy to forget. I try to place my hand at the same time I swing my leg. Furthermore, you always want to use your arms to lean your body in the opposite way of your legs. For example, if your legs are facing the right side, you should learn your body left. The idea comes from <a  class="secondary-a" href="https://www.youtube.com/playlist?list=PLpJRb_Th3m5SK6LaTv4kOTlxPnCX_jojD"> pigmie's flare playlist </a> on Youtube.
+Keep your hands pushing against the ground at all times. It's easy to forget. I try to place my hand at the same time I swing my leg. Furthermore, you always want to use your arms to lean your body in the opposite way of your legs. For example, if your legs are facing the right side, you should lean your body left. The idea comes from <a  class="secondary-a" href="https://www.youtube.com/playlist?list=PLpJRb_Th3m5SK6LaTv4kOTlxPnCX_jojD"> pigmie's flare playlist </a> on Youtube.
 
 <br/>
 
@@ -132,7 +132,7 @@ When I showed a friend of mine the move, he told me to not hyperfocus on the way
 
 ### 意識ポイント 4:  Keep the flare going
 
-Even if you fail the move, don't stop the movement. Quickly  restart the flare from the position where you landed.
+Even if you fail the move, don't stop the movement. Quickly  restart the flare from the position where you landed. 
 
 
 
@@ -140,7 +140,7 @@ Even if you fail the move, don't stop the movement. Quickly  restart the flare f
 
 ### 意識ポイント 5:  Don't force it.
 
-Don't force it. Slow down, breathe and try again when you're in a calmer state.
+Catch your breath and try again when you're in a calmer state.
 
 &nbsp;
 
