@@ -2,13 +2,26 @@
 layout: ../../layouts/MarkdownPostLayout.astro
 title: 'Personal Juggling Tips'
 pubDate: 2025-06-16T18:30:00-04:00
-description: 'Fragments of personal notes on juggling tricks.' 
+description: 'Fragments of personal notes on complex juggling tricks.' 
 tags: ["juggling"]
 postSlug: 'post-1'
 ---
 
 
 
+
+
+## Heads up 
+
+The juggling tricks discussed here are mainly for toss juggling. Like any other form of art, juggling is incredibly vast in its props and styles. I'd also add that the coolest part is how accesible it is —  you can do it anywhere, anytime, and at any age. It's also genuinely appreciated -- I've never encountered someone look at me with disdain while I was practicing. That's a relief.
+
+&nbsp;
+
+## Mindset 
+
+Whatever trick you're practicing, trust that you'll get it one day. However, that shouldn't be your focus. Instead, focus on applying solid methodology consistenly. Try to be honest with yourself.  In my case, I feel like I don’t record enough footage to analyze myself—either because I forget, or because I just want to jump straight into action. But honestly, the smarter choice would be to slow down and pull out my phone camera.
+
+&nbsp;
 
 
 
@@ -28,7 +41,7 @@ postSlug: 'post-1'
 
 &nbsp; 
 
-When you practice, it's unrealistic to load all these questions in your mind. Pick one or a few to answer in your practice sessions. 
+When you practice, it's unrealistic to load all these questions in your mind at once. Pick none, one or a few to answer in your practice sessions. Sometimes, you just want to juggle without any intention of improving. Trust your judgement.
 
 
 
