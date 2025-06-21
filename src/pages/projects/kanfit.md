@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'K-Fit'
-description: 'A simplistic fitness app focused on tracking calories and weight'
+description: 'A minimalistic fitness app focused on tracking calories and weight'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
     alt: 'The Astro logo on a dark background with a pink glow.'

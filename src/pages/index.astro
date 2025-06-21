@@ -10,14 +10,13 @@ const allProjects = Object.values(import.meta.glob('./projects/*.md', { eager: t
 
 // Sort by date (newest first)
 const sortedPosts = allPosts.sort((a, b) => {
-  const dateA = new Date((a as { frontmatter: { date: string } }).frontmatter.date);
-  const dateB = new Date((b as { frontmatter: { date: string } }).frontmatter.date);
-  return dateB.getTime() - dateA.getTime();
+  const dateA = Date.parse((a as { frontmatter: { pubDate: string } }).frontmatter.pubDate);
+  const dateB = Date.parse((b as { frontmatter: { pubDate: string } }).frontmatter.pubDate);
+  return dateB - dateA
 });
 
 // Get the last 3 posts (most recent)
 const latestPosts = sortedPosts.slice(0, 3);
-const featuredProjects= allProjects.slice(0,)
 const pageTitle = "Hello, I'm Joseph  ◡̈";
 
 ---
@@ -30,7 +29,7 @@ It's a great feeling to step out from the sidelines and share.
 </p>
 <Separator/>
 
-<h1> Posts </h1>
+<h1> Latest Posts </h1>
 
 </div>
 {latestPosts.map((post: any) => 

@@ -28,6 +28,7 @@ const {posts} = Astro.props;
     {posts.map((post: any) => <BlogPost url={`${post.url}/?fromTag=${tag}`} title={post.frontmatter.title} date={post.frontmatter.pubDate} tag={""}/>)}
   </ul>
   <div class="text-right" >
+    
   <a class ="secondary-a" href="/blog/"> Return to posts</a>
  </div>  
 </BaseLayout>
