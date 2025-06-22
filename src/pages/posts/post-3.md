@@ -28,7 +28,7 @@ Dancing exposes you to various and unusual body positions. Take pride in every m
  
 ### Stretching 
 
-Through b-boying and especially training for flares, I came to truly appreciate stretching as an integral part of my life. Not only does it help you prevent injuries, it makes your moves cleaner. Mobility around the hips is especially important in power moves. I'm pretty tight around the hips, so I like  stretches that target them: pigeons, frogs and butterflies. I am one with nature alright. Also, from what I've seen, I try to aim for 3 sets of 30 seconds per stretch. I don't have a specific stretching routine, but I know the ones I need to target the stiffness I have. For hand stretches, I usually compound them with walking.
+Through b-boying and especially training for flares, I came to truly appreciate stretching as an integral part of my life. Not only does it help you prevent injuries, it makes your moves cleaner. Mobility around the hips is especially important in power moves. I'm pretty tight around the hips, so I like  stretches that target them: pigeons, frogs and butterflies. I am one with nature alright. Also, from what I've seen, I try to aim for 3 sets of 30 seconds per stretch. I don't have a specific stretching routine, but I know the ones needed to target the stiffness I have. For hand stretches, I usually compound them with walking.
 
 &nbsp; 
 
