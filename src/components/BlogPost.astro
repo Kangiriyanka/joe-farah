@@ -1,13 +1,15 @@
 ---
 const {url,date,title, description, tag} = Astro.props;
 const dateOptions: object = {
+  timeZone: 'America/New_York',
 	year: "numeric",
 	month: "long",
 	day: "numeric",
+
 };
 
 
-const formattedPublishDate = new Date(date).toLocaleDateString("en-US", dateOptions);
+const formattedPublishDate = new Date(date).toLocaleString("en-US", dateOptions);
 ---
 
 
