@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'Tk-Music'
-description: 'A python GUI
+description: 'A Python GUI
  for applied music theory on Guitar and Harmonica'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'
@@ -23,7 +23,7 @@ link: https://github.com/Kangiriyanka/tkinter_music
 ## Why?
 
 I started learning musical instruments relatively late in life. Keys, modes, intervals and whatever music notions were all foreign concepts and frankly overwhelming ones. 
-I was interested in music theory and moreso trying to understand links between harmonica, guitar and piano. I was asking questions along the lines of : if I play a C4 key on the piano, where would that exact note be be located on the guitar and harmonica? How would I play a blues scale on each of these instruments? What the heck is the Phrygian mode? 
+I was interested in music theory and moreso trying to understand links between harmonica, guitar and piano. I was asking questions along the lines of: if I play a C4 key on the piano, where would that exact note be located on the guitar and harmonica? How would I play a blues scale on each of these instruments? What the heck is the Phrygian mode? 
 
 &nbsp;
 
@@ -33,7 +33,7 @@ I was interested in music theory and moreso trying to understand links between h
 ### Half-steps, degrees and intervals.
 
 
-For reference and simplicity, the piano is a great instrument to demonstrate distance between notes. On a piano, you have white and black keys. The smallest distance you can travel on a piano is called a half-step or semitone. It's the smallest hop your finger can make. If I do 2 hops, that's 2 half-steps, 3 is 3 half-steps etc. You can also say that 2 half-steps are a whole step. Consequently, 3 hops are either 3 half-steps or 1 whole step and 1 half-step. In my opinion, it's much easier to initially see everything as half-steps and then start converting and calculating the way you want. 
+For reference and simplicity, the piano is a great instrument to demonstrate distance between notes. On a piano, there are white and black keys. The smallest distance you can travel on a piano is called a half-step or semitone. It's the smallest hop your finger can make. If I do 2 hops, that's 2 half-steps, 3 is 3 half-steps etc. You can also say that 2 half-steps are a whole step. Consequently, 3 hops are either 3 half-steps or 1 whole step and 1 half-step. In my opinion, it's much easier to initially see everything as half-steps and then start converting and calculating the way you want. 
 
 &nbsp;
 
@@ -91,30 +91,29 @@ A chord can be seen as a subset of a scale. The major chord is composed of
 
 &nbsp;
 
-I learned my lesson, I'll use:
+I learned my lesson, so I'll use:
 
 - 1
 - 3 
 - 5
 
-Personally, I like seeing the degrees and the intervals in parallel. That's the way I integrated them in my GUIs.  By the way, if you're struggling with modes, just see them as 
-another scale, another formula.
+Personally, I like seeing the degrees and the intervals in parallel. That's how I integrated them in my GUIs.  By the way, if you're struggling with modes, just see them as another scale, another formula.
 
 
 &nbsp; 
 
-## Implementing the code:  Key Class
+##  Key Class
 
 
 ### Motivation: Python rules
-I thought Python was a great language to use because of the power of dictionaries, lists and tkinter. The libraries I used were mss and customtkinter, but I didn't use any music libraries for the sake of reinforcing my learning. I also like the fact that practicing doesn't require any internet, because you could just open a terminal and run a command to show the GUIs.
+I thought Python was a great language to use because of the power of dictionaries, lists and tkinter. The libraries I used were mss and customtkinter, but I didn't use any music libraries for the sake of reinforcing my learning. I also like the fact that practicing doesn't require any internet, because you could just open a terminal and run a command to launch the GUIs.
 
 &nbsp;
 
 ### Key Class
 
 
-Before implementing the Harmonica & Guitar GUIs, we need a main class that could handle any musical operations on any key. I asked myself these questions before implementing the methods: 
+Before implementing the Harmonica & Guitar GUIs, we need a main class that could handle any musical operations on any key. I asked myself the following questions before implementing the methods: 
 
 - If I have two notes (X,Y), how many half-steps do I need to get to Y? What interval name is that?
 - If I have a note X, and I ask you to give me a Minor 6th above it, what would that note be? What about Perfect 4th below it?
@@ -198,15 +197,15 @@ Using the Key class, I built a Key GUI. With it, I can:
 &nbsp;
 
 
-## Implementing the code: Harmonica Class
+##  Harmonica Class
 
 ### Turning a harmonica into a dictionary
-Harmonicas are built with a specific key and the notes change depending on the key. However, the underlying logic stays the same. The diatonic harmonica has 10 holes. You can either blow air through a hole or draw air into one to produce a note. An effective way to figure out which notes are produced on the harmonica is to view each hole in terms of intervals relative to the harmonica's key. For blow notes, hole 1 is the root which means the key of the harmonica , hole 2 is a Major 3rd and Hole 3 is a Perfect 5th. Also, blow notes cycle every 3 holes, therefore blow on hole 4 is also the root. Breaking News! Blow notes form a major chord! 
+Harmonicas are built with a specific key and the notes change depending on the key. However, the underlying logic stays the same. The diatonic harmonica has 10 holes. You can either blow air through a hole or draw air into one to produce a note. An effective way to figure out which notes are produced on the harmonica is to view each hole in terms of intervals relative to the harmonica's key. For blow notes, hole 1 is the root which means the key of the harmonica , hole 2 is a Major 3rd and Hole 3 is a Perfect 5th. Blow notes cycle every 3 holes, so a blow on hole 4 is also the root. Breaking News! Blow notes form a major chord! 
 
 &nbsp;
 
 
-For example, If I have a C harmonica, the blow notes on hole 1-2-3 are respectively C-E-G.  Blow 4 is also a C. The blow on hole 4 corresponds to a C4 on piano which is the middle C of the piano, and the blow on hole 1 is a C3, the C an octave lower. Draw notes are less direct to catch, take a look at the code if you get the chance.
+For example, If I have a C harmonica, the blow notes on hole 1-2-3 are respectively C-E-G.  Blow 4 is also a C. The blow on hole 4 corresponds to a C4 which is the middle C of the piano, and the blow on hole 1 is a C3, the C an octave lower. Draw notes are less direct to catch, take a look at the code if you get the chance.
 
 &nbsp;
 
@@ -261,8 +260,17 @@ for i in range(1, 11):
 
 # Bends, overblows and overdraws are not shown here.
 
+# To actually see the note you're playing
+ def blow(self, hole):
+    
+        if not isinstance(hole,int) or  hole < 1 or hole > 10 :
+         raise ValueError("Hole number must be an integer between 1 and 10.")
+        return self.harmonica[hole]["blow"]
+
 
 ```
+
+
 
 &nbsp;
 
@@ -270,7 +278,7 @@ for i in range(1, 11):
 
 ### Scales on the harmonica
 
-A challenge when learning harmonica is figuring out what a position is and how it relates to the key  your harmonica is in. There are 3 positions any one learning the mouth organ (comical term) gets exposed to.
+One challenge when learning the harmonica is figuring out what a "position" means and how it relates to the key your harmonica is in. There are 3 positions any one learning the mouth organ (comical term) gets exposed to.
 
 
 
@@ -280,7 +288,7 @@ A challenge when learning harmonica is figuring out what a position is and how i
 
 &nbsp;
 
-Suppose that you're in the key of C and you want to play the major pentatonic scale for each position. In position 1, you're playing a C major pentatonic, but in position 2, you're playing a G major pentatonic even though your harmonica is in the key C. When I was endlessly navigating online for explanations, it only clicked for me when I realized that the positions different keys even though your harmonica is in a specific key. 
+Suppose that you're in the key of C and you want to play the major pentatonic scale for each position. In position 1, you're playing a C major pentatonic, but in position 2, you're playing a G major pentatonic even though your harmonica is in the key C. When I was endlessly navigating online for explanations, it only clicked for me when I realized that the positions correspond to different keys even though your harmonica is in a specific key. 
 
 An interesting problem I ran into here was trying to figure out how to integrate scales in the harmonica GUI with those previously dicussed positions in mind.  I couldn't blindly map the notes of the scales I wanted to generate to the appropriate holes. I had to see the notes of the scales relative to the position I was playing in. I ended up hard-coding them.
 
@@ -322,21 +330,123 @@ THIRD_POSITION_SCALES= {
 
 ```
 
+&nbsp;
 
-Using the harmonica class, I built the Harmonica GUI using tk, ttk and <a class="secondary-a" href="https://customtkinter.tomschimansky.com/"> CustomTkInter </a>. 
+
+
+Using the harmonica class, I built the Harmonica GUI using tk, ttk and <a class="secondary-a" href="https://customtkinter.tomschimansky.com/"> CustomTkInter</a>. 
+
+The most intere, e.g., (4, "blow) from the Harmonica class to buttons belonging to my GUI class. To do so, I created a dictionary of buttons with the actions acting as keys. Furthermore, every button gets a unique action by adding a lambda function. If we don't use a lambda function and  directly put <u>self.play_blow(i)</u> as a command, it would mean that we're assigning the result of the function call to the button rather than a reference to the function itself. 
+
+```python
+
+buttons = {}
+# Adding blow buttons to the buttons 
+for i in range(1, 11):
+            blow_button = self.create_ctkbutton(
+                self.harmonica_frame,
+                a_text=f"{i}", 
+                # Use an anonymous function here!
+                a_command=lambda i=i: self.play_blow(i), 
+             
+            )
+
+
+            self.buttons[(i,"blow")] = blow_button
+
+
+```
 
 
 &nbsp; 
 
-Clicking any button will give you the action associated to the hole and the note. There's also a record function that just writes harmonica notation to a text file. 
+ After playing with tkinter's frames, grids and labels, this is the resulting layout. Clicking any button will give you the action associated to the hole and the note. There's also a record function that just writes harmonica notation to a text file.
+
 ![Blow Note](../../assets//project_images/tk-music/blow-note.png)
 
-### Guitar
+&nbsp;
 
 
-### Takeaways 
+## Guitar Gui Class
+&nbsp;
 
-- Implementing color pickers that let the user choose the colors for each individual note.
-- Consider how tkinter looks on Linux and Windows.
+### Turning a fretboard into a list of lists
+
+Each guitar string can be represented as a Python list starting at different indices. Every item (fret) repeats itself after every 12 frets; that's 12 half-steps which is an octave.  The fretboard then represents a list of lists.
+
+```python
+
+GUITAR_STRINGS = ["E", "B", "G", "D", "A", "E"]
+NOTES = ["C","C#/Db","D","D#/Eb","E","F","F#/Gb","G", "G#/Ab","A","A#/Bb","B"]
+fretboard = []
+# Get 12 notes + extras for every string
+for guitarString in GUITAR_STRINGS:
+	notes = 
+    NOTES[NOTES.index(guitarString) :] +
+    NOTES[: NOTES.index(guitarString) + 1] + 
+   [NOTES[(NOTES.index(guitarString) + i) % len(NOTES)] for i in range(1, 4)]
+	
+	
+	fretboard.append(notes)
+
+    
+
+```
+&nbsp;
+### Scales on the guitar
+
+Using the generate_scale function from the Key class, we can color the buttons on the fretboard if they're present in the scale. The buttons this time are also stored in a dictionary like harmonica GUI, but this time the keys are based on (i,j): i being the guitar string number and j being the fret number. I've also done the same for chords, but it isn't shown here.
+
+```python
+def scale_color_mapper(self):
+        scale_key = Key(self.key)
+        scale = scale_key.generate_scale(self.scale_name)
+    
+
+        for i, guitarString in enumerate(self.fretboard):
+            for j, fret in enumerate(guitarString):
+                # Check if the fret matches the tonic (root note of the scale)
+                if fret == self.key:
+                    self.update_color(self.buttons[(i, j)], "turquoise")
+                # Check if the fret is in the scale and color based on the degree
+                elif fret in scale:
+                    # Find its position in the scale
+                    self.update_color(self.buttons[(i, j)], COLORED_NOTES[fret])
+                else:
+                    self.update_color(self.buttons[(i, j)], UNCLICKED_COLOR)
+
+```
+
+![G Major Blues](../../assets//project_images/tk-music/G-Major-Blues.png)
+&nbsp;
+
+### Extras
+
+
+&nbsp;
+I've included other features like:
+- Visualizing piano notes on on the guitar fretboard.
+- Coloring the fretboard.
+- Taking snapshots of the scales/chords/screen.
+
+&nbsp;
+
+
+
+![Guitar to Piano](../../assets//project_images/tk-music/guitar-to-piano.png)
+
+&nbsp;
+
+![Color the fretboard](../../assets//project_images/tk-music/color.png)
+
+
+&nbsp;
+
+## Takeaways 
+
+- Initializing an empty __init__ file inside a folder treats the folder it's in as a package. This was useful for separating normal and gui classes.
+- Implement color pickers that let the user choose the colors for each individual note.
+- Consider how tkinter looks on different operating systems
 - Use more CTk as opposed to TK for scaling issues.
-- Even if it's something's been already made, I should give it a shot.
+- Comment way more than I think.
+- Even if it's something's that's already been  made, I should give it a shot.

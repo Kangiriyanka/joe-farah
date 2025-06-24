@@ -116,6 +116,9 @@ For the former, he suggests counting the maximum number of chord changes you can
 - Focusing on one aspect of your play will affect the others. If you're trying to nail down a strumming pattern, you might forget to apply enough pressure with your fretting hand. 
 - Can you drop your hand and place it back  where it was?
 
+&nbsp;
+
+
 
 ### Strumming 
 
@@ -144,7 +147,7 @@ I never had any formal training in harmonica and guitar, but I really wanted to 
 - Look at your fingers, how do they feel?
 - Make sure the notes you play don't overlap with each other. This means properly lift your finger up when you're done playing a note.
 - Try playing a measure with your eyes closed.
-- Practice the parts you're least comfortable with. This is my personal bottleneck <sup > <a href="footnotes" > 2.</a> </sup>
+- Practice the parts you're least comfortable with. This is my personal bottleneck <sup > <a class="secondary-a" href="#footnotes" > 2.</a> </sup>
 
 &nbsp;
 

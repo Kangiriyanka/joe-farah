@@ -19,9 +19,9 @@ A minimal app to practice Korean numbers by setting the range of numbers you wan
 ## Why?
 
 
-During my short trip of 5 days to Korea, I felt embarassed that I could understand what people told me, but when came the time to 
-pay for something, my brain would fire a maximum call stack exceeded because I sucked with numbers. I wanted to create a number generator for Korean to redeem myself and practice.
-On a side note, I couldn't stand that the mundanest RNG apps on the App store had ads. I'm just trying roll a dice, man.
+During my short 5-day trip to Korea, I felt embarassed that I could understand what people told me, but when came the time to 
+pay for something, my brain would hit a maximum call stack exceeded because I sucked with numbers. I wanted to create a number generator for Korean to redeem myself and practice.
+
 
 &nbsp;
 ## Brief Lesson 
@@ -56,7 +56,7 @@ In daily conversation, 10 000 could just be said as 만, but formally it's 일�
 
 For big numbers, we group them in 4's as opposed to English where it's in 3's.
 For example, take the number 675,453.
-We split it into two parts: 67 | 5453 — grouping every 4 digits from the right.
+We split it into two parts: 67 | 5453 — grouping every four digits from the right.
 - 67 corresponds to the 만 (10⁴) unit → 육십칠만
 - 5453 is just read as-is → 오천사백오십삼
 
@@ -145,7 +145,7 @@ the not so rough idea for numbers above 10 becomes:
 
 
 
- - If the digit is 1 , concatenate only placeValues[index % 4]. Otherwise, add the placeValues[index % 4] + digit name. Edge case spotted.
+ - If the digit is 1, concatenate only placeValues[index % 4]. Otherwise, add the placeValues[index % 4] + digit name. Edge case spotted.
 
 &nbsp;
 
@@ -165,7 +165,7 @@ the not so rough idea for numbers above 10 becomes:
 
 2. Why do we go from right to left?
  
-    - If I start from the left, how would I know the X digits to my right or rather how would I know the number of groups of 4 I have ? I wouldn't be able to determine the place value easily. Therefore, I want to count my groups of 4 from the right and continue to the left. It's easier for calculations.
+    - If I start from the left, how would I know the X digits to my right  — or rather how would I know the number of groups of 4 I have ? I wouldn't be able to determine the place value easily. Therefore, I want to count my groups of 4 from the right and continue to the left. It's easier for calculations.
 
 &nbsp;
 
@@ -208,7 +208,7 @@ Another consideration to make is the user inputting negative numbers. Luckily, w
 
 ### 3. Writing mini tests
 
-Since the conversion logic was originally embedded in the SwiftUI views, I refactored the number conversion functionality into two separate files: SinoKoreanConverter and NativeKoreanConverter. At some point, I forgot to reset the number string to "0" when an alert was thrown i.e. when the user inputs a bigger minimum than maximum. That would reset my number string to "" and I'd get a Swift Fatal Error.
+Since the conversion logic was originally embedded in the SwiftUI views, I refactored the number conversion logic into two separate files: SinoKoreanConverter and NativeKoreanConverter. At some point, I forgot to reset the number string to "0" when an alert was thrown i.e. when the user inputs a bigger minimum than maximum. That would reset my number string to "" and I'd get a Swift Fatal Error.
 
 
 ```swift
@@ -257,7 +257,7 @@ final class KoreanNumbersTests: XCTestCase {
 - Using .scrollContentBackground(.hidden) in lists is nice. 
 - Learning limiting digits in a TextField
 - Gamify it in an unknown future.
-- Add an accesibility label for the Korean numbers in VoiceOver.
+- Add an accessibility label for the Korean numbers in VoiceOver.
 - Remembering that I cannot underestimate even the slightest piece of functionality. It's a small app, but I still have to be thorough.
 
 
