@@ -4,6 +4,7 @@ import YoutubeIcon from "./icons/YoutubeIcon.astro";
 import SnailIcon from "./icons/SnailIcon.astro";
 import EmailIcon from "./icons/EmailIcon.astro";
 import Social from "./Social.astro";
+import RSSIcon from "./icons/RSSIcon.astro";
 
 const date = new Date();
 const dateOptions: Intl.DateTimeFormatOptions = {
@@ -34,6 +35,12 @@ const formattedDate = date.toLocaleDateString('en-US', dateOptions);
 <a href="https://www.youtube.com/@JoeTheLeaf">
 <YoutubeIcon/>
 </a>
+
+
+ <a href= "/rss.xml"/ class="text-right" > 
+  <RSSIcon/>
+</a>
+
 
 
 

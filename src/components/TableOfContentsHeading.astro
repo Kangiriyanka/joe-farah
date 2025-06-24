@@ -1,0 +1,61 @@
+---
+const { heading } = Astro.props;
+type HeadingWithChildren = {
+  depth: number;
+  text: string;
+  slug: string;
+  subheadings: HeadingWithChildren[];
+};
+---
+
+
+
+<li class="toc-item" >
+  <a href={'#' + heading.slug}>
+    {heading.text}
+  </a>
+  {
+     // Astro.self for recursion
+    heading.subheadings.length > 0 && (
+      <ul>
+        {heading.subheadings.map((subheading: HeadingWithChildren) => (
+          <Astro.self heading={subheading} />
+        ))}
+      </ul>
+    )
+  }
+</li>
+
+
+<style>
+
+      html.dark a.active {
+    background-color: var(--secondary-light-green);
+  }
+  .toc-item{
+   
+    list-style: none;
+    margin-bottom: 0.3rem;
+    font-size: 1.1rem;
+  
+
+  
+  }
+
+  .toc-item a {
+    padding: 0.2rem;
+  }
+  .toc-item a:hover {
+    text-decoration: underline;
+    
+    
+  }
+  .toc-item a.active {
+    background-color: var(--toc-highlight);
+  }
+  html.dark .toc-item a.active {
+
+  background-color: var(--toc-dark-highlight);
+  }
+
+</style>

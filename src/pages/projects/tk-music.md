@@ -13,10 +13,10 @@ link: https://github.com/Kangiriyanka/tkinter_music
 
 ## Quick Glance
 
-![Main-Harmonica](./images/tk-music/main-harp.png)
+![Main-Harmonica](../../assets//project_images/tk-music/main-harp.png)
 &nbsp; 
 
-![Main-Guitar](./images/tk-music/main-guitar.png)
+![Main-Guitar](../../assets//project_images/tk-music/main-guitar.png)
 
 &nbsp;
 
@@ -38,7 +38,7 @@ For reference and simplicity, the piano is a great instrument to demonstrate dis
 &nbsp;
 
 
-![Half-steps](./images/tk-music/half_steps.png)
+![Half-steps](../../assets//project_images/tk-music/half_steps.png)
 - Note that I haven't included the note names of the black keys for readability. (sharps or flats) 
 
 &nbsp;
@@ -127,7 +127,7 @@ The whole idea becomes to play with half-steps and convert them appropriately to
 
 
 
-![Key-Class](./images/tk-music/key-class.png)
+![Key-Class](../../assets//project_images/tk-music/key-class.png)
 
 &nbsp;
 
@@ -188,12 +188,12 @@ Using the Key class, I built a Key GUI. With it, I can:
 
 
 
-![c-to-f](./images/tk-music/c-to-f.png)
+![c-to-f](../../assets//project_images/tk-music/c-to-f.png)
 &nbsp;
-![d-minor-6th](./images/tk-music/d-minor-6th.png)
+![d-minor-6th](../../assets//project_images/tk-music/d-minor-6th.png)
 
 &nbsp;
-![c-major-scale](./images/tk-music/c-major.png)
+![c-major-scale](../../assets//project_images/tk-music/c-major.png)
 
 &nbsp;
 
@@ -214,7 +214,7 @@ For example, If I have a C harmonica, the blow notes on hole 1-2-3 are respectiv
 That being said, I can instantiate a Harmonica object with a Key object in order to use the methods provided by the Key class. 
 
 
-![Harmonica Class](./images/tk-music/harmonica-class.png)
+![Harmonica Class](../../assets//project_images/tk-music/harmonica-class.png)
 
 &nbsp;
 
@@ -329,7 +329,7 @@ Using the harmonica class, I built the Harmonica GUI using tk, ttk and <a class=
 &nbsp; 
 
 Clicking any button will give you the action associated to the hole and the note. There's also a record function that just writes harmonica notation to a text file. 
-![Blow Note](./images/tk-music/blow-note.png)
+![Blow Note](../../assets//project_images/tk-music/blow-note.png)
 
 ### Guitar
 

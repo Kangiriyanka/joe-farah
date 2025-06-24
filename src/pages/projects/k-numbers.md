@@ -11,7 +11,7 @@ link: https://github.com/Kangiriyanka/K-Numbers
 ## Quick glance
 
 A minimal app to practice Korean numbers by setting the range of numbers you want to practice.
-![Quick Glance](./images/quickglance.svg)
+![Quick Glance](../../assets/project_images/k-numbers/quickglance.svg)
 
 &nbsp;
 
@@ -46,7 +46,7 @@ For starters, to read Korean numbers below 9,999, you read the digit name + the 
 
 <br/>
 
-![Decomposing_58](./images/358.png)
+![Decomposing_58](../../assets/project_images/k-numbers/358.png)
 <br/>
 
 If the leftmost digit of the number is 1, only the place value is used. For example, 100 is only 백, not 일백.  It's a bit different with big numbers.
@@ -127,7 +127,7 @@ the not so rough idea for numbers above 10 becomes:
 
 &nbsp;
 
-![sino-korean](./images/sinokorean.png)
+![sino-korean](../../assets/project_images/k-numbers/sinokorean.png)
 &nbsp;
 
 2. Loop through the digits and check 
@@ -139,7 +139,7 @@ the not so rough idea for numbers above 10 becomes:
 
 
 &nbsp;
- ![number-logic](./images/logic.svg)
+ ![number-logic](../../assets/project_images/k-numbers/logic.svg)
 
  &nbsp;
 
@@ -153,7 +153,7 @@ the not so rough idea for numbers above 10 becomes:
 
 &nbsp;
 
-![combine](./images/combine.png)
+![combine](../../assets/project_images/k-numbers/combine.png)
 &nbsp;
 
 ### Challenges and considerations 

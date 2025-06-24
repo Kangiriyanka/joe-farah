@@ -13,7 +13,7 @@ export default defineConfig({
       theme: 'dracula-soft'
     }
   },
-  site: "https://joefarah.netlify.app/",
+  site: "https://joefarah.com",
   integrations: [preact(), db()],
   vite: {
     plugins: [tailwindcss()],

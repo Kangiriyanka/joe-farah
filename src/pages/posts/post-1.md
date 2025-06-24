@@ -13,13 +13,13 @@ postSlug: 'post-1'
 
 ## Heads up 
 
-The juggling tricks discussed here are mainly for toss juggling. Like any other form of art, juggling is incredibly vast in its props and styles. I'd also add that the coolest part is how accesible it is —  you can do it anywhere, anytime, and at any age. It's also genuinely appreciated -- I've never encountered someone look at me with disdain while I was practicing. That's a relief.
+The juggling tricks discussed here are mainly for toss juggling. Like any other form of art, juggling is incredibly vast in its props and styles. I'd also add that the coolest part is how accessible it is —  you can do it anywhere, anytime, and at any age. It's also genuinely appreciated -- I've never encountered someone look at me with disdain while I was practicing. That's a relief.
 
 &nbsp;
 
 ## Mindset 
 
-Whatever trick you're practicing, trust that you'll get it one day. However, that shouldn't be your focus. Instead, focus on applying solid methodology consistenly. Try to be honest with yourself.  In my case, I feel like I don’t record enough footage to analyze myself—either because I forget, or because I just want to jump straight into action. But honestly, the smarter choice would be to slow down and pull out my phone camera.
+Whatever trick you're practicing, trust that you'll get it one day. But that outcome isn't what matters most. Instead, focus on applying solid methodology consistently. Try to be honest with yourself.  In my case, I feel like I don’t record enough footage to analyze myself — either because I forget or just want to jump straight into action. But honestly, the smarter choice would be to slow down and pull out my phone camera.
 
 &nbsp;
 
@@ -64,7 +64,7 @@ Try:  3, 441 and 531 Mills Mess.
  
 
 ###  6 Ball Fountain
-Try:  three  in one with the non-dominant hand.
+Try: 3-in-1 with the non-dominant hand.
 - Try keeping your elbows glued to your ribs. Elbows too far apart will tire you out.
 - Wrists towards your face if the balls are dropping far away from you.
 - Keep your arms tight and closer than you would expect.
@@ -85,10 +85,10 @@ Try:  4 Ball Snake
 - Are you throwing your balls too low?
 - Are you rushing to throw the balls? 
 - What ball(s) is giving you trouble?
-- No fear throwing.
+- Don't be afraid to throw faster than you can.
 - Throw high with more horizontal spread.
 - Try to maintain uniformity in the ball heights.
-- Don't think of it as juggling 7 balls. Try to think of it as 5 balls with an extra 2.
+- Don't think of it as juggling 7 balls. Try to think of it as 5 balls, plus 2.
 - Relax while throwing. Every ball should be thrown comfortably, with consistent force.
 - Lower your arms if you're starting too high. Starting too high gives you less momentum when throwing.
 - Make sure the balls are drawing similar orbits in the air.
@@ -96,7 +96,7 @@ Try:  4 Ball Snake
 
 <br/>
 
-Remember that you lose accuracy from throwing higher. This breaks your form and makes you rush the pattern. It's ok drop your props, breathe a bit, and do it again.
+Remember that you lose accuracy from throwing higher. This breaks your form and makes you rush the pattern. It's okay to drop your props, breathe a bit, and do it again.
 
 &nbsp; 
 
@@ -107,7 +107,7 @@ Try: 4 club half-shower, 55050, 55500.
  
 - Focus on the uniformity of spins.
 - Throw higher than you think you need to.
-- Throw close to you, don't tire your arms.
+- Throw close to your body to avoid tiring your arms.
 - Add triple spins in your 4 club patterns.
 
 <br/>

@@ -9,6 +9,8 @@
   ],
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "preact"
+    "jsxImportSource": "preact",
+    // Tolerate parameters without declaring their type
+   
   }
 }

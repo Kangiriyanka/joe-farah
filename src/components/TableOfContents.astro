@@ -1,25 +1,50 @@
 ---
-import type { MarkdownHeading } from 'astro';
 
-interface Props {
-  headings: MarkdownHeading[];
-}
+import TableOfContentsHeading from './TableOfContentsHeading.astro';
 
 const { headings } = Astro.props;
-const filteredHeadings = headings.filter((heading) => heading.depth <= 2);
+
+const toc = buildToc(headings)
+
+type HeadingWithChildren = {
+  depth: number;
+  text: string;
+  slug: string;
+  subheadings: HeadingWithChildren[];
+};
+
+// Source: Kevin Lee Drum:  https://kld.dev/building-table-of-contents/
+function buildToc(headings: HeadingWithChildren[]) {
+  const toc = [];
+  const parentHeadings = new Map();
+
+  for (const h of headings) {
+    const heading = { ...h, subheadings: [] };
+    parentHeadings.set(heading.depth, heading);
+
+    if (heading.depth === 2) {
+      toc.push(heading);
+    } else {
+      const parent = parentHeadings.get(heading.depth - 1);
+      if (parent) {
+        parent.subheadings.push(heading);
+      }
+    }
+  }
+
+  return toc;
+}
+
+
 ---
 
 <div class="toc-container  ">
 <nav class="toc">
   <h2>Contents</h2>
+  
   <ul>
-    {
-      filteredHeadings.map((heading) => (
-        <li class="toc-item ">
-          <a class= "" href={`#${heading.slug}`}>{heading.text}</a>
-        </li>
-      ))
-    }
+  {toc.map((heading) => <TableOfContentsHeading heading={heading} />)}
+ 
   </ul>
 </nav>
 </div>
@@ -40,32 +65,16 @@ const filteredHeadings = headings.filter((heading) => heading.depth <= 2);
    
   }
 
-  html.dark a.active {
-    background-color: var(--secondary-light-green);
-  }
-  .toc-item{
-    margin-bottom: 0.2rem;
-    font-size: 1.1rem;
-  
-  }
-
-  .toc-item a {
-    padding: 0.2rem;
-  }
-  .toc-item a:hover {
-    text-decoration: underline;
-    
-    
-  }
 
  
 
 @media screen and (min-width: 1280px) {
   .toc-container {
-    position: fixed;;
+    position: fixed;
     top: 17%;
     left: 2%;
-    width: 15rem;
+    width: 20%;
+     
 
   }
 
@@ -73,56 +82,15 @@ const filteredHeadings = headings.filter((heading) => heading.depth <= 2);
  
     left: 0;
     
-   
-   
-  }
-   .toc-item a.active {
-    background-color: var(--toc-highlight);
-  }
-  html.dark .toc-item a.active {
 
-  background-color: var(--toc-dark-highlight);
-  
+   
+  }
+
  
-}
+
 }
 </style>
 
-<script>
 
-
-const observerOptions = {
-   
-    rootMargin: "0px 0px -30% 0px",
-    threshold: 0
-  };
-
-
-  const tocLinks = document.querySelectorAll('.toc-item a');
-  const headings = document.querySelectorAll('h2');
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      const id = entry.target.getAttribute('id');
+<script src="../scripts/toc.js">
   
-      if (entry.isIntersecting ) {
-        console.log("id is" +  id)
-        tocLinks.forEach(link => {
-          link.classList.toggle('active', link.getAttribute('href') === `#${id}`);
-        });
-        
-      }
-      
-    });
-  }, observerOptions);
-
-  headings.forEach((heading) => observer.observe(heading));
-
-  tocLinks.forEach(link => {
-  link.addEventListener('click', () => {
-    tocLinks.forEach(l => l.classList.remove('active'));
-    link.classList.add('active');
-  });
-});
-
-</script>
