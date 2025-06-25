@@ -119,6 +119,13 @@ html {
 
 
 
+.astro-code {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+  padding: 0.75em;
+  background-color: #fdfdfd;
+  
+}
 
 
 .nav-link-container {

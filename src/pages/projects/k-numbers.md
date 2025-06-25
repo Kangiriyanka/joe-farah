@@ -10,6 +10,9 @@ link: https://github.com/Kangiriyanka/K-Numbers
 
 ## Quick glance
 
+<a class="secondary-a" href="https://apps.apple.com/ca/app/k-numbers/id6747454151"> App Store Link </a>
+
+
 A minimal app to practice Korean numbers by setting the range of numbers you want to practice.
 ![Quick Glance](../../assets/project_images/k-numbers/quickglance.svg)
 
@@ -20,7 +23,7 @@ A minimal app to practice Korean numbers by setting the range of numbers you wan
 
 
 During my short 5-day trip to Korea, I felt embarassed that I could understand what people told me, but when came the time to 
-pay for something, my brain would hit a maximum call stack exceeded because I sucked with numbers. I wanted to create a number generator for Korean to redeem myself and practice.
+pay for something, my brain would hit a maximum call stack exceeded because I sucked with numbers. I wanted to create a number generator for Korean to redeem myself and practice. 
 
 
 &nbsp;
