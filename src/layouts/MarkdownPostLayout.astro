@@ -4,7 +4,7 @@ import TableOfContents from "../components/TableOfContents.astro";
 import Separator from "../components/Separator.astro";
 import CommentForm from "../components/CommentForm.astro";
 import CommentList from "../components/CommentList.astro";
-import type { MarkdownHeading } from "astro";
+
 const { frontmatter, headings } = Astro.props;
 const dateOptions: Intl.DateTimeFormatOptions = {
   timeZone: 'America/New_York',
@@ -41,7 +41,9 @@ const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleString("en-US
 <p><em>{frontmatter.description}</em></p>
     <div class="tags flex gap-3 ">
       {frontmatter.tags.map((tag: string) => (
-        <p class="tag dark-container"><a href={`/tags/${tag}`}>{tag}</a></p>
+        <p class="tag dark-container">
+         <a href={`/tags/${tag}`}>{tag}</a>
+        </p>
     
       ))}
 
