@@ -13,8 +13,12 @@ link: https://github.com/Kangiriyanka/tkinter_music
 
 ## Quick Glance
 
+Harmonica GUI 
 ![Main-Harmonica](../../assets//project_images/tk-music/main-harp.png)
 &nbsp; 
+
+Guitar GUI 
+&nbsp;
 
 ![Main-Guitar](../../assets//project_images/tk-music/main-guitar.png)
 
@@ -363,7 +367,9 @@ for i in range(1, 11):
  After playing with tkinter's frames, grids and labels, this is the resulting layout. Clicking any button will give you the action associated to the hole and the note. There's also a record function that just writes harmonica notation to a text file.
 
 ![Blow Note](../../assets//project_images/tk-music/blow-note.png)
+&nbsp;
 
+![Minor Blues 2nd position](../../assets//project_images/tk-music/minor-blues-2nd.png)
 &nbsp;
 
 
@@ -416,6 +422,7 @@ def scale_color_mapper(self):
                     self.update_color(self.buttons[(i, j)], UNCLICKED_COLOR)
 
 ```
+&nbsp;
 
 ![G Major Blues](../../assets//project_images/tk-music/G-Major-Blues.png)
 &nbsp;
