@@ -125,7 +125,7 @@ const {year,month} = useParams() // year is '2025'
 &nbsp;
 
 ### Handling state for  years and months
-Now that we have our calendar object with month and year parameters, we can set any required regular and state variables. Mainly, we have the currentYear and currentMonth state variables. The year parameter is parsed to an int,and Object.keys() turns the calendar months into an array we can track with an index.
+Now that we have our calendar object with month and year parameters, we can set any required regular and state variables. Mainly, we have the currentYear and currentMonth state variables. The year parameter is parsed to an int, and Object.keys() turns the calendar's 'months'  into an array. We track month changes with an index.
 
 
 
@@ -178,7 +178,7 @@ We use functional updates such as setCurrentYear(prev => prev + 1) to increment 
 
 &nbsp;
 
- Early on, I made the mistake of writing setCurrentYear(currentYear + 1). This caused a stale closure in my keypress useEffect — the keyboard stopped responding after I pressed the arrow keys because the effect only remembered the old value of currentYear. 
+ Early on, I made the mistake of writing setCurrentYear(currentYear + 1). This resulted into a stale closure in my keypress useEffect — the keyboard stopped responding after I pressed the arrow keys because the effect only remembered the old value of currentYear. 
 
 
 &nbsp;
@@ -196,7 +196,7 @@ The goal is to select a square that shows  a specific a diary entry. For our lay
 &nbsp;
 
 
-This is done with useEffect because we want to be able to re-render Calendar every time the month or year changes. The getDayOfTheWeek is a helper function that returns a number between 0-6 (Sunday to Friday) for a specific year and month. We set our days state with createDays: a function that returns an array of integers.
+This is done with useEffect, because we want to be able to re-render Calendar every time the month or year changes. The getDayOfTheWeek is a helper function that returns a number between 0-6 (Sunday to Friday) for a specific year and month. We set our days state with createDays: a function that returns an array of integers.
 
 ```jsx
 useEffect(() => {
@@ -217,7 +217,7 @@ useEffect(() => {
 &nbsp;
 
 
-Finally, we can create a MonthGrid component which is just a container that renders the appropriate number of Squares. 
+Finally, we create a MonthGrid component which is just a container that renders the appropriate number of Squares. 
 
 ```jsx
 <MonthGrid  
@@ -279,12 +279,12 @@ Once you select a square, you navigate to a Day component.
 
 &nbsp;
 
-The Day component manages dayTitle and dayContent states.  We  <a class="secondary-a" href="#get-request"> fetch </a> a diary entry from the database to initially set them. The content is formatted to HTML format using <a class="secondary-a" href="https://www.npmjs.com/package/html-react-parser"> html-react-parser</a>. 
+The Day component manages the dayTitle and dayContent states.  We  <a class="secondary-a" href="#get-request"> fetch </a> a diary entry from the database to initially set them. The content is formatted to HTML format using <a class="secondary-a" href="https://www.npmjs.com/package/html-react-parser"> html-react-parser</a>. 
 
 &nbsp;
 
 
-A diary entry in the <a  class="secondary-a" href="#database--cli"> database </a> has a string field for a day_title and a text field for day_content which are initially set to default_title and default_content. We edit them in the EditDay component. Luckily, we can pass state the default values from Day to Edit using Link's state object. 
+A diary entry in the <a  class="secondary-a" href="#database--cli"> database </a> has a string field for a day_title and a text field for day_content which are initially set to default_title and default_content. We edit them in the EditDay component. To do so, we rely on Link's state object. 
 
 
 ```jsx
@@ -317,13 +317,13 @@ For editing content, <a  class="secondary-a" href="https://quilljs.com/docs/quic
 
 &nbsp;
 
-The reference you create with useRef() can be seen as tag you eventually stick to a DOM element. In the figure below, we initialize a sampleRef (tag) and stick it to our div by adding the ref attribute to div. Thankfully, React does the work for us. We can then access the element with sampleRef.current. 
+The reference created with useRef() can be seen as tag you ultimately stick to a DOM element. In the figure below, we initialize a sampleRef (tag) and stick it to our div by adding the ref attribute to div. Thankfully, React does the work for us. We can then access the element with sampleRef.current. 
 
 
 ![useRef](../../assets//project_images/grid-diary/useRef.png)
 &nbsp;
 
-Inside  EditDay (parent), we instantiate a quillRef which is going to be used to refer to the Quill container (Container + Quill). I want to emphasize that QuillRef is not the Quill instance that lives inside its container; it's the actual combination. In the code block below, the tag has yet to be associated with a DOM element; quillRef.current is null.
+Inside  EditDay (parent), we instantiate a quillRef which is going to be used to refer to the Quill container (Container + Quill). I want to emphasize that QuillRef is not the Quill instance that lives inside its container; it's the actual combination. In the code block below, the tag has yet to be associated with a DOM element which indicates that quillRef.current is null.
 
 &nbsp;
 
@@ -359,7 +359,7 @@ function QuillEditor({ innerRef, content, onChange }) {
 ```
 &nbsp;
 
-Only after React finishes rendering do we need to initialize Quill. This means we need a useEffect. We can't manipulate DOM events while the component is rendering. React creates the skeleton (the div tagged with containerRef) and the useEffect embellishes the  Quill instance with its magic.
+Only after React finishes rendering do we need to initialize Quill. This means we need a useEffect hook. We can't manipulate DOM events while the component is rendering. React creates the skeleton (the div tagged with containerRef) and the code inside useEffect gives the Quill instance its home.
 ```jsx
 // QuillEditor.jsx 
 // Inside a useEffect
@@ -373,7 +373,12 @@ innerRef.current = quill
 
 &nbsp;
 
-innerRef becomes the Container + Quill combo. If you don't need the parent to control the QuillEditor, you can simply create quillRef inside QuillEditor. I implemented it both ways, but kept the version where the parent has access. Here's a summary:
+innerRef then becomes the Container + Quill combo. If you don't need the parent to control the QuillEditor, you can simply create quillRef inside QuillEditor I implemented it both ways, but kept the version where the parent has access. 
+
+&nbsp;
+
+
+Summary:
 
 
 
@@ -413,7 +418,7 @@ quill.clipboard.dangerouslyPasteHTML(0, content);
 &nbsp;
 
 
-The final result looks like this.
+The final result looks like this. Clicking the submit button sends a POST Request with FormData for containing a new day_title and day_content.
 
 ![Quill post](../../assets//project_images/grid-diary/quill-post.png)
 
@@ -426,7 +431,7 @@ The final result looks like this.
 ## Flask and Blueprints
 
 ### Backend structure
-At first, I had all my routes packed in a backend.py file which was chaotic not to say the least. I discovered how to use Blueprints by reading part XV of Miguel Grinberg's Flask Mega Tutorial<sup> <a class="secondary-a" href="#footnotes">1.</a></sup>. They are pieces of functionality that modularize your app. For example, you can have a CLI blueprint to handle all database related operations. Another blueprint could be used to store the routes that handle GET and POST requests. The image below is how I organized my backend directory.  
+At first, I had all my routes packed in a backend.py file which was chaotic not to say the least. I discovered how to use Blueprints by reading part XV of Miguel Grinberg's Flask Mega Tutorial<sup> <a class="secondary-a" href="#footnotes">1.</a></sup>. They are pieces of functionality that modularize your app. For example, you can have a CLI blueprint to handle all database related operations. Another blueprint could be used to store the routes that handle GET and POST requests. The figure below is how I organized my backend directory. 
 
 
 &nbsp;
@@ -435,7 +440,7 @@ At first, I had all my routes packed in a backend.py file which was chaotic not 
 ![Directory Structure](../../assets//project_images/grid-diary/directory.png)
 &nbsp;
 
-diary.py creates an instance of the application inside backend/app/main__init__.py. We set the FLASK_APP=diary.py in a .env file. Fortunately, if you have load_dotenv installed, Flask is considerate enough to look for your environment variables. This is what the create_app function looks like.
+diary.py creates an instance of the application inside backend/app/main__init__.py. We set the FLASK_APP=diary.py in a .env file. Fortunately, if you have load_dotenv installed, Flask is considerate enough to look for your environment variables. Anyhow, this is what the create_app function looks like.
 &nbsp;
 ```python
 from flask import Flask
@@ -479,7 +484,7 @@ When working with Blueprints, it's important to understand the order in which yo
 
 1. In app.main.routes, your routes need to be registered on the main blueprint which means they need to import it from app.main. Once that's done, app.main needs to import those routes in order show the Flask app that they exist. There's no circular dependency between app.main and app.main.routes  because bp is already defined by the time you import it to routes. 
 
-2. Inside app (package), we instantiate a db variable (SQLAlchemy instance) that's imported almost everywhere such as in app.cli, app.main.routes. That's why we need import the blueprints inside the create_app function and not on top. If we had put all imports on top, circular dependencies would have been created between app and every other module that uses db.
+2. Inside app (package), we instantiate a db variable (SQLAlchemy instance) that's imported almost everywhere such as in app.cli, app.main.routes. That's why we need import the blueprints inside the create_app function and not on top. If we had put all imports on top, circular dependencies would have been happened between app and every other module that uses db.
 
 &nbsp;
 
@@ -496,7 +501,7 @@ When working with Blueprints, it's important to understand the order in which yo
 
 ### Database & CLI
 
-The only table we have is DiaryEntry with 4 fields: id, date, day_title and day_content. Initially, I considered using the date as a primary key because of its uniqueness, but I had to reconsider my decision. It would have been fine if I needed only one entry record per day, but what if I eventually needed two diary entries for the same date? Due to uncertainty, I just opted for id as a primary key. The to_json method returns an object of the entry which is useful to create Response objects for GET and POST requests. 
+The only table used is DiaryEntry with 4 fields: id, date, day_title and day_content. Initially, I considered using the date as a primary key because of its uniqueness, but I had to reconsider my decision. It would have been fine if I needed only one entry record per day, but what if I eventually needed two diary entries for the same date? Due to uncertainty, I just opted for id as a primary key. The to_json method returns an object of the entry which is useful to create Response objects for GET and POST requests. 
 
 &nbsp;
 
@@ -527,7 +532,7 @@ With CLI commands, we can easily do the necessary database operations. In the te
 
 &nbsp;
 
-DiaryEntry objects are added from the defined START_DATE to END_DATE. I arbitrarily chose 2000 and 2100 — brimming with excitement to still be journaling at 100 years old. Jokes aside, we can create a date from a tuple in Python and conveniently increment dates with the date and timedelta classes from the datetime module. An alternative and probably a better choice would have been to set the dates as environmental variables and writing code to parse them instead of defining constants in cli.py. 
+DiaryEntry objects are added from the defined START_DATE to END_DATE. I arbitrarily chose the years from 2000 to 2100 — brimming with excitement to still be journaling at 100 years old. Jokes aside, we can create a date from a tuple in Python and increment dates with the date and timedelta classes from the datetime module. An alternative would have been to set the dates as environmental variables and write code to parse them instead of defining them as Python constants.
 
 &nbsp;
 
@@ -630,8 +635,8 @@ def get_diary_entry(year,month,day):
 &nbsp;
 
 
+POST works in a similar way; we extract the information from the FormData object on the backend.
 
-POST works in a similar fashion, but we have to send a FormData object inside our request. 
 
 &nbsp;
 
@@ -664,18 +669,27 @@ This is overly simplified and I could very be wrong, but I'll try to present wha
 
 &nbsp;
 
-
+What Flask does is create a way for you to run it in the terminal through its Click package.
 Inside your flask script file in the virtual environment, you'll find:
 ```bin
 from flask.cli import main
 # ...
 sys.exit(main())
 ``` 
-The main method called in that script is actually cli.main(). If we check cli.py in the flask package, we see that cli is an instance of a FlaskGroup, so we're doing FlaskGroup.main(). When initialized, FlaskGroup adds a run_command (Command object) inside a Group. The Command object stores the run_command as a callback function, and the Group can be seen as a container for all the Command objects <sup> <a class="secondary-a" href="#footnotes">3.</a></sup>. Initially, the run_command is function that's been transformed into a Command object with the @click.command decorator. What Flask does is create a way for you to run it in the terminal through its Click package.
+&nbsp;
+
+The main method called in that script is actually cli.main(). If we check cli.py in the flask package, we see that cli is an instance of a FlaskGroup, so we're doing FlaskGroup.main(). When initialized, FlaskGroup adds a run_command (Command object) inside a Group. That Command object itself stores a callback function waiting to be called to start the server. Initially, run_command is function that's been transformed into a Command object with the @click.command decorator  <sup> <a class="secondary-a" href="#footnotes">3.</a></sup>.
 
 &nbsp;
 
-FlaskGroup inherits from AppGroup which inherits from a lot of other classes right up to BaseCommand. The main method getting called in FlaskGroup lives inside the BaseCommand class. BaseCommand is in charge of creating a Context object, but in reality, its child MultiCommand is doing most the work. Long story short, MultiCommand parses the arguments from the terminal and checks if there's a matching Command inside Group (resolve_command). The callback associated with the command 'run' is executed and ran inside the invoke method of MultiCommand.
+There's a long inheritance chain when you look inside the package. FlaskGroup inherits from AppGroup which inherits from a lot of other classes right up to BaseCommand. The main method getting called in FlaskGroup lives inside the BaseCommand class. BaseCommand is in charge of creating a Context object, but in reality, its child MultiCommand is doing most the work. Long story short, MultiCommand parses the arguments from the terminal and checks if there's a matching Command inside Group. In this example:
+1. The argument is 'run' 
+2. The Command object  with 'run' is found in the Group.
+3. The callback associated with it executed. 
+
+&nbsp;
+
+The magic is all in the the invoke method of MultiCommand.
 
 ``` python
 # self refers to FlaskGroup and that can refer to many classes.
@@ -701,7 +715,7 @@ Refresher: the distinction between e.key and e.code is:
 &nbsp;
 
 
-To change the years, the user can  press the left and right arrow keys. You don't have to think about that distinction with arrow keys,since they both output the same value for e.key and e.code ("ArrowLeft", "ArrowRight) across all keyboards. To change the months, the user can press the keys in the number row. It doesn't matter what value they return are as long as they're in the number row.
+To change the years, the user can  press the left and right arrow keys. You don't have to think about that distinction with arrow keys, since they both output the same value for e.key and e.code ("ArrowLeft", "ArrowRight) across all keyboards. To change the months, the user can press the keys in the number row. It doesn't matter what value they return are as long as they're in the number row.
 
 &nbsp;
 
@@ -770,10 +784,13 @@ function addDayPrefix(day) {
 
 &nbsp;
 
+
 ## Takeaways
-- Solidified my understanding of ReactuseEffect and useRef
+- Solidified my understanding of useEffect and useRef.
 - Digging inside the Flask module made me revisit concepts of inheritance.
 - Explaining and reading code is as difficult as writing it.
+
+&nbsp;
 
 
 ## Footnotes
@@ -782,5 +799,5 @@ function addDayPrefix(day) {
 
 2. I could have also used the native API fetch. I didn't know the difference at the time.
 
-3. The conversion from function to Command happens on import. In Python, importing executes module.
+3. The conversion from function to Command happens on import. In Python, importing executes the module.
 
