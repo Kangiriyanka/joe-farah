@@ -207,7 +207,6 @@ It's a neat function you can use in any app actually. I learned that we use wrap
 
 Another consideration to make is the user inputting negative numbers. Luckily, we can prevent such sneaky users by simply adding  .keyboardType(.numberPad) to the TextField.
 
-[Guard the range!](./images/guard.gif)
 
 ### 3. Writing mini tests
 

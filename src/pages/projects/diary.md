@@ -786,7 +786,7 @@ function addDayPrefix(day) {
 
 
 ## Takeaways
-- Solidified my understanding of useEffect and useRef.
+- Solidified my understanding of useEffect and useRef. 
 - Digging inside the Flask module made me revisit concepts of inheritance.
 - Explaining and reading code is as difficult as writing it.
 
