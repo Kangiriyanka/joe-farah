@@ -51,9 +51,34 @@ tag= {post.frontmatter.tags[0]}/>)}
   
 
 
-  
+
+<!-- Working on  -->
+ <p class="!text-2xl bold"> Working on: </p>
 <div class=" grid grid-cols-1 md:grid-cols-2 gap-3 my-1 ">
-{allProjects.map((project: any) =>
+{allProjects
+.filter((a: any) => a.frontmatter.order > 4)
+.map((project: any) =>
+
+
+
+ (<ProjectCard 
+ url = {project.url}
+ stack= {project.frontmatter.stack}
+ title = {project.frontmatter.title}
+ description = {project.frontmatter.description}/>))}
+
+</div>
+
+
+
+<!-- Completed -->
+ <p class="!text-2xl bold"> Built Projects: </p>
+
+<div class=" grid grid-cols-1 md:grid-cols-2 gap-3 my-1 ">
+{allProjects
+.sort((a: any, b: any ) => a.frontmatter.order - b.frontmatter.order)
+.filter((a: any) => a.frontmatter.order < 5)
+.map((project: any) =>
 
 
 
@@ -64,6 +89,10 @@ tag= {post.frontmatter.tags[0]}/>)}
  description = {project.frontmatter.description}/>))}
  
 </div>
+
+
+ 
+
 <p class="text-right"><a class="secondary-a text-center  no-underline font-bold hover:underline" href="/projects/"> All Projects  </a></p>
 </div>
 
