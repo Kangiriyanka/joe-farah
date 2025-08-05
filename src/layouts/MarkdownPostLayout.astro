@@ -21,6 +21,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 
 const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleString("en-US", dateOptions);
 
+
 ---
 
 <BaseLayout pageTitle={frontmatter.title}>
@@ -33,9 +34,12 @@ const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleString("en-US
     
   <div class="flex gap-1">
     <img class=" svg-icon w-5 h-5"  src="/images/calendar.svg" alt="calendar">
-    <p class="text-sm mb-2 pubDate">{formattedPublishDate} EST</p>
+    <p class="text-sm mb-2 pubDate">{formattedPublishDate} EST</p> 
+    
     
   </div>
+
+  
    
 
 <p><em>{frontmatter.description}</em></p>
@@ -69,6 +73,7 @@ const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleString("en-US
 </div>
 <Separator/>
 <CommentList  postSlug={frontmatter.postSlug} />
+
 <CommentForm postSlug={frontmatter.postSlug}/>
 </div>
 

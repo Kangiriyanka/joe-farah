@@ -14,7 +14,7 @@ order: 3
 
 
 A minimal app to practice Korean numbers by setting the range of numbers you want to practice.
-![Quick Glance](../../assets/project_images/k-numbers/quickglance.svg)
+![Quick Glance](../../assets/project_images/k-numbers/quickglance.png)
 
 &nbsp;
 

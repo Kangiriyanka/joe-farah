@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
-title: 'K-Fit'
+title: 'K-Count'
 description: 'An iOS fitness app focused on tracking calories and weight'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'

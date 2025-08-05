@@ -21,17 +21,21 @@ const dateOptions: Intl.DateTimeFormatOptions = {
     <h2> Comments </h2>
    
     {
-        comments.map((comment) => (
-           
-            <div class=" comment-container">
-                <div class="font-bold text-lg">{comment.author}</div>
-                <div class="">
-                    <p>{comment.published.toLocaleString("en-US", dateOptions)} EST </p>
+        comments.length === 0 ? (
+            <p> No comments on this post yet. Be the first to share your <span class="">wisdom</span> :).</p>
+        ) : (
+            comments.map((comment) => (
+                <div class=" comment-container">
+                    <div class="font-bold text-lg">{comment.author}</div>
+                    <div class="">
+                        <p>{comment.published.toLocaleString("en-US", dateOptions)} EST </p>
+                    </div>
+                    <div class="mt-2  ">
+                        <p class="text-justify" >{comment.body}</p>
+                    </div>
                 </div>
-                <div class="mt-2  ">
-                    <p class="text-justify" >{comment.body}</p></div>
-            </div>
-        ))
+            ))
+        )
     }
 </div>
 
