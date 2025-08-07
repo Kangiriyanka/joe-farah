@@ -33,10 +33,10 @@ Whatever trick you're practicing, trust that you'll get it one day. But that out
 - Restrict some of your practice time to your non-dominant hand.
 - Intentionally miss the pattern to see where your props are dropping. Intentionally making a mistake is great for any activity you do — it keeps your ego in check. 
 - Go for either controlled runs or do as many runs as you can. You have to use your judgement<sup class="secondary-a" > <a href= "#footnotes"> 1. </a> </sup> in knowing the timing to do so.
-- Change your point of focus: focus on your arms, focus on your fingers.
+- Shift your focus on different parts of your body: your arms, your fingers. This also applies actions: throwing, catching and aiming.
 - Try to go faster or slower than usual.
 - Film yourself, you're not immune to mistakes.
-- Watch good tutorials. 
+- If you find yourself bored practicing the same moves, it's ok to branch out and check other tutorials.
 - Make it fun.
 
 &nbsp; 
