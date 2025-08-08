@@ -1,15 +1,17 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: 'Swift Fun'
+title: 'Swift Fun or Despair'
 pubDate: 2025-08-06T23:23:31-04:00
-description: 'Brushing up a bit on Swift/SwiftUI' 
+description: 'Brushing up a bit on Swift/SwiftUI and migrating notes' 
 tags: ["swift", "programming"]
 postSlug: 'post-5'
+
+
 ---
 
 ## Today's Update
 
-I recently finished my write-up of <a class="secondary-a" href="/projects/gameok/"> Gameok</a>, a  game library I made with React and Flask<sup a href="#footnotes" class="secondary-a" >1.</sup> The project itself is far from being "complete", but I'm  happy with the progress I've made so far. In any case, I can always go back to it and patch it up. With that being said, I've slowly shifted my focus back to iOS development. To slowly get back into the groove, I've been reorganizing Swift/SwiftUI notes and code scattered around my folders.  I thought it would be a good idea to reinforce some concepts along the way by discussing about them here. 
+I recently finished my write-up of <a class="secondary-a" href="/projects/gameok/"> Gameok</a>, a  game library I made with React and Flask<sup a href="#footnotes" class="secondary-a" >1.</sup> The project itself is far from being "complete", but I'm  happy with the progress I've made so far. In any case, I can always go back to it and patch it up. With that being said, I've slowly shifted my focus back to iOS development. To slowly get back into the groove, I've been reorganizing Swift/SwiftUI notes and code scattered around my folders.  I thought it would be a good idea to reinforce some concepts along the way by showing them here. I'll update this post progressively.
 
 
 &nbsp;
@@ -17,8 +19,7 @@ I recently finished my write-up of <a class="secondary-a" href="/projects/gameok
 ## SwiftUI
 
 ### Alignments
-
-From what I can take away from the SwiftUI Lab's <a class="secondary-a" href="https://swiftui-lab.com/alignment-guides/">alignment guide</a>:
+Basing my knowledge on the SwiftUI Lab's <a class="secondary-a" href="https://swiftui-lab.com/alignment-guides/">alignment guide</a>:
 
 1. A VStack must have a horizontal alignment and an HStack must have a vertical alignment. 
 
@@ -176,7 +177,7 @@ items-center justify-center ml-auto mr-auto w-50 h-50 bg-gray-300">
 
 </div>
 
-Once you add a GeometryReader inside the VStack, the GeometryReader expands with the parent to fill up the available space on the screen. It's a greedy child that wants all the toys! VStack and GeometryReader actually have the same height and width.
+Once you add a GeometryReader inside the VStack, the GeometryReader expands with the parent to fill up the available space on the screen. It's a greedy child that wants the parent's full attention! GeometryReader takes all the available space of its parent.
 
 <div class="relative 
 items-center justify-center border-2  ml-auto mr-auto w-50 h-50 bg-gray-300">
@@ -193,7 +194,7 @@ items-center justify-center border-2  ml-auto mr-auto w-50 h-50 bg-gray-300">
 
 </div>
 
-GeometryReader can share its powers with other children with proxy( the GeometryReader's frame). This will allow the children  to choose their own sizes as opposed to being assigned one by their parent.
+GeometryReader can be used to allow children to choose their own sizes as opposed to being assigned one by their parent. It grants them the power to rebel against their parent VStack! This is all done with the proxy parameter - an instance of a GeometryProxy struct that holds information about GeometryReader.
 
 ```swift
 VStack {
@@ -212,7 +213,7 @@ VStack {
 
 &nbsp;
 
-Another glorious attempt with the GeometryReader and VStack labels removed: 
+Another glorious HTML attempt  with the GeometryReader and VStack labels removed: 
 <div class="relative 
 items-center justify-center border-2  ml-auto mr-auto w-50 h-50 bg-gray-300">
 
@@ -226,6 +227,102 @@ items-center justify-center border-2  ml-auto mr-auto w-50 h-50 bg-gray-300">
 </div>
 </div>
 
+### Custom Transitions
+
+You can define custom transitions using ViewModifiers. Here are the steps:
+
+1. Define your custom ViewModifier
+
+```swift
+struct MyCustomModifier: ViewModifier {
+    let horizontalOffset: Double
+    let verticalOffset: Double
+    func body(content: Content) -> some View {
+        content.offset(x: horizontalOffset, y: verticalOffset )
+    }
+}
+```
+2. Extend the functionality of AnyTransition 
+```swift
+extension AnyTransition {
+    static var myOffset: AnyTransition {
+     
+        AnyTransition.modifier(
+            active: MyCustomModifier(horizontalOffset: 200, verticalOffset: 200),
+            identity: MyCustomModifier(horizontalOffset: 0, verticalOffset: 0))
+    }
+}
+```
+
+3. Apply it to your View
+
+
+```swift
+struct TransitonView: View {
+    @State private var active: Bool = false
+    
+    var body: some View {
+        VStack {
+            Button("Activate") {
+                withAnimation {
+                    active.toggle()
+                }
+            }
+            
+            Spacer()
+            
+            if active {
+                Rectangle()
+                    .frame(width: 300, height: 200)
+                    .transition(
+                        .asymmetric(
+                            insertion: AnyTransition.myOffset,
+                            removal: AnyTransition.myOffset
+                        )
+                 
+                        .combined(with: .opacity)
+                    )
+            }
+        }
+    }
+}
+
+```
+
+&nbsp;
+
+
+### MatchedGeometryEffect
+
+I think the article that demonstrates how to think about matchedGeometryEffect the best is SwiftUI's Lab <a class="secondary-a" href="https://swiftui-lab.com/matchedgeometryeffect-part2/"> guide</a>. Javier's work is beyond commendable.
+
+&nbsp;
+
+The major click for me is just knowing that a view's geometry just refers to the size and position.
+If you have a View B that wants to match a View A, then A is the source. B will have to match its size and position to look like A. The first step of debugging is making sure the views you want to match have the same id and belong to the same namespace.
+
+
+```swift
+// Snippet similar to what's in the article
+struct MatchGeometryView: View {
+    @State private var matched: Bool = false
+    @Namespace private var joespace
+
+    var body: some View {
+        HStack {
+            // A is the source
+            ViewA()
+                .matchedGeometryEffect(id: "id1", in: joespace)
+            // B is jealous of A, it's going to try to copy its size and position to match A's.
+            ViewB()
+                .matchedGeometryEffect(id: matched ? "id1" : "", in: joespace, isSource: false)
+        }
+    }
+}
+```
+
+
+
 
 
 
@@ -237,6 +334,6 @@ items-center justify-center border-2  ml-auto mr-auto w-50 h-50 bg-gray-300">
 
 1. I write about the <a class="secondary-a" href="/projects"> projects </a> I make in a way that I can revisit and study them.
 
-2. I recommend reading this <a  class="secondary-a" href="https://www.hackingwithswift.com/books/ios-swiftui/why-does-swiftui-use-some-view-for-its-view-type"> post</a> by Paul Hudson with this <a  class="secondary-a" href= "https://www.avanderlee.com/swiftui/viewbuilder"> one </a> by Antoine van der Lee for a comprehensive understanding of Views.
+2. I recommend reading this <a  class="secondary-a" href="https://www.hackingwithswift.com/books/ios-swiftui/why-does-swiftui-use-some-view-for-its-view-type"> post</a> by Paul Hudson with this <a  class="secondary-a" href= "https://www.avanderlee.com/swiftui/viewbuilder"> one </a> by Antoine van der Lee for a better understanding of Views. Thank you for your contributions.
 
 
