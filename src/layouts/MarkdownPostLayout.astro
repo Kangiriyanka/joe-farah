@@ -20,6 +20,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 
 
 const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleString("en-US", dateOptions);
+const upDate = new Date(frontmatter.upDate).toLocaleString("en-US", dateOptions);
 
 
 ---
@@ -35,6 +36,10 @@ const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleString("en-US
   <div class="flex gap-1">
     <img class=" svg-icon w-5 h-5"  src="/images/calendar.svg" alt="calendar">
     <p class="text-sm mb-2 pubDate">{formattedPublishDate} EST</p> 
+    <p>
+  {frontmatter.upDate ? "- Updated " : null}
+  {frontmatter.upDate ? upDate : null}
+</p>
     
     
   </div>

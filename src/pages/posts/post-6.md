@@ -2,7 +2,7 @@
 layout: ../../layouts/MarkdownPostLayout.astro
 title: 'Swift Fun or Despair'
 pubDate: 2025-08-06T23:23:31-04:00
-upDate: 2025-08-11T23:21:31-04:00
+upDate: 2025-08-11T13:13:54-04:00
 description: 'Brushing up a bit on Swift/SwiftUI and migrating notes' 
 tags: ["swift", "programming"]
 postSlug: 'post-5'
@@ -29,7 +29,7 @@ Basing my knowledge on the SwiftUI Lab's <a class="secondary-a" href="https://sw
 
 &nbsp;
 
-In this example, all squares belong inside JoeAlignment. With all squares following the same logic: 
+In this example, all squares are inside JoeAlignment. With all squares following the same logic: 
 - Red will align its leading edge with every other element in JoeAlignment. 
 - Green will align its trailing edge with every other element in JoeAlignment.
 - Blue will align its center with every other element in JoeAlignment.
@@ -58,7 +58,7 @@ VStack(alignment: .joeAlignment) {
 A glorious attempt at showcasing the above in HTML becomes: 
 
 
-<div class="relative ml-auto mr-auto w-100 h-50 bg-gray-300 block">
+<div class="relative ml-auto mr-auto w-100 h-50 bg-zinc-300 block">
   
   <span class="block border-left-1 w-10 h-10 bg-red-800 absolute top-0 left-[50%]  ">
          <span class="h-[100%] left-0 absolute border border-2"></span>
@@ -99,7 +99,7 @@ struct SampleView: View {
 ```
 &nbsp;
 
-2. This is a distinct way to do (1) with type constraints. The content here is only ONE generic element that conforms to View. so we have to wrap our Text elements in a VStack. We can't pass two Texts, that's two views.
+2. This is a distinct way to do (1) with type constraints. The content here is only ONE generic element that conforms to View. so we have to wrap our Text elements in a VStack. We can't pass two Texts because that's 2 views.
 ```swift
 struct SampleViewWithTypeConstraint<Content: View>: View {
     var content: Content
@@ -132,7 +132,6 @@ struct SampleViewWithViewBuilder<Content: View>: View {
     }
     var body: some View {
         content
-         
     }
 }
 // Explicitly using the closure syntax
@@ -169,10 +168,10 @@ VStack {
 <div class="relative 
 items-center justify-center ml-auto mr-auto w-50 h-50 bg-gray-300">
 
-<div class="absolute border ml-auto mr-auto relative top-[30%] w-[80%] h-20">
-<u>VStack</u>
- <span class="block ml-auto text-center text-md">First Child</span>
- <span class="block ml-auto text-center top-[60%] text-md ">Second Child </span>
+<div class="absolute border border-3  border-black ml-auto mr-auto relative top-[30%] w-[80%] h-20">
+<u class="text-black" >VStack</u>
+ <span class="block ml-auto text-center text-md text-black">First Child</span>
+ <span class="block ml-auto text-center top-[60%] text-black text-md ">Second Child </span>
 </div>
 </div>
 
@@ -181,14 +180,14 @@ items-center justify-center ml-auto mr-auto w-50 h-50 bg-gray-300">
 When you add a GeometryReader inside the VStack, the GeometryReader expands with the parent to fill up the available space on the screen. It's a greedy child that wants the parent's full attention! GeometryReader takes all the available space of its parent.
 
 <div class="relative 
-items-center justify-center border-2  ml-auto mr-auto w-50 h-50 bg-gray-300">
+items-center justify-center border-black border-3  ml-auto mr-auto w-50 h-50 bg-gray-300">
 
-<u class="text-md" >VStack + GeometryReader</u>
+<u class="text-md text-black" >VStack + GeometryReader</u>
 <div class="absolute ml-auto mr-auto relative w-[100%] h-[88%]">
 
  <div class="flex gap-1 ">
- <span class="block text-md">First Child</span>
- <span class="block text-left  text-md ">Second Child </span>
+ <span class="block text-md text-black">First Child</span>
+ <span class="block text-left  text-black text-md ">Second Child </span>
  </div>
 </div>
 </div>
@@ -299,7 +298,7 @@ I think the article that demonstrates how to think about matchedGeometryEffect t
 
 &nbsp;
 
-The major click for me is just knowing that a view's geometry just refers to the size and position.
+The major click for me was just knowing that a view's geometry just refers to the size and position.
 If you have a View B that wants to match a View A, then A is the source. B will have to match its size and position to look like A. The first step of debugging is making sure the views you want to match have the same id and belong to the same namespace.
 
 
@@ -334,7 +333,7 @@ In this section, I transform Swift concepts into code that represents what I lik
 
 ### Translator with Typealias
 
-We can define a Translator struct which holds dictionaries that convert one word from one foreign language to another. I could have used an elaborate struct to represent a word, but I'm demonstrating typealias. 
+We can define a Translator struct which holds dictionaries that convert one word from one foreign language to another. I could have used an elaborate struct to represent a word, but I'm sticking with typealias. 
 
 ```swift
 typealias Word = String
@@ -357,7 +356,7 @@ struct Translator {
 &nbsp;
 
 
-We translate words by passing an array of Word (any language) in translate functions. Subscripting a dictionary returns an optional value, so we use a <b class="bold-rounded">guard</b> statement to unwrap our value and throw an error, TranslationError, if we can't find a word. The TranslationError could be on any word, and the cool part is that we can pass it to our enum. I'd like to add that in this piece of code, if let and guard would be functionally equivalent, but since I'm throwing an error when any translation isn't found, guard is more appropriate.
+We translate words by passing an array of Word (any language) in translate functions. Subscripting a dictionary returns an optional value, so we use a <b class="bold-rounded">guard</b> statement to unwrap our value and throw an error <b class="bold-rounded">TranslationError</b> if we can't find a word. The TranslationError could be on any word, and the cool part is that we can pass it to our enum. I'd like to add that in this piece of code, if let and guard would be functionally equivalent, but since I'm throwing an error when any translation isn't found, guard is more appropriate.
 ```swift
 // No word found in the dictionary
 enum TranslationError: Error {
@@ -396,7 +395,7 @@ extension Translator {
 ```
 &nbsp;
 
-We initialize a translator, and since our function throws, we need a do-catch block. The words I want to translate are さる  and 睡蓮の葉 which mean "monkey" and "lotus flower" in English.
+We initialize a translator, and since our function throws, we need a do-catch block. The words I want to translate are さる  and 睡蓮の葉 which mean "monkey" and "water lily" in English.
 
 ```swift
 let translator = Translator()
@@ -584,7 +583,7 @@ tunesSorted = tunes.sorted { $0 > $1 }
 &nbsp;
 
 
-If I had an array of <b class="bold-rounded"> (tune, instrument)</b> tuples, I would need to use a map to get a new array of the tuple index I want. Map and filter don't require argument labels, sorted for that matter too.
+If I had an array of <b class="bold-rounded"> (tune, instrument)</b> tuples, I would need to use a map to get a new array of the tuple index I want. Map and filter don't require argument labels.
 
 ```swift
 let tunes = [
@@ -782,7 +781,7 @@ print(guitar.playInstrument(tune: .goodTune(title: "Kakariko Village")))
 
 ### Stretching Property Wrappers
 
-Property wrappers are similar to Python decorators where you can fine tune your functions for extra functionality. In this code, I write a propertyWrapper that controls the amount of seconds we should be doing for each stretch(is it optimal? :P). We can initialize the property wrapper in 3 different ways:
+Property wrappers are similar to Python decorators where you can fine tune your functions for extra functionality. In this code, I write a propertyWrapper that controls the amount of seconds we should be doing for each stretch (is it optimal? :P). We can initialize the property wrapper in 3 different ways:
 
 - @StretchTime var seconds: Int  -> sets seconds (wrappedValue) to 15 , minSeconds to 15 and maxSeconds to 30.
 - @StretchTime var seconds: Int = 20 -> sets seconds (wrappedValue) to 20, minSeconds to 15 and maxSeconds to 30
@@ -834,6 +833,118 @@ print(stretch.seconds) // 25
 stretch.seconds = -10
 print(stretch.seconds) // 20
 ```
+
+&nbsp;
+
+### Generic Exercise
+
+I recreated create a Queue of exercises by reading the documentation on <a href="[Generics>](https://docs.swift.org/swift-book/documentation/the-swift-programming-language/generics/).">Generics</a>. Associated types take a bit of time to get used to especially when we create protocols that conform to other protocols. You'll see this down below with the CompletedExercises protocol.
+
+&nbsp;
+
+Let's define a Container protocol. The associated type Item can take on any value it wants as long as it conforms to Equatable. It could be an Int, [Int], [String], a custom struct, anything really.  With this implementation, you can create data structures like Stacks or Queues. 
+
+```swift
+// The naming for Item is a bit confusing since it can refer to many elements.
+protocol Container {
+  associatedtype Item: Equatable
+  mutating func append(_ item: Item)
+  var size: Int {get}
+  subscript(i: Int) -> Item { get }
+}
+```
+&nbsp;
+
+We can define a base Queue struct that uses all the properties in the Container protocol. Swift infers that the Item defined in protocol takes on the value of [E], an array of Elements (E) that conform to Equatable. We can add missing functions with an extension.
+```swift
+struct Queue<E: Equatable>: Container {
+  var items: [E] = []
+  mutating func append(_ exercise: E) {
+        items.append(exercise)
+    }
+    var size: Int {
+        return items.count
+    }
+    subscript(i: Int) -> E {
+        return items[i]
+    }
+}
+// Add missing dequeue function
+extension Queue {
+    mutating func dequeue() -> E? {
+        guard size > 0 else { return nil }
+        return items.removeFirst()
+    }
+}
+```
+
+&nbsp;
+
+We'll create a Queue of Exercise structs and test the functions
+```swift
+struct Exercise: Equatable {
+    let name: String
+    var sets: Int
+    var reps: Int
+}
+
+var q = Queue<Exercise>()
+q.append(Exercise(name: "Push-ups", sets: 3, reps: 20))
+q.append(Exercise(name: "Lunges", sets: 3, reps: 10))
+q.append(Exercise(name: "Mountain Climbers", sets: 2, reps: 40))
+
+print("Queue size: \(q.size)") // 3
+print(q[1].sets == q[0].sets) // true
+print(q.dequeue()!) // Exercise(name: "Push-ups", sets: 3, reps: 10)
+```
+
+&nbsp;
+
+To spice things up, we can create a protocol CompletedExercises that conforms to the Container protocol. It has a <b class="bold-rounded">complete</b> function that returns a Queue of Exercises completed. What the protocol is saying:
+
+
+1. I have a function that returns a subset of the exercises I completed. It takes an exerciseCount and returns CompletedItems.
+2. The Item of CompletedExercises (CompletedItems.Item)  must be of the same type as the Item defined in Container (Container.Item). This means that if I instantiated a <b class="bold-rounded">Queue\<Exercise></b>, then the CompletedItems must be  <b class="bold-rounded">Queue\<Exercise></b>.
+3. The CompletedItems themselves must conform to CompletedExercise. This means we can call complete as many times as we want on a Queue.
+
+
+
+```swift
+// Similar to docs: Using a Protocol in Its Associated Type’s Constraints
+protocol CompletedExercises: Container {
+     associatedtype CompletedItems:CompletedExercises where CompletedItems.Item == Item
+     func complete(_ exerciseCount: Int) -> CompletedItems
+}
+
+extension Queue: CompletedExercises {
+     func complete(_ exerciseCount: Int) -> Queue {
+         var newQueue = Queue()
+         for i in 0..<exerciseCount{
+             newQueue.append(self[i])
+         }
+        return newQueue
+    }
+}
+
+var exerciseQueue =  Queue<Exercise>()
+exerciseQueue.append(Exercise(name: "Push-ups", sets: 3, reps: 10))
+exerciseQueue.append(Exercise(name: "Squats", sets: 3, reps: 12))
+exerciseQueue.append(Exercise(name: "Joe Spider Curls", sets: 100, reps: 400))
+
+let finished = exerciseQueue.complete(2)
+print(type(of: finished)) // Queue<Exercise>
+
+print("--- Finished ---")
+print(finished[0].name) // Push-ups
+print(finished[1].name) // Squats
+
+// Doesn't make sense practically... but programatically....
+let whatThe = finished.complete(1)
+print(whatThe[0].name)  // Push-ups
+
+```
+
+
 
 &nbsp;
 
