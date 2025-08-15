@@ -1,11 +1,11 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: 'Swift Fun or Despair'
+title: 'Swift Fun'
 pubDate: 2025-08-06T23:23:31-04:00
 upDate: 2025-08-11T13:13:54-04:00
-description: 'Brushing up a bit on Swift/SwiftUI and migrating notes' 
+description: 'Migrating personal Swift/SwiftUI notes' 
 tags: ["swift", "programming"]
-postSlug: 'post-5'
+postSlug: 'post-6'
 
 
 ---

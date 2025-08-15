@@ -2,9 +2,7 @@
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'K-Count'
 description: 'An iOS fitness app focused on tracking calories and weight'
-image:
-    url: 'https://docs.astro.build/assets/rose.webp'
-    alt: 'The Astro logo on a dark background with a pink glow.'
+link: https://github.com/Kangiriyanka/K-Count
 stack: ['swift']
 order: 5
 ---
