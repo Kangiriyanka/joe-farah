@@ -12,7 +12,7 @@ postSlug: 'post-6'
 
 ## Today's Update
 
-I recently finished my write-up of <a class="secondary-a" href="/projects/gameok/"> Gameok</a>, a game library I made with React and Flask<sup a href="#Footnotes" class="secondary-a" >1.</sup> The project itself is far from being "complete", but I'm  happy with the progress I've made so far. In any case, I can always go back to it and patch it up. With that being said, I've slowly shifted my focus back to iOS development. To slowly get back into the groove, I've been reorganizing Swift/SwiftUI notes and code scattered around my folders.  I thought it would be a good idea to reinforce some concepts along the way by showing them here. I'll update this post progressively.
+I recently finished my write-up of <a class="secondary-a" href="/projects/gameok/"> Gameok</a>, a game library I made with React and Flask<sup> <a class="secondary-a" href="#footnotes" >1. </a></sup> The project itself is far from being "complete", but I'm  happy with the progress I've made so far. In any case, I can always go back to it and patch it up. With that being said, I've slowly shifted my focus back to iOS development. To slowly get back into the groove, I've been reorganizing Swift/SwiftUI notes and code scattered around my folders.  I thought it would be a good idea to reinforce some concepts along the way by showing them here. I'll update this post progressively.
 
 
 &nbsp;
@@ -84,7 +84,7 @@ A glorious attempt at showcasing the above in HTML becomes:
 
 
 ### ViewBuilder
-For any View with a body property, ViewBuilder will bundle up the Views inside using special containers (TupleViews).<sup a href="#Footnotes" class="secondary-a" >2.</sup>
+For any View with a body property, ViewBuilder will bundle up the Views inside using special containers (TupleViews).<sup> <a class="secondary-a" href="#footnotes" >2. </a></sup>
 
 1. Using ViewBuilder behind the scenes.
 
@@ -438,7 +438,7 @@ let json = """
 
 &nbsp;
 
-To turn this into DrawingItem struct, I need to use CodingKeys because my struct field names differ from the data (intentionally). This is one among the <b>many</b> <a class="secondary-a" href="https://matteomanferdini.com/codingkey-swift/"> scenarios</a> <sup a href="#Footnotes" class="secondary-a" >3.</sup> you can encounter when decoding JSON. 
+To turn this into DrawingItem struct, I need to use CodingKeys because my struct field names differ from the data (intentionally). This is one among the <b>many</b> <a class="secondary-a" href="https://matteomanferdini.com/codingkey-swift/"> scenarios</a> <sup> <a class="secondary-a" href="#footnotes" >1. </a></sup> you can encounter when decoding JSON. 
 
 ```swift
 struct DrawingItem: Decodable {
