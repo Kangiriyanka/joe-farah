@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
-title: 'Music Routine'
+title: 'Choreobuilder'
 pubDate: 2025-05-23
 description: 'An iOS app to create music routines for performers'
 image:

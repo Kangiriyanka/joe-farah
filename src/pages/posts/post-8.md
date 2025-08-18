@@ -42,7 +42,7 @@ I'll explain how I journal and how my journaling changed over time through the v
 
 ### Diaries 
 
-My main outlet for writing are my yearly diaries - they act as my second brain.  I experimented  with different formats, but the NOLTY brand I used for 2023 and 2024 take the cake and any  desserts left on the table<sup class="secondary-a"> <a href="#footnotes">3.</a></sup>.  This year, I'm writing in a Letts of London diary. It's less thick and different than the previous two which forces me to write less for more. 
+My main outlet for writing is my yearly diaries - they act as my second brain.  I experimented  with different formats, but the NOLTY brand I used for 2023 and 2024 takes the cake and any  desserts left on the table<sup class="secondary-a"> <a href="#footnotes">3.</a></sup>.  This year, I'm writing in a Letts of London diary. It's less thick and different than the previous two which forces me to write less for more. 
 
 &nbsp;
 
@@ -148,5 +148,5 @@ As of today, I'm mainly using my 2025 diary and migrating my cauldron sheets to 
 2. The whole inner dialogue inside our heads is surreal when we write — "I should say this that way",  "You know what? I don't like this sentence", "This word's snazzy". 
 3. From 2023, I started assigning themes to the years. 2023 was the year of consistency, 2024 was trust and 2025 is feedback. 
 5. I try to  keep version of my vault  I find relevant to my current situation i.e. the skills I'm focusing on. Hogging notes just for the sake of having notes holds no real value - if I don't need it right now, I'm ok casting it aside. 
-5. I find that it's more easier or more accessible to listen to your voice and feel your emotion compared to reading.
+5. I find that it's easier or more accessible to listen to your voice and feel your emotion compared to reading.
 
