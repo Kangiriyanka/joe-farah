@@ -7,7 +7,7 @@ stack: ['swift']
 order: 5
 ---
 
-
+This post is being updated progressively.
 
 ## Why?
 
