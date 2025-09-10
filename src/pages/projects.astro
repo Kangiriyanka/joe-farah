@@ -7,7 +7,9 @@ const allProjects = Object.values(import.meta.glob('./projects/*.md', { eager: t
 <BaseLayout pageTitle={pageTitle}>
 
     <div class="flex flex-wrap justify-between  gap-3">
-        {allProjects.map((project: any) =>
+        {allProjects
+        .sort((a:any, b:any) => a.frontmatter.order - b.frontmatter.order)
+        .map((project: any) =>
         
         
         

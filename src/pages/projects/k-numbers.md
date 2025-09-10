@@ -4,13 +4,12 @@ title: 'K-Numbers'
 description: 'An iOS app to practice Korean numbers'
 stack: ['swift']
 link: https://github.com/Kangiriyanka/K-Numbers
-order: 0
-
+order: 3
+store: "https://apps.apple.com/ca/app/k-numbers/id6747454151"
 ---
 
 ## Quick glance
 
-<a class="secondary-a" href="https://apps.apple.com/ca/app/k-numbers/id6747454151"> App Store Link </a>
 
 
 A minimal app to practice Korean numbers by setting the range of numbers you want to practice.

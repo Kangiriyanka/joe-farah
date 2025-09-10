@@ -4,7 +4,9 @@ title: 'Grid Diary'
 description: 'A React calendar  for journaling'
 stack: ["react", "flask"]
 link: "https://github.com/Kangiriyanka/ReactFlask-Diary"
-order: 2
+order: 5
+
+
 ---
 
 ## Quick Glance

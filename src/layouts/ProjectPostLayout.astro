@@ -17,6 +17,8 @@ const { frontmatter, headings } = Astro.props;
     
     <GithubIcon/>  
     <a class="secondary-a"  href= {frontmatter.link}>Github Repo </a>
+    {["K-Numbers", "K-Count"].includes(frontmatter.title)  ? <span> | <a class="secondary-a" href={frontmatter.store}>App Store Link</a> </span> 
+    : <span></span>}
   </div>
   <br/>
 <slot/>
