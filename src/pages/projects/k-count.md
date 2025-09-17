@@ -823,6 +823,13 @@ let futureDate = Calendar.current.date(byAdding: .day, value: Int(days), to: tod
 
 &nbsp;
 
+## App Store Approval
+
+Since the App store is saturated with fitness/health apps, K-Count got rejected with <span class="bold-rounded"> 4.3.0 Design:Spam</span>  when I first tried submitting it. One thing I've tried was to remove keywords like health and fitness to avoid Apple categorizing as spam. 
+
+&nbsp;
+
+
 
 ## Takeaways
 
