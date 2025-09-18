@@ -13,12 +13,13 @@ This post is being updated as I work on ChoreoBuilder.
 
 ## Why?
 
-Part of my life  I have is learning a song on an instrument and perform to it. 
+When I was living in Japan, I was given precious opportunities to perform in festivals and community events in the <a href="https://en.wikipedia.org/wiki/Kihoku,_Mie" class="secondary-a"> town </a> I was living in.<sup class="secondary-a" href="#footnotes" >1.</sup>.  Whenever I create a choreography for a tune, I split the audio in parts and write notes on my iPad on what moves or transitions I can do. My motivation with ChoreoBuilder was to streamline this process.
 
 
 
+## Uploading a Choreography
 
-## Uploading a Routine
+Initially, the main idea is to upload audio files
 
 - Getting audio files from your Files to create separate parts with them
 - Copying files to your sandbox.
@@ -30,20 +31,18 @@ Part of my life  I have is learning a song on an instrument and perform to it.
 
 
 
-## AudioPlayerModel
+## Playing with AVAudioPlayer
 
-There are different functions to implement for a functional AudioPlayer. 
+## What to build 
+Much of the functionality I've implemented was based on the VLC iOS app.  
 
-1. Looping
 
-2. Custom Loop
-
-3. Delay
-
+1. Custom Loop: Allowing the perfomer to practice a specific section inside the part
+2. Delay: For a part, we want the performer to be able to have their own countdown
 
 
 
-## Controls to implement
+
 
 
 
@@ -52,12 +51,16 @@ There are different functions to implement for a functional AudioPlayer.
 - Drag gesture on the mini-audio player
 
 
+
 ## Things I learned
 
 1. DropViewDelegate inside a Scrollview
+2. Building a custom expandable AudioPlayer
 
 
 
 
 
 ## Footnotes
+
+1. For reference, I juggle and dance to tunes I learn. For example, what I like to do is learn a song on piano  and then  build a dance/juggling choreography with it.
