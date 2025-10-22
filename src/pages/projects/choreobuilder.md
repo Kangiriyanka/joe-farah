@@ -19,19 +19,64 @@ When I was living in Japan, I was given precious opportunities to perform in fes
 
 ## Uploading a Choreography
 
-Initially, the main idea is to upload audio files
+Initially, the main idea of this app is 
 
 - Getting audio files from your Files to create separate parts with them
 - Copying files to your sandbox.
 
 
 
-## FileUploadView
+
+
+## Models 
+
+Simply enough, every routine has parts and every parts have moves of different movetypes.
+
+
+
+
 
 
 
 
 ## Playing with AVAudioPlayer
+
+
+
+
+### AudioPlayerModel
+
+
+Every part comes 
+```swift
+//PartView
+if let partURL = part.location {
+        AudioPlayerView(audioFileURL: partURL, partTitle: part.title)
+    }
+
+```
+
+
+### Controls 
+
+Functions I had learn how to implement:
+
+1. play
+2. seek forwards and backwords
+3. loop
+4. custom loop
+5. delay 
+6. speedRate 
+
+
+
+### Custom Slider
+
+
+
+
+
+
 
 ## What to build 
 Much of the functionality I've implemented was based on the VLC iOS app.  
@@ -46,12 +91,6 @@ Much of the functionality I've implemented was based on the VLC iOS app.
 
 
 
-## To Fix 
-
-- Drag gesture on the mini-audio player
-
-
-
 ## Things I learned
 
 1. DropViewDelegate inside a Scrollview
@@ -63,4 +102,6 @@ Much of the functionality I've implemented was based on the VLC iOS app.
 
 ## Footnotes
 
-1. For reference, I juggle and dance to tunes I learn. For example, what I like to do is learn a song on piano  and then  build a dance/juggling choreography with it.
+1. For reference, I juggle and dance to tunes I learn. For example, what I like to do is learn a song on piano and then build a dance/juggling choreography with it.
+
+2. I use choreography and routine interchangeably.
