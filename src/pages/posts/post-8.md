@@ -5,7 +5,6 @@ pubDate: 2025-08-17T23:22:58-04:00
 description: 'What journaling means to me and how I do it' 
 tags: ["writing"]
 postSlug: 'post-8'
-
 ---
 
 

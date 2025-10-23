@@ -1,6 +1,6 @@
 ---
 layout: ../../layouts/MarkdownPostLayout.astro
-title: "차란한 문화 발전 - Hangul Day"
+title: "찬란한 문화 발전 - Hangul Day"
 pubDate: 2025-10-21T23:22:58-04:00
 description: 'Short Korean essay about Hangul Day' 
 tags: ["writing","korean"]
@@ -23,7 +23,7 @@ Hangul Day (October 9th) is a day that commemorates the invention of the Korean 
 <!-- Uncorrected Version -->
 <div class="bold-rounded">
 
-한글은 쓰기와 읽기를 배우기 쉽다는 점이기 때문에 실천적이고 과학적이라고 말 한다. 한글은 도대체 언제 누가 만들었다? &nbsp;
+한글은쓰기와 읽기를 배우기 쉽다는 점이기 때문에 실천적이고 과학적이라고 말 한다. 한글은 도대체 언제 누가 만들었다? &nbsp;
 
 &nbsp;
 
@@ -52,12 +52,12 @@ Hangul Day (October 9th) is a day that commemorates the invention of the Korean 
 <!-- Better Version -->
 <div class="bold-rounded">
 
-한글 쓰기와 읽기를 배우기 쉽다는 점이기 때문에 <span class="b-high">실천적</span>이고 과학적이라고 말한다. 그렇다면 한글은 언제, 누가 <span class="g-high">만들었을까</span>?
+한글쓰기와 읽기를 배우기 쉽다는 점있기 때문에 <span class="b-high">실천적</span>이고 과학적이라고 말한다. 그렇다면 한글은 언제, 누가 <span class="g-high">만들었을까</span>?
 
 &nbsp;
 
 
-옛날 한국에서는 양반들은 주로 한자로 된 책을 읽고, 편지를 <span class="g-high">쓰기도</span> 했다. 반면에 <span class="g-high">백성들</span> 은 한자가 어렵기 때문에 쓸 수 없었다. 그래서 세종대왕은 모든 백성이 글을 일고, <span class="g-high">쓸 수 있도록</span> 한글을 <span class="b-high">창제했다</span>. 
+옛날 한국에서는 양반들은 주로 한자로 된 책을 읽고, 편지를 <span class="g-high">쓰기도</span> 했다. 반면에 <span class="g-high">백성들</span> 은 한자가 어렵기 때문에 쓸 수 없었다. 그래서 세종대왕은 모든 백성이 글을 읽고, <span class="g-high">쓸 수 있도록</span> 한글을 <span class="b-high">창제했다</span>. 
 
 &nbsp;
 
