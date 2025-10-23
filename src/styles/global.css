@@ -125,6 +125,27 @@ html {
 }
 
 
+/* Writing texts */
+
+.b-high {
+  background-color: #3384ed;
+  padding: 2px;
+}
+
+.g-high {
+
+  background-color: #308f4d;
+  padding: 2px;
+}
+
+.r-high {
+
+  background-color: #ea6565;
+  padding: 2px;
+}
+
+
+
 
 .astro-code {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
@@ -349,6 +370,8 @@ hr {
 
 
 }
+
+
 
 
 
