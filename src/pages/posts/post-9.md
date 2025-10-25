@@ -23,7 +23,7 @@ Hangul Day (October 9th) is a day that commemorates the invention of the Korean 
 <!-- Uncorrected Version -->
 <div class="bold-rounded">
 
-한글은쓰기와 읽기를 배우기 쉽다는 점이기 때문에 실천적이고 과학적이라고 말 한다. 한글은 도대체 언제 누가 만들었다? &nbsp;
+한글은 읽기와 쓰기를 배우기 쉽다는 점 때문에 실천적이고 과학적이라고 말 한다. 한글은 도대체 언제 누가 만들었다? &nbsp;
 
 &nbsp;
 
