@@ -98,6 +98,10 @@ Also, a lot of writing or anything really is remembering the tools you have at y
 
 &nbsp;
 
+## Extra Writings
+
+&nbsp;
+
 ## Footnotes
 
 1. I've recently started  to listen to different radio channels in Korean on <a class="secondary-a"  href="https://apps.apple.com/us/app/kbs-kong/id928368733"> KBS KONG</a>.
