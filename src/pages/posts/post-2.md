@@ -147,7 +147,7 @@ I never had any formal training in harmonica and guitar, but I really wanted to 
 - Look at your fingers, how do they feel?
 - Make sure the notes you play don't overlap with each other. This means properly lift your finger up when you're done playing a note.
 - Try playing a measure with your eyes closed.
-- Practice the parts you're least comfortable with. This is my personal bottleneck <sup > <a class="secondary-a" href="#footnotes" > 2.</a> </sup>
+- Practice the parts you're least comfortable with as many times as you need. This is my personal bottleneck <sup > <a class="secondary-a" href="#footnotes" > 2.</a> </sup>
 
 &nbsp;
 
@@ -189,7 +189,30 @@ Here's what some of my notes look like for a song on guitar I was learning. The 
 
 <br/>
  
-The irony is that you internalize and forget about all the notes you've done. Humans. Anyways, keep recording and metronoming.
+The irony is that you internalize and forget about all the notes you've done. Humans. Oh yeah, if you have fun practicing music without taking yourself too seriously, you can always get creative about the way you approach practice. Stay focused all while keeping a smile on your face.
+
+
+&nbsp;
+
+
+### Extras: Joe's Musical Focus
+
+These are some areas of focus I’ve set for myself in a curriculum-like structure. 
+
+&nbsp;
+
+
+<div class="bold-rounded">
+Being able to relax and comfortably read and play the score even if I don't completely grasp everything every musical notation, note  tempo. When I learn this <a class="secondary-a"  href="https://drive.google.com/file/d/1dN24APGfwmlKujP7ZNnTnH10n3sFzSfZ/view">  cover </a> of Littleroot Town from LotusFlower, I can take as much time as you want, play simpler songs, dedicate 5 minutes to sight-reading before practicing the main song. 
+
+</div>
+
+&nbsp;
+
+<div class="bold-rounded">
+Being able to close my eyes and quickly visualize notes, chords and scales for piano, guitar and harmonica. If you were told to play a G# Major Pentatonic on guitar, how easy would it be for you to tell me what notes are in there? Can you close your eyes and see them across the instruments you play?  What smart mental shortcuts would you use to reduce overhead while thinking about it? The next level to that would be hearing them, but take it one half-step at a time without rushing. Use what you <a class="secondary-a" href="https://joefarah.com/projects/tk-music/"> made</a>. Make it automatic, snap your fingers and tell me the answer all while struggling.
+</div>
+
 
 
 
