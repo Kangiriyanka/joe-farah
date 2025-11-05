@@ -133,7 +133,7 @@ When I don't have pen and paper, I like to record myself on my Apple watch/phone
 
 ## Final words
 
-As of today, I'm mainly using my 2025 diary and migrating my cauldron sheets to my diary app. For the cauldron sheets, I'm not sure if I'll keep doing them, since I've accumulated enough evidence of what I like to do, how I should do it and what I should do to push myself to the next level. The way I approach writing is changing every year. Now, I want to focus on blogging.
+As of today, I'm mainly using my 2025 diary and migrating my cauldron sheets to my diary app. For the cauldron sheets, I'm not sure if I'll keep doing them, since I've accumulated enough evidence of what I like to do, how I should do it and what I should do to push myself to the next level. The way I approach writing is changing every year. Now, I want to focus on blogging. Specifically, I want to get better at organizing and writing my thoughts out in the languages I know and be more thorough in the way I explain my <a  class="secondary-a" href="https://joefarah.com/projects/"> projects </a> and answer questions regarding them.  
 
 
 
@@ -146,6 +146,6 @@ As of today, I'm mainly using my 2025 diary and migrating my cauldron sheets to 
 1. Writing fits well with how I'm wired as a human being, because I have a lot of thoughts stuck in my head.
 2. The whole inner dialogue inside our heads is surreal when we write — "I should say this that way",  "You know what? I don't like this sentence", "This word's snazzy". 
 3. From 2023, I started assigning themes to the years. 2023 was the year of consistency, 2024 was trust and 2025 is feedback. 
-5. I try to  keep version of my vault  I find relevant to my current situation i.e. the skills I'm focusing on. Hogging notes just for the sake of having notes holds no real value - if I don't need it right now, I'm ok casting it aside. 
+4. I try to  keep version of my vault  I find relevant to my current situation i.e. the skills I'm focusing on. Hogging notes just for the sake of having notes holds no real value - if I don't need it right now, I'm ok casting it aside or turning it into a post. 
 5. I find that it's easier or more accessible to listen to your voice and feel your emotion compared to reading.
 

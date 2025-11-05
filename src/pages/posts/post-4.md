@@ -151,7 +151,7 @@ Whenever someone asks, “How many languages do you speak?” I hesitate to answ
 
 ## Footnotes
 
-1.  Unless it's part of your job or you're the wizard of polyglots, it's hard and unrealistic to maintain many languages at consistent levels. That's why I roll my eyes (sneer, sometimes) when I see  headlines of people claiming that they speak an <b> arbitrary high number</b> languages. 
+1.  Unless it's part of your job or you're the wizard of polyglots, it's unrealistic to maintain many languages at consistent levels. That's why I roll my eyes (sneer, sometimes) when I see headlines of people claiming that they speak an <b> implausible number of</b> languages. 
 
 2.  I followed suit for Korean and Spanish because it turned out that I wholeheartedly enjoyed the process. 
 
