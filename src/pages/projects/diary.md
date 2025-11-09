@@ -659,6 +659,32 @@ The app was originally created with CRA, but I migrated it to Vite using <a clas
  }
 ```
 
+&nbsp;
+
+
+
+### Querying with sqlite3
+
+After running <span class="bold-rounded"> sqlite3 diary.db </span>, we can use the result of our queries to feed the input the AI to summarize the content:
+
+Example 1:
+```bash
+# Get the content for a diary_entry 
+# that has Anki in its day title
+SELECT * 
+FROM diary_entries
+WHERE day_title LIKE "%Anki: %"
+```
+
+
+Example 2:
+```bash
+# Get all the diary_entries 
+# from January 1st 2024 to May 1st 2024.
+SELECT *
+FROM diary_entries
+WHERE date >= '2024-01-01' AND date <= '2024-05-01';
+```
 
 
 

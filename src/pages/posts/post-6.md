@@ -148,6 +148,31 @@ SampleViewWithViewBuilder {
 
 ```
 
+
+&nbsp;
+
+Now where does AnyView come in play? The compiler doesn't know what the underlying View inside AnyView(...) is, it only knows that it's AnyView. @ViewBuilder solves most our problems. You can read more about it <a class="secondary-a" href="https://www.swiftbysundell.com/articles/avoiding-anyview-in-swiftui/https://www.swiftbysundell.com/articles/avoiding-anyview-in-swiftui/"> here</a>.  
+
+```swift
+@State private var playMusic: AnyView = AnyView(Text("Play Music?"))
+
+// No need to use @ViewBuilder, but at what cost?
+func changeView() {
+    if Bool.random() {
+        myView = AnyView(Image(systemName: "music.note"))
+    } else {
+        myView = AnyView(Text("Scale not found"))
+    }
+}
+
+// or create an array of AnyView
+
+let scales: [AnyView] = [
+    AnyView(Text("Phrygian: 1	♭2	♭3	4	5	♭6	♭7	")),
+    AnyView(Image(systemName: "Lyidian: 1, 2, 3, ♯4, 5, 6, 7"))
+]
+
+```
 &nbsp;
 
 ### GeometryReader

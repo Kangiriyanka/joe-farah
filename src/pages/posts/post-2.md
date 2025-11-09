@@ -90,7 +90,7 @@ Jonah Fox mentions the idea of skill-based improvisation. The idea is to laser f
 
 &nbsp;
 
-For improvisation and blues, you can check ou this <a class="secondary-a" href="https://leedsharmonica.uk/resources/chorus-forms/Chorus-Forms.pdf"> document </a> from Leeds Harmonica.  I like his style of writing.
+For improvisation and blues, you can check out this <a class="secondary-a" href="https://leedsharmonica.uk/resources/chorus-forms/Chorus-Forms.pdf"> document </a> from Leeds Harmonica. I like his style of writing.
 
 &nbsp;
 

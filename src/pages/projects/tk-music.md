@@ -433,7 +433,7 @@ def scale_color_mapper(self):
 
 &nbsp;
 I've included other features like:
-- Visualizing piano notes on on the guitar fretboard.
+- Visualizing piano notes on the guitar fretboard.
 - Coloring the fretboard.
 - Taking snapshots of the scales/chords/screen.
 

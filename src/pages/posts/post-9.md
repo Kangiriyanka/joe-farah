@@ -8,7 +8,7 @@ postSlug: 'post-9'
 ---
 
 ## Intro
-Hangul Day (October 9th) is a day that commemorates the invention of the Korean alphabet. We read about it in Korean class and had to write a short essay summarizing our readings. I’m sharing two versions: one filled with mistakes, and the corrected version from my teacher. The corrected version has some color coded highlights: blue for vocabulary, green for grammar, and red for words I like. 
+Hangul Day (October 9th) is a day that commemorates the invention of the Korean alphabet. We read about it in Korean class and had to write a short essay summarizing our readings. I’m sharing two versions: one filled with mistakes, and the corrected version from my teacher. The corrected version has some color coded highlights: blue for vocabulary, green for grammar, and red for words I like. I'll also include extra texts I wrote.
 
 &nbsp;
 
@@ -112,6 +112,25 @@ Breakfast, Lunch and Dinner.
 저는 주로 아침을 안 먹어요. 하지만, 커피는 꼭 마셔요. 가끔 아침을 먹을 때 간단하게 <span class="corrections">스낵<span class="disappear">과</span><span class="corrected">을</span></span> <span class="mistake">바나나를</span> 먹어요. 점심은 보통 안 먹는데 친구를 만나면 <span class="mistake">점심을</span> 먹기도 해요. 저녁은 7시쯤 가족<span class="corrections corrected">들</span>이랑 먹어요. 저녁은 엄마가 만들어 주시고, 제가 <span class="corrections">먹<span class="corrected">고</span></span><span class="mistake">어</span> 싶은 음식이 있을 때 엄마한테 만들어 달라고 부탁해요.
 
 
+</div>
+
+
+&nbsp;
+
+
+Personalized study methods
+
+<div class="bold-rounded">
+언어를 배울 때, 항상 배웠던 단어나 표현등을 재밌게 쓰면 좋겠어요. 나는 그림 그려서 개인화된 공부 자료를 만들어요. 나 자신을 위해 만들고 나 밖에 이해 못 해요.
+</div>
+
+
+&nbsp;
+
+Meeting my younger self
+
+<div class="bold-rounded">
+과거로 돌아가서 어린 시절의 나 자신과 마주할 때, 그 어린 내가 현재의 나를 자랑스러워하고 내 모습에 안심 할 수 있는 삶을 살고 싶다.
 </div>
 
 
