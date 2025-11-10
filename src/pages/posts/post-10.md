@@ -10,7 +10,7 @@ postSlug: 'post-10'
 
 ## Intro 
 
-Following suit with <a class="secondary-a" href="/posts/post-6">Swift Fun</a>, I've relocated more notes to this post. I've been using my website often as a mental cache for the knowledge I acquire. Try to delay the time before correcting your code.
+Following suit with <a class="secondary-a" href="/posts/post-6">Swift Fun</a>, I've relocated more notes to this post. Recently, I've been posting with the intent of using my writings as a mental cache for the knowledge I acquire. One tip for you today is to give yourself time before compiling and correcting of your code. You don't have to be optimal on the first try and you don't have to remember everything. If you forget some concepts and syntax, you can always revisit them in your projects, in the documentation or ask people for help when you've struggled enough.
 
 &nbsp;
 
