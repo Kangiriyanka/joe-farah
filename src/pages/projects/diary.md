@@ -199,21 +199,14 @@ The goal is to select a square that shows  a specific a diary entry. For our lay
 &nbsp;
 
 
-This is done with useEffect, because we want to be able to re-render Calendar every time the month or year changes. The getDayOfTheWeek is a helper function that returns a number between 0-6 (Sunday to Friday) for a specific year and month. We set our days state with createDays: a function that returns an array of integers.
+The getDayOfTheWeek is a helper function that returns a number between 0-6 (Sunday to Friday) for a specific year and month. We set our days state with createDays: a function that returns an array of integers. I did this before in a useEffect, but realized I didn't need it upon reviewing my code months later.
 
 ```jsx
-useEffect(() => {
-    const isFebLeap = currentMonth === "February" && isLeapYear(currentYear);
-    // Returns any integer from 0 to 6
-    setFirstDayOfTheMonth(getDayOfTheWeek(currentYear, index));
-    
-    // For January, days =  [1, 2 ,3 .... 31]
-    setDays(
-        isFebLeap
-            ? Array.from({ length: 29 }, (_, i) => i + 1)
-            : createDays(calendar[currentMonth])
-    );
-}, [currentMonth, currentYear]);
+const firstDayOfTheMonth = getDayOfTheWeek(currentYear, index);
+const isFebLeap = currentMonth === "February" && isLeapYear(currentYear);
+const days = isFebLeap
+    ? Array.from({ length: 29 }, (_, i) => i + 1)
+    : createDays(calendar[currentMonth]);
 
 ```
 

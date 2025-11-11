@@ -4,12 +4,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import BlogPost from '../components/BlogPost.astro';
 import Separator from '../components/Separator.astro';
 
+type AstroPost = {
+  frontmatter: {
+    pubDate: string;
+	tags: string[]
+   
+  };
+  
+};
 
-const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true }));
-const tags = [...new Set(allPosts.map((post: any) => post.frontmatter.tags).flat())];
-const sortedPosts = allPosts.sort((a, b) => {
-  const dateA = new Date((a as { frontmatter: { pubDate: Date } }).frontmatter.pubDate);
-  const dateB = new Date((b as { frontmatter: { pubDate: Date } }).frontmatter.pubDate);
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true })) as AstroPost[];
+const tags = [...new Set(allPosts.map((post: AstroPost) => post.frontmatter.tags).flat())];
+const sortedPosts = allPosts.sort((a: AstroPost, b: AstroPost) => {
+  const dateA = new Date(a.frontmatter.pubDate);
+  const dateB = new Date(b.frontmatter.pubDate);
   return dateB.getTime() - dateA.getTime();
 });
 ---
