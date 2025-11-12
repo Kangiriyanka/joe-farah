@@ -341,22 +341,43 @@ You can also review the repos for <a class="secondary-a"  href="https://joefarah
 
 ## Astro
 
-Basics:
+### Key Concepts
 - Build time: Prepare everything to be shipped to the browser
 - Run time: It's on the browser
-
-### Key Concepts
 - Browser APIs only work client-side (no `window`  in frontmatter)
 - At build time, components render to HTML/CSS by default (no client JS) 
 - Use `client:*` for interactivity (hydration). When your website runs, Astro can help you run React components
 
 &nbsp;
 
+See: <a class="secondary-a"  href="https://docs.astro.build/en/guides/routing/"> Routing</a>
+
+&nbsp;
+
 ### Applications 
 
-
-Check out: <a class="secondary-a" href="https://vite.dev/guide/features.html#glob-import"> meta.glob </a>
+Sorting posts: check out: <a class="secondary-a" href="https://vite.dev/guide/features.html#glob-import"> meta.glob </a>
 ```typescript
+// I can include what I need
+type AstroPost = {
+  frontmatter: {
+    pubDate: string,
+    title: string,
+    tags: string[],
+  }
+
+  url: string
+  
+   
+};
+const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true })) as AstroPost[];
+const tags = [...new Set(allPosts.map((post: AstroPost) => post.frontmatter.tags).flat())];
+const sortedPosts = allPosts.sort((a: AstroPost, b: AstroPost) => {
+  const dateA = new Date(a.frontmatter.pubDate);
+  const dateB = new Date(b.frontmatter.pubDate);
+  return dateB.getTime() - dateA.getTime();
+});
+
 // allPosts will look like this with eager: true
 /*[
     [Object: null prototype] [Module] {
@@ -366,49 +387,49 @@ Check out: <a class="secondary-a" href="https://vite.dev/guide/features.html#glo
   ]
 */
 
-// I can include what I need
-type AstroPost = {
-  frontmatter: {
-    pubDate: string;
-	tags: string[]
-   
+```
+
+&nbsp;
+
+Generate many paths from one astro file 
+
+```typescript
+/*  
+    getStatic paths allows you to generate many tag pages from one astro file.
+    Each [tag] page is statically generated page
+*/
+export async function getStaticPaths() {
+  const allPosts = Object.values(import.meta.glob('../posts/*.md', { eager: true })) as AstroPost[];
+  const uniqueTags = [...new Set(allPosts.map((post: AstroPost) => post.frontmatter.tags).flat())];   
+  
+  // Each tag produces a { params: ..., props: ... } and 
+  // map bundles them together.
+  return uniqueTags.map((tag) => {
+
+    const filteredPosts = allPosts.filter((post: AstroPost) => post.frontmatter.tags.includes(tag)).sort((a: AstroPost, b: AstroPost) => 
+      new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime()
+    );
+
+  // For one tag.
+  return {
+    params: { tag },
+    props: { posts: filteredPosts},
   };
   
-};
+ });
+}
 
-const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true })) as AstroPost[];
-const tags = [...new Set(allPosts.map((post: AstroPost) => post.frontmatter.tags).flat())];
-const sortedPosts = allPosts.sort((a: AstroPost, b: AstroPost) => {
-  const dateA = new Date(a.frontmatter.pubDate);
-  const dateB = new Date(b.frontmatter.pubDate);
-  return dateB.getTime() - dateA.getTime();
-});
+// [tag].astro defines the dynamic tag parameter in its filename, 
+// so the objects returned by getStaticPaths() must include tag in their params.
+const {tag} = Astro.params;
+// Desconstructuring: Astro.props.posts;
+const {posts} = Astro.props;
+
 
 ```
 
 
-<details>
-<summary >Show Answer</summary>
- 
- 1. What does eager do?
 
-   [Object: null prototype] [Module] {
-    frontmatter: [Getter],
-    file: [Getter],
-    url: [Getter],
-    rawContent: [Getter],
-    compiledContent: [Getter],
-    getHeadings: [Getter],
-    Content: [Getter],
-    default: [Getter]
-  },
-
-}
- 
-
-
-
-</details>
 
 &nbsp;
 

@@ -30,7 +30,7 @@ const sortedPosts = allPosts.sort((a: AstroPost, b: AstroPost) => {
 	<div class=" tag-container flex flex-wrap justify-start items-center my-4"> 
 			
 
-		
+      <!-- Tag is the param here for [tag] -->
 			{tags.map((tag) => <a class= "tag mr-4 sm:text-base  dark-container cursor-pointer transition  " href={`/tags/${tag}`}>#{tag}</a>)}
 	</div>
 	
