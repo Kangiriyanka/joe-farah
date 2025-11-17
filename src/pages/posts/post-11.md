@@ -474,15 +474,41 @@ print(matches)
 ```
 
 
-
-&nbsp;
-
 <details>
 <summary >Show Answer</summary>
 
  Positive lookbehind: lowercase letters after digit + newline: ['a', 'bcd', 'ef'] <sup a href="#footnotes#" class="secondary-a">2.</sup>
 
 </details>
+
+&nbsp;
+
+Processing an HTML string: What does this do?
+
+```python
+# From Grid Diary
+def clean_text(text, keyword):
+    """HTML String Cleaner"""
+    pattern = r"\\r|\\n"   
+    cleaned_text = re.sub(pattern, '', text)
+    cleaned_text = html.unescape(cleaned_text)
+    sentences = re.split(r'(?<=[.!?])\s+', cleaned_text)
+    return [s for s in sentences if keyword.lower() in s.lower()]
+```
+
+<details>
+<summary >Show Answer</summary>
+
+ 1. Replace every occurence of \r and \n with ' ' inside the text.
+ 2. Unescaping is turning HTML entities back to normal. \&#39; back to '.
+ 3. Split text into sentences for whitespaces preceded immediately by a punctuation mark.
+
+</details>
+
+
+
+&nbsp;
+
 
 
 
