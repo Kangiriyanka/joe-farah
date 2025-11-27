@@ -13,7 +13,7 @@ This post is being updated as I work on ChoreoBuilder.
 
 ## Why?
 
-When I was living in Japan, I was given precious opportunities to perform in festivals and community events in the <a href="https://en.wikipedia.org/wiki/Kihoku,_Mie" class="secondary-a"> town </a> I was living in.<sup class="secondary-a" href="#footnotes" >1.</sup>.  Whenever I create a choreography for a tune, I split the audio in parts and write notes on my iPad on what moves or transitions I can do. My motivation with ChoreoBuilder was to streamline this process.
+When I was living in Japan, I was given precious opportunities to perform in festivals and community events in the <a href="https://en.wikipedia.org/wiki/Kihoku,_Mie" class="secondary-a"> town </a> I was living in.<sup class="secondary-a" href="#footnotes" >1.</sup>.  Whenever I create a choreography for a tune, I split the audio in parts and write notes on my iPad on what moves or transitions I can do. My motivation with ChoreoBuilder was to help performers streamline this process.
 
 
 
@@ -34,7 +34,11 @@ Simply enough, every routine has parts and every parts have moves of different m
 
 
 
+## Challenges
 
+
+
+### Uploading audio files
 
 
 
@@ -59,18 +63,88 @@ if let partURL = part.location {
 
 ### Controls 
 
-Functions I had learn how to implement:
+
+Besdies the normal functions an audio player has, I wanted to implement a custom loop and delay feature. 
+Functions I implemented:
 
 1. play
 2. seek forwards and backwords
 3. loop
-4. custom loop
-5. delay 
+4. custom loop: displaying markers above the player
+5. delay with timer 
 6. speedRate 
 
 
 
+Delay
+
+Delay timer should be cancelled if the user pauses
+
+Custom Loop Edge Cases: 
+
+Moving the player past or before the markers
+Turning off the regular loop if the user is custom looping
+
+
+
+
+
+
 ### Custom Slider
+
+
+
+### Extras
+
+1. Creating a sliding text with two GeometryReaders.
+
+```swift
+struct SlidingText: View {
+    let text: String
+    let speed: Double = 30
+    let spacing: CGFloat = 50
+    
+    @State private var offset: CGFloat = 0
+    @State private var needsSliding = false
+    @State private var textWidth: CGFloat = 0
+    
+    var body: some View {
+        GeometryReader { geo in
+            HStack(spacing: needsSliding ? spacing : 0) {
+                Text(text)
+                    .fixedSize()
+                    .background(
+                        GeometryReader { textGeo in
+                            Color.clear.onAppear {
+                                textWidth = textGeo.size.width
+                                needsSliding = textWidth > geo.size.width
+                                
+                                guard needsSliding else { return }
+                                
+                                let segmentWidth = textWidth + spacing
+                                
+                                withAnimation(.linear(duration: segmentWidth / speed).repeatForever(autoreverses: false)) {
+                                    offset = -segmentWidth
+                                }
+                            }
+                        }
+                    )
+                if needsSliding {
+                    Text(text).fixedSize()
+                }
+            }
+            .offset(x: offset)
+            
+        }
+        .clipped()
+        .frame(height: 20)
+    }
+}
+
+```
+
+
+
 
 
 
@@ -95,6 +169,7 @@ Much of the functionality I've implemented was based on the VLC iOS app.
 
 1. DropViewDelegate inside a Scrollview
 2. Building a custom expandable AudioPlayer
+3. Using 
 
 
 

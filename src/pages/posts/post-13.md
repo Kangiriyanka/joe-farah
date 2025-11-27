@@ -639,6 +639,7 @@ Vim
 <div data-info="u" class="shortcut-card">Undo</div>
 <div data-info="^ r" class="shortcut-card">Redo</div>
 <div data-info="dd" class="shortcut-card">Delete Line</div>
+<div data-info="Ndd" class="shortcut-card">Delete N lines</div>
 <div data-info="yy" class="shortcut-card">Yank Line</div>
 <div data-info="p" class="shortcut-card">Paste</div>
 <div data-info="$" class="shortcut-card">End of Line</div>
