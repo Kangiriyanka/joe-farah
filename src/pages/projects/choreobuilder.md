@@ -13,7 +13,9 @@ This post is being updated as I work on ChoreoBuilder.
 
 ## Why?
 
-When I was living in Japan, I was given precious opportunities to perform in festivals and community events in the <a href="https://en.wikipedia.org/wiki/Kihoku,_Mie" class="secondary-a"> town </a> I was living in.<sup class="secondary-a" href="#footnotes" >1.</sup>.  Whenever I create a choreography for a tune, I split the audio in parts and write notes on my iPad on what moves or transitions I can do. My motivation with ChoreoBuilder was to help performers streamline this process.
+When I was living in Japan, I was given precious opportunities to perform in festivals and community events in the <a href="https://en.wikipedia.org/wiki/Kihoku,_Mie" class="secondary-a"> town </a> I was living in.<sup class="secondary-a" href="#footnotes" >1.</sup>  Whenever I create a choreography for a tune, I split the audio in parts and write notes on my iPad on what moves or transitions I can do. My motivation with ChoreoBuilder was to help performers streamline this process.
+
+
 
 
 
@@ -172,7 +174,12 @@ Much of the functionality I've implemented was based on the VLC iOS app.
 3. Using 
 
 
+## Things left to do 
 
+- Make a logo
+- Change button behavior
+- Better export format
+- Trimmer
 
 
 ## Footnotes

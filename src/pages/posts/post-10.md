@@ -696,6 +696,8 @@ frame -> background -> shadow -> corner radius won't show the shadow
 frame -> background -> corner radius -> shadow
 ```
 
+2. If a view is getting pushed down because of another, add a frame.
+
 &nbsp;
 
 
