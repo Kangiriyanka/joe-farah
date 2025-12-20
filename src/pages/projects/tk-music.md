@@ -15,13 +15,20 @@ order: 6
 ## Quick Glance
 
 Harmonica GUI 
+
+<div class="post-img-container ">
+
 ![Main-Harmonica](../../assets//project_images/tk-music/main-harp.png)
+</div>
 &nbsp; 
 
 Guitar GUI 
 &nbsp;
 
+<div class="post-img-container ">
+
 ![Main-Guitar](../../assets//project_images/tk-music/main-guitar.png)
+</div>
 
 &nbsp;
 
@@ -42,9 +49,12 @@ For reference and simplicity, the piano is a great instrument to demonstrate dis
 
 &nbsp;
 
+<div class="post-img-container ">
 
 ![Half-steps](../../assets//project_images/tk-music/half_steps.png)
-- Note that I haven't included the note names of the black keys for readability. (sharps or flats) 
+
+</div>
+Note that I haven't included the note names of the black keys for readability. (sharps or flats) 
 
 &nbsp;
 
@@ -53,6 +63,8 @@ It can also be represented by another notation called a music degree. Degrees ar
 for comparison. 
 
  &nbsp;
+
+
 
 | <u>Half Steps</u> | <u>Interval Name</u> | <u>Degree</u>     |
 |:-----------------:|:-------------------:|:-----------------:|
@@ -130,8 +142,11 @@ The whole idea becomes to play with half-steps and convert them appropriately to
 &nbsp;
 
 
+<div class="post-img-container ">
 
 ![Key-Class](../../assets//project_images/tk-music/key-class.png)
+
+</div>
 
 &nbsp;
 
@@ -191,13 +206,26 @@ Using the Key class, I built a Key GUI. With it, I can:
 
 
 
+<div class="post-img-container ">
 
 ![c-to-f](../../assets//project_images/tk-music/c-to-f.png)
+
+</div>
 &nbsp;
+
+<div class="post-img-container ">
+
 ![d-minor-6th](../../assets//project_images/tk-music/d-minor-6th.png)
 
+</div>
+
 &nbsp;
+
+<div class="post-img-container ">
+
 ![c-major-scale](../../assets//project_images/tk-music/c-major.png)
+
+</div>
 
 &nbsp;
 
@@ -218,7 +246,11 @@ For example, If I have a C harmonica, the blow notes on hole 1-2-3 are respectiv
 That being said, I can instantiate a Harmonica object with a Key object in order to use the methods provided by the Key class. 
 
 
+<div class="post-img-container ">
+
 ![Harmonica Class](../../assets//project_images/tk-music/harmonica-class.png)
+
+</div>
 
 &nbsp;
 
@@ -367,11 +399,20 @@ for i in range(1, 11):
 
  After playing with tkinter's frames, grids and labels, this is the resulting layout. Clicking any button will give you the action associated to the hole and the note. There's also a record function that just writes harmonica notation to a text file.
 
+ <div class="post-img-container ">
+
 ![Blow Note](../../assets//project_images/tk-music/blow-note.png)
 &nbsp;
 
+</div>
+
+
+<div class="post-img-container ">
+
 ![Minor Blues 2nd position](../../assets//project_images/tk-music/minor-blues-2nd.png)
 &nbsp;
+
+</div>
 
 
 ## Guitar Gui Class
@@ -425,7 +466,12 @@ def scale_color_mapper(self):
 ```
 &nbsp;
 
+
+<div class="post-img-container ">
+
 ![G Major Blues](../../assets//project_images/tk-music/G-Major-Blues.png)
+
+</div>
 &nbsp;
 
 ### Extras
@@ -441,13 +487,19 @@ I've included other features like:
 
 
 
+<div class="post-img-container ">
+
 ![Guitar to Piano](../../assets//project_images/tk-music/guitar-to-piano.png)
 
+
+</div>
 &nbsp;
+
+<div class="post-img-container ">
 
 ![Color the fretboard](../../assets//project_images/tk-music/color.png)
 
-
+</div>
 &nbsp;
 
 ## Takeaways 
