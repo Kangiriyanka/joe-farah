@@ -88,15 +88,26 @@ One version of a session:
 
 &nbsp;
 
-### Initial leg swing <a href="#footnotes"> 
+### Initial leg swing 
 
 The very first movement you should focus on is the initial leg swing. Swinging  your starting leg <u>**hard** </u> and <u>**low**</u> in a </u> <u> **circular**</u> motion will make a huge difference. If you start too high, you're bound to fall. Try to overshoot how low you can go. Then, you focus on getting the swinging leg as close to your face as possible. Finally, you consciously try to pull your other leg in. It's easier if you focus on your hips though.
 
 &nbsp; 
 
 
+<div class="post-img-container">
+
 ![Low swing ](../../assets/post_images/flares1.png)
+&nbsp;
+
+
+</div>
+
+<div class="post-img-container">
+
 ![Close to face](../../assets/post_images/close.png)
+
+</div>
 
 &nbsp;
 

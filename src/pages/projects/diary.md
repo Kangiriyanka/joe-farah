@@ -10,15 +10,40 @@ order: 5
 ---
 
 ## Quick Glance
-A very light blue calendar. &nbsp;
 
-&nbsp;
+
+Old and updated visuals with themes. Tap to expand the images. 
+
+ &nbsp;
+
+
+<div class="flex gap-5 post-img-container ">
 
 ![Calendar overview](../../assets//project_images/grid-diary/calendar-overview.png)
+
 
 &nbsp;
 
 ![Day Components](../../assets//project_images/grid-diary/day-compos.png)
+
+</div>
+
+&nbsp;
+
+
+
+<div class=" flex gap-5 post-img-container ">
+
+Chilly 
+![Chilly Theme](../../assets//project_images/grid-diary/chilly.png)
+
+Warm
+![Warm Theme](../../assets//project_images/grid-diary/warm.png)
+
+Mint 
+![Mint Theme](../../assets//project_images/grid-diary/mint.png)
+
+</div>
 
 &nbsp;
 
@@ -75,8 +100,11 @@ Don't worry too much about it, you'll discover their applications as you read (t
 
 ### How to think about it?
 
-Reference:
+<div class="post-img-container">
+
+Reference (I use the old visuals for reference, embrace the lack of modernity):
 ![Calendar Explanation](../../assets//project_images/grid-diary/calendar-explanation.png)
+</div>
 
 
 &nbsp;
@@ -195,7 +223,10 @@ The goal is to select a square that shows  a specific a diary entry. For our lay
 
 &nbsp;
 
+<div class="post-img-container">
+
 ![Calendar considerations](../../assets//project_images/grid-diary/calendar-considerations.png)
+</div>
 &nbsp;
 
 
@@ -271,7 +302,10 @@ We fiddle around and finally  pass down the year, month and appropriate day from
 
 ### From Day to EditDay
 Once you select a square, you navigate to a Day component. 
+<div class="post-img-container">
+
 ![Day component](../../assets//project_images/grid-diary/day-component.png)
+</div>
 
 &nbsp;
 
@@ -315,8 +349,9 @@ For editing content, <a  class="secondary-a" href="https://quilljs.com/docs/quic
 
 The reference created with useRef() can be seen as tag you ultimately stick to a DOM element. In the figure below, we initialize a sampleRef (tag) and stick it to our div by adding the ref attribute to div. Thankfully, React does the work for us. We can then access the element with sampleRef.current. 
 
-
+<div class="post-img-container">
 ![useRef](../../assets//project_images/grid-diary/useRef.png)
+</div>
 &nbsp;
 
 Inside  EditDay (parent), we instantiate a quillRef which is going to be used to refer to the Quill container (Container + Quill). I want to emphasize that QuillRef is not the Quill instance that lives inside its container; it's the actual combination. In the code block below, the tag has yet to be associated with a DOM element which indicates that quillRef.current is null.
@@ -377,8 +412,9 @@ innerRef then becomes the Container + Quill combo. If you don't need the parent 
 Summary:
 
 
-
+<div class="post-img-container">
 ![Quill explanation](../../assets//project_images/grid-diary/quill-explanation.png)
+</div>
 
 
 &nbsp;
@@ -416,7 +452,9 @@ quill.clipboard.dangerouslyPasteHTML(0, content);
 
 The final result looks like this. Clicking the submit button sends a POST Request with FormData for containing a new day_title and day_content.
 
+<div class="post-img-container">
 ![Quill post](../../assets//project_images/grid-diary/quill-post.png)
+</div>
 
 
 
@@ -432,8 +470,10 @@ At first, I had all my routes packed in a backend.py file which was chaotic not 
 
 &nbsp;
 
+<div class="post-img-container">
 
 ![Directory Structure](../../assets//project_images/grid-diary/directory.png)
+</div>
 &nbsp;
 
 diary.py creates an instance of the application inside backend/app/main__init__.py. We set the FLASK_APP=diary.py in a .env file. Fortunately, if you have load_dotenv installed, Flask is considerate enough to look for your environment variables. Anyhow, this is what the create_app function looks like.
@@ -484,7 +524,11 @@ When working with Blueprints, it's important to understand the order in which yo
 
 &nbsp;
 
+<div class="post-img-container">
+
 ![Blueprint Representation](../../assets//project_images/grid-diary/blueprint-rep.png)
+
+</div>
 
 &nbsp;
 
@@ -822,4 +866,6 @@ function addDayPrefix(day) {
 2. I could have also used the native API fetch. I didn't know the difference at the time.
 
 3. The conversion from function to Command happens on import. In Python, importing executes the module.
+
+
 

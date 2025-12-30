@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'Drawgress'
-description: 'An iOS app to upload drawings and see their evolution '
+description: 'An iOS app to upload drawings and see their evolution'
 link: "https://github.com/Kangiriyanka/Drawgress"
 stack: ['swift']
 order: -1

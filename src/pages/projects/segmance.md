@@ -2,7 +2,7 @@
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'Segmance'
 pubDate: 2025-05-23
-description: 'An iOS app to help performers create routines'
+description: 'An iOS app to help performers streamline performance creation'
 link: "https://github.com/Kangiriyanka/Segmance"
 stack: ['swift']
 order: 1
@@ -11,7 +11,7 @@ order: 1
 
 
 
-This post is being updated as I work on Segmance. Everything below consists of quick drafts of text filled with typos and ideas. This message will disappear once this post will be complete. 
+This project's post is currently being updated. Everything below consists of quick drafts of text filled with typos and ideas. This message will disappear once this post will be complete. 
 
 &nbsp;
 
@@ -96,7 +96,12 @@ Once a user has clipped all parts of a song they want to practice, they can uplo
 
 ### Clipping audio 
 
+
+<div class="post-img-container">
+
 ![Clipping audio](../../assets/project_images/segmance/clipper.png)
+
+</div>
 
 
 
@@ -167,55 +172,6 @@ I followed Kavsoft's <a class="secondary-a" href="https://www.youtube.com/watch?
 
 ## Extras
 
-### Custom Slider
-2.  Creating a sliding text with two GeometryReaders.
-
-```swift
-struct SlidingText: View {
-    let text: String
-    let speed: Double = 30
-    let spacing: CGFloat = 50
-    
-    @State private var offset: CGFloat = 0
-    @State private var needsSliding = false
-    @State private var textWidth: CGFloat = 0
-    
-    var body: some View {
-        GeometryReader { geo in
-            HStack(spacing: needsSliding ? spacing : 0) {
-                Text(text)
-                    .fixedSize()
-                    .background(
-                        GeometryReader { textGeo in
-                            Color.clear.onAppear {
-                                textWidth = textGeo.size.width
-                                needsSliding = textWidth > geo.size.width
-                                
-                                guard needsSliding else { return }
-                                
-                                let segmentWidth = textWidth + spacing
-                                
-                                withAnimation(.linear(duration: segmentWidth / speed).repeatForever(autoreverses: false)) {
-                                    offset = -segmentWidth
-                                }
-                            }
-                        }
-                    )
-                if needsSliding {
-                    Text(text).fixedSize()
-                }
-            }
-            .offset(x: offset)
-            
-        }
-        .clipped()
-        .frame(height: 20)
-    }
-}
-
-```
-
-
 
 &nbsp;
 
@@ -246,6 +202,10 @@ Here were a few of my concerns during development:
 &nbsp;
 
 
+### DropViewDelegate with SwiftData
+
+Inside the PartView, users can reorder the moves. 
+Parts has a moves property which is an array of Moves, but Swiftdata can't handle sorting. Of course I can use computed property to sort it like, but with the DragAndDrop, how do I sync it? 
 
 
 

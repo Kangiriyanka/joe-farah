@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'Gameok'
-description: 'A React video game library '
+description: 'A fullstack React video game library for memories'
 stack: ['react', 'flask']
 link: "https://github.com/Kangiriyanka/Gameok"
 order: 4
@@ -48,36 +48,102 @@ The graphs have been created with <a class="secondary-a" href="https://recharts.
 
 
 
+<div class="post-img-container">
 
 ![Main Shot](../../assets/project_images/gameok/Main.png)
+
+</div>
+
 &nbsp;
 
+
+<div class="grid gap-5 grid-cols-3 post-img-container ">
+
+
+<div class="[&_img]:w-50 [&_img]:h-20  "> 
+Game count per year 
+
 ![Graph 1](../../assets/project_images/gameok/graph1.png)
+
+</div>
+
+<div class="[&_img]:w-50 [&_img]:h-20  "> 
+Game count per series
+
 ![Graph 2](../../assets/project_images/gameok/graph2.png)
+
+</div>
+
+
+<div class="[&_img]:w-50 [&_img]:h-20  "> 
+
+Game count per console
+
 ![Graph 3](../../assets/project_images/gameok/graph3.png)
+
+
+</div>
+
+
+
+</div>
+
 &nbsp;
+
 
 ### Consoles Page
 
 The consoles page displays all the consoles the user has. When a user selects a console, they can see all the games on it. I've added an example of the N64 games I own. <sup> <a class="secondary-a" href="#footnotes">2.</a></sup>
 
 
+<div class="post-img-container">
+
 ![Consoles](../../assets/project_images/gameok/consoles.png)
 &nbsp;
+
+</div>
+
+
+
+<div class="post-img-container">
 
 ![N64 collection](../../assets/project_images/gameok/n64.png)
 
 &nbsp;
 
+</div>
+
 Once you select a game, you can see the notes/memories taken. The content is all formatted in Markdown, and the editor is <a href="https://mdxeditor.dev/" class="secondary-a"> MDXEditor</a>. 
+
+
+<div class="post-img-container">
 
 ![Banjo Kazooie memories](../../assets/project_images/gameok/memory.png)
 &nbsp;
 
+</div>
+
+
+
+<div class="post-img-container">
+
 ![Markdown Content](../../assets/project_images/gameok/md1.png)
+
+&nbsp;
+
+
+</div>
+
+
+<div class="post-img-container">
+
 ![Markdown Editor](../../assets/project_images/gameok/md2.png)
 
 &nbsp;
+
+
+</div>
+
 
 
 ### Games Page
@@ -86,8 +152,21 @@ Instead of consoles, you can view all your games in a data table created followi
 
 
 
+
+<div class="post-img-container">
+
 ![Games Table](../../assets/project_images/gameok/games.png)
+
+&nbsp;
+
+
+</div>
+
+<div class="post-img-container">
+
 ![Games Table Filter](../../assets/project_images/gameok/filter.png)
+
+</div>
 
 &nbsp;
 
@@ -95,8 +174,20 @@ Instead of consoles, you can view all your games in a data table created followi
 
 A user can add games to their collection by selecting a console and then a game. Let's add Pokémon Emerald on the Game Boy Advance!
 
+<div class="post-img-container">
+
 ![Add Game Console Selected](../../assets/project_images/gameok/add2.png)
+
+&nbsp;
+
+</div>
+
+<div class="post-img-container">
+
 ![Add Game Selected](../../assets/project_images/gameok/add1.png)
+
+</div>
+
 
 
 &nbsp;
@@ -106,9 +197,35 @@ A user can add games to their collection by selecting a console and then a game.
 ### Authentication Components
 
 There are authentication components for logging in, registering and changing the user's password. 
+
+<div class="flex gap-5 flex-wrap post-img-container">
+
+<div class="grid gap-5  grid-cols-3 post-img-container">
+
+<div class="[&_img]:w-50 [&_img]:h-20  "> 
+Login
+
 ![Login](../../assets/project_images/gameok/Auth1.png)
+</div>
+
+<div class="[&_img]:w-50 [&_img]:h-20  "> 
+Register
+
 ![Register](../../assets/project_images/gameok/Auth2.png)
+
+</div>
+
+
+<div class="[&_img]:w-50 [&_img]:h-20  "> 
+Change password
+
 ![Change Password](../../assets/project_images/gameok/Auth3.png)
+
+</div>
+
+</div>
+
+</div>
 
 
 &nbsp;
@@ -117,7 +234,10 @@ There are authentication components for logging in, registering and changing the
 
 The admin has reserved pages to add consoles and games. 
 
+<div class="post-img-container">
+
 ![Admin Page](../../assets/project_images/gameok/admin.png)
+</div>
 
 
 </div>
@@ -252,8 +372,10 @@ export function useAuthContext() {
 An application of this would be allowing only authenticated users inside protected routes. When a user successfully logs in, the server sends back a response to the client with a username inside. Then, with the useAuthContext function, we destructure the 'setUserInfo' function from the AuthContext and call it with the received username. This changes the state of the app to match the logged in user's username. 
 
 &nbsp; 
+<div class="post-img-container"> 
 
 ![Login](../../assets/project_images/gameok/login.png)
+</div>
 &nbsp; 
 
 
@@ -311,8 +433,12 @@ A smarter approach would be to use cookies with a CSRF token. Cookies alone are 
 4. The second one allows the client to extract the CSRF token and plug it in the headers for a request. Flask also sends an extra cookie with the value of the CSRF token.
 5. Whenever a request is made, Flask verifies the JWT (@jwt_required), and that the CSRF token sent by the client matches the encoded one inside the JWT.
 
+&nbsp;
+
+<div class="post-img-container"> 
 
 ![Cookies wtih CSRF](../../assets/project_images/gameok/csrf.png)
+</div>
 &nbsp;
 
 The requests are tailored like this: 
@@ -435,7 +561,10 @@ export default function ErrorBoundary() {
 The backend uses Flask with Blueprints and SQLAlchemy similar to what I did in my <a class="secondary-a" href="/projects/diary/#backend-structure"> Diary project</a>.  Here's a picture of the Gameok schema.<sup> <a class="secondary-a" href="#footnotes">4.</a></sup>
 
 
+<div class="post-img-container"> 
+
 ![Gameok Schema](../../assets/project_images/gameok/schema.png)
+</div>
 
 &nbsp;
 

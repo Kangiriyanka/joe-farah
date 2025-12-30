@@ -34,10 +34,15 @@ I'll explain how I journal and how my journaling changed over time through the v
 - Cauldron sheets
 
 
+<div class="post-img-container">
 
 ![Collection ](../../assets/post_images/diaries.jpg)
 
+
+
 &nbsp;
+
+</div>
 
 ### Diaries 
 

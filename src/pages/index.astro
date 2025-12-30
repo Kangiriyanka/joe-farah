@@ -52,9 +52,9 @@ tag= {post.frontmatter.tags[0]}/>)}
   
 
 
-
+<!-- Uncomment if you want to show people what you're working on -->
 <!-- Working on  -->
- <p class="!text-2xl bold"> Working on </p>
+ <!-- <p class="!text-2xl bold"> Working on </p>
 <div class=" grid grid-cols-1  gap-3 my-1 ">
 {allProjects
 .filter((a: any) => a.frontmatter.title === "Segmance"  )
@@ -67,17 +67,17 @@ tag= {post.frontmatter.tags[0]}/>)}
  title = {project.frontmatter.title}
  description = {project.frontmatter.description}/>))}
 
-</div>
+</div> -->
 
 
-
+<!-- Uncomment if you add the working on div  -->
 <!-- Featured -->
- <p class="!text-2xl bold"> Built Projects </p>
+ <!-- <p class="!text-2xl bold"> Built Projects </p> -->
 
 <div class=" grid grid-cols-1 md:grid-cols-2 gap-3 my-1 ">
 {allProjects
 .sort((a: any, b: any ) => a.frontmatter.order - b.frontmatter.order)
-.filter((a: any) => a.frontmatter.order > 1 && a.frontmatter.order < 6)
+.filter((a: any) => a.frontmatter.order >= 1 && a.frontmatter.order < 5)
 .map((project: any) =>
 
 

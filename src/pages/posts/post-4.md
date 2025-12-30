@@ -109,13 +109,23 @@ Flashcard programs like Anki are often used by language learners. I used Anki a 
 
 You don't have to see language as a unit in isolation. 
 Back in 2023, I wanted to learn how to draw and it occurred to me that I could turn some of my language notes into drawings. <sup> <a class="secondary-a" href="#footnotes"> 4. </a> </sup> What fun and creative methods can you come up with?
+
+
+<div class="post-img-container">
+
 ![Fukan](../../assets/post_images/fukan.png)
+
 &nbsp;
+
+</div>
+
+<div class="post-img-container">
 
 ![Souris](../../assets/post_images/souris.png)
 
 &nbsp;
 
+</div>
 
 
 
@@ -151,7 +161,7 @@ Whenever someone asks, “How many languages do you speak?” I hesitate to answ
 
 ## Footnotes
 
-1.  Unless it's part of your job or you're the wizard of polyglots, it's unrealistic to maintain many languages at consistent levels. That's why I roll my eyes (sneer, sometimes) when I see headlines of people claiming that they speak an <b> implausible number of</b> languages. 
+1.  Unless it's part of your job or you're the wizard of polyglots, it's unrealistic to maintain many languages at consistent levels. That's why I roll my eyes (sneer, sometimes) when I see headlines presenting people that speak an <b> implausible number of</b> languages. 
 
 2.  I followed suit for Korean and Spanish because it turned out that I wholeheartedly enjoyed the process. 
 

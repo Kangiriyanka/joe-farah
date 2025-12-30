@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'K-Count'
-description: 'An  iOS app to track calories and weight'
+description: 'A simple iOS app to track calories and weight'
 link: https://github.com/Kangiriyanka/K-Count
 stack: ['swift']
 order: 2
@@ -67,8 +67,11 @@ The app is separated into 3 main views:
 
 
 
+<div class="post-img-container">
 
 ![LogView](../../assets//project_images/k-count/logview1.png)
+
+</div>
 
 &nbsp;
 
@@ -88,7 +91,11 @@ A DayView displays the user's weight for the day. Tapping the DayInfoView (Navig
 
 &nbsp;
 
+<div class="post-img-container">
+
 ![LogView](../../assets//project_images/k-count/logview2.png)
+
+</div>
 
 
 &nbsp;
@@ -108,7 +115,11 @@ Programmatically, the added foods are stored in an array of FoodEntry objects, e
 &nbsp;
 
 
+<div class="post-img-container">
+
 ![Swift Data Models](../../assets//project_images/k-count/sdata.png)
+</div>
+
 <sup class="bold">Note that I haven't included all the specific functions and protocols inside the figure to avoid clutter.</sup>
 
  What's important to note is the following: 
@@ -236,7 +247,11 @@ private func updateDayFoodEntries() {
 ## ProgressView
 
 &nbsp;
+
+<div class="post-img-container">
+
 ![Swift Data Models](../../assets//project_images/k-count/progressview.png)
+</div>
 
 
 &nbsp;
@@ -431,13 +446,17 @@ Users can estimate the date they will reach their goal based on selected strateg
 
 
 
+<div class="post-img-container">
 
 ![Food Data](../../assets//project_images/k-count/fooddata.png)
+</div>
 
 &nbsp;
 
+<div class="post-img-container">
 
 ![Day Data](../../assets//project_images/k-count/daydata.png)
+</div>
 
 &nbsp;
 
@@ -483,7 +502,11 @@ private func deleteFood(food: Food) {
 
 &nbsp;
 
+<div class="post-img-container">
+
 ![Profile](../../assets//project_images/k-count/profile.png)
+
+</div>
 
 &nbsp;
 
@@ -530,11 +553,11 @@ With the implementation above, we'd have to write to the JSON file every time a 
 
 
 
-
-
-
+<div class="post-img-container">
 
 ![User Settings](../../assets//project_images/k-count/usersettings.png)
+
+</div>
 
 &nbsp;
 
@@ -819,7 +842,11 @@ let futureDate = Calendar.current.date(byAdding: .day, value: Int(days), to: tod
 
 &nbsp;
 
+<div class="post-img-container">
+
 ![CustomHeightPickerNotes](../../assets//project_images/k-count/heightpicker.png)
+
+</div>
 
 &nbsp;
 
