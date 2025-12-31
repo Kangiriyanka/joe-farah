@@ -149,29 +149,54 @@ html {
 
 
 
-.astro-code {
+/* Only reason I did this was because if you position the button absolutely inside the .astro-code
+ the button doesn't stay in the top right when the code block is scrolled horizontally. */
+
+.code-wrapper {
   position: relative;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  margin: 1rem 0;
+  background-color: #282A36;
   border-radius: 6px;
-  padding: 0.75em;
-  background-color: #fdfdfd;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  overflow: hidden; 
+  width: 100%; /* Add this */
+ 
+
 
 }
+
+
+.astro-code {
+ 
+  padding: 2.9rem 1rem 1rem 1rem;
+
+  max-width: 100%;
+  overflow-x: auto;
+  background-color: transparent !important;
+  
+
+
+}
+
 .copy-btn {
   position: absolute;
-  top: 8px;
+  top:8px;
   right: 8px;
-  padding: 4px 8px;
-  background: rgba(255, 252, 252, 0.1);
-  border: 1px solid rgba(255,255,255,0.2);
-  color: white;
+  padding: 0.5rem;
+  background: #3d4054ff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  color: #e4dbdbff;
   cursor: pointer;
   border-radius: 4px;
   font-size: 12px;
+  
+  z-index: 10;
+  transition: 0.2s ease-in-out;
+
 }
 
 .copy-btn:hover {
-  background: rgba(255,255,255,0.2);
+ background: #5c607dff;
 }
 
 
