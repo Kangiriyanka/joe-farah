@@ -6,6 +6,7 @@ description: 'An iOS app to help performers streamline performance creation'
 link: "https://github.com/Kangiriyanka/Segmance"
 stack: ['swift']
 order: 1
+store: "https://apps.apple.com/us/app/segmance/id6756501666"
 
 ---
 

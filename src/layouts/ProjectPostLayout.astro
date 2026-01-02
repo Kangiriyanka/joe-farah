@@ -14,9 +14,22 @@ const { frontmatter, headings } = Astro.props;
     <div class="flex items-end gap-2"> 
       <GithubIcon/>  
       <a class="secondary-a" href={frontmatter.link}>Github Repo</a>
-      {["K-Numbers"].includes(frontmatter.title) ? 
-        <span> | <a class="secondary-a" href={frontmatter.store}>App Store Link</a></span> 
-        : <span></span>
+      {["K-Numbers", "Segmance"].includes(frontmatter.title) ? 
+<span class="inline-flex items-center gap-2">
+                                      {/* Operating on a 10x10 grid */}
+  <svg width="0.7rem" height="0.7rem" viewBox="0 0 10 10">
+    <polygon 
+       class="diamond" 
+       points="5,2 8,5 5,8 2,5" 
+  
+        stroke="currentColor" 
+         stroke-width="0.4"
+         stroke-linejoin="round"
+         fill="currentColor" />
+  </svg>
+  <a class="secondary-a" href={frontmatter.store}>App Store Link</a>
+</span>
+        : ""
       }
     </div>
     <br/>
