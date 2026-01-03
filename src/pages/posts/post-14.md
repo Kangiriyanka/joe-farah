@@ -53,20 +53,20 @@ If you take a look at the <a class="secondary-a" href="https://joefarah.com/abou
             </tr>
         </thead>
         <tbody>
-            <tr class="border-b dark:hover:bg-gray-700 hover:bg-white-100">
-                <td class="px-6 py-3"><span class="bg-[#F4C81A] px-2 py-1">Tk-Music</span></td>
+            <tr class="border-b pro-1 hover:bg-yellow-100 ">
+                <td class=" px-6 py-3"><span class=" px-2 py-1">Tk-Music</span></td>
                 <td class="px-6 py-3">Music</td>
             </tr>
-            <tr class="border-b dark:hover:bg-gray-700  hover:bg-orange-100">
-                <td class="px-6 py-3"><span class="bg-[#FF8700] px-2 py-1">Segmance, K-Count</span></td>
+            <tr class="border-b  pro-2 hover:bg-orange-100">
+                <td class=" px-6 py-3"><span class=" px-2 py-1">Segmance, K-Count</span></td>
                 <td class="px-6 py-3">Routine (Performance Arts)</td>
             </tr>
-            <tr class="border-b dark:hover:bg-gray-700  hover:bg-pink-100">
-                <td class="px-6 py-3"><span class="bg-[#FF97A7] px-2 py-1">K-Numbers</span></td>
+            <tr class="border-b  pro-3 hover:bg-pink-100">
+                <td class=" px-6 py-3"><span class="px-2 py-1">K-Numbers</span></td>
                 <td class="px-6 py-3">Language</td>
             </tr>
-            <tr class="border-b dark:hover:bg-gray-700  hover:bg-indigo-100">
-                <td class="px-6 py-3"><span class="bg-[#417AAB] px-2 py-1 text-white">Gameok, Grid Diary</span></td>
+            <tr class="border-b  pro-4 hover:bg-indigo-100">
+                <td class=" px-6 py-3"><span class=" px-2 py-1 ">Gameok, Grid Diary</span></td>
                 <td class="px-6 py-3">Memories, Language</td>
             </tr>
         </tbody>
@@ -152,3 +152,36 @@ by Magnus Hansson
 &nbsp;
 
 4. This was inspired by Runescape's <a href="https://oldschool.runescape.wiki/w/Ironman_Mode" class="secondary-a">Ironman Mode</a>. In the regular version of the game, players can use a trading system to exchange resources with each other, but players in Ironman Mode are self-sufficient and have to get every item themselves. It's playing the game with constraints.
+
+
+
+
+<style>
+
+    html.dark .pro-1:hover {
+        color: black;
+        opacity: 0.9;
+   
+    }
+
+     html.dark .pro-2:hover {
+        color: black;
+           opacity: 0.9;
+   
+    }
+
+     html.dark .pro-3:hover {
+        color: black;
+           opacity: 0.9;
+   
+    }
+     html.dark .pro-4:hover {
+        color: black;
+           opacity: 0.9;
+   
+    }
+
+
+
+
+</style>
