@@ -12,7 +12,7 @@ postSlug: 'post-6'
 
 ## Today's Update
 
-I recently finished my write-up of <a class="secondary-a" href="/projects/gameok/"> Gameok</a>, a game library I made with React and Flask<sup> <a class="secondary-a" href="#footnotes" >1. </a></sup> The project itself is far from being "complete", but I'm  happy with the progress I've made so far. In any case, I can always go back to it and patch it up. With that being said, I've slowly shifted my focus back to iOS development. To slowly get back into the groove, I've been reorganizing Swift/SwiftUI notes and code scattered around my folders.  I thought it would be a good idea to reinforce some concepts along the way by showing them here. I'll update this post progressively.
+I recently finished my write-up of <a class="secondary-a" href="/projects/gameok/"> Gameok</a>, a game library I made with React and Flask<sup> <a class="secondary-a" href="#footnotes" >1. </a></sup>  . The project itself is far from being "complete", but I'm  happy with the progress I've made so far. In any case, I can always go back to it and patch it up. With that being said, I've slowly shifted my focus back to iOS development. To slowly get back into the groove, I've been reorganizing Swift/SwiftUI notes and code scattered around my folders.  I thought it would be a good idea to reinforce some concepts along the way by showing them here. I'll update this post progressively.
 
 
 &nbsp;
