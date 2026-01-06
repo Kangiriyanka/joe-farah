@@ -468,7 +468,7 @@ Besides the LogView, users can comprehensively see all the foods and days they'v
 
 &nbsp;
 
-There's also the option to delete the foods, but not days. One major issue I ran into was deleting a Food object with <span class="bold-rounded">deleteRule: .cascade</span>. In SwiftData, this rule sets all related objects’ references to nil when the parent is deleted. Since FoodEntry has a non-optional Food property, deleting the Food would set this property to nil causing a crash. There's a workwaround where you can set Food  to an optional in FoodEntry, but for convenience and sanity, I manually delete all related FoodEntry objects before deleting the Food.
+There's also the option to delete the foods, but not days. One major issue I ran into was deleting a Food object with <span class="bold-rounded">deleteRule: .cascade</span>. In SwiftData, this rule sets all related objects’ references to nil when the parent is deleted. Since FoodEntry has a non-optional Food property, deleting the Food would set this property to nil causing a crash. There's a workaround where you can set Food  to an optional in FoodEntry, but for convenience and sanity, I manually delete all related FoodEntry objects before deleting the Food.
 
 &nbsp;
 ```swift
@@ -850,9 +850,9 @@ let futureDate = Calendar.current.date(byAdding: .day, value: Int(days), to: tod
 
 &nbsp;
 
-## App Store Approval
+## App Store Rejection
 
-Since the App store is saturated with fitness/health apps, K-Count got rejected with <span class="bold-rounded"> 4.3.0 Design:Spam</span>  when I first tried submitting it. One thing I've tried was to remove keywords like health and fitness to avoid Apple categorizing as spam. I've submitted a reply where I mentioned that my app's  was aimed for people who didn't want to be overwhelmed with features while still being intuitive to use. To no avail, it was still classified as spam and lacking originality. Objectively, it makes sense, but for the time being, I'd have to rework on the UI and possibly improve or add a twist on some of the available features. I'll eventually come back to it once I level up.
+Since the App store is saturated with fitness/health apps, K-Count got rejected with <span class="bold-rounded"> 4.3.0 Design:Spam</span>  when I submitted it. My app was for people who didn't want to be overwhelmed with features while still being intuitive to use. It's annoying, but I can learn from it and do better: Build better apps and come back to this one after leveling up. 
 
 &nbsp;
 

@@ -10,7 +10,8 @@ store: "https://apps.apple.com/us/app/segmance/id6756501666"
 
 ---
 
-
+<!-- Link bank -->
+<!-- <a  class="secondary-a" href="https://en.wikipedia.org/wiki/Performing_arts"> performing arts</a> -->
 
 This project's post is currently being updated. Everything below consists of quick drafts of text filled with typos and ideas. This message will disappear once this post will be complete. 
 
@@ -18,29 +19,57 @@ This project's post is currently being updated. Everything below consists of qui
 
 ## Why?
 
-When I was living in Japan, I was given precious opportunities to perform in festivals and community events in the <a href="https://en.wikipedia.org/wiki/Kihoku,_Mie" class="secondary-a"> town </a> I was living in.<sup class="secondary-a" href="#footnotes" >1.</sup> To create a performance routine, I split the audio of my target song into parts and write notes on my iPad on what moves or transitions I can do. However, it gets tedious to always switch between the audio files to play, and take notes simulatenously when a good idea pops up. I wanted to create a simple tool that combines audio and notes tailored for practicing performing arts. Granted, the creative process is different for everyone. Some people take long videos and edit out the parts they like to memorize them, and others take simple notes in their notebooks. Shaped by my own experience, my motivation with Segmance <sup class="secondary-a" href="#footnotes" >2.</sup> was to provide an intuitive way for performers to streamline the creation of a performance.
+In Japan, I was given precious opportunities to perform in festivals and community events in the <a href="https://en.wikipedia.org/wiki/Kihoku,_Mie" class="secondary-a"> town </a> I was living in.<sup class="secondary-a" href="#footnotes" >1.</sup> Generally, to create a performance routine, I split the audio of my target song into parts and write notes on what moves I want to execute inside them. Being the developer I am, my desire was to create a tool tailored for combining audio and notes to practice and structure performances easily.  Granted, the creative process is different for everyone. Some people take long videos to extract footage they'll use,  and others jot down notes in a notebook. Shaped by my own experience, my motivation with Segmance <sup class="secondary-a" href="#footnotes" >2.</sup> was to provide a structured way for performers to streamline performance creation, or atleast lay the initial building blocks.
 
 &nbsp;
 
 
 ## Overview
 
-Users create routines by uploading audio files of a song they can clip into parts either through their preferred software or the clipper integrated in the app. These parts can be renamed and reordered before finalizing the creation of a routine. 
+### What?
 
-
-&nbsp;
-
-When created, every audio file in the choreography becomes linked a part (PartView) in which users can: 
-
-1. add, rearrange and delete moves of types they specify. Every move comes with a TextEditor.
-2. toggle and control the audio specific to that part. 
-3. Link a video from their photos library for reference.
+Not suprisingly, breaking things down into smaller parts is a fundamental way to start anything. For example, when learning a piece on an instrument, you practice measure by measure to play longer sections and eventually its entirety.  In juggling, you break complex patterns into manageable ones. 
 
 &nbsp;
 
 
+Following that principle, I wanted users to be able to practice performances in parts. Every part would have its associated audio, reference video and moves. The moves are an abstract unit of action. For a ballet dancer, the move could be pirouette, for a breakdancer a freeze
 
 
+
+ <table class="m-auto">
+        <thead>
+            <tr>
+                <th class="px-6 py-3">Part</th>
+                <th class="px-6 py-3">Moves</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b  pro-3 hover:bg-pink-100">
+                <td class=" px-6 py-3"><span class="px-2 py-1">Part 1 </span></td>
+                  <td class=" px-6 py-3"><span class="px-2 py-1">A,B,C</span></td>
+            </tr>
+            </tr>
+            <tr class="border-b  pro-3 hover:bg-pink-100">
+              <td class=" px-6 py-3"><span class="px-2 py-1">Part 2</span></td>
+                <td class=" px-6 py-3"><span class="px-2 py-1">D,E,F</span></td>
+            </tr>
+            <tr class="border-b  pro-3 hover:bg-pink-100">
+              <td class=" px-6 py-3"><span class="px-2 py-1">Part 3</span></td>
+                <td class=" px-6 py-3"><span class="px-2 py-1">G,H,I</span></td>
+            </tr>
+        </tbody>
+    </table>
+
+
+
+
+
+
+### Creating a Routine
+
+
+Users create routines by uploading audio files of a song. Every audio file is converted to a part inside a routine. These parts can be renamed and reordered before finalizing its creation.  They can create clips through the integrated clipper/trimmer  or through their preferred software. 
 
 &nbsp;
 
@@ -50,41 +79,50 @@ When created, every audio file in the choreography becomes linked a part (PartVi
 
 
 
-### Models 
+
+
+Once a user has all parts of a song they want to practice, they can proceed to create a routine. The files are then copied to the app's sandbox and transformed into Part models inside a routine. Each part has a <span class="bold-rounded">fileName</span> property used inside a computed property, <span class="bold-rounded">location</span>, that fetches the uploaded file. Upon creation, every audio file in the routine becomes a linked part (PartView) 
+
+```swift
+// Part.swift
+class Part {
+ // Other properties...
+ var fileName: String
+ var location: URL? {
+        
+        let fileManager = FileManager.default
+        guard let documentsDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask).first else {
+            return nil
+        }
+        return documentsDirectory.appendingPathComponent(fileName)
+        
+    }
+}
+```
+
 
 &nbsp;
-
 
 <div class="post-img-container">
 
-![Segmance Models](../../assets/project_images/segmance/models.png)
+![Create a routine](../../assets/project_images/segmance/createroutine.png)
+
 </div>
 
 &nbsp;
 
 
-###  Uploading a Routine
-
-
-
-Once a user has clipped all parts of a song they want to practice, they can upload a routine. The files are then copied to the app's sandbox and transformed into Part models inside a routine. Each part has a location (URL) attribute that refers the uploaded file. This way, users can swipe through them and play the dedicated audio. I had to create a Files debug view to test the removal and 
-
-&nbsp;
-
-<div class="post-img-container">
-
-![Upload a routine](../../assets/project_images/segmance/uproutine.png)
-
-</div>
-
-&nbsp;
 
 
 ###  Inside a Routine
 
+Upon creation, every audio file in the routine becomes a linked part (PartView) in which users can: 
 
+1. add, reorder and delete moves of types they specify. 
+2. Toggle and control the audio specific to that part. 
+3. Link a video from their photos library for reference.
 
-Once a user has clipped all parts of a song they want to practice, they can upload a routine. The files are then copied to the app's sandbox and transformed into Part models inside a routine. Each part has a location (URL) attribute that refers the uploaded file. This way, users can swipe through them and play the dedicated audio. I had to create a Files debug view to test the removal and 
+&nbsp;
 
 &nbsp;
 
@@ -94,17 +132,19 @@ Once a user has clipped all parts of a song they want to practice, they can uplo
 
 </div>
 
+&nbsp;
 
-### Clipping audio 
+
+### Models 
+
+These are my models for reference. I used SwiftData for this project and my <a  class="secondary-a" href="https://joefarah.com/projects/k-count/">last</a> one. I'll give <a class="secondary-a" href="https://github.com/groue/GRDB.swift"> GRDB </a> a spin for my next iOS project, because I've grown to dislike handling relationships with SwiftData. 
+
 
 
 <div class="post-img-container">
 
-![Clipping audio](../../assets/project_images/segmance/clipper.png)
-
+![Segmance Models](../../assets/project_images/segmance/models.png)
 </div>
-
-
 
 
 
@@ -113,20 +153,34 @@ Once a user has clipped all parts of a song they want to practice, they can uplo
 
 &nbsp;
 
+
 ## Playing with AVAudioPlayer
 
 
 
 ### Controls 
 
+Here are the controls I implemented for the AudioPlayer.
 
-Besides the usual functions an audio player has, I wanted to implement a custom loop and countdown feature. For one, users could simply choose to upload the full song inside the routine.
-1. play
+
+1. play/plause
 2. seek forwards and backwards
 3. loop
-4. custom loop: displaying markers above the player
-5. countdown with a timer
+4. custom loop: displaying markers above the player (*)
+5. countdown with a timer (*)
 
+&nbsp;
+
+### Edge Cases
+
+
+1. Changing the play/pause images when audio finishes
+2. Turning off the loop if custom loop is on
+3. Restarting the timer with the countdown if the audio section ends.
+4. Seeking past custom loop markers
+5. Preventing the creation of multiple countdown timers 
+
+And more...
 
 
 &nbsp;
@@ -170,56 +224,77 @@ I followed Kavsoft's <a class="secondary-a" href="https://www.youtube.com/watch?
 
 
 
+### Clipping Tracks 
 
-## Extras
+&nbsp;
+
+
+
+<div class="post-img-container">
+
+![Clipping audio](../../assets/project_images/segmance/clipper.png)
+
+</div>
+
+
+The audio waves are generated by using <a class="secondary-a" href="https://github.com/dmrschmidt/DSWaveformImage"> DSWaveformImage </a> by Dennis Schmidt. 
+
+
+&nbsp;
+
+
+
+Edge cases:
+
+1. Preventing the start and end handles from going past each other
+2. Clipping already existing parts
+3. Disabling buttons during clipping. 
+
+
+
+
+
+&nbsp;
+
+
 
 
 &nbsp;
 
 ## Challenges
 
-This project really challenged me to deepen about my undertstanding of some of the more advanced Swift mechanics especially concurrency and AVAudioPlayer. I'm putting them in bullet points here, but I took quite a few bullets mentally from trying to implement them.
+This project pushed me to deepen my understanding of some of the more advanced Swift mechanics notably concurrency and AVAudioPlayer. I'm putting them in bullet points here, but I took quite a few bullets mentally from their implementations.
 
 &nbsp;
 
 
 ### Programming
-- How to link audio files to each part and delete those parts
-- How to reorder parts and update their order with delegates
-- Creating an expandable audio player and audio trimmer (AudioPlayerModel and AudioTrimmerModel)
-- Utilizing concurrency to manage custom loops, countdown timers, audio trimming
+- How to link audio files to each part. 
+- How to reorder parts and update their order with DropDelegate
+- Creating an expandable audio player and audio clipper (AudioPlayerModel and AudioClipperModel)
+- Creating a floating video player across parts (VideoPlayerModel) 
+- Utilizing concurrency to manage custom loops, countdown timers, audio trimming.
 
 &nbsp;
 
 
-### UI/UX Concerns
+### UI/UX 
 
-Here were a few of my concerns during development: 
 
-- Make reordering moves intuitive
+- Make reordering moves with drag and drop smooth.
 - Where to add context menus for deletion, where should the user be able to delete?
 - Where to put audio controls
+- Making empty state views more explicit robust 
+- using TipKit to notify the user of any subtle functionality
+
+
+
+
+
 
 &nbsp;
 
 
-### DropViewDelegate with SwiftData
-
-Inside the PartView, users can reorder the moves. 
-Parts has a moves property which is an array of Moves, but Swiftdata can't handle sorting. Of course I can use computed property to sort it like, but with the DragAndDrop, how do I sync it? 
-
-
-
-Inside the PartView, you can rearrange your moves by holding and dragging them. Every move (MoveView) is associated with an order and a type. To delete the move, you hover on the number to display a context menu. Having the context menu on the MoveView isn't a good idea, because as the user holds and drags to reorder, the context menu could interfere. 
-
-&nbsp;
-
-
-I use the tips from TipKit to inform the user about any subtle functionality, and I've also included a UsageGuide view in the Settings for clarification.
-&nbsp;
-
-
-&nbsp;
 
 
 

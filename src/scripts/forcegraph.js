@@ -17,15 +17,13 @@ Strength is by default 0.1
 const data = {
     
   "nodes" : [
-      {id: "Programming", group: "technical", fx: 0, fy: 0, radius: 120  },
+      {id: "Program", group: "technical", fx: 0, fy: 0, radius: 85  },
 
       // Adding musical-related nodes
       {id: "Routine", group: "musical", radius: 75 },
       {id: "Dance", group: "musical-routine",radius: 75 },
       {id: "Juggling", group: "musical-routine", radius: 75 },
       {id: "Music", group: "musical-routine", radius: 75 },
-      {id: "Ableton", group: "presentation",radius: 75  },
-      {id: "Resolve", group: "presentation", radius: 75  },
       {id: "Walking", group: "dance-children", radius: 75 },
       {id: "Stretching", group: "dance-children",radius: 75  },
       {id: "Piano", group: "Music-children",radius: 75  },
@@ -35,18 +33,16 @@ const data = {
       // Adding cartoon-related nodes
       {id: "Cartoon", group: "cartoon", radius: 75 },
       {id: "Drawing", group: "cartoon-children",radius: 75  },
-      {id: "Animation", group: "cartoon-children", radius: 75 },
-      {id: "Languages", group: "cartoon-children", radius: 75 },
-      // Adding other nodes
-      {id: "Feedback", group: "feedback",radius: 75  },
+      {id: "Language", group: "cartoon-children", radius: 75 },
+ 
 
 
   ],
 
   "links" : [
 
-      // Adding musical-related links
-      {source: "Programming", target: "Routine", value: 50},
+      
+      {source: "Program", target: "Routine", value: 10},
       {source: "Dance", target: "Routine", value: 1},
       {source: "Juggling", target: "Routine", value: 1},
       {source: "Music", target: "Routine", value: 1},
@@ -55,15 +51,10 @@ const data = {
       {source: "Piano", target: "Music", value: 1},
       {source: "Guitar", target: "Music", value: 1},
       {source: "Harmonica", target: "Music", value: 1},
-      {source: "Ableton", target: "Routine", value: 1},
-      {source: "Resolve", target: "Routine", value: 1},
-      // Adding cartoon-related links
-      {source: "Programming", target: "Cartoon", value: 50},
+      {source: "Program", target: "Cartoon", value: 10},
       {source: "Cartoon", target: "Drawing", value: 1},
-      {source: "Cartoon", target: "Animation", value: 1},
-      {source: "Cartoon", target: "Languages", value: 1},
-      // Adding other links
-      {source: "Programming", target: "Feedback", value: 50},
+      {source: "Cartoon", target: "Language", value: 1},
+
   ]
 
 
@@ -90,24 +81,21 @@ const forcegraph = (data) => {
         .force("charge", d3.forceManyBody().strength(-50))
         .force("x", d3.forceX(d => {
        
-          if (d.group === "musical") return width/2 ; 
-          if (d.group === "musical-routine") return width/2 ; 
+          
       
        
           return 0; 
         }))
         .force("y", d3.forceY((d => {
        
-          if (d.group === "musical") return height ; 
-          if (d.group === "musical-routine") return height/ 4 ; 
-   
+    
         
        
           return 0; 
         })))
         .force("collide", d3.forceCollide()
-              .radius(d => d.radius * 0.85)
-              .strength(0.8) 
+              .radius(d => d.radius * 1)
+              .strength(0.75) 
         );
   
     // Create the SVG container.
@@ -119,8 +107,8 @@ const forcegraph = (data) => {
        
     // Add a line for each link, and a circle for each node.
     const link = svg.append("g")
-        .attr("stroke", "#888")
-        .attr("stroke-opacity", 0.8)
+        .attr("stroke", "#765317ff")
+        .attr("stroke-opacity", 1.5)
       .selectAll("line")
       .data(links)
       .join("line")
