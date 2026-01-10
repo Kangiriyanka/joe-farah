@@ -40,11 +40,13 @@ Black and White
   <div class="color-box bg-[#1f1f29]"></div>
   <div class="color-box bg-[#17171F]"></div>
   <div class="color-box bg-[#13131A]"></div>
-  <div class="color-box bg-[#292727]"></div>
+
   <div class="color-box bg-[#1f1c1c]"></div>
   <div class="color-box bg-[#1A1616]"></div>
 
 </div>
+
+
 
 
 <div class="black-colors flex gap-1">
@@ -52,8 +54,30 @@ Black and White
   <div class="color-box bg-[#F0F0F5]"></div>
   <div class="color-box bg-[#F2F2F8]"></div>
   <div class="color-box bg-[#F9F4F4]"></div>
-  <div class="color-box bg-[#F5F0F0]"></div>
+
   <div class="color-box bg-[#FAF4F4]"></div>
+</div>
+
+&nbsp;
+
+Colours I like
+<div class="black-colors flex gap-1">
+<!-- C: Jinjo -->
+  <div class="color-box bg-[#ffe730]"></div>
+<!-- D: Iselia -->
+   <div class="color-box bg-[#53cd32]"></div>
+<!-- E: Rainy Blue -->
+    <div class="color-box bg-[#001a81]"></div>
+<!-- F: Majora's Mask -->
+  <div class="color-box bg-[#ac3f97]"></div>
+ 
+ <!-- G: Sukiyaki -->
+  <div class="color-box bg-[#f2290d]"></div>
+  <!-- A: Scions of Fate -->
+  <div class="color-box bg-[#f1f1f6]"></div>
+   <!-- B: Pokemon -->
+  <div class="color-box bg-[#d9bccc]"></div>
+
 </div>
 
 
@@ -147,6 +171,32 @@ If it's not looking the way you want:
 - Try grid instead of flex.
 
 
+&nbsp;
+
+<!-- If you ever think of something
+### Random CSS 
+
+Experimenting
+
+<div class="flex m-auto container-2">
+
+
+
+
+  <div class="wave">
+    <div class="curve-1"></div>
+    <div class="curve-2"></div>
+ 
+    
+  </div>
+
+  -->
+
+
+
+
+
+    
 
 &nbsp;
 
@@ -483,6 +533,14 @@ const {posts} = Astro.props;
     line-height: 1.5rem;
 }
 
+html.dark .property-box {
+
+   background-color: #1f1f29;
+   border-color: #f9f4f423;
+
+
+}
+
 .property-box:nth-child(1):hover { background-color: green; }
 .property-box:nth-child(2):hover { color: green; }
 .property-box:nth-child(3):hover { font-size: 18px; }
@@ -492,6 +550,17 @@ const {posts} = Astro.props;
 .property-box:nth-child(7):hover { margin-top: -0.2rem; }
 .property-box:nth-child(8):hover { padding: 10px; }
 .property-box:nth-child(9):hover { border-width: 8px; }
+
+
+
+
+
+
+
+
+
+
+
 
 </style>
 
