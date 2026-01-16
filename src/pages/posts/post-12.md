@@ -516,7 +516,7 @@ const {posts} = Astro.props;
 
 .property-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 1rem;
 }
 
@@ -550,6 +550,17 @@ html.dark .property-box {
 .property-box:nth-child(7):hover { margin-top: -0.2rem; }
 .property-box:nth-child(8):hover { padding: 10px; }
 .property-box:nth-child(9):hover { border-width: 8px; }
+
+
+ @media screen and (min-width: 636px) {
+      .property-grid {
+      
+           grid-template-columns: repeat(4, 1fr);
+
+
+      }
+    }
+
 
 
 

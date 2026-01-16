@@ -38,6 +38,7 @@ When I'm not working on a project, I update existing ones or write new posts whe
 &nbsp;
 
 
+
 ## About my Apps
 
 If you take a look at the <a class="secondary-a" href="https://joefarah.com/about/"> About </a> page, you'll see an overview of the activities I gravitate towards. The apps I create are based on these interests. I can enjoy programming (or find it tolerable) when it's relevant to my world. Naturally, I don't build an app for everything. Sometimes it's just faster to do it, but a helping hand can make all the difference.<sup class="secondary-a"><a href="#footnotes">2.<a></sup>

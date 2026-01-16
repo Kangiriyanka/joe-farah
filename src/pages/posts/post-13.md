@@ -682,7 +682,8 @@ Git
 
     .shortcuts-box {
         display: grid;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(2, 1fr);
+
         
     }
 
@@ -719,6 +720,19 @@ Git
     .shortcut-card:hover:before {
       transform: scale(1);
       opacity: 1;
+
+    }
+
+
+    @media screen and (min-width: 636px) {
+      .shortcuts-box {
+      
+           grid-template-columns: repeat(4, 1fr);
+
+
+      }
+
+
 
     }
 
