@@ -70,12 +70,21 @@ Although I'm still a beginner, I recommend this  <a class="secondary-a" href="ht
   Select all clips to the left <span data-info="⌥⌘Y">⌥⌘Y</span>
 </div>
 
+<div class="shortcut-card">
+  Select clips <span data-info="⌘↔">⌘↔</span>
+</div>
+
 </div>
 
 *: Note that the shortcuts are for Mac.
 
 &nbsp;
 
+
+<!-- Combos -->
+
+<!-- If you do this in selection mode, it only change duration of the first clip -->
+<!-- Trim Edit Mode (T) ⌘D and changing clip duration -->
 
 ## People are amazing
 

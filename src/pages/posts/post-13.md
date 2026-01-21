@@ -353,6 +353,28 @@ Creating an .env file with the test command. Use the backslash.
 
 &nbsp;
 
+
+
+Creating folders based on the creation date of the files. 
+
+
+```bash
+# For every file in the directory
+for f in *; do
+# Check if it's a regular file or skip it
+  [ -f "$f" ] || continue
+# Create a directory based on the metadata (stat)
+  # Flags:
+  # -f: target only what I need (%Sm: modification time), 
+  # -t: time format
+  dir=$(stat -f "%Sm" -t "%Y/%m" "$f")
+  # -p: Make parent directories (2025/, 2025/01)
+  mkdir -p "$dir"
+  mv "$f" "$dir/"
+done
+
+```
+
 ## Git
 
   
