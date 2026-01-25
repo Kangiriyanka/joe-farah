@@ -353,15 +353,18 @@ print(VideoGame.collectionSize) // 2
 
 ### Value vs Reference Types
 
-Structs are value types which means you'll create a copy instead of accessing the same reference.
+<!-- Performant and lightweight! No bloat -->
+Structs are value types which means you'll create a copy instead of accessing the same reference. They also come with memberwise initializer (no need to write init). You could, however, write your own initializer with a struct, but you'll lose the synthetized <a class="secondary-a" href="https://www.hackingwithswift.com/quick-start/understanding-swift/how-do-swifts-memberwise-initializers-work"> one</a>. 
 
 &nbsp;
 
 ```swift
 struct Drawing {
     var title: String
+    
 }
 
+// Structs have memberwise initializers (comes packed with an init)
 var drawing1 = Drawing(title: "Cube")
 var drawing2 = drawing1
 drawing2.title = "Cylinder"
@@ -697,6 +700,8 @@ frame -> background -> corner radius -> shadow
 ```
 
 2. If a view is getting pushed down because of another, add a frame.
+
+3. If you see: "The compiler is unable to type-check this expression in reasonable time; try breaking up the expression into distinct sub-expressions", check your initializers.
 
 &nbsp;
 

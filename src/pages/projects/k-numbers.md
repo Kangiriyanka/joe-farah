@@ -154,6 +154,7 @@ the not so rough idea for numbers above 10 becomes:
 &nbsp;
 
 <div class="post-img-container">
+
  ![number-logic](../../assets/project_images/k-numbers/logic.svg)
 
 </div>
@@ -225,8 +226,10 @@ It's a neat function you can use in any app actually. I learned that we use wrap
 
 Another consideration to make is the user inputting negative numbers. Luckily, we can prevent such sneaky users by simply adding  .keyboardType(.numberPad) to the TextField.
 
+&nbsp;
 
-### 3. Writing mini tests
+
+### 3. Writing tests
 
 Since the conversion logic was originally embedded in the SwiftUI views, I refactored the number conversion logic into two separate files: SinoKoreanConverter and NativeKoreanConverter. At some point, I forgot to reset the number string to "0" when an alert was thrown i.e. when the user inputs a bigger minimum than maximum. That would reset my number string to "" and I'd get a Swift Fatal Error.
 
