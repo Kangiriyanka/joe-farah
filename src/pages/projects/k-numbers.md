@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'K-Numbers'
-description: 'An iOS app to practice Korean numbers on the fly'
+description: 'A nifty iOS app to practice Korean numbers on the fly'
 stack: ['swift']
 link: https://github.com/Kangiriyanka/K-Numbers
 order: 3

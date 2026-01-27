@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'Grid Diary'
-description: 'A React calendar  for journaling'
+description: 'A lovely React calendar for journaling'
 stack: ["react", "flask"]
 link: "https://github.com/Kangiriyanka/ReactFlask-Diary"
 order: 5

@@ -203,7 +203,7 @@ this macro sniffs out changes in the properties of a class to trigger updates in
 
 
 
-In <a class="secondary-a" href="https://joefarah.com/projects/ChoreoBuilder"> ChoreoBuilder</a>, tapping my play/pause button will have SwiftUI re-render the Image view, because it's using the AudioPlayerModel's <u>isPlaying</u> property. The model handles the functionality while the view does its magic to reflect its changes.
+In <a class="secondary-a" href="https://joefarah.com/projects/Segmance"> Segmance</a>, tapping my play/pause button will have SwiftUI re-render the Image view, because it's using the AudioPlayerModel's <u>isPlaying</u> property. The model handles the functionality while the view does its magic to reflect its changes.
 
 &nbsp;
 ```swift

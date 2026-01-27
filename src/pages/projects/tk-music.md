@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'Tk-Music'
-description: 'A Python GUI
+description: 'A cool Python GUI
  for applied music theory on Guitar and Harmonica'
 image:
     url: 'https://docs.astro.build/assets/rose.webp'

@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'K-Count'
-description: 'A simple iOS app to track calories and weight'
+description: 'A simple iOS app that helps people track calories and weight'
 link: https://github.com/Kangiriyanka/K-Count
 stack: ['swift']
 order: 2

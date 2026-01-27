@@ -1,7 +1,7 @@
 ---
 layout: ../../layouts/ProjectPostLayout.astro
 title: 'Gameok'
-description: 'A fullstack React video game library for memories'
+description: 'A fullstack React video game library for recollecting memories'
 stack: ['react', 'flask']
 link: "https://github.com/Kangiriyanka/Gameok"
 order: 4
