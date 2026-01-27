@@ -19,7 +19,7 @@ store: "https://apps.apple.com/us/app/segmance/id6756501666"
 
 ## Why?
 
-In Japan, I was given precious opportunities to perform in festivals and community events in the <a href="https://en.wikipedia.org/wiki/Kihoku,_Mie" class="secondary-a"> town </a> I was living in.<sup class="secondary-a"> <a href="#footnotes" >1.</a></sup> Generally, to create a performance routine, I split the audio of my target song into parts and write notes on what moves I want to execute inside them. As a developer, my desire was to create a tool tailored for combining audio and notes to practice and structure performances easily.  Granted, the creative process is different for everyone. Some people take long videos to extract footage they'll use,  and others jot down notes in a notebook. Shaped by my own experience, my motivation with Segmance <sup class="secondary-a"> <a href="#footnotes" >2.</a></sup> was to provide a structured way for performers to streamline performance creation, or at least lay the initial building blocks.
+In Japan, I was given precious opportunities to perform in festivals and community events in the <a href="https://en.wikipedia.org/wiki/Kihoku,_Mie" class="secondary-a"> town </a> I was living in.<sup class="secondary-a"> <a href="#footnotes" >1.</a></sup> Generally, to create a performance routine, I split the audio of my target song into parts and write notes on what moves I want to execute inside them. As a developer, my desire was to create a tool tailored for combining audio and notes to practice and structure performances easily.  Granted, the creative process is different for everyone. Some people take long videos to extract footage they'll use,  and others jot down notes in a notebook. Shaped by my own experience, my motivation with Segmance <sup class="secondary-a"> <a href="#footnotes" >2.</a></sup> was to provide a structured way for performers to streamline performance creation, or at least lay the initial building blocks for them.
 
 &nbsp;
 
@@ -27,7 +27,7 @@ In Japan, I was given precious opportunities to perform in festivals and communi
 
 ## What?
 
-Not surprisingly, breaking things down into smaller parts is a fundamental way to start anything. For example, when learning a musical piece, you practice measure by measure to play longer sections and eventually the whole of it.  In juggling, you break complex patterns into manageable ones (5 -> 552 or 5551).
+Not surprisingly, breaking things down into smaller parts is a fundamental way to start anything. For example, when learning a musical piece, you practice measure by measure to play longer sections and eventually the entirety of it. In juggling, you break complex patterns into manageable ones (5 -> 552 or 5551).
 
 &nbsp;
 
@@ -177,7 +177,7 @@ Before rehearsing a part, performers may need time to set up or might want to pr
 #### AudioPlayerModel 
 
 
-Audio playback is managed by a custom class, <span class="bold-rounded"> <a class="secondary-a" href="https://github.com/Kangiriyanka/Segmance/blob/main/Segmance/AudioPlayer/AudioPlayerModel.swift"> AudioPlayerModel</a></span>, which conforms to the  AudioPlayerDelegate protocol. This provides the <span class="bold underline"> audioPlayerDidFinishPlaying</span>  method, allowing the <span class="bold-rounded"> AudioPlayerModel</span> to respond after audio finishes. This is where you would find looping logic for instance.
+Audio playback is managed by a custom class, <span class="bold-rounded"> <a class="secondary-a" href="https://github.com/Kangiriyanka/Segmance/blob/main/Segmance/AudioPlayer/AudioPlayerModel.swift"> AudioPlayerModel</a></span>, which conforms to the  AudioPlayerDelegate protocol. This provides the <span class="bold underline"> audioPlayerDidFinishPlaying</span>  method, allowing the <span class="bold-rounded"> AudioPlayerModel</span> to respond a certain way after audio finishes. This is where you would find looping logic for instance.
 
 &nbsp;
 
@@ -195,6 +195,8 @@ class AudioPlayerModel: NSObject, AVAudioPlayerDelegate {
     var isCustomLooping: Bool = false
     // ...
 
+    // Using a protocol here would decouple AudioPlayerModel from AVAudioPlayer,
+    // making it easier to test and replace with a mock implementation
     private var audioPlayer: AVAudioPlayer?
 
     func setupAudio() {
@@ -258,7 +260,7 @@ Note: The loop task solely exists to replay the audio without user interaction, 
 &nbsp;
 
 
-Graphically, this is how the logic is represented; it can be drastically improved. The <span class="text-[red]"> red </span> letters indicate where the task would be set. There could be missing logic, but this goes to show how complexity can balloon.
+Graphically, this is how the logic is represented; it can be drastically improved. The <span class="text-[red]"> red </span> letters indicate where the task would be set. There could be missing logic, but this goes to show how things can get complicated.
 
 &nbsp;
 &nbsp;
@@ -366,7 +368,7 @@ The trailing closure inside the <span class="bold-rounded"> delayedPlayTask</spa
 
 
 
-You can use Xcode Instruments to detect memory leaks. A leak happens when objects remain in memory (just when think you got rid of it), because something is still holding a reference to them, even though they’re no longer needed. The consequence is increased memory usage, which can degrade performance and eventually cause the app to crash. A  persistent user could very well create 10 timer instances by spam tapping play/pause had I not considered defining my capture lists. 
+You can use Xcode Instruments to detect memory leaks. A leak happens when objects remain in memory (just when think you got rid of it), because something is still holding a reference to them, even though they’re no longer needed. The consequence is increased memory usage, which can degrade performance and eventually cause the app to crash. A persistent user could very well create 10 timer instances by spam tapping play/pause had I not considered defining my capture lists. 
 
 &nbsp;
 
@@ -390,7 +392,6 @@ Edge cases:
 5. Knowing where to cancel tasks and how to properly deinit
 
 
-And more...
 
 &nbsp;
 
@@ -449,9 +450,8 @@ Extra edge cases:
 1. Unlinking the video from the part when the user deletes it from their library.
 2. Changing the z-index of the video player to prevent overlap with the audio player
 
-And more...
-
 &nbsp;
+
 
 ### Overview and Add Moves
 
@@ -564,13 +564,13 @@ The RoutineView is a ZStack which has:
 
 1.	A horizontal ScrollView displaying each PartView of the routine. 
 2.	An AudioPlayerView which receives an AudioPlayerModel from the <a class="secondary-a" href="https://github.com/Kangiriyanka/Segmance/blob/main/Segmance/Routines/RoutineView.swift"> RoutineView </a> via dependency injection.
-3.	A DraggableVideoPlayer which similarly receives a VideoPlayerModel from the RoutineView via dependency injection.
+3.	A DraggableVideoPlayer which receives a VideoPlayerModel from the RoutineView via dependency injection.
 
 
 &nbsp;
 
 
-In a previous implementation, I let every part instantiate its own audio player instead of centralizing it in the RoutineView. A user could even have three audio players running simultaneously across parts. That's a waste of resources and an unpleasant experience to the ears, but it was a good mistake on my part.
+In a previous implementation, I let every part instantiate its own audio player instead of centralizing it in the RoutineView. This means a user could even have X audio players running simultaneously across parts. That's a waste of resources and an unpleasant experience to the ears, but it was a good mistake on my part.
 
 
 
@@ -596,7 +596,7 @@ The audio waves are generated by using <a class="secondary-a" href="https://gith
 
 &nbsp;
 
-One challenge in implementing this was keeping the Start and End times in sync with the actual audio playback. GeometryReader works with CGFloat for layout calculations, but the audio timing needs to remain precise. The solution is to convert the positions from CGFloat fractions back to Double when updating startTime and endTime. This ensures that the visual handle positions match the audio timeline accurately without losing precision. 
+One challenge in implementing this was keeping the displayed <span class=" bold text-[gray]"> Start </span> and <span class=" bold text-[gray]"> End </span> times in sync with the actual audio playback. GeometryReader works with CGFloat for layout calculations, but the audio timing needs to remain precise. The solution is to convert the positions from CGFloat fractions back to Double when updating startTime and endTime. This ensures that the visual handle positions match the audio timeline accurately without losing precision. 
 
 
 
@@ -700,7 +700,7 @@ The countdown tick sounds (.wav) are made with Ableton Live royalty-free samples
 ## Data Models
 
 
-These are the data models in Segmance. I used SwiftData for this project and my <a  class="secondary-a" href="https://joefarah.com/projects/k-count/">last</a> one. While SwiftData provides unique IDs, I would still include UUID properties for tasks like generating unique filenames. For other projects, I'll be moving forward with <a class="secondary-a" href="https://github.com/groue/GRDB.swift">GRDB</a>.
+These are the data models in Segmance. I used SwiftData for this project and my <a  class="secondary-a" href="https://joefarah.com/projects/k-count/">last</a> one. While SwiftData provides unique IDs, I would still include UUID for tasks like generating unique filenames. For other projects, I'll be moving forward with <a class="secondary-a" href="https://github.com/groue/GRDB.swift">GRDB</a>.
 
 &nbsp;
 
@@ -733,7 +733,7 @@ Segmance pushed me to deepen my understanding on some of the more advanced mecha
 - Linking audio files to each part. 
 - Being able to edit audio files in existing routines without creating duplicates/missing files
 - Implementing a custom drag/drop with DropDelegate for updating part/move orders
-- Creating expandable audio/video players and audio clipper (AudioPlayerModel, VideoPlayerModel and AudioClipperModel)
+- Creating expandable audio/video players and an audio clipper.
 - Utilizing concurrency to orchestrate custom loops, countdown timers, audio clipping/trimming.
 
 
@@ -744,10 +744,12 @@ Segmance pushed me to deepen my understanding on some of the more advanced mecha
 ### UI/UX 
 
 - Turning the dragging and dropping of moves into a smooth experience
-- Exploring where to add context menus for deletion
-- Deciding where to display audio controls
+- Exploring where to add context menus for move deletion
+- Deciding the layout audio controls
 - Making empty state views robust
 - Using TipKit to notify the user about any subtle functionality
+
+&nbsp;
 
 
 
@@ -783,19 +785,19 @@ And more...
 
 
 
-2. Segmance is a portmanteau of Segment and Performance. It was named ChoreoBuilder before, but I didn't want people to strictly associate the app with dance. I cycled through names like StageNote, SegForm, CueNote, but most were already taken or didn't capture the app's essence.
+2. Segmance is a portmanteau of Segment and Performance. It was named ChoreoBuilder before, but I didn't want it to be stricly paired with dance. I cycled through names like StageNote, SegForm, CueNote, but most were already taken or didn't capture the app's essence.
 
 &nbsp;
 
 
 
-3. Following Kavsoft's <a class="secondary-a" href="https://www.youtube.com/watch?v=vqPK8qFsoBg">tutorial</a>, Cebrail's<a class="secondary-a" href="https://www.youtube.com/watch?v=135rXe-YxeQ"> tutorial</a>, and VLC for inspiration.
+3. Inspired from Kavsoft's <a class="secondary-a" href="https://www.youtube.com/watch?v=vqPK8qFsoBg">tutorial</a>, Cebrail's<a class="secondary-a" href="https://www.youtube.com/watch?v=135rXe-YxeQ"> tutorial</a> and <a class="secondary-a"href="https://www.videolan.org/vlc/download-ios.html"> VLC </a>
 
 &nbsp;
 
 
 
-4. The <span class="bold-rounded"><a class="secondary-a" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/closures/#Capturing-Values">makeIncrementer</a></span> function makes more sense now. 
+4. See <span class="bold-rounded"><a class="secondary-a" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/closures/#Capturing-Values">makeIncrementer</a></span> function. 
 
 
 &nbsp;
