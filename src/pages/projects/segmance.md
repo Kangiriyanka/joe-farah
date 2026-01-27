@@ -47,24 +47,24 @@ Following that principle, I wanted to enable users to practice performances in p
             </tr>
         </thead>
         <tbody>
-            <tr class="border-b  pro-3 hover:bg-pink-100">
-                <td class=" px-6 py-3"><span class="px-2 py-1">Part 1 </span></td>
+            <tr class="border-b  pro-3 dark:hover:bg-pink-400 hover:bg-pink-100">
+                <td class=" px-6 py-3"><span class="px-2 py-1">P1 </span></td>
                   <td class=" px-6 py-3"><span class="px-2 py-1">A,B,C</span></td>
-                  <td class=" px-6 py-3"><span class="px-2 py-1"> Part 1 Audio</span></td>
-                   <td class=" px-6 py-3"><span class="px-2 py-1"> Part 1 Video</span></td>
+                  <td class=" px-6 py-3"><span class="px-2 py-1"> P1 Audio</span></td>
+                   <td class=" px-6 py-3"><span class="px-2 py-1"> P1 Video</span></td>
             </tr>
             </tr>
-            <tr class="border-b  pro-3 hover:bg-pink-100">
-              <td class=" px-6 py-3"><span class="px-2 py-1">Part 2</span></td>
+             <tr class="border-b  pro-3 dark:hover:bg-pink-400 hover:bg-pink-100">
+              <td class=" px-6 py-3"><span class="px-2 py-1">P2</span></td>
                 <td class=" px-6 py-3"><span class="px-2 py-1">D,E,F</span></td>
-                 <td class=" px-6 py-3"><span class="px-2 py-1"> Part 2 Audio</span></td>
-                  <td class=" px-6 py-3"><span class="px-2 py-1"> Part 2 Video</span></td>
+                 <td class=" px-6 py-3"><span class="px-2 py-1"> P2 Audio</span></td>
+                  <td class=" px-6 py-3"><span class="px-2 py-1"> P2 Video</span></td>
             </tr>
-            <tr class="border-b  pro-3 hover:bg-pink-100">
-              <td class=" px-6 py-3"><span class="px-2 py-1">Part 3</span></td>
+           <tr class="border-b  pro-3 dark:hover:bg-pink-400 hover:bg-pink-100">
+              <td class=" px-6 py-3"><span class="px-2 py-1">P3</span></td>
                 <td class=" px-6 py-3"><span class="px-2 py-1">G,H,I</span></td>
-                 <td class=" px-6 py-3"><span class="px-2 py-1"> Part 3 Audio</span></td>
-                  <td class=" px-6 py-3"><span class="px-2 py-1"> Part 3 Video</span></td>
+                 <td class=" px-6 py-3"><span class="px-2 py-1"> P3 Audio</span></td>
+                  <td class=" px-6 py-3"><span class="px-2 py-1"> P3 Video</span></td>
             </tr>
         </tbody>
     </table>
@@ -122,7 +122,7 @@ class Part {
 
 ##  Inside a Routine
 
-The heart of the app is the routine (RoutineView) which is the container of its parts (PartView). Each part comes with 4 main action buttons (we'll explore them) and their moves, which can be created, dragged and deleted. In the first part of any routine, I included some helpful general tips to guide the user appropriately. 
+The heart of the app is the routine (RoutineView) which acts as a container for its parts (PartView). Each part comes with 4 main action buttons (we'll explore them) and their moves, which can be created, dragged and deleted. In the first part of any routine, I include some helpful general tips to guide the user appropriately. 
 
 
 &nbsp;
@@ -161,7 +161,7 @@ The audio player includes these commands:
 1. play/pause (oh, indeed)
 2. seek forwards and backwards
 3. loop
-4. custom loop: displaying markers above the audio progress
+4. custom loop: displaying markers above the audio progress bar
 5. countdown to set up before rehearsing
 
 
@@ -251,7 +251,7 @@ Taking into account playback with a possible delay (countdown) and custom loopin
 
 &nbsp;
 
-Note: the loop task solely exists to replay the audio without user interaction i.e. when the playhead reaches the end time or the rightmost marker.
+Note: The loop task solely exists to replay the audio without user interaction, i.e,  when the playhead reaches the end time or the rightmost marker.
 &nbsp;
 
 
@@ -339,7 +339,7 @@ func playAudio() {
 
     // This closure captures self (AudioPlayerModel), but if we deallocate the AudioPlayerModel, 
     // we don't want to keep the Task referencing the AudioPlayerModel. 
-    // An unwanted side effect would be hearing the countdown ticking sound when you've completely dismissed the AudioPlayer 
+    // An unwanted side effect would be hearing the countdown ticking sound when you've completely dismissed the AudioPlayerModel
     // and switched views
     delayedPlayTask = Task { [weak self] in
 
@@ -366,7 +366,7 @@ The trailing closure inside the <span class="bold-rounded"> delayedPlayTask</spa
 
 
 
-You can use Xcode Instruments to detect memory leaks. A leak happens when objects remain in memory (just you think you got rid of it), because something is still holding a reference to them, even though they’re no longer needed. The consequence is increased memory usage, which can degrade performance and eventually cause the app to crash. A  mean user could very well create 10 timer instances by spam tapping play/pause had I not considered defining my capture lists. 
+You can use Xcode Instruments to detect memory leaks. A leak happens when objects remain in memory (just when think you got rid of it), because something is still holding a reference to them, even though they’re no longer needed. The consequence is increased memory usage, which can degrade performance and eventually cause the app to crash. A  persistent user could very well create 10 timer instances by spam tapping play/pause had I not considered defining my capture lists. 
 
 &nbsp;
 
@@ -384,7 +384,7 @@ Edge cases:
 
 
 1. Changing the play/pause symbols when audio finishes
-2. Turning off the loop if a custom loop is on
+2. Disabling a regular loop if a custom loop is on
 3. Restarting the timer with the countdown if the audio ends
 4. Preventing the user from seeking past custom loop markers
 5. Knowing where to cancel tasks and how to properly deinit
@@ -397,7 +397,7 @@ And more...
 
 ### Video
 
-The second button is a film button which opens the PhotosPicker and lets the user select a video to watch within the RoutineView. When linked, the button's image changes to a play symbol. Let's say you want to watch a video you filmed for a specific part, then this would be a good use case. The video player is draggable and expandable. 
+The second button is a film button which opens the PhotosPicker and lets the user select a video to watch within the RoutineView. When linked, the button's image changes to a play symbol. A good application of this would be watching a video you filmed for a specific part. The video player is draggable and expandable. 
 
 
 &nbsp;
@@ -417,7 +417,7 @@ Programmatically, since each <span class="bold-rounded"> PhotosPickerItem</span>
 
 
 
-On first access to the photos library, the user receives a prompt to allow the app full, limited or no access to it. If the user allows full access, then there's no problem. With limited or no access, we have to alert the user in case they change their mind, that is, want to allow new photos. In limited access, one thing that initially confused me is that Apple, by default, shows all the photos of the PhotosPicker including the ones you didn't allow (screenshot where it says <span class="text-[#c06f7a]">Learn more...</span>). On WhatsApp, their picker only shows limited photos, so there's a different implementation going on. In any case, we only assign the <span class="bold-rounded"> itemIdentifier</span> to the part when appropriate!
+On first access to the photos library, the user receives a prompt for allowing the app full, limited or no access to it. If the user allows full access, then there's no problem. With limited or no access, we have to alert the user in case they change their mind, that is, want to allow new photos. In the former, one thing that initially confused me is that Apple, by default, shows all the photos of the PhotosPicker including the ones you didn't allow (screenshot where it says <span class="text-[#c06f7a]">Learn more...</span>). On WhatsApp, their picker only shows limited photos, suggesting a different implementation going on. In any case, we only assign the <span class="bold-rounded"> itemIdentifier</span> to the part when appropriate!
 
 &nbsp;
 
@@ -570,7 +570,7 @@ The RoutineView is a ZStack which has:
 &nbsp;
 
 
-In a previous implementation, I let every part instantiate its own audio player instead of centralizing it in the RoutineView. A user could even have three audio players running simultaneously across parts. That's a waste of resources and an unpleasant experience to the ears, but it's a good mistake.
+In a previous implementation, I let every part instantiate its own audio player instead of centralizing it in the RoutineView. A user could even have three audio players running simultaneously across parts. That's a waste of resources and an unpleasant experience to the ears, but it was a good mistake on my part.
 
 
 
@@ -667,9 +667,9 @@ GeometryReader { geo in
 Edge cases:
 
 1. Preventing the start and end handles from going past each other
-2. Clipping already existing parts
-3. Disabling buttons during clipping. 
-4. Deinitializing logic: Removing the clipped files and setting the export session to nil.
+2. Preventing clipping already existing parts
+3. Disabling buttons during clipping
+4. Removing the clipped files and setting the export session to nil on deinitalization
 
 
 
@@ -692,7 +692,7 @@ I won’t explain much here, but I wanted to show off Segmance’s dark mode and
 
 &nbsp;
 
-The countdown tick sounds (wav) are made with Ableton Live royalty-free samples. For all those folks with a Focusrite, I salute you.
+The countdown tick sounds (.wav) are made with Ableton Live royalty-free samples. For all those folks with a Focusrite, I salute you.
 
 &nbsp;
 
@@ -724,7 +724,7 @@ These are the data models in Segmance. I used SwiftData for this project and my 
 
 ## Challenges
 
-Segmance pushed me to deepen my understanding on some of the more advanced mechanics, notably concurrency and AVFoundation. Initially, the project only handled audio, but I later added video support. Moving forward, I’d put more focus on designing the architecture in expectation that new features can be integrated without causing regressions or breaking existing functionality. It comes down to experience, and I continue to improve by remaining intentional.
+Segmance pushed me to deepen my understanding on some of the more advanced mechanics, notably concurrency and AVFoundation. Initially, the project only handled audio, but I later added video support. Moving forward, I’d put more focus on designing the architecture in expectation that new features can be integrated without causing regressions or breaking existing functionality. It comes down to experience, and I continue to improve by remaining intentional in my approach.
 
 &nbsp;
 
@@ -734,7 +734,7 @@ Segmance pushed me to deepen my understanding on some of the more advanced mecha
 - Being able to edit audio files in existing routines without creating duplicates/missing files
 - Implementing a custom drag/drop with DropDelegate for updating part/move orders
 - Creating expandable audio/video players and audio clipper (AudioPlayerModel, VideoPlayerModel and AudioClipperModel)
-- Utilizing concurrency to manage custom loops, countdown timers, audio trimming.
+- Utilizing concurrency to orchestrate custom loops, countdown timers, audio clipping/trimming.
 
 
 
@@ -747,7 +747,7 @@ Segmance pushed me to deepen my understanding on some of the more advanced mecha
 - Exploring where to add context menus for deletion
 - Deciding where to display audio controls
 - Making empty state views robust
-- Using TipKit to notify the user of any subtle functionality
+- Using TipKit to notify the user about any subtle functionality
 
 
 
@@ -795,7 +795,7 @@ And more...
 
 
 
-4. The <span class="bold-rounded"><a class="secondary-a" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/closures/#Capturing-Values">makeIncrementer</a></span> function makes more sense now 
+4. The <span class="bold-rounded"><a class="secondary-a" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/closures/#Capturing-Values">makeIncrementer</a></span> function makes more sense now. 
 
 
 &nbsp;
