@@ -522,7 +522,7 @@ print(note[-1])
 
 &nbsp;
 
-### Closure palooza
+### Closure Palooza
 
 
 1. Basic example with no return and return statements
@@ -683,6 +683,224 @@ let DSGames = v.filter { $0.console == "Nintendo DS"}
 
 
 &nbsp;
+
+
+### Weak Dancer
+
+Referencing the <a  class="secondary-a" href="https://www.hackingwithswift.com/articles/179/capture-lists-in-swift-whats-the-difference-between-weak-strong-and-unowned-references">capture list </a> guide by Paul Hudson, and adding my twist to it. I first create a Dancer class.
+
+```swift
+class Dancer {
+    let name: String
+    let type: String
+
+    func dance() {
+        print("\(self.name) is busting \(self.type) moves")
+    }
+
+    init(name: String, type: String) {
+        self.name = name
+        self.type = type
+    }
+}
+
+```
+
+&nbsp;
+
+Strong capture: Referenced object is kept alive after the function finishes execution.
+
+```swift
+func joeDance() -> () -> Void {
+    let joe = Dancer(name: "Joe", type: "breakdance")
+    // This closure is capturing Joe strongly
+    // It's keeping it alive after the function finishes running 
+   
+    let danceToSong = {
+        joe.dance()
+    }
+    return danceToSong
+}
+
+let danceFunction = joeDance()
+danceFunction() // Joe is busting breakdance moves
+
+```
+&nbsp;
+
+
+Weak capture: Swift treats the captured objects as optionals, so you have to unwrap them. According to the documentation, the <u> weak</u> objects captured have a shorter lifetime. When the <u>weakJoeDance</u> function finishes, the joe <u> Dancer</u>  is already deallocated, but the closure still exists. In the example below, by the time <u>danceToSong</u> is returned, the Dancer object is already gone.
+
+```swift
+func weakJoeDance() -> () -> Void? {
+    let joe = Dancer(name: "Joe", type: "Hip-hop")
+
+    // This closure doesn't hold Joe's hand tightly anymore
+    let danceToSong = { [weak joe] in
+        // joe.dance will give you a warning (sln: optional chain)
+        // joe!.dance will crash  (sln: don't write this)
+        if let joe = joe {
+            joe.dance()
+        }
+    }
+    return danceToSong
+}
+let weakDanceFunction = weakJoeDance()
+weakDanceFunction() // prints nothing, Joe was never retained (reference count: 0)
+```
+
+&nbsp;
+
+We can modify what's above to keep joe alive (thank you) by creating another reference <u>keepingJoeAlive</u> to it.
+
+```swift
+func weakJoeDanceWithParameters() -> (String) -> Void? {
+    let joe = Dancer(name: "Joe", type: "Contemporary")
+    // Add this reference to joe
+    let keepingJoeAlive = joe
+
+    // DanceToSong Closure retains Joe because of keepingJoeAlive
+    let danceToSong = { [weak joe] (songName: String) in
+         
+        // This prints because joe is kept alive by the keepingJoeAliveReference
+        joe?.dance() 
+        print("\(songName) is playing in the background")
+        keepingJoeAlive.dance()
+    }
+    return danceToSong
+}
+
+let weakJoeDanceWithParametersFunction = weakJoeDanceWithParameters()
+weakJoeDanceWithParametersFunction("Endless Summer Nights")
+```
+
+&nbsp;
+
+
+Unowned capture: Swift treats them like implicitly unwrapped optionals, which means you don't need to unwrap them. Unowned is for referenced objects with the same or a longer lifetime.
+```swift
+func unownedJoeDance() -> () -> Void? {
+    let joe = Dancer(name: "Joe", type: "Locking")
+
+    let danceToSong = { [unowned joe] in
+        // No need to unwrap
+        // joe.dance will crash if joe has been deallocated
+        joe.dance()
+    }
+    return danceToSong
+}
+
+let unownedDanceFunction = unownedJoeDance()
+unownedDanceFunction() // Crashes
+```
+&nbsp;
+
+
+
+
+
+### Everything Async
+
+Asynchronous tasks need to live inside an asynchronous context and get rowdy. This includes <u>Task</u>, </u> <u>.task </u> or a function marked with <u>async</u>. Keep in mind that even in an asynchronous context, execution can still be synchronous.
+
+&nbsp;
+
+<span class="bold-rounded"> await vs async let </span>
+
+You control execution order with <u> await</u>, it's a suspension point.
+```swift
+let runConcurrently = true
+
+if runConcurrently {
+    // This block could have any print order
+    // (123), (132), (312)
+    async let _: () = asyncWork()
+    async let _: () = otherAsyncWork()
+
+} else {
+    // await introduces suspension points
+    // This block will always print (123)
+    await asyncWork()
+    await otherAsyncWork()
+}
+
+// Those functions provide asynchronous contexts
+func asyncWork() async {
+    print("Step 1")
+    print("Step 2")
+}
+
+func otherAsyncWork() async {
+    print("Step 3")
+}
+```
+
+&nbsp;
+
+
+<span class="bold-rounded"> Sleeping Tasks </span>
+
+Play with this code. Before running it, what do you think it prints? What happens if you change the sleep duration? 
+
+```swift
+import Foundation
+
+func asyncWork() async {
+    await MainActor.run {
+        print("Step 1: Started asyncWork on main thread:", Thread.current)
+    }
+    
+    // returns nil if it fails (sleep can throw)
+    try? await Task.sleep(nanoseconds: 1_000_000_000)
+    
+    await MainActor.run {
+        print("Step 2: Resumed asyncWork on main thread:", Thread.current)
+    }
+}
+
+func doOtherWork() {
+    print("Doing other work. isMainThread:", Thread.isMainThread)
+}
+
+struct App {
+    static func main() async {
+        await MainActor.run {
+            print("Main started on main thread:", Thread.current)
+        }
+        
+    
+        await asyncWork()
+     
+        Task {
+            // And if you change this to 200_000_000
+            try? await Task.sleep(nanoseconds: 50_000_000)
+            print("Be patient, Joe!")
+        }
+        
+        doOtherWork()
+        
+        try? await Task.sleep(nanoseconds: 100_000_000)
+     
+        // FINISH:
+        // At this point, execution is finished.
+        // Unfinished sleeping tasks get cancelled after reaching this point.
+    }
+}
+
+await App.main()
+
+
+```
+
+&nbsp;
+
+
+
+
+
+&nbsp;
+
+
 
 ### Personal Pitfalls
 

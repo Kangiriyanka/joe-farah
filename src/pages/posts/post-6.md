@@ -12,7 +12,7 @@ postSlug: 'post-6'
 
 ## Today's Update
 
-I recently finished my write-up of <a class="secondary-a" href="/projects/gameok/"> Gameok</a>, a game library I made with React and Flask<sup> <a class="secondary-a" href="#footnotes" >1. </a></sup>  . The project itself is far from being "complete", but I'm  happy with the progress I've made so far. In any case, I can always go back to it and patch it up. With that being said, I've slowly shifted my focus back to iOS development. To slowly get back into the groove, I've been reorganizing Swift/SwiftUI notes and code scattered around my folders.  I thought it would be a good idea to reinforce some concepts along the way by showing them here. I'll update this post progressively.
+I recently finished my write-up of <a class="secondary-a" href="/projects/gameok/"> Gameok</a>, a game library I made with React and Flask<sup> <a class="secondary-a" href="#footnotes" >1. </a></sup>  . The project itself is far from being "complete", but I'm  happy with the progress I've made so far. In any case, I can always go back to it and patch it up. With that being said, I've slowly shifted my focus back to iOS development. To slowly get back into the groove, I've been reorganizing Swift/SwiftUI notes and code scattered around my folders.  I thought it would be a good idea to reinforce some concepts along the way by showing them here.
 
 
 &nbsp;
@@ -969,6 +969,159 @@ print(whatThe[0].name)  // Push-ups
 
 ```
 
+&nbsp;
+
+### Acting Boss
+
+ The whole point of <a class="secondary-a" href="https://docs.swift.org/swift-book/documentation/the-swift-programming-language/concurrency/#Actors">actors</a> is to let only one task at time access its properties. A common example is a bank account simulation where actors prevent the simultaneous withdrawal and deposit of money in an account. 
+ 
+ &nbsp;
+
+ I wanted to create my own example with a very basic RPG system. We'll first define the RPGPlayer like so:
+
+```swift
+struct RPGPlayer {
+    let name: String
+    let role: Role
+
+    enum Role {
+        case warrior
+        case mage
+        case archer
+    }
+    
+    // You could turn this into its own struct for complexity
+    var attacks: [Role: [String]] = [
+        .warrior: ["swings their blade", "throws a feeble punch"],
+        .mage: ["casts an ominous wind", "screams out a weird spell"],
+        .archer: ["shoots a poisonous arrow", "throws a pebble"]
+    ]
+
+    func performAttack() {
+        switch self.role {
+        case .warrior:
+            print("\(name) \(attacks[.warrior]!.randomElement()!).")
+        case .mage:
+            print("\(name) \(attacks[.mage]!.randomElement()!).")
+        case .archer:
+            print("\(name) \(attacks[.archer]!.randomElement()!).")
+        }
+    }
+}
+```
+&nbsp;
+
+We'll define the boss actor, i.e., the boss the players are fighting.
+
+```swift
+// Actors serializes changes to their state
+actor Boss {
+    // bossName is non-isolated by default, because it's a constant property
+    // In other words, its state never changes, so it's always safe to access it
+    let bossName: String
+    var bossHitpoints: Int
+    // Win condition
+    var isDefeated: Bool {
+        return bossHitpoints <= 0 ? true : false
+    }
+
+    func receiveDamage(by player: RPGPlayer, damage points: Int) {
+        guard !isDefeated else {
+            print("\(bossName) has been defeated")
+            return
+        }
+        print("\(bossName) has been damaged \(points) points by \(player.name)")
+        bossHitpoints -= points
+        print("\(bossName) has \(max(0,bossHitpoints)) hitpoints left")
+     
+    
+    }
+
+    init(bossName: String, bossHitpoints: Int) {
+        self.bossName = bossName
+        self.bossHitpoints = bossHitpoints
+    }
+}
+```
+
+&nbsp;
+
+This is the setup to attack Joe The Snail.
+
+```swift
+// A function that lets players attack
+func engageInBattle(player: RPGPlayer, boss: Boss) async {
+    guard await boss.bossHitpoints > 0 else {
+        print("\(player.name) doesn't attack as the boss is already defeated")
+        return
+    }
+    player.performAttack()
+    await boss.receiveDamage(by: player, damage: Int.random(in: 1...5))
+    print("--------------------------------")
+}
+
+
+let boss = Boss(bossName: "Joe The Snail", bossHitpoints: 10)
+let p1 = RPGPlayer(name: "Yukimi", role: .warrior)
+let p2 = RPGPlayer(name: "Kona", role: .mage)
+let p3 = RPGPlayer(name: "Milly", role: .archer)
+
+print("Commence Battle against \(boss.bossName)")
+print("--------------------------------")
+```
+
+If you make it so that only one player at a time can damage the boss, using an actor would be overkill. 
+```swift
+// Actors are overkill in this case
+// The boss hitpoints are always guaranteed to be accessed serially
+await engageInBattle(player: p1, boss: boss)
+await engageInBattle(player: p2, boss: boss)
+await engageInBattle(player: p3, boss: boss)
+```
+
+In the following scenario, all 3 players can attack at the same time and affect the boss' hitpoints. Had we not used an actor, one of the tasks could have updated a previous value of the boss' hitpoints. Look at Milly's attack highlighted in blue. 
+
+&nbsp;
+
+ <table class="m-auto">
+        <thead>
+            <tr>
+                <th class="px-6 py-3">Player</th>
+                <th class="px-6 py-3">Action </th>
+                <th class="px-6 py-3">Boss Hitpoints</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="border-b  pro-3 dark:hover:bg-pink-400 hover:bg-pink-100">
+                <td class=" px-6 py-3"><span class="px-2 py-1">Yukimi </span></td>
+                  <td class=" px-6 py-3"><span class="px-2 py-1">Yukimi does 5 damage</span></td>
+                  <td class=" px-6 py-3"><span class="px-2 py-1"> 10 - 5 = 5</span></td>
+            </tr>
+            </tr>
+             <tr class="border-b  pro-3 dark:hover:bg-pink-400 hover:bg-pink-100">
+              <td class=" px-6 py-3"><span class="px-2 py-1">Kona</span></td>
+                <td class=" px-6 py-3"><span class="px-2 py-1">Kona does 2 damage</span></td>
+                 <td class=" px-6 py-3"><span class="px-2 py-1"> 5 - 2 = 3</span></td>
+            </tr>
+           <tr class="border-b  pro-3 dark:hover:bg-pink-400 hover:bg-pink-100">
+              <td class=" px-6 py-3"><span class="px-2 py-1">Milly</span></td>
+                <td class=" px-6 py-3"><span class="px-2 py-1">Milly does 3 damage</span></td>
+                 <td class=" px-6 py-3"><span class="px-2 py-1"> <span class="text-[blue]">10 - 3  = 7 (should be 0) </span> </td>
+            </tr>
+        </tbody>
+    </table>
+
+
+&nbsp;
+
+```swift
+// Equivalent to doing multiple async let calls and then awaiting their result
+await withTaskGroup(of: Void.self) { group in
+    for player in [p1, p2, p3] {
+        group.addTask { await engageInBattle(player: player, boss: boss) }
+    }
+}
+```
 
 
 &nbsp;
