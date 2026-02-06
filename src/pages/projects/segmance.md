@@ -136,7 +136,7 @@ The heart of the app is the routine (RoutineView) which acts as a container for 
 &nbsp;
 
 
-Let's look at each action button next. You'll see a green highlight on the screenshots which indicates a "tap" gesture. Some sections may have additional elaboration on intricate features (the ones I found interesting or gave me a tough time).
+Let's look at each action button next. You'll see a green highlight on the screenshots which indicates a "tap" gesture. Some sections may have additional elaboration on intricate features (the ones I found interesting or that gave me a tough time).
 
 &nbsp;
 
@@ -177,7 +177,7 @@ Before rehearsing a part, performers may need time to set up or might want to pr
 #### AudioPlayerModel 
 
 
-Audio playback is managed by a custom class, <span class="bold-rounded"> <a class="secondary-a" href="https://github.com/Kangiriyanka/Segmance/blob/main/Segmance/AudioPlayer/AudioPlayerModel.swift"> AudioPlayerModel</a></span>, which conforms to the  AudioPlayerDelegate protocol. This provides the <span class="bold underline"> audioPlayerDidFinishPlaying</span>  method, allowing the <span class="bold-rounded"> AudioPlayerModel</span> to respond a certain way after audio finishes. This is where you would find looping logic for instance.
+Audio playback is managed by a custom class, <span class="bold-rounded"> <a class="secondary-a" href="https://github.com/Kangiriyanka/Segmance/blob/main/Segmance/Audio/AudioPlayerModel.swift"> AudioPlayerModel</a></span>, which conforms to the  AudioPlayerDelegate protocol. This provides the <span class="bold underline"> audioPlayerDidFinishPlaying</span>  method, allowing the <span class="bold-rounded"> AudioPlayerModel</span> to respond a certain way after audio finishes. This is where you would find looping logic for instance.
 
 &nbsp;
 

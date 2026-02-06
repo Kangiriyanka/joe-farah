@@ -11,7 +11,7 @@ postSlug: 'post-8'
 
 ## Writing for myself
 
-I enjoy keeping track of my experiences and memories. There's a big chance in my day that I'll jot down a flash thought or event no matter how small it is. Besides your genetic code, your memories and experiences are what distinguishes you from everyone else. The fact that you're devouring a mind-blowing croissant on August 15th 2025 at 8:45AM will never happen again - only your memories of it will remain. Obviously, there's no obligation to track everything everyday which means that there's no end goal, there's no rule on what you should write — you do it for your sake, because it ever so feels right and liberating. Personally, it was only from 2021 that I progressively started to write more out of necessity. I'm inclined to say that it made sense for who I was as a person. <sup> <a class="secondary-a" href="#footnotes" >1. </a></sup> 
+I enjoy keeping track of my experiences and memories. There's a big chance in my day that I'll jot down a flash thought or event no matter how small it is. Besides your genetic code, your memories and experiences are what distinguishes you from everyone else. The fact that you're devouring a mind-blowing croissant on August 15th 2025 at 8:45AM will never happen again. Only your memories of it will remain. Obviously, there's no obligation to track everything everyday which means that there's no end goal, there's no rule on what you should write — you do it for your sake, because it ever so feels right and liberating. Personally, it was only from 2021 that I progressively started to write more out of necessity. I'm inclined to say that it made sense for who I was as a person. <sup> <a class="secondary-a" href="#footnotes" >1. </a></sup> 
 &nbsp;
 
 &nbsp;
@@ -53,7 +53,7 @@ My main outlet for writing is my yearly diaries - they act as my second brain.  
 
 ### Pocket notebooks 
 
- I use  pocket notebooks for the skills I  <a  class="secondary-a" href="/about"> train</a>.  For example, when engaging in  activites like juggling or dancing, I'd rather open my notebook and refer to notes about certain movements than take my phone, enter a pin and go on an app — I'm X actions faster with a notebook. Furthermore,  there's more freedom writing with a pen/pencil, since you can use the page however you want by writing wherever, adding doodles, scratching words —  it feels organic. That's not to say that I don't use my phone or computer for note-taking or journaling, I simply mix the strategies based on the scenario I'm in. 
+ I use  pocket notebooks for the skills I  <a  class="secondary-a" href="/about"> train</a>.  For example, when engaging in  activites like juggling or dancing, I'd rather open my notebook and refer to notes about certain movements than take my phone, enter a pin and go on an app — I'm X actions faster with a notebook. Furthermore,  there's more freedom writing with a pen/pencil, since you can use the page however you want by making your pencil dance wherever on the canvas through doodles and scratches, it feels good. That's not to say that I don't use my phone or computer for note-taking or journaling, I simply mix the strategies based on the scenario I'm in. 
 
  &nbsp;
 
@@ -131,7 +131,7 @@ In 2023, on a stroll in <a  class="secondary-a" href="https://www.the-kansai-gui
 &nbsp;
 
 
-When I don't have pen and paper, I like to record myself on my Apple watch/phone  when I go on walks for instance. <sup class="secondary-a"> <a href="#footnotes">5.</a></sup> I know many people don't like listening to their voice, but it's not a problem for me. I call these recordings "Vocal Treasures", and I have over thousands of them that I've organized and relistened to while cleaning or walking. It's a great form of self-therapy and entertainment if you get used to it — it's your very own personal podcast. 
+When I don't have pen and paper, I like to record myself on my Apple watch/phone  when I go on walks for instance. <sup class="secondary-a"> <a href="#footnotes">5.</a></sup> I know many people don't like listening to their voice, but it's not a problem for me. I call these recordings "Vocal Treasures", and I have over thousands of them that I've organized and relistened to while cleaning or walking. It's a great form of self-therapy and entertainment if you're willing to tolerate yourself. Your very own podcast will see the light. 
 
 &nbsp;
 
