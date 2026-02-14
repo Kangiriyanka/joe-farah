@@ -8,9 +8,7 @@
     "dist"
   ],
   "compilerOptions": {
-    "jsx": "react-jsx",
-    "jsxImportSource": "preact",
-    // Tolerate parameters without declaring their type
-   
+    "jsx": "preserve",
+    "jsxImportSource": "preact"
   }
 }

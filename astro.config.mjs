@@ -6,6 +6,12 @@ import db from "@astrojs/db";
 import netlify from '@astrojs/netlify';
 
 
+import mdx from "@astrojs/mdx";
+
+
+import vue from "@astrojs/vue";
+
+
 // https://astro.build/config
 export default defineConfig({
   markdown: {
@@ -14,7 +20,7 @@ export default defineConfig({
     }
   },
   site: "https://joefarah.com",
-  integrations: [preact(), db()],
+  integrations: [preact(), db(), mdx(), vue()],
   vite: {
     plugins: [tailwindcss()],
   },

@@ -226,8 +226,4 @@ html.dark .shortcut-card:hover {
 
 
 
-
-
-
-
 </style>

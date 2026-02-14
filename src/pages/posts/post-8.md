@@ -67,14 +67,14 @@ Once I fill a notebook or a diary, I summarize the contents on <a href="https://
 
 
 
-In 2023, my sister gifted me a chunky notebook, and I had the idea of turning it into a scrapbook. Compared to diaries, there was no preset format - it's about 300 pages of blank sheets where you could go wild. Anything that didn't fit inside my yearly diary would end up in the all-purpose J-Book. I filled it with book and YouTube video summaries, self-analysis, heartwarming messages from students, code, music notes etc.
+In 2023, my sister gifted me a chunky notebook, and I had the idea of turning it into a scrapbook. Compared to diaries, there was no preset format, it's about 300 pages of blank sheets to go wild. Anything that didn't fit inside my yearly diary would end up in the all-purpose J-Book. I filled it with book and YouTube video summaries, self-analysis, heartwarming messages from students, code, music notes etc.
 
 &nbsp;
 
 
 ###  Nostalgia vs Skill: Cauldron Sheets
 
-As my skill repertoire grew over the years, I had accumulated technical notes scattered across many different notebooks, diaries and files. Diaries are great for managing day flow and general commentary, but I wanted to create an all-encompassing medium where I would exclusively write about what skills I was practicing during my day. The whole point was to separate nostalgia and skill and make my diary less cluttered. 
+As my skill repertoire grew over the years, I had accumulated technical notes scattered across many different notebooks, diaries and files. Diaries are great for managing day flow and general commentary, but I wanted to create an all-encompassing medium to exclusively write about what skills I was practicing during my day. The whole point was to separate nostalgia and skill and make my diary less cluttered. 
 
 &nbsp;
 

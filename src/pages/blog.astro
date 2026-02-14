@@ -13,7 +13,8 @@ type AstroPost = {
   
 };
 
-const allPosts = Object.values(import.meta.glob('./posts/*.md', { eager: true })) as AstroPost[];
+// Collection Loader - Make sure you add mdx (post-16.mdx is the first time I use it)
+const allPosts = Object.values(import.meta.glob('./posts/*.{md,mdx}', { eager: true })) as AstroPost[];
 const tags = [...new Set(allPosts.map((post: AstroPost) => post.frontmatter.tags).flat())];
 const sortedPosts = allPosts.sort((a: AstroPost, b: AstroPost) => {
   const dateA = new Date(a.frontmatter.pubDate);
