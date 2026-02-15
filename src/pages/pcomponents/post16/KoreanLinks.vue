@@ -182,7 +182,7 @@ const koreanWords = ref([
     word: '문제',
      definition: "problem, 問題",
     preceding_words: ["어려운", "쉬운", "복잡한", "개인적인", "공공의"],
-    following_words: ["풀다", "해결하다", "생기다", "발련되다"],
+    following_words: ["풀다", "해결하다", "생기다", "발현되다"],
     showPreceding: false,
     showFollowing: false
   },
