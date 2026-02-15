@@ -393,7 +393,7 @@ watchEffect(() => {
   }
 }
 
-html.dark .preceding-word {
+html.dark .preceding-word, .following-word {
   fill: #f9f9f4;
 }
 
