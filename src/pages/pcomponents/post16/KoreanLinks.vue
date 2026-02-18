@@ -327,11 +327,17 @@ watchEffect(() => {
 
 /* Leave the before and after on active */
 
+
+
+
+
+
 .following-button.buttonIsActive::before,
 .following-button.buttonIsActive::after,
 .preceding-button.buttonIsActive::before,
 .preceding-button.buttonIsActive::after {
   transform: translate(0,0);
+
 }
 
 

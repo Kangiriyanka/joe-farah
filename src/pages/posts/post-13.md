@@ -163,6 +163,22 @@ Allows to run a mini-shell script to run more complex commands. It's useful to c
            command_string </span>
 &nbsp;
 
+<u>rsync</u>
+
+A sophisticated file-copying <a class="secondary-a" href="https://linux.die.net/man/1/rsync">tool</a>. There are many cool operations you can do with it. In my case, I wanted to copy a React project to a USB drive without node_modules and virtual environments (.venv), and so I did:
+
+&nbsp;
+
+<span class="bold-rounded"> rsync [OPTION...] SRC... [DEST]</span>
+
+&nbsp;
+
+- rsync -av --exclude=node_modules --exclude=.venv source/ destination/ 
+
+&nbsp;
+
+1. <span class="text-green-300 ">-v: </span> see what files are being copied (verbose)
+2. <span class="text-green-300 ">-a </span>: archive mode which essentially keeps the folder tree intact  (all file permissions, structure, etc). 
 
 
 
