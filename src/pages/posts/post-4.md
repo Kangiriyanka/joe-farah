@@ -101,7 +101,7 @@ Dictations could serve as more complex forms of free recall, since you're relyin
 ### Flashcards
 
 
-Flashcard programs like Anki are often used by language learners. I used Anki a lot, and I do feel like I should use it more since it's a nice way to increase vocabulary and cache some sentences into my brain CPU. The downside, unfortunately, is the laziness it can create. You can become overly reliant on flashcards and assume you know the words by skimming through them quickly. Additionally, the act of just filling and customizing your decks can make you feel like you've accomplished something when in reality, it doesn't. If you're honest with your usage, it'll do its job. It's meant to support your learning, not become the main hub of it.  If it doesn't work for you, don't force it.
+Flashcard programs like Anki are often used by language learners. I used Anki a lot, and I do feel like I should use it more since it's a nice way to increase vocabulary and cache some sentences into my brain RAM. The downside, unfortunately, is the laziness it can create. You can become overly reliant on flashcards and assume you know the words by skimming through them quickly. Additionally, the act of just filling and customizing your decks can make you feel like you've accomplished something when in reality, it doesn't. If you're honest with your usage, it'll do its job. It's meant to support your learning, not become the main hub of it.  If it doesn't work for you, don't force it.
 
 &nbsp;
 

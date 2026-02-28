@@ -10,6 +10,7 @@ postSlug: 'post-15'
 
 ## Intro 
 
+&nbsp;
 
 
 I had a lot of dance/juggling/music footage sleeping on hard drives organized neatly into labeled folders. That's great and all, but it's quite intimidating to revisit old videos even for fun. Albeit well-structured, it takes time and energy to handpick and watch the relevant ones. Making montages with  <a class="secondary-a" href="https://www.blackmagicdesign.com/products/davinciresolve"> DaVinci Resolve</a> was a smart way to enjoy them. I saved heaps of space by editing the videos into montages/compilations. In my case, I didn't care about the quality or about publicly uploading them hence the mp4 format (I like compactness). Boring fact, I only keep a main folder on my desktop which contains the folders I use the most (roughly 15GB). If I'm not frequently accessing items, they're getting deleted or transformed. Hoarding is not my cup of barley tea. 
@@ -18,6 +19,8 @@ I had a lot of dance/juggling/music footage sleeping on hard drives organized ne
 
 
 ## Workflow
+
+&nbsp;
 
 
 Although I'm still a beginner, I recommend this  <a class="secondary-a" href="https://www.youtube.com/watch?v=EF_Wysanmn0"> video </a> by George Kamenov for optimizing your workflow (shortcuts for split clip and ripple delete). From there, you can watch related videos which draw your interest. Also, I think you'll best learn shortcuts when you need them. Swapping clips with <span class="bold-rounded"> ⇧ ⌘ ,</span> is one of my favorite shortcuts. I’ll present some here—keyboard customization is a good starting point*.
@@ -87,6 +90,8 @@ Although I'm still a beginner, I recommend this  <a class="secondary-a" href="ht
 <!-- Trim Edit Mode (T) ⌘D and changing clip duration -->
 
 ## People are amazing
+
+&nbsp;
 
 The free version of Resolve (still excellent) doesn't include the feature to auto-generate subtitles. Luckily, there's  <a class="secondary-a" href="https://github.com/tmoroney/auto-subs"> AutoSubs </a> by Tom Moroney which does the job. Whenever I stumble upon such creations, I think: "Holy macaroni, people are amazing". It gives me a mental boost.
 
