@@ -117,7 +117,7 @@ struct CategoryCreatorView: View {
 
 This is great and all, but with the current implementation of Category, we cannot encode it to JSON 
 or store it in Core Data or SwiftData, because the Color property is not serializable or persistable. Therefore, we have to change the <span class="bold-rounded"> categoryColor</span> to a suitable format (hint: struct containing color components), and convert it back to a SwiftUI Color. 
-To do so, we initially extract the RGBA components of the SwiftUI Color by extending the Color struct. From there, we can either keep the Color in RGBA or convert it to hex.
+To do so, we initially extract the RGBA components of the SwiftUI Color by extending the Color struct. From there, we can either keep the Color in RGBA or convert it to a hex string.
 
 
 &nbsp;
@@ -492,7 +492,7 @@ import Binary from '../pcomponents/post17/Binary.svelte';
 &nbsp;
 
 
-For hexadecimals, every digit (0-F) represents 4 bits, and hex strings can have various length in this color context. If the hex has a length of 8, it means the alpha channel is included, If it's not, then it's 6, truncating the last 2 hex digits. In CSS, repeating hex digits can be shortened. For instance,  #00FF00 can be shortened to #0F0. 
+For hexadecimals, every digit (0-F) represents 4 bits, and hex strings can have various length in this color context. If the hex has a length of 8, it means the alpha channel is included. If it's not, then it's 6 by truncating the last 2 hex digits. In CSS, repeating hex digits can be shortened. For instance,  #00FF00 can be shortened to #0F0. 
 
 &nbsp;
 
@@ -538,7 +538,7 @@ with the following specifiers:
 &nbsp;
 
 
-- #: hash in the beginning to indicate it's hex
+- #: hash in the beginning to indicate it's hex.
 - %X: unsigned 32-bit integer:  Int typecast is necessary in our function to match the format.
 - 0 followed by a number: pads with zeros. If your color component is left at 0, then the formatted version is 00.
 
@@ -575,7 +575,7 @@ extension Color {
 
 Afterwards, we can add a hex field to CategoryColor, and change our button's logic accordingly (button example omitted for brevity).
 Lastly, we need to implement a function that transform hex strings to Color. We proceed by creating an initializer for Color that accepts a hex string and pops out a Color.
-It requires a tad of knowledge on bitwise operations. Luckily, I made a few visuals.
+It requires a tad of knowledge on bitwise operations. Luckily, I made a few visuals you'll feast your eyes upon shortly.
 
 ```swift
 struct CategoryColor: Codable {
@@ -603,7 +603,7 @@ struct CategoryColor: Codable {
 
 ### Initializing Color with Hex
 
-For this section, we will convert "#34C759FF" to a SwiftUI Color. Please bear in mind that in all cases (various hex code lengths), we will need to provide the R,G,B,A components. The logic below also works for RGB (hex code of length 6), but you have to be wary of your shifts and set alpha to 255 (0xFF). In general, we have to:
+For this section, we will convert "#34C759FF" to a SwiftUI Color. Please bear in mind that in all cases (various hex code lengths), we will need to provide the R,G,B,A values. The logic below also works for RGB (hex code of length 6), but you have to be wary of your shifts and set alpha to 255 (0xFF). In general, we have to:
 
 &nbsp;
 
@@ -706,8 +706,13 @@ extension Color {
 
 &nbsp;
 
-That's a wrap. You can see the full demo on my <a class="secondary-a "href= "https://github.com/Kangiriyanka/joe-farah-code-extras/tree/main/Swift/CategoryColors.swiftpm">Github</a>.
+That's a wrap. You can see the full demo on my <a class="secondary-a "href= "https://github.com/Kangiriyanka/joe-farah-code-extras/tree/main/Swift/CategoryColors.swiftpm">Github</a>, and a preview on the right.
 
+<div class="post-img-container  mt-1 w-13 ml-auto">
+
+![Category Creator Final Preview](../../assets/post_images/categorycreator.jpg)
+
+</div>
 &nbsp;
 
 ## Last Words
@@ -724,7 +729,6 @@ I hope this post is helpful to whoever reads it. Personally, whenever I'm expose
 <br/>
 2. If you're using constants for the id,
 you could get this <a class="secondary-a "href= "https://stackoverflow.com/questions/62545594/xcode-warning-immutable-property-will-not-be-decoded-because-it-is-declared-wit">warning</a>. Codable has weird behaviors.
-
 
 
 
