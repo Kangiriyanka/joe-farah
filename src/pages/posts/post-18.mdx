@@ -1,0 +1,78 @@
+---
+layout: ../../layouts/MarkdownPostLayout.astro
+title: "Counting Fast"
+pubDate: 2026-03-04T18:47:13-04:00
+description: 'Spotting elements quickly in arrays, matrices, and boards'
+tags: ["programming"]
+postSlug: 'post-18'
+---
+
+
+
+import Array from '../pcomponents/post18/Array.svelte';
+import Matrix from '../pcomponents/post18/Matrix.svelte';
+import Board from '../pcomponents/post18/Monoboard.svelte';
+
+## Intro 
+
+<br/>
+
+To prevent myself from committing <a class="secondary-a" href= "https://en.wikipedia.org/wiki/Off-by-one_error"> off-by-one errors</a>, I built components to 
+quickly spot elements across arrays, matrices, and boards. This time, I poked around <a class="secondary-a "href= "https://svelte.dev/">Svelte</a>.
+
+
+<br/>
+
+## Zero-Based Numbering
+
+<br/>
+### Musical Array
+
+<br/>
+
+Given an index <b class="">i</b> in <a class="secondary-a "href= "https://en.wikipedia.org/wiki/Zero-based_numbering">zero-based numbering</a>, you can find its corresponding entry by starting the count from 0, but I prefer to pinpoint that entry by counting the i elements before it. For example, the index of F is 5, because there are 5 elements before it. If you're into music, you can shift the array left and right with the arrows to change the root key. 
+
+<Array client:load/>
+
+<br/>
+
+
+### Word Matrix
+
+<br/>
+
+
+Choose the displayed matrix entry, and tread carefully — it's zero-indexed. Once selected, a word with a link to its definition will appear.<sup><a class="secondary-a "href= "#footnotes">1.</a></sup>
+<br/>
+<Matrix client:load/>
+
+
+
+
+## Monopoly Board Counting
+<br/>
+
+Press the "Roll" button below or press "r" on your beautiful keyboard to roll dice. Then, press the tile you'll land on based on that result. Consecutive rolls move you to the right position of the previous roll.
+<br/>
+<Board client:load/>
+
+<br/>
+<br/>
+
+
+## Last Words
+
+<br/>
+
+When I waste mental bandwidth on meddlesome calculations, I seek to automate them. How about yourself? Which small operations sap your energy? 
+
+
+<br/>
+
+## Footnotes
+
+<br/>
+
+
+
+1. I generated obscure words with Claude, and kept the valid ones that exist on <a class="secondary-a "href= "">vocabulary.com</a>. I love this website, and I highly recommend it for learning new words, because of the amusing examples.

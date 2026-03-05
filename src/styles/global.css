@@ -28,11 +28,15 @@ html {
     --dark-mode-anchor: 	#4a9ef3f4;
     --soil-color: hsl(31, 82%, 11%);
     --light-soil-color: hsl(48,57%,20%);
+    --soil-hover-color: hsl(48, 61%, 46%);
     --soil-color-light: #228B22;
     font-family: 'Gabarito', sans-serif;
     background-color: var(--background-color);
  
     --icon-color: rgb(0, 0, 0);
+
+
+    --n-shadow:  0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
    
   }
   

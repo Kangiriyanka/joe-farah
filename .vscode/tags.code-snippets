@@ -57,6 +57,17 @@
 		"description": "A break tag"
 	},
 
+	// Multiple lines -> use an array
+	"Responsive media query": {
+	"prefix": "media",
+	"body": [
+		"@media screen and (min-width: 636px) {",
+		"\t$0",
+		"}"
+	],
+	"description": "Insert media query block"
+	},
+
 "Table": {
   "prefix": ["ta-3"],
   "body": [

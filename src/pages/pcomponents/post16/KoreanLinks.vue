@@ -281,6 +281,7 @@ watchEffect(() => {
   z-index: -2;
 
 
+
 }
 
 
@@ -294,7 +295,7 @@ watchEffect(() => {
   justify-content: center;
   align-content: center;
   font-size: 1.7rem;
-  padding: 
+
   
 }
 
@@ -306,7 +307,8 @@ watchEffect(() => {
   border-radius: 50%;
   border: 2px solid var(--soil-color-light);
   overflow: hidden;
-  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) 
+  transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1) ;
+  cursor: pointer;
 
 
 }
@@ -399,7 +401,7 @@ watchEffect(() => {
   }
 }
 
-html.dark .preceding-word, .following-word {
+html.dark  .following-word {
   fill: #f9f9f4;
 }
 

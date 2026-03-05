@@ -419,6 +419,7 @@ const processedWords = computed(() => {
     padding: 0.3rem;
     border: 1px solid green;
     border-radius: 4px;
+    cursor: pointer;
 
    
   }
