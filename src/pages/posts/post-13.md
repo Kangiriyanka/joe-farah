@@ -10,6 +10,7 @@ postSlug: 'post-13'
 
 
 ## Intro
+<br/>
 
 
 
@@ -21,6 +22,7 @@ Default to shortcuts and be patient with the documentation.
 
 
 ## Shell
+<br/>
 
 ### Terminology
 
@@ -168,7 +170,7 @@ Allows to run a mini-shell script to run more complex commands. It's useful to c
 
 <u>rsync</u>
 
-A sophisticated file-copying <a class="secondary-a" href="https://linux.die.net/man/1/rsync">tool</a>. There are many cool operations you can do with it. In my case, I wanted to copy a React project to a USB drive without node_modules and virtual environments (.venv), and so I did:
+A sophisticated file-copying <a class="secondary-a" href="https://linux.die.net/man/1/rsync">tool</a> with nifty operations. For example, to copy a React project to a USB drive without node_modules and virtual environments (.venv), you do:
 
 &nbsp;
 
@@ -176,14 +178,17 @@ A sophisticated file-copying <a class="secondary-a" href="https://linux.die.net/
 
 &nbsp;
 
-- rsync -av --exclude=node_modules --exclude=.venv source/ destination/ 
+- rsync -av --exclude=node_modules --exclude=.venv/ --exclude=node_modules/ source/ destination/ 
+
 
 &nbsp;
 
-1. <span class="text-green-300 ">-v: </span> see what files are being copied (verbose)
-2. <span class="text-green-300 ">-a </span>: archive mode which essentially keeps the folder tree intact  (all file permissions, structure, etc). 
+1. <span class="tag-highlight">-v: </span> see what files are being copied (verbose)
+2. <span class="tag-highlight">-a </span>: archive mode which essentially keeps the folder tree intact  (all file permissions, structure, etc). 
 
-
+<br/>
+Please note that I put trailing slashes for clarity, but you don't need one for the destination. Also, here's a bonus 
+<a class="secondary-a" href="https://github.com/Kangiriyanka/joe-farah-code-extras/blob/main/Shell/joersync.zsh"> example</a>.
 
 &nbsp;
 
@@ -395,7 +400,7 @@ done
 ```
 
 ## Git
-
+<br/>
   
 ### Terminology
 
@@ -551,6 +556,7 @@ git revert commit
 
 ### Aliases
 
+
 Creating custom aliases for git.
 ```bash
 # shell alias
@@ -645,7 +651,7 @@ git rm --cached filename
 &nbsp;
 
 
-<div class=" text-center relative mx-auto"> <b class="bold-rounded p-2">Don't hesitate to experiment with a random repo.</b> </div>
+<div class=" text-center relative mx-auto"> <b class="border p-3 rounded-sm text-lg">Don't hesitate to experiment with a random repo.</b> </div>
 
 
 
@@ -654,7 +660,7 @@ git rm --cached filename
 &nbsp;
 
 ## Shortcuts
-
+<br/>
 
 Shell
 <div class="shortcuts-box">
@@ -689,6 +695,7 @@ Vim
 <div data-info="b" class="shortcut-card">Previous Word</div>
 <div data-info="gg" class="shortcut-card">Top of File</div>
 <div data-info="G" class="shortcut-card">Bottom of File</div>
+<div data-info=":set number" class="shortcut-card">Show line numbers</div>
 </div>
 
 &nbsp;
@@ -708,6 +715,8 @@ Mac
 
 ## Resources
 
+<br/>
+
 Git
 - <a class="secondary-a" href="https://learngitbranching.js.org/"> Git Branching </a>
 - <a href="https://git-scm.com/learn" class="secondary-a"> Progit </a>
@@ -716,7 +725,7 @@ Git
 &nbsp;
 
 ## Footnotes
-
+<br/>
 1. Another <a class="secondary-a" href="https://en.wikipedia.org/wiki/Mandu_(food)"> man du </a>
 
 <style>
@@ -762,6 +771,10 @@ Git
       transform: scale(1);
       opacity: 1;
 
+    }
+
+    .tag-highlight {
+      color: var(--soil-color-light);
     }
 
 
