@@ -16,7 +16,6 @@ let isFlat = false
 let notes = [
  "C",
  
-    "B" ,
     "D",
     "D#",
     "E",
