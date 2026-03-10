@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: 'Swift Fun'
 pubDate: 2025-08-06T23:23:31-04:00
 upDate: 2025-08-11T13:13:54-04:00

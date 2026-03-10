@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: 'Personal Juggling Tips'
 pubDate: 2025-06-16T18:30:00-04:00
 description: 'Fragments of personal notes on complex juggling tricks.' 

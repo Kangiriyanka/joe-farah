@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: "Cooling Down"
 pubDate: 2026-01-02T18:22:55-04:00
 description: 'Releasing Segmance, cooling down and exploring new app ideas'
@@ -16,11 +16,11 @@ I haven't written a post in a while as I've been building  <a class="secondary-a
 <div class="grid gap-3 grid-cols-3  m-auto post-img-container w-60 p-5">
 
 
-![Segmance Logo](../../assets/post_images/seglogo.png)
+![Segmance Logo](../../../assets/post_images/seglogo.png)
 
-![Segmance Logo 2](../../assets/post_images/seglogo2.png)
+![Segmance Logo 2](../../../assets/post_images/seglogo2.png)
 
-![Segmance Logo 3](../../assets/post_images/seglogo3.png)
+![Segmance Logo 3](../../../assets/post_images/seglogo3.png)
 
 
 &nbsp;

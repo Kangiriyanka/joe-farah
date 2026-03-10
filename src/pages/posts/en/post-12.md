@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: "Frontend Fun"
 pubDate: 2025-11-10T24:07:15-04:00
 description: 'Migrating frontend notes'

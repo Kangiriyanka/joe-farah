@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: "Python Fun"
 pubDate: 2025-11-09T23:16:21-04:00
 description: 'Migrating Python notes'

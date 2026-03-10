@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: 'Personal Thoughts on Journaling'
 pubDate: 2025-08-17T23:22:58-04:00
 description: 'What journaling means to me and how I do it' 
@@ -36,7 +36,7 @@ I'll explain how I journal and how my journaling changed over time through the v
 
 <div class="post-img-container">
 
-![Collection ](../../assets/post_images/diaries.jpg)
+![Collection ](../../../assets/post_images/diaries.jpg)
 
 
 

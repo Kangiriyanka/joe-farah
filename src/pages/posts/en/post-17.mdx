@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: "Converting Color in SwiftUI"
 pubDate: 2026-02-28T16:23:13-04:00
 description: 'Transforming SwiftUI Colors to RGBA and Hex back and forth'
@@ -446,7 +446,7 @@ var jsonStringCreatorButton: some View {
 P.S. Tap the iPhone in the right corner to see the current progress.
 <div class="post-img-container  mt-1 w-13 ml-auto">
 
-![Category Creator](../../assets/post_images/categories.jpg)
+![Category Creator](../../../assets/post_images/categories.jpg)
 
 </div>
 
@@ -479,7 +479,7 @@ Under the hood, the color channels each use 8-bit numbers, because their max val
 
 
 
-import Binary from '../pcomponents/post17/Binary.svelte';
+import Binary from '../../pcomponents/post17/Binary.svelte';
 
 
 
@@ -616,7 +616,7 @@ For this section, we will convert "#34C759FF" to a SwiftUI Color. Please bear in
 
 
 
-import Conversion from '../pcomponents/post17/Conversion.svelte';
+import Conversion from '../../pcomponents/post17/Conversion.svelte';
 
 
 &nbsp;
@@ -632,7 +632,7 @@ Visuals:
 For hex codes of length 3, we need to find a way to convert them to RGBA format (RRGGBBAA). If we run "#ABC" in <span class="bold-rounded">scanHexInt64</span>, we obtain an integer which we can represent with 12 bits. No animations provided for this one.
 
 <br/>
-import ThreeHex from '../pcomponents/post17/ThreeHex.svelte';
+import ThreeHex from '../../pcomponents/post17/ThreeHex.svelte';
 
 <ThreeHex client:load/>
 
@@ -710,7 +710,7 @@ That's a wrap. You can see the full demo on my <a class="secondary-a "href= "htt
 
 <div class="post-img-container  mt-1 w-13 ml-auto">
 
-![Category Creator Final Preview](../../assets/post_images/categorycreator.jpg)
+![Category Creator Final Preview](../../../assets/post_images/categorycreator.jpg)
 
 </div>
 &nbsp;

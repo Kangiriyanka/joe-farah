@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: 'Is greed a curse or a blessing?'
 pubDate: 2025-08-14T23:22:58-04:00
 description: 'Thoughts in Japanese about trying new things' 

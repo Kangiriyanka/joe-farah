@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: "Dormant Videos"
 pubDate: 2026-01-16T11:42:13-04:00
 description: 'Editing with DaVinci Resolve'

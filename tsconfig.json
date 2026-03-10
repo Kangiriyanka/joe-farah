@@ -9,6 +9,11 @@
   ],
   "compilerOptions": {
     "jsx": "preserve",
-    "jsxImportSource": "preact"
+    "jsxImportSource": "preact",
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@layouts/*": ["./src/layouts/*"]
+    }
+
   }
 }

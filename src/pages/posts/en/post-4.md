@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: 'Personal Language Learning Tips'
 pubDate: 2025-06-21T23:30:00-04:00
 description: 'Fragments of personal notes on language learning' 
@@ -113,7 +113,7 @@ Back in 2023, I wanted to learn how to draw and it occurred to me that I could t
 
 <div class="post-img-container">
 
-![Fukan](../../assets/post_images/fukan.png)
+![Fukan](../../../assets/post_images/fukan.png)
 
 &nbsp;
 
@@ -121,7 +121,7 @@ Back in 2023, I wanted to learn how to draw and it occurred to me that I could t
 
 <div class="post-img-container">
 
-![Souris](../../assets/post_images/souris.png)
+![Souris](../../../assets/post_images/souris.png)
 
 &nbsp;
 

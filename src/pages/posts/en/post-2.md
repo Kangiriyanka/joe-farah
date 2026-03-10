@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: 'Personal Music Tips'
 pubDate: 2025-06-20T19:45:00-04:00
 description: 'Fragments of personal notes on music' 

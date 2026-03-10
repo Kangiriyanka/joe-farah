@@ -19,8 +19,22 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 
 
 
+
+
 const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleString("en-US", dateOptions);
 const upDate = new Date(frontmatter.upDate).toLocaleString("en-US", dateOptions);
+
+const changeLanguage = () => {
+  console.log("Language changed")
+}
+
+const languageStrings: Record<string,string> = {
+  "en": "English",
+  "jp": "Japanese",
+  "fr": "French",
+  "kr": "Korean"
+  
+}
 
 
 ---
@@ -39,6 +53,22 @@ const upDate = new Date(frontmatter.upDate).toLocaleString("en-US", dateOptions)
     <p>
   {frontmatter.upDate ? "- Updated " : null}
   {frontmatter.upDate ? upDate : null}
+  
+  <div class=" ml-auto flex flex-col  ">
+      <label for="language-select">Languages: </label>
+
+
+<select class="tag border-1  p-1 rounded-md focus:outline-none" name="available-languages " id="language-select">
+  {frontmatter.langs?.map((lang: string) => (
+    <option 
+    selected={Astro.currentLocale === lang}
+    value={lang}>{languageStrings[lang]}</option>
+  ))}
+</select>
+
+
+
+  </div>
 </p>
     
     
@@ -47,7 +77,9 @@ const upDate = new Date(frontmatter.upDate).toLocaleString("en-US", dateOptions)
   
    
 
+
 <p><em>{frontmatter.description}</em></p>
+
     <div class="tags flex gap-3 ">
       {frontmatter.tags.map((tag: string) => (
         <p class="tag dark-container">
@@ -61,6 +93,7 @@ const upDate = new Date(frontmatter.upDate).toLocaleString("en-US", dateOptions)
   
     <Separator/>
  
+  
  
   </div>
 
@@ -97,6 +130,18 @@ const upDate = new Date(frontmatter.upDate).toLocaleString("en-US", dateOptions)
     }
   
   }
+
+
+  const select = document.getElementById('language-select');
+    select?.addEventListener('change', (e) => {
+       const lang = (e.target as HTMLSelectElement).value;
+
+        const parts = window.location.pathname.split("/");
+
+        parts[2] = lang; // ["", "posts", "en", "post-19"]
+        const newPath = parts.join("/");
+        window.location.href = newPath;
+    });
 
   
   

@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: "Swift Fun II"
 pubDate: 2025-11-07T23:10:02-04:00
 description: 'Migrating more Swift/SwiftUI notes'

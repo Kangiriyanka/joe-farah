@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: "Shell and Git Fun"
 pubDate: 2025-11-12T19:34:05-04:00
 description: 'Migrating shell and git notes'

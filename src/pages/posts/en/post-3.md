@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: 'Personal Breakdance Tips'
 pubDate: 2025-06-19T23:30:00-04:00
 description: 'Fragments of personal notes on dance' 
@@ -97,7 +97,7 @@ The very first movement you should focus on is the initial leg swing. Swinging  
 
 <div class="post-img-container">
 
-![Low swing ](../../assets/post_images/flares1.png)
+![Low swing ](../../../assets/post_images/flares1.png)
 &nbsp;
 
 
@@ -105,7 +105,7 @@ The very first movement you should focus on is the initial leg swing. Swinging  
 
 <div class="post-img-container">
 
-![Close to face](../../assets/post_images/close.png)
+![Close to face](../../../assets/post_images/close.png)
 
 </div>
 

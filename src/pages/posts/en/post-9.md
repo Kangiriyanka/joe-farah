@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: "찬란한 문화 발전 - Hangul Day"
 pubDate: 2025-10-21T23:22:58-04:00
 description: 'Short Korean essay about Hangul Day' 

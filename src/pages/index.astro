@@ -4,7 +4,7 @@ import BlogPost from '../components/BlogPost.astro';
 import ProjectCard from '../components/ProjectCard.astro';
 import Separator from '../components/Separator.astro';
 
-const allPosts = Object.values(import.meta.glob('./posts/*.{md,mdx}', { eager: true }));
+const allPosts = Object.values(import.meta.glob('./posts/en/*.{md,mdx}', { eager: true }));
 const allProjects = Object.values(import.meta.glob('./projects/*.md', { eager: true }));
 
 

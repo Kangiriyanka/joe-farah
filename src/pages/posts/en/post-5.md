@@ -1,5 +1,5 @@
 ---
-layout: ../../layouts/MarkdownPostLayout.astro
+layout: "@layouts/MarkdownPostLayout.astro"
 title: 'Reviewing projects and posting them'
 pubDate: 2025-06-26T19:28:00-04:00
 description: 'Relearning, writing and nitpicking' 
