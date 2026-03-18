@@ -6,6 +6,7 @@ type AstroPost = {
   frontmatter: {
     pubDate: string,
     title: string,
+    postSlug: string,
     tags: string[],
   }
 
@@ -31,13 +32,18 @@ export async function getStaticPaths() {
 
   return uniqueTags.map((tag) => {
 
-  const filteredPosts = allPosts.filter((post: AstroPost) => post.frontmatter.tags.includes(tag)).sort((a: AstroPost, b: AstroPost) => 
-    new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime()
+  const uniquePosts = allPosts
+  .filter((post: AstroPost) => post.frontmatter.tags.includes(tag)) 
+  .sort((a, b) => new Date(b.frontmatter.pubDate).getTime() - new Date(a.frontmatter.pubDate).getTime()) 
+  .filter((post, index, self) => 
+
+    index === self.findIndex((p) => p.frontmatter.postSlug === post.frontmatter.postSlug)
   );
+  
 
   return {
     params: { tag },
-    props: { posts: filteredPosts },
+    props: { posts: uniquePosts },
   };
   
 });
