@@ -10,7 +10,7 @@ const allProjects = Object.values(import.meta.glob('./projects/*.md', { eager: t
         {allProjects
         .sort((a:any, b:any) => a.frontmatter.order - b.frontmatter.order)
         // Hide Drawgress from the projects page
-        .filter((a: any) => a.frontmatter.title !== "Drawgress"  )
+     
         .map((project: any) =>
         
         

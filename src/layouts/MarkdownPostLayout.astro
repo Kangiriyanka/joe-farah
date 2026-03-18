@@ -4,6 +4,7 @@ import TableOfContents from "../components/TableOfContents.astro";
 import Separator from "../components/Separator.astro";
 import CommentForm from "../components/CommentForm.astro";
 import CommentList from "../components/CommentList.astro";
+import GlobeIcon from "@components/icons/GlobeIcon.astro";
 
 const { frontmatter, headings } = Astro.props;
 const dateOptions: Intl.DateTimeFormatOptions = {
@@ -41,6 +42,8 @@ const languageStrings: Record<string,string> = {
 
 <BaseLayout pageTitle={frontmatter.title}>
 
+
+
   <div class="grid">
     
   <TableOfContents headings= {headings} />
@@ -54,22 +57,12 @@ const languageStrings: Record<string,string> = {
   {frontmatter.upDate ? "- Updated " : null}
   {frontmatter.upDate ? upDate : null}
   
-  <div class=" ml-auto flex flex-col  ">
-      <label for="language-select">Languages: </label>
 
 
-<select class="tag border-1  p-1 rounded-md focus:outline-none" name="available-languages " id="language-select">
-  {frontmatter.langs?.map((lang: string) => (
-    <option 
-    selected={Astro.currentLocale === lang}
-    value={lang}>{languageStrings[lang]}</option>
-  ))}
-</select>
-
-
-
-  </div>
 </p>
+
+<!-- LANGUAGES SELECT BLOCK-->
+
     
     
   </div>
@@ -78,9 +71,13 @@ const languageStrings: Record<string,string> = {
    
 
 
+<div class="flex justify-between">
 <p><em>{frontmatter.description}</em></p>
 
-    <div class="tags flex gap-3 ">
+</div>
+
+  <div class=" flex flex-col items-start sm:my-2 md:my-0 md:items-center md:flex-row ">
+  <div class="tags flex  gap-3 ">
       {frontmatter.tags.map((tag: string) => (
         <p class="tag dark-container">
          <a href={`/tags/${tag}`}>{tag}</a>
@@ -88,7 +85,59 @@ const languageStrings: Record<string,string> = {
     
       ))}
 
+
+
+
      
+    </div>
+
+     {frontmatter.langs?.length > 0 && (
+
+
+  
+
+
+
+
+  <div class="flex flex-col items-center  ml-auto">
+    
+
+    {/* Globe + Text */}
+    <div class="flex  items-start ">
+    
+    <label class="relative" for="language-select" class="text-lg">
+   
+      <GlobeIcon aria-label="Select a language"/>
+      
+  
+    </label>
+
+   
+
+    </div>
+    {/*  */}
+    <select
+      id="language-select"
+      class="border-1  p-2  rounded-md focus:outline-none"
+    >
+      {frontmatter.langs.map((lang: string) => (
+        <option
+          value={lang}
+          selected={Astro.currentLocale === lang}
+        >
+          {languageStrings[lang]}
+        </option>
+      ))}
+    </select>
+
+      
+  </div>
+
+
+  
+
+
+)}
     </div>
   
     <Separator/>
@@ -150,10 +199,15 @@ const languageStrings: Record<string,string> = {
 
 <style>
 
+   .lang-bub {
+    width: 2rem;
+    height: 2rem;
+    background-color: red;
+  }
+
 
 .tag {
 		
-	
   
     border-color: rgb(48, 48, 47);
     padding: 0.5rem;
