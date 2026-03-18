@@ -94,45 +94,27 @@ const languageStrings: Record<string,string> = {
      {frontmatter.langs?.length > 0 && (
 
 
+      <div class="flex flex-col items-end ml-auto"> 
   
-
-
-
-
-  <div class="flex flex-col items-center  ml-auto">
+  <div class="flex items-center gap-2">
     
-
-    {/* Globe + Text */}
-    <div class="flex  items-start ">
-    
-    <label class="relative" for="language-select" class="text-lg">
-   
-      <GlobeIcon aria-label="Select a language"/>
-      
-  
+    <label for="language-select" class="flex items-center cursor-pointer">
+      <GlobeIcon  /> 
+      <span class="ml-2 text-lg font-medium hidden sm:inline">Language:</span>
     </label>
 
-   
-
-    </div>
-    {/*  */}
     <select
       id="language-select"
-      class="border-1  p-2  rounded-md focus:outline-none"
+      class="border border-gray-300 p-1 rounded-md focus:outline-none bg-transparent"
     >
       {frontmatter.langs.map((lang: string) => (
-        <option
-          value={lang}
-          selected={Astro.currentLocale === lang}
-        >
+        <option value={lang} selected={Astro.currentLocale === lang}>
           {languageStrings[lang]}
         </option>
       ))}
     </select>
-
-      
   </div>
-
+</div>
 
   
 
