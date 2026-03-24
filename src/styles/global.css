@@ -148,6 +148,26 @@ html {
   padding: 2px;
 }
 
+.g-letter-high {
+  background-color: #308f4d;
+  padding: 0.2rem;
+  border-radius: 4px;
+  margin: 0 0.1rem;
+}
+
+.r-letter-high {
+  background-color: #ea6565;
+  padding: 0.2rem;
+  border-radius: 4px;
+  margin: 0 0.1rem;
+}
+.b-letter-high {
+  background-color:  #3384ed;
+  padding: 0.2rem;
+  border-radius: 4px;
+  margin: 0 0.1rem;
+}
+
 
 
 

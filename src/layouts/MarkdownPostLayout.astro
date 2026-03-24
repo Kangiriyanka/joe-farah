@@ -20,15 +20,6 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 
 
 
-
-
-const formattedPublishDate = new Date(frontmatter.pubDate).toLocaleString("en-US", dateOptions);
-const upDate = new Date(frontmatter.upDate).toLocaleString("en-US", dateOptions);
-
-const changeLanguage = () => {
-  console.log("Language changed")
-}
-
 const languageStrings: Record<string,string> = {
   "en": "English",
   "jp": "Japanese",
@@ -36,6 +27,28 @@ const languageStrings: Record<string,string> = {
   "kr": "Korean"
   
 }
+
+const localeMap: Record<string, string> = {
+  en: "en-US",
+  jp: "ja-JP",
+  kr: "ko-KR",
+  fr: "fr-FR",
+};
+
+
+// Check for lang in frontmatter and get the value 
+const locale =
+  (frontmatter.lang && localeMap[frontmatter.lang]) ||
+  "en-US";
+
+const formattedPublishDate = new Date(frontmatter.pubDate)
+  .toLocaleString(locale, dateOptions);
+
+const upDate = frontmatter.upDate
+  ? new Date(frontmatter.upDate).toLocaleString(locale, dateOptions)
+  : null;
+
+
 
 
 ---
@@ -105,7 +118,7 @@ const languageStrings: Record<string,string> = {
 
     <select
       id="language-select"
-      class="border border-gray-300 p-1 rounded-md focus:outline-none bg-transparent"
+      class="border border-gray-500 p-1 rounded-md focus:outline-none bg-transparent"
     >
       {frontmatter.langs.map((lang: string) => (
         <option value={lang} selected={Astro.currentLocale === lang}>
