@@ -15,6 +15,7 @@ let failTimeout: ReturnType<typeof setTimeout>;
 let isFlat = false
 let notes = [
  "C",
+ "C#",
  
     "D",
     "D#",
@@ -105,8 +106,10 @@ function handleClick(idx: number) {
   }
 }
 
+// 12 notes, from  0 to 11 -> offset by 1 -> 1 to 11
+// index 1 to length-1
 function generateIndex() {
-  currentIndex = Math.floor(Math.random() * notes.length);
+  currentIndex = Math.floor(1 + Math.random() * (notes.length - 1));
 
 }
 

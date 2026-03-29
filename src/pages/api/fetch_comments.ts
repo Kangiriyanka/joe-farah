@@ -1,6 +1,7 @@
 
 import { db, Comment, eq, desc,and  } from 'astro:db';
 
+// Use npx astro dev --remote to sync with Turso
 export async function fetch_comments(postSlug: string) {
 
   return await db
@@ -16,3 +17,7 @@ export async function fetch_comments(postSlug: string) {
     .orderBy(desc(Comment.published));
   
 }
+
+
+const all = await db.select().from(Comment);
+console.log("ALL:", all);

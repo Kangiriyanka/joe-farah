@@ -3,7 +3,12 @@ import {fetch_comments} from "../pages/api/fetch_comments"
 
 
 const { postSlug } = Astro.props;
+
 const comments = await fetch_comments(postSlug)
+
+
+
+
 const dateOptions: Intl.DateTimeFormatOptions = {
   timeZone: 'America/New_York',
   year: 'numeric',
