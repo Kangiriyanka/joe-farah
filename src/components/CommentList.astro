@@ -33,6 +33,19 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 
 
 
+const localeMap: Record<string, string> = {
+  en: "en-US",
+  jp: "ja-JP",
+  kr: "ko-KR",
+  fr: "fr-FR",
+};
+
+const locale =
+  (lang && localeMap[lang]) ||
+  "en-US";
+
+
+
 ---
 
 <div class="space-y-4 ">
@@ -46,7 +59,7 @@ const dateOptions: Intl.DateTimeFormatOptions = {
                 <div class=" comment-container">
                     <div class="font-bold text-lg">{comment.author}</div>
                     <div class="">
-                        <p>{comment.published.toLocaleString("en-US", dateOptions)} EST </p>
+                        <p>{comment.published.toLocaleString(locale, dateOptions)} EST </p>
                     </div>
                     <div class="mt-2  ">
                         <p class="text-justify" >{comment.body}</p>
