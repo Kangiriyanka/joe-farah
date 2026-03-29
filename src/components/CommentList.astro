@@ -2,10 +2,23 @@
 import {fetch_comments} from "../pages/api/fetch_comments"
 
 
-const { postSlug } = Astro.props;
+const { postSlug, lang } = Astro.props;
 
 const comments = await fetch_comments(postSlug)
 
+
+const commentTitle: Record<string,string> = {
+  "en": "Comments",
+  "jp": "コメント",
+  "kr": "댓글"
+  
+}
+const emptycomment: Record<string,string> = {
+  "en": "No comments on this post yet. Be the first to share your wisdom",
+  "jp": "このブログポストにコメントがありません. 最初のコメントを残してください.",
+  "kr": "이 게시물에서 댓글이 없읍니다. 첫 번째 댓글을 남겨 주시기 바랍니다."
+  
+}
 
 
 
@@ -23,11 +36,11 @@ const dateOptions: Intl.DateTimeFormatOptions = {
 ---
 
 <div class="space-y-4 ">
-    <h2> Comments </h2>
+    <h2> {commentTitle[lang] ?? "Comments"} </h2>
    
     {
         comments.length === 0 ? (
-            <p> No comments on this post yet. Be the first to share your <span class="">wisdom</span> :).</p>
+            <p> {emptycomment[lang] ?? "No comments on this post yet. Be the first to share your wisdom :)" }</p>
         ) : (
             comments.map((comment) => (
                 <div class=" comment-container">

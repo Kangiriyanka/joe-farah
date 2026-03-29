@@ -1,27 +1,70 @@
 ---
-const {postSlug} = Astro.props
+const {postSlug, lang } = Astro.props
+
+
+const commentForm: Record<string,string> = {
+  "en": "No comments on this post yet. Be the first to share your wisdom",
+  "jp": "コメントがありません. 最初のコメントをください",
+  "kr": "댓글 해 주시기 바랍니다"
+  
+}
+
+const cta: Record<string,string> = {
+  "en": "Share your wisdom",
+  "jp": "一言をください",
+  "kr": "댓글 해 주시기 바랍니다"
+  
+}
+const messageStrings: Record<string,string> = {
+  "en": "Comment",
+  "jp": "コメント",
+  "kr": "댓글"
+  
+}
+
+const nameStrings: Record<string,string> = {
+  "en": "Name",
+  "jp": "名前",
+  "kr": "이름"
+  
+}
+
+
+const websiteStrings: Record<string,string> = {
+  "en": "Website",
+  "jp": "ウェブサイト (任意）",
+  "kr": "웹사이트 (선택적으로)"
+  
+}
+
+
+const submitStrings: Record<string,string> = {
+  en: "Submit",
+  jp: "送信",
+  kr: "제출"
+}
 
 ---
-<h3 class="text-2xl mb-4 mt-8" > Share your wisdom</h2>
+<h3 class="text-2xl mb-4 mt-8" > {cta[lang] ?? "Share your wisdom"}</h2>
 <form method="POST" class= "flex flex-col" action="/api/post_comment">
 
     <label>
-        Message
+        {messageStrings[lang] ?? "Comment"}
 
       </label>
     <textarea name="body" rows="5" cols= "30"required></textarea>
 
     <input type="hidden" name="postSlug" value={postSlug} />
     <label>
-      Name
+      {nameStrings[lang] ?? "Name"}
       <input type="text" name="author" required />
     </label>
     <label>
-      Website
+      {websiteStrings[lang] ?? "Website (optional)"}
       <input type="text" name="website" />
     </label>
   
-    <button id="comment-submit"  type="submit">Submit </button>
+    <button id="comment-submit"  type="submit">{submitStrings[lang] ?? "Submit"} </button>
 </form>
 
 

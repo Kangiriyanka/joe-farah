@@ -120,7 +120,7 @@ $: displayNotes = notes.map(note => formatNote(note, isFlat))
 
 </script>
 
-
+ 
 
 
 
