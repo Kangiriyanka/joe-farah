@@ -1,0 +1,79 @@
+---
+layout: "@layouts/MarkdownPostLayout.astro"
+title: "Replicating a file system in React"
+pubDate: 2026-05-12T18:55:13-04:00
+description: 'Creating folders and subfolders in React with recursion'
+tags: ["python","drawing"]
+postSlug: 'post-21'
+
+---
+
+
+
+
+import Categories from '../../pcomponents/post21/Categories.tsx';
+
+
+UNDER CONSTRUCTION
+## Intro 
+
+In this post, I'll build a file system with React. I use something similar in my diary app to sort drawings out. 
+
+
+
+
+### Considerations
+
+1.
+2. Logic to add and remove categories
+3. 
+
+
+
+### File system folder
+
+
+1. The goal is to replicate a file system. 
+
+<div className="parents flex text-center">
+
+<div className="flex bg-green-400 flex-col">
+ <div className="self-center">Nature </div>
+<div className="flex gap-5">
+    
+    <div> Flowers </div> 
+    <div className=""> 
+        Trees 
+        <div> Yews </div>
+    </div>
+     
+    <div> Plants </div>
+</div> 
+</div>
+<div className="flex bg-red-400 flex-col">
+ <div className="self-center">Shapes </div>
+  
+    <div className="flex gap-5">
+    <div> Circles </div>
+    <div className=" bg-blue-500"> 
+        Triangles 
+        <div> Isosceles </div>
+    </div>
+
+    <div> Rectangles </div>
+    </div>
+</div>
+</div>
+
+2. Assuming I have the top-level folders or categories. My goal is to click and get the subcategories.
+<Categories/>
+
+
+
+
+
+<style>{`
+  div {
+    background: red;
+  }
+`}</style>
