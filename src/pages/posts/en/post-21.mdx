@@ -25,8 +25,12 @@ It also serves as a great exercise hence why I wanted to take my time to explore
 
 ### Goal and considerations
 
-For this demonstration, I'll build the category tree below with its associated initial data input: a flat array containing a list of categories. Each category may have a parent_id. The top level categories, nature and shapes, currently do not have parent_ids.
+For this demonstration, I'll first tackle the data operations required to build the category tree below with its associated initial data input: a flat array containing a list of Categories. Each category for the sake of simplicity has only an id, a name and useful parent_id property which we will use to speed up searches. The top level categories, nature and shapes, currently do not have parent_ids.
+Then, within this post, we'll create a UI interactive component that allows us to navigate those categories 
+&nbsp;
 
+1. Consider categories and subcategories as equivalent to folders and subfolders 
+2. Consider we are able to click the categories to access the subcategories, i.e., tapping on Shapes will 2D and 3D.
 &nbsp;
 
 <i> Category Tree</i>
@@ -38,31 +42,57 @@ For this demonstration, I'll build the category tree below with its associated i
 &nbsp;
 
 <i> Initial Category Data  </i>
+
 ```python
-const categories = [
-  { id: 1, name: "nature", parent_id: null },
-  { id: 6, name: "shapes", parent_id: null },
-  { id: 2, name: "flowers", parent_id: 1 },
-  { id: 3, name: "trees", parent_id: 1 },
-  { id: 4, name: "plants", parent_id: 1 },
-  { id: 5, name: "poison-ivy", parent_id: 4 },
-  { id: 7, name: "3D", parent_id: 6 },
-  { id: 8, name: "2D", parent_id: 6 },
-  { id: 9, name: "cylinders", parent_id: 7 },
-  { id: 10, name: "squares", parent_id: 8 },
-  { id: 11, name: "triangles", parent_id: 8 },
+# Python 3
+class Category:
+    def __init__(self, id, name, parent_id):
+        self.id = id
+        self.name = name
+        self.parent_id = parent_id
+    
+categories = [
+    Category(id=1, name="nature", parent_id=None),
+    Category(id=6, name="shapes", parent_id=None),
+
+    Category(id=2, name="flowers", parent_id=1),
+    Category(id=3, name="trees", parent_id=1),
+    Category(id=4, name="plants", parent_id=1),
+
+    Category(id=5, name="poison-ivy", parent_id=4),
+
+    Category(id=7, name="3D", parent_id=6),
+    Category(id=8, name="2D", parent_id=6),
+
+    Category(id=9, name="cylinders", parent_id=7),
+    Category(id=10, name="squares", parent_id=8),
+    Category(id=11, name="triangles", parent_id=8),
 ]
 
 ```
 
-The first step is transforming our initial flat array into a structure we can easily perform lookups in. We could simply choose to work with what we have, the 1D array, but any search of a specific category would require a scan of the whole array.
-We can optimize the search by recursively bundling up the categories into parent-children entries.
+Because we want to work inside a system where we want to access children of categories (subfolders), we have to first consider what goes on if we work our original structure
+Let's say we want to access the Poison Ivy category; we start at the Nature folderWe could simply choose to work with our 1D array and scan the whole array every time we want to get .
+Visually, if I start at the Nature category and access its subcategories by tapping/clicking on it, I would need 2 scans of the array to reach Poison Ivy. The result of scanning in this context means executing function that gets the children of a parent category.
+
+
+<div class="post-img-container  p-1">
+
+![Naive lookup](../../../assets/post_images/naivelookup.jpg)
+</div>
+
+
+
+&nbsp;
+
+Instead, we'll create a children map where the keys are parent_ids (integers) and the values are list of Category objects stored as dicts. This adjacent list is the structure used to build a tree.
+
 
 ```python
 def _build_category_tree(categories):
     children_map = defaultdict(list)
 
-    # SETUP
+    # Building a children map is efficient for executing a DFS.
     for cat in categories:
         children_map[cat.parent_id].append(cat)
    
@@ -84,10 +114,9 @@ def _build_category_tree(categories):
 
 
 ```
-1. How to build the tree with given data 
-    We'll have to do a tree traversal with the data we have.
-2. Logic to add and remove categories
-3. 
+
+
+
 
 
 ### File system folder
