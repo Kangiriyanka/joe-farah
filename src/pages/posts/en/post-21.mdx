@@ -1,36 +1,40 @@
 ---
 layout: "@layouts/MarkdownPostLayout.astro"
-title: "Replicating a file system in React"
+title: "Implementing an interactive directory"
 pubDate: 2026-06-28T19:53:13-04:00
-description: 'Playing with folders and subfolders in React with recursion'
+description: 'Making an interactive directory with React and Python'
 tags: ["python","drawing"]
 postSlug: 'post-21'
-
 ---
 
 
 
 
-import Categories from '../../pcomponents/post21/Categories.tsx';
+import CategoryTree from '../../pcomponents/post21/CategoryTree.tsx';
 
 
 
 ## Intro 
 
-My goal in this post is to outline and implement the logic of building an interactive directory tree in React with Python. I find this useful to learn if your app deals with data organization of photos, drawings, words, etc. 
-It also serves as a great exercise hence why I wanted to take my time to explore the concepts in depth.
+&nbsp;
+
+
+My goal in this post is to implement an interactive directory and explore the logic behind it. By interactive, I mean that you can click (<i>or tap</i>) on a folder to get its subfolders, with other features of course.
+
+&nbsp;
+
+I recently implemented a similar feature in a personal app which organizes drawings based on which category they belong to, so I decided to outline the general steps here as way to refresh and relay my understanding. It's an interesting problem worth discussing; it's also a useful exercise to tackle if you're dealing with an app that requires hierarchical organization of photos, words, drawings, etc. 
+
 
 
 &nbsp;
 
-### Goal and considerations
+## Transforming the initial data into a tree
 
-For this demonstration, I'll first tackle the data operations required to build the category tree below with its associated initial data input: a flat array containing a list of Categories. Each category for the sake of simplicity has only an id, a name and useful parent_id property which we will use to speed up searches. The top level categories, nature and shapes, currently do not have parent_ids.
-Then, within this post, we'll create a UI interactive component that allows us to navigate those categories 
 &nbsp;
 
-1. Consider categories and subcategories as equivalent to folders and subfolders 
-2. Consider we are able to click the categories to access the subcategories, i.e., tapping on Shapes will 2D and 3D.
+For this demonstration, we'll process the data in a framework-agnostic Python backend and render the UI with React components, just as we would in a typical full-stack application. In a real-world setup, the data would typically come from a database using an ORM like SQLAlchemy, but in this post, we start off with a list of Category objects.
+
 &nbsp;
 
 <i> Category Tree</i>
@@ -39,17 +43,34 @@ Then, within this post, we'll create a UI interactive component that allows us t
 ![Category Tree](../../../assets/post_images/categorytree.jpg)
 </div>
 
+
 &nbsp;
 
-<i> Initial Category Data  </i>
+For the sake of simplicity, categories have a name, an id and a parent_id which is the key property that establishes the relationship between the parent and child. The initial data given is a flat array of Category objects. Please note that the Category object has a custom print function and a <span class="bold-rounded">to_json</span> function allows us to extract the Category's properties object into a plain dictionary. This will help when we send data back to our browser.
 
+&nbsp;
+
+<i>Initial Category Data  </i>
 ```python
-# Python 3
+# Category object, remember that the parent_id is the proof of any relationship the object has.
 class Category:
     def __init__(self, id, name, parent_id):
         self.id = id
         self.name = name
         self.parent_id = parent_id
+    
+    # Customize our print function
+    def __repr__(self):
+
+        return f"Category(id={self.id}, name='{self.name}', parent_id={self.parent_id})"
+
+    # Convert the data to JSON to send it back to the web browser to read it.
+    def to_json(self):
+        return {
+            "id": self.id,
+            "name": self.name,
+            "parent_id": self.parent_id,
+        }
     
 categories = [
     Category(id=1, name="nature", parent_id=None),
@@ -71,11 +92,17 @@ categories = [
 
 ```
 
-Because we want to work inside a system where we want to access children of categories (subfolders), we have to first consider what goes on if we work our original structure
-Let's say we want to access the Poison Ivy category; we start at the Nature folderWe could simply choose to work with our 1D array and scan the whole array every time we want to get .
-Visually, if I start at the Nature category and access its subcategories by tapping/clicking on it, I would need 2 scans of the array to reach Poison Ivy. The result of scanning in this context means executing function that gets the children of a parent category.
+{/* #3384ed; #ea6565*/}
+
+Before we try anything fancy, assume we directly send the data back as flat array of categories and have our UI ready to go (<i>just imagine a folder directory UI </i>). To reach the <span className="text-[#ea6565]">Poison Ivy</span> category, we have to access the children <span className="text-[#3384ed]">Nature</span>  and then <span className="text-[#308f4d]">Plants</span>. Therefore, we would first scan the array and filter the categories with a parent_id of 1 and then run another filter to reach the children of <span className="text-[#308f4d]">Plants</span>.
 
 
+
+
+
+&nbsp;
+
+<i>Scanning the array every time </i>
 <div class="post-img-container  p-1">
 
 ![Naive lookup](../../../assets/post_images/naivelookup.jpg)
@@ -85,14 +112,188 @@ Visually, if I start at the Nature category and access its subcategories by tapp
 
 &nbsp;
 
-Instead, we'll create a children map where the keys are parent_ids (integers) and the values are list of Category objects stored as dicts. This adjacent list is the structure used to build a tree.
+The 1D format is inefficient here, because getting the children of any category would always result in iterating over the whole array. Our initial data is formatted in a way that parents don't know who their children are, so we can't directly access them without a full search of the array. Luckily, we can flip the script and transform our data to show those direct parent to child relationships. With a pinch of recursion, we'll be building a tree of categories through DFS, and the final result will allow us to access a parent's children in constant time. For reference, this is what we're aiming for:
 
+&nbsp;
+
+
+<i> A list of nested category objects with a new property <span class="bold-rounded">children</span> </i>
+```python
+# Our goal is to obtain this structure and send it back to the browser.
+[
+    {
+        "id": 1,
+        "name": "nature",
+        "parent_id": null,
+        "children": [
+            {
+                "id": 2,
+                "name": "flowers",
+                "parent_id": 1,
+                "children": []
+            },
+            {
+                "id": 3,
+                "name": "trees",
+                "parent_id": 1,
+                "children": []
+            },
+            {
+                "id": 4,
+                "name": "plants",
+                "parent_id": 1,
+                "children": [
+                    {
+                        "id": 5,
+                        "name": "poison-ivy",
+                        "parent_id": 4,
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "id": 6,
+        "name": "shapes",
+        "parent_id": null,
+        "children": [
+            {
+                "id": 7,
+                "name": "3D",
+                "parent_id": 6,
+                "children": [
+                    {
+                        "id": 9,
+                        "name": "cylinders",
+                        "parent_id": 7,
+                        "children": []
+                    }
+                ]
+            },
+            {
+                "id": 8,
+                "name": "2D",
+                "parent_id": 6,
+                "children": [
+                    {
+                        "id": 10,
+                        "name": "squares",
+                        "parent_id": 8,
+                        "children": []
+                    },
+                    {
+                        "id": 11,
+                        "name": "triangles",
+                        "parent_id": 8,
+                        "children": []
+                    }
+                ]
+            }
+        ]
+    }
+]
+```
+
+&nbsp;
+
+To achieve the above, the first step is to create a <span class="bold-rounded">children_map</span> with keys as parent_ids and the values as children Category objects, which will help us build the tree with DFS. We're basically building an index for DFS's faster traversal, all with a cost of O(n) in space.
+
+&nbsp;
+
+<i> Creating the children_map </i>
 
 ```python
-def _build_category_tree(categories):
+from collections import defaultdict
+
+children_map = defaultdict(list)
+
+# Building a children map is recommended for executing a DFS.
+    for cat in categories:
+        children_map[cat.parent_id].append(cat)
+
+# ----- RESULT ----- 
+# Notice the None key here, this will be the starting point of the DFS
+children_map = {
+
+    None: [
+        Category(id=1, name="nature", parent_id=None),
+        Category(id=6, name="shapes", parent_id=None),
+    ],
+
+    1: [
+        Category(id=2, name="flowers", parent_id=1),
+        Category(id=3, name="trees", parent_id=1),
+        Category(id=4, name="plants", parent_id=1),
+    ],
+
+    4: [
+        Category(id=5, name="poison-ivy", parent_id=4),
+    ],
+
+    6: [
+        Category(id=7, name="3D", parent_id=6),
+        Category(id=8, name="2D", parent_id=6),
+    ],
+
+    7: [
+        Category(id=9, name="cylinders", parent_id=7),
+    ],
+
+    8: [
+        Category(id=10, name="squares", parent_id=8),
+        Category(id=11, name="triangles", parent_id=8),
+    ],
+}
+```
+
+With this in hand, we have to implement a DFS function that creates a list of objects which contain the traversed category and its children. The base case returns an empty array if a child does not have a parent, i.e., if the child's id doesn't appear 
+in the children_map. A clearer accompanying graphic follows with the attached code.
+
+&nbsp;
+
+<i> DFS implementation where the search  starts at <span class="bold-rounded">parent_id == None</span></i>
+
+```python
+ def dfs(parent_id):
+        # Current category's ID does not appear in the children_map => it has no descendants.
+        if parent_id not in children_map:
+            return []
+        
+         # A list comprehension that builds dictionaries: 
+        return [           
+            {
+                **cat.to_json(), # Unpack the Category properties: id, name, parent_id 
+                "children": dfs(cat.id) # Run a dfs from the children
+            } 
+            for cat in children_map[parent_id]
+        ]
+
+ # Start the DFS at None
+ dfs(None)
+```
+
+<i> Graphically illustrated...</i>
+<div class="post-img-container  p-1">
+
+![Naive lookup](../../../assets/post_images/catdemo.jpg)
+</div>
+
+&nbsp;
+
+Pythonically, we use a list comprehension to iterate through each child and the <span class="bold-rounded">**</span> operator unpacks the Category properties into the newly created dictionaries. The combined code snippets follows:
+
+&nbsp;
+
+<i>All together</i>
+```python
+import json
+from collections import defaultdict
+def build_category_tree(categories):
+
     children_map = defaultdict(list)
 
-    # Building a children map is efficient for executing a DFS.
+    # Building a children_map makes the DFS search faster.
     for cat in categories:
         children_map[cat.parent_id].append(cat)
    
@@ -118,50 +319,39 @@ def _build_category_tree(categories):
 
 
 
-
-### File system folder
-
-
+Now, we serialize<sup><a class="secondary-a" href="#footnotes">1.</a></sup>  the category tree and return it through our API. 
+When our web page loads to fetch the categories, the HTTP response containing the JSON data is used to construct the UI, which leads us to the next part. In FastAPI, Python dictionaries are converted under the hood into a JSON response at the framework level. In Flask, this conversion must be done explicitly using jsonify() before returning the response to the client. 
 
 
 
-1. The goal is to replicate a file system. 
+```python
+# Through the API of your choice (FastAPI, Flask, etc.)
 
-<div className="parents flex text-center">
-
-<div className="flex bg-green-400 flex-col">
- <div className="self-center">Nature </div>
-<div className="flex gap-5">
-    
-    <div> Flowers </div> 
-    <div className=""> 
-        Trees 
-        <div> Yews </div>
-    </div>
-     
-    <div> Plants </div>
-</div> 
-</div>
-<div className="flex bg-red-400 flex-col">
- <div className="self-center">Shapes </div>
-  
-    <div className="flex gap-5">
-    <div> Circles </div>
-    <div className=" bg-blue-500"> 
-        Triangles 
-        <div> Isosceles </div>
-    </div>
-
-    <div> Rectangles </div>
-    </div>
-</div>
-</div>
+# 1. FastAPI
+@router.get("/api/drawings/nested_categories/")
+def fetch_nested_categories():
+    return build_nested_categories(categories)
 
 
+# 2. Flask 
+from flask import jsonify,
 
-2. Assuming I have the top-level folders or categories. My goal is to click and get the subcategories.
-<Categories/>
+@bp.route("/api/drawings/nested_categories/",  methods = ["GET"])
+nested = _build_category_tree(categories)
+return jsonify(nested)
+
+```
 
 
+## Building the UI
 
 
+I'm not actually using a server here to so my data will just be directly imported json 
+<CategoryTree client:load/>
+
+&nbsp;
+
+
+## Footnotes
+
+1. Serialize in this context means converting the Python object into a JSON-formatted string.
