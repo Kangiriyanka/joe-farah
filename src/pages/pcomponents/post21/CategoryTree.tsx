@@ -14,7 +14,7 @@ interface CategoryTreeProps {
   
   onSelect: (category: Category | null) => void;
   selectedID: number | null;
-  color: string;
+
 }
 
 
@@ -38,8 +38,7 @@ function TreeNode( {cat, depth, selectedID, onSelect}: TreeNodeProps) {
   return (
 
     // Render the children if it has any and if we click it.
-    <div>
-
+    <div className=" ">
     <CategoryCard
         title={cat.name}
         isSelected={isSelected}
@@ -48,8 +47,9 @@ function TreeNode( {cat, depth, selectedID, onSelect}: TreeNodeProps) {
         onToggle={() => setIsOpen(prev => !prev)}
         onSelect={() => onSelect(cat)}
       />
+
     {hasChildren && isOpen && (
-        <div>
+        <div className="flex">
           {cat.children.map(child => (
             <TreeNode
               key={child.id}
@@ -70,21 +70,23 @@ function TreeNode( {cat, depth, selectedID, onSelect}: TreeNodeProps) {
 
 export default function CategoryTree({onSelect, selectedID}: CategoryTreeProps) {
   return (
-    <div className="flex gap-5">
+    <div className="flex justify-around bg-blue-100 h-50  p-4 rounded-md border-1">
       {categorydata.map(cat => (
+  
         <TreeNode
           key={cat.id}
           cat={cat}
           depth={0}
           selectedID={selectedID}
           onSelect={onSelect}
+       
         />
+
       ))}
     </div>
 
 
   );
-
 
 
 }

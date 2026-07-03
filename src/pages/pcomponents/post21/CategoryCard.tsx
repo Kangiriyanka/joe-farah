@@ -20,13 +20,15 @@ export default function CategoryCard({
   return (
 
     // TOGGLE
-    <div className="flex items-center gap-2 py-1">
+  <button 
+  onClick={onToggle}
+  className="flex items-center gap-2  bg-red-500 border-1 rounded-md">
       {hasChildren && (
         <button
   type="button"
-  onClick={onToggle}
+  
   aria-label={isOpen ? "Collapse" : "Expand"}
-  className="flex items-center justify-center w-7 h-7 rounded-md bg-[var(--month-active)] hover:text-white hover:bg-zinc-800 transition-colors duration-200"
+  className="flex items-center justify-center w-7 rounded-md hover:text-white hover:bg-zinc-800 transition-colors duration-200"
 >
   <span
     className={`transform transition-transform duration-200 ${
@@ -40,6 +42,7 @@ export default function CategoryCard({
 
       {/* Category */}
       <button
+      
         type="button"
          onClick={() => {
           onSelect?.();
@@ -47,14 +50,14 @@ export default function CategoryCard({
         }}
         
       
-        className={`text-xl text-zinc-100  bg-[var(--nav-bg)] px-2 py-1 rounded-sm transition ${
+        className={`text-xl  w-30 px-2 py-1 rounded-sm transition ${
           isSelected
-            ? "opacity-90 bg-[var(--quill-bg)] font-medium"
+            ? "opacity-90  font-medium"
             : ""
         }`}
       >
         {title}
       </button>
-    </div>
+    </button>
   );
 }

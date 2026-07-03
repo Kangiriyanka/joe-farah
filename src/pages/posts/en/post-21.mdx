@@ -10,8 +10,8 @@ postSlug: 'post-21'
 
 
 
-import CategoryTree from '../../pcomponents/post21/CategoryTree.tsx';
-
+import CategoryTree from '../../pcomponents/post21/CategoryTreeA.tsx';
+import CategoryTreeA from '../../pcomponents/post21/CategoryTree.tsx';
 
 
 ## Intro 
@@ -343,11 +343,51 @@ return jsonify(nested)
 ```
 
 
+&nbsp;
+
 ## Building the UI
 
+&nbsp;
 
-I'm not actually using a server here to so my data will just be directly imported json 
+
+In this post, instead of receiving my JSON string through a GET request to a server, I'll plainly and directly use transformed category <a class="secondary-a "href= "https://github.com/Kangiriyanka/joe-farah-code-extras/blob/main/Python/categorydata.json"> data</a> to build a CategoryTree component. Here's a skeleton code
+we'll gradually modify as we figure out the constraints.
+```javascript
+
+interface CategoryTreeProps {
+  
+  // TO IMPLEMENT
+
+}
+
+interface TreeNodeProps {
+  // TO IMPLEMENT
+
+}
+
+function TreeNode() {
+
+    return (
+        // TO IMPLEMENT
+    )
+}
+
+export default function CategoryTree() {
+  return (
+    <div className="flex gap-5">
+      {categorydata.map(cat => (
+        // Implement a TreeNode
+      ))}
+    </div>
+  );
+}
+```
+
+
 <CategoryTree client:load/>
+<CategoryTreeA client:load/>
+
+
 
 &nbsp;
 
