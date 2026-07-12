@@ -1,0 +1,512 @@
+---
+layout: "@layouts/MarkdownPostLayout.astro"
+title: "Displaying a custom range of images in React"
+pubDate: 2026-07-11T19:53:13-04:00
+description: "Gotta render em' all"
+tags: ["react", "programming"]
+postSlug: 'post-22'
+---
+
+import "../../pcomponents/post23/pokemon.css";
+import PokeDisplayerV1 from "../../pcomponents/post23/PokeDisplayerV1.tsx";
+import PokeDisplayerV2 from "../../pcomponents/post23/PokeDisplayerV2.tsx";
+import PokeDisplayerV3 from "../../pcomponents/post23/PokeDisplayerV3.tsx";
+
+
+## Intro
+
+&nbsp;
+
+
+Today, we'll explore how to selectively display images based on a custom number range in React. For example, If I had a custom range picker going from 1 to my total number of images, setting 1 to 3 would show the first three images. This functionality comes in hand when memorizing an order of images or
+practicing parts of a song. It's a recurring theme in my apps, such as <a class="secondary-a "href= "https://joefarah.com/projects/segmance">Segmance</a>, to cut objects of study into small digestible steps.
+
+&nbsp;
+
+
+
+## Gotta render em' all
+
+&nbsp;
+
+
+The JPEG images featured are Pokémon I doodled inspired from <a class="secondary-a "href= "https://en.wikipedia.org/wiki/Pok%C3%A9mon_Art_Academy">Pokémon Art Academy</a>. Assume they exist locally in <span class=" underline">public/</span> inside the hypothetical path below; this is where we'll fetch them:
+```typescript
+// Path we'll utilize for the remainder of this post
+// * => p1.jpeg; p2.jpeg, etc.
+/public/pokémon/*.jpeg
+```
+<div class="gap-3  grid grid-cols-3 post-img-container   ">
+
+
+<div className="my-2 pkmn-container "> 
+<p>Chimchar (p1.jpeg)</p>
+![p1](/pokemon/p1.jpg)
+</div>
+
+<div className="my-2  pkmn-container"> 
+Bulbasaur (p2.jpeg)
+![p2](/pokemon/p2.jpg)
+</div>
+
+<div className="my-2 pkmn-container"> 
+Charmander (p3.jpeg)
+![p3](/pokemon/p3.jpg)
+</div>
+
+<div className="my-2 pkmn-container"> 
+Typhlosion (p4.jpeg)
+![p4](/pokemon/p4.jpg)
+</div>
+
+<div className="my-2 pkmn-container"> 
+Totodile (p5.jpeg)
+![p5](/pokemon/p5.jpg)
+</div>
+
+<div className="my-2 pkmn-container"> 
+Golbat (p6.jpeg)
+![p5](/pokemon/p6.jpg)
+</div>
+
+
+</div>
+
+
+
+
+&nbsp;
+
+## Populating an array of image URLs
+
+&nbsp;
+
+Our first move is fetching the Pokémon image URLs and storing them inside a state variable <span class="bold-rounded">pokemonImages</span>.
+We also need two number state variables <u>startIndex</u> and <u>endIndex</u> to control our display range.
+
+&nbsp;
+
+We define them within the PokéDisplayer component:
+
+```typescript
+
+// PokeDisplayer.tsx
+const [pokemonImages, setPokemonImages] = useState<string[]>([]);
+const [startIndex, setStartIndex] = useState<number>(1);
+const [endImage, setEndImage] = useState<number>(1);
+
+// TO-DO
+
+```
+To access a local directory in React, we sparkle our code with  <span class="bold-rounded">useEffect</span>, which is a hook that fetches external data (API, local files, etc.) after components are rendered in the DOM. The idea is to loop through our pokémon directory and create an n-size array of the image paths. Now, we can't determine dynamically the number of image URLs to be fetched through the loop, thus we specify it in a different file. In the same directory containing our images, we create a manifest.json with a property <span class="bold-rounded">parts</span> representing the total number of images. That number will be used in the <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">Array.from()</a>. <sup><a class="secondary-a" href="#footnotes">1.</a></sup> function to setup <span class="bold-rounded">pokemonImages</span>.
+If we're using Vite, a better solution would have been <a class="secondary-a "href= "https://vite.dev/guide/features">import.meta.glob</a>, but it's not done in this post.
+&nbsp;
+
+
+&nbsp;
+
+<i>manifest.json at /images/pokémon/ </i>
+```json
+// We need to know the parts in advance!
+{
+  "parts": 6
+}
+```
+
+
+&nbsp;
+
+<i> PokéDisplayer </i>
+```typescript
+import {useState, useEffect} from "preact/hooks"
+
+
+interface PokeProps {
+    folder_name: string
+}
+
+export default function PokeDisplayerV1( {folder_name}: PokeProps) {
+
+    const [pokemonImages, setPokemonImages] = useState<string[]>([]);
+    const [startIndex, setStartIndex] = useState<number>(1);
+    const [endIndex, setEndIndex] = useState<number>(1);
+
+
+    useEffect(() => {
+    const loadPokemonImages = async () => {
+
+        // Get a Response object.
+        const res = await fetch(`/${folder_name}/manifest.json`);
+        // Turn the Response object to a Javascript object.
+        const data = await res.json();
+
+        const imgs = Array.from(
+        { length: data.parts },
+        (_, i) => `/${folder_name}/p${i + 1}.jpg`
+        );
+
+        setPokemonImages(imgs);
+        setEndImage(data.parts);
+    };
+
+    loadPokemonImages();
+    }, [folder_name]);
+
+
+    return (
+
+        <div>
+            
+            <p className="text-center"> We have fetched {pokemonImages.length} pokémon images from our public/pokemon folder with URLs:</p>
+            <ul> 
+           
+                {pokemonImages.map(url => {
+                    return  (
+                        <li className="my-1 ">
+                        {url}
+                        </li>
+                    )
+                    
+                })}
+            </ul>
+        </div>
+    )
+
+}
+
+```
+
+<p className="text-center"> Rendering `<PokeDisplayerV1 folder_name="pokemon"/>`  </p>
+<PokeDisplayerV1 folder_name="pokemon" client:load/>
+
+
+&nbsp;
+
+
+## Creating a RangePicker
+
+&nbsp;
+
+Now that our array is filled, we build a custom range picker where we can pass our <span class="bold-rounded">startIndex</span>, <span class="bold-rounded">endIndex</span> and <span class="bold-rounded">totalItems</span> to a <span class="bold-rounded">RangePicker</span> component. This component will be rendered inside the PokéDisplayer. Whatever change happens inside the picker will be reflected in the parent component, therefore we also need
+to pass callbacks <span class="bold-rounded">onStartSelect</span>  and <span class="bold-rounded">onEndSelect</span>. These callbacks are simply the original set functions in our PokéDisplayer which track down any changes happening inside the picker. 
+
+&nbsp;
+
+
+<i> In PokéDisplayer, our mission is to render the following:</i>
+```javascript
+<RangePicker
+  startIndex={startIndex}
+  endIndex={endIndex}
+  totalItems={pokemonImages.length}
+  onStartSelect={setStartIndex}
+  onEndSelect={setEndIndex}
+/>
+
+```
+
+<i> RangePicker </i>
+```typescript
+interface RangePickerProps {
+
+  startIndex: number;
+  endIndex: number;
+  totalItems: number;
+  onStartSelect: (start: number) => void;
+  onEndSelect: (end: number) => void;
+}
+
+function RangePicker({startIndex,endIndex, totalItems, onStartSelect, onEndSelect}: RangePickerProps) {
+
+  // TO-DO
+  return ( 
+  
+  )
+
+}
+
+```
+
+&nbsp;
+
+
+The RangePicker constitutes of two HTML input elements each controlling the start and end indices. What's important with the inputs is guaranteeing
+a logical range;  <span class="bold-rounded">endIndex</span>  shouldn't be smaller than <span class="bold-rounded">startIndex</span> for example. The <span class="bold-rounded">startIndex</span> input is:
+
+
+```javascript
+<input
+  type="number"
+  min={1}
+  // Guaranteed
+  max={endIndex}
+  value={startIndex}
+  onChange={(e) => onStartSelect(Number(e.target.value))}
+  className="pkmn-input text-center bg-white p-2"
+/>
+```
+
+<i> The full RangePicker</i> 
+
+```typescript
+interface RangePickerProps {
+
+  startIndex: number;
+  endIndex: number;
+  totalItems: number;
+  onStartSelect: (start: number) => void;
+  onEndSelect: (end: number) => void;
+}
+
+export default function RangePicker({startIndex,endIndex, totalItems, onStartSelect, onEndSelect}: RangePickerProps) {
+
+  
+    return (
+    <div className="range-picker">
+        <p className="my-1"> The range displayed should be from p{startIndex} to  p{endIndex}</p>
+
+        <input
+                type="number"
+                min={1}
+                max={endIndex}
+                value={startIndex}
+                onChange={(e) => onStartSelect(Number(e.target.value))}
+                className=" pkmn-input text-center bg-white  rounded p-2"
+            />
+        
+        <input
+                type="number"
+                min={startIndex}
+                max={totalItems}
+                value={endIndex}
+                onChange={(e) => onEndSelect(Number(e.target.value))}
+                className=" pkmn-input text-center bg-white border border-gray-300  p-2 "
+            />
+    
+      
+    </div>
+    )
+}
+
+```
+ 
+&nbsp;
+
+We can now complete our PokéDisplayer by integrating a <span class="bold-rounded">visiblePokemonImages</span> array which is the sliced <span class="bold-rounded"> pokemonImages</span> array according to the RangePicker range. The full code is:
+
+```typescript
+import {useState, useEffect} from "preact/hooks"
+import RangePicker from "./RangePicker"
+
+interface PokeProps {
+    folder_name: string
+}
+
+export default function PokeDisplayerV2( {folder_name}: PokeProps) {
+
+    // ... useEffect block here omitted
+
+    // Internally, the start index is 0, so -1
+    const visibleImages = pokemonImages.slice(startIndex-1, endIndex)
+    return (
+
+        
+        <div>
+
+            <RangePicker 
+                startIndex= {startIndex}
+                endIndex = {endIndex}
+                totalItems = {pokemonImages.length}
+                onStartSelect = {setStartIndex}
+                onEndSelect= {setEndIndex}
+             />
+
+             <div className="grid grid-cols-3 post-img-container my-2 ">
+
+            
+                {visibleImages.map((src, i) => (
+                <div className="my-2 mx-1 pkmn-container "> 
+                <img
+
+                    key={i}
+                    src={src}
+                    alt={`Pokémon image ${i}`}
+
+                />
+                </div>
+
+            ))}
+
+
+             </div>
+
+            
+            
+        </div>
+    )
+
+}
+
+```
+
+
+
+<PokeDisplayerV2 folder_name="pokemon" client:load/>
+
+
+
+&nbsp;
+
+
+## Creating a BubblePicker
+
+&nbsp;
+
+
+This is pretty <a class="secondary-a "href= "https://www.pngkey.com/maxpic/u2e6t4i1t4u2o0a9/">cool</a>, but what if I wanted to display the images without a range? For instance, If I have buttons labelled from 1 to 6, tapping 2; 5; 6 displays
+Bulbasaur, Totodile and Golbat. This is done with a number Set rather than a <span class="bold-rounded">startIndex</span> and <span class="bold-rounded">setIndex</span>. An array variation is also possible.
+
+&nbsp;
+
+To kick off <sup><a class="secondary-a" href="#footnotes">2.</a></sup>, we're going to create a <span class="bold-rounded">BubblePicker</span> component which renders as many buttons as images. To keep track of any tapped button i, we instantiate a Set of numbers in the PokéDisplayer. This way, we can pass an <span class="bold-rounded">onButtonClick</span> callback to the BubblePicker, which sends back the index of the tapped button to the PokéDisplayer.
+For clarity, the <span class="bold-rounded">BubblePicker</span> sends the index number argument to the main component, <span class="bold-rounded">PokéDisplayer</span> that handles Set operations. 
+
+&nbsp;
+
+
+<i> BubblePicker </i>
+```typescript
+
+interface BubblePickerProps {
+  totalItems: number;
+  idxSet: Set<number>
+  onButtonClick: (idx:number) => void;
+  
+}
+
+// We're also passing the idxSet to the child to add an active class to the tapped buttons.
+export default function BubblePicker({totalItems, idxSet, onButtonClick}: BubblePickerProps) {
+    return (
+    <div className="bubble-picker">
+      
+
+        {Array.from({length:totalItems}).map((_,i) => (
+
+            <button 
+            // We'll see the onButtonClick in the next snippet.
+            onClick = {(e) => onButtonClick(i)}
+            className={idxSet.has(i) ? "pkmn-active pkmn-button" : "pkmn-button"}  key={i}>{i+1}</button>
+        ))}       
+       
+    </div>
+    )
+}
+
+```
+
+In PokéDisplayer, we have our function <span class="bold-rounded">handleSetChanges</span> which modifies the <span class="bold-rounded">idxSet</span> by adding or removing the indices of the tapped buttons. It's straightforward, but to update the Set's state, we 
+have to make a <a class="secondary-a "href= "https://react.dev/learn/updating-objects-in-state">copy</a> of the <span class="bold-rounded">idxSet</span> before updating it. React state should be considered immutable as mentioned in the docs.
+```typescript
+// ... 
+const [idxSet, setIdxSet] = useState<Set<number>>(new Set());
+const handleSetChanges = (idx: number) => {
+    setIdxSet(prev => {
+        const next = new Set(prev);
+
+        if (next.has(idx)) {
+            next.delete(idx);
+        } else {
+            next.add(idx);
+        }
+
+        return next;
+    });
+}
+```
+
+The <span class="bold-rounded">pokemonImages</span> can now be filtered in relation to the <span class="bold-rounded">indexSet</span>.  Because we're using a Set and Array.filter (preserves the order), the original order of the images is preserved.
+
+```typescript
+import { useState, useEffect } from "preact/hooks"
+import BubblePicker from "./BubblePicker"
+
+interface PokeProps {
+    folder_name: string
+}
+
+export default function PokeDisplayerV3({ folder_name }: PokeProps) {
+
+    const [pokemonImages, setPokemonImages] = useState<string[]>([]);
+    const [idxSet, setIdxSet] = useState<Set<number>>(new Set());
+
+    // useEffectLogic
+
+    const handleSetChanges = (idx: number) => {
+        setIdxSet(prev => {
+            const next = new Set(prev);
+
+            if (next.has(idx)) {
+                next.delete(idx);
+            } else {
+                next.add(idx);
+            }
+
+            return next;
+        });
+    };
+
+    // Filter based on the indexSet
+    const visibleImages = pokemonImages.filter((_, i) => idxSet.has(i));
+
+    return (
+        <div>
+
+            <BubblePicker
+                totalItems={pokemonImages.length}
+                idxSet={idxSet}
+                // If there's only one parameter, no need to specify it.
+                onButtonClick={handleSetChanges}
+            />
+
+            <div className="grid grid-cols-3 post-img-container my-2">
+
+                {visibleImages.map((src, i) => (
+                    <div
+                        key={i}
+                        className="my-2 mx-1 pkmn-container"
+                    >
+                        <img
+                            src={src}
+                            alt={`Pokémon image ${i}`}
+                        />
+                    </div>
+                ))}
+
+            </div>
+
+        </div>
+    );
+}
+
+```
+
+
+All good. The source code is on my <a class="secondary-a "href= "https://github.com/Kangiriyanka/joe-farah-code-extras/tree/main/post-23">GitHub</a>.
+<PokeDisplayerV3 folder_name="pokemon" client:load/>
+
+
+
+&nbsp;
+
+
+
+## Footnotes
+
+&nbsp;
+
+
+1. In the the signature Array.from(items, mapFn), the items are an array-like object. An array-like object is one that has a length property. The \{length: 6} representing the items in the <span class="bold-rounded">loadPokemonImages</span> function creates the array [undefined, undefined, undefined, undefined, undefined, undefined] and the map function plugs the image URLs in.
+
+&nbsp;
+
+2. I was watching Norway vs England during the FWC2026 at the time this post was being written.

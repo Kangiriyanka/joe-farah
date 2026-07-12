@@ -3,16 +3,16 @@ layout: "@layouts/MarkdownPostLayout.astro"
 title: "Implementing an interactive directory"
 pubDate: 2026-06-28T19:53:13-04:00
 description: 'Making an interactive directory with React and Python'
-tags: ["python","drawing"]
+tags: ["python", "react", "drawing"]
 postSlug: 'post-21'
 ---
 
 
 
 
-import CategoryTree from '../../pcomponents/post21/CategoryTreeA.tsx';
-import CategoryTreeA from '../../pcomponents/post21/CategoryTree.tsx';
-
+import CategoryTree from '../../pcomponents/post21/CategoryTree.tsx';
+import CategoryTreeA from '../../pcomponents/post21/CategoryTreeA.tsx';
+import CategoryTreeB from '../../pcomponents/post21/CategoryTreeB.tsx';
 
 ## Intro 
 
@@ -46,7 +46,8 @@ For this demonstration, we'll process the data in a framework-agnostic Python ba
 
 &nbsp;
 
-For the sake of simplicity, categories have a name, an id and a parent_id which is the key property that establishes the relationship between the parent and child. The initial data given is a flat array of Category objects. Please note that the Category object has a custom print function and a <span class="bold-rounded">to_json</span> function allows us to extract the Category's properties object into a plain dictionary. This will help when we send data back to our browser.
+For the sake of simplicity, categories have a name, an id and a parent_id which is the key property that establishes the relationship between the parent and child. The initial data given is a flat array of Category objects.
+ Please note that the Category object has a custom print function and a <span class="bold-rounded">to_json</span> function allows us to extract the Category's properties object into a plain dictionary. This will help when we send data back to our browser.
 
 &nbsp;
 
@@ -350,44 +351,156 @@ return jsonify(nested)
 &nbsp;
 
 
-In this post, instead of receiving my JSON string through a GET request to a server, I'll plainly and directly use transformed category <a class="secondary-a "href= "https://github.com/Kangiriyanka/joe-farah-code-extras/blob/main/Python/categorydata.json"> data</a> to build a CategoryTree component. Here's a skeleton code
-we'll gradually modify as we figure out the constraints.
+Instead of receiving a JSON string through a GET request as shown above, I'll plainly and directly use transformed category <a class="secondary-a "href= "https://github.com/Kangiriyanka/joe-farah-code-extras/blob/main/post-21/categorydata.json"> data</a> to build a CategoryTree component. The skeleton code
+has an initial <span class="bold-rounded">TreeNode</span> component which has the Category and depth React props. The depth property here is useful to add colours based on our current depth. The top-level <span class="bold-rounded">TreeNodes</span> and all its children reside in the <u>category-tree-main-container</u> div. As we go further down the main tree, we'll see new subtrees be formed; they will be colored in the demonstration that follows.
+
+
 ```javascript
-
-interface CategoryTreeProps {
-  
-  // TO IMPLEMENT
-
+interface Category {
+  id: number;
+  name: string;
+  parent_id: number | null;
+  children: Category[];
 }
 
 interface TreeNodeProps {
-  // TO IMPLEMENT
-
+  cat: Category
+  depth: number;
 }
 
-function TreeNode() {
+function TreeNode({cat,depth}:TreeNodeProps) {
 
     return (
         // TO IMPLEMENT
     )
 }
 
+// Color based on the depth 
+const clr_map: Record<number, string> = {
+  0: "#3384ed",
+  1: "#308f4d",
+  2: "#ea6565",
+};
+
+
 export default function CategoryTree() {
   return (
-    <div className="flex gap-5">
+    // INITIAL MAIN TREE STARTS HERE
+    <div className="category-tree-main-container flex gap-2">
+
       {categorydata.map(cat => (
-        // Implement a TreeNode
+        
+         <TreeNode
+          key={cat.id}
+          cat={cat}
+          depth = {0}
+       
+        />
       ))}
     </div>
   );
 }
 ```
 
+### TreeNode and Flexbox
 
-<CategoryTree client:load/>
+&nbsp;
+
+Initially, we see the implementation of the <span class="bold-rounded">TreeNode</span> component which is a category's container.
+It has a button which conditionally renders the children <span class="bold-rounded">TreeNodes</span>. A <span class="bold-rounded">TreeNode</span> is a recursive structure that renders a subtree of <span class="bold-rounded">TreeNodes</span> when applicable. 
+Precisely, we render the children based on 2 conditions: if a user clicks a category node, and if that clicked node actually has children. All <span class="bold-rounded">TreeNodes</span> on a level exist within the same flex container, the subtree.
+
+
+ 
+
+&nbsp;
+
+<i> Children rendering logic handled by state variable  <span class="bold-rounded">isOpen</span> and the <span class="bold-rounded">hasChildren</span> property</i>  
+
+
+```javascript
+
+
+function TreeNode( {cat, depth}: TreeNodeProps) {
+
+ const [isOpen, setIsOpen] = useState(false)
+ const hasChildren = cat.children.length > 0;
+ const borderColor = clr_map[depth % Object.keys(clr_map).length];
+
+  return (
+    <div 
+    className=" w-[100%]"
+      
+    >
+     <span className="text-xs"> TreeNode </span>
+    {/* CATEGORY INFORMATION */}
+    <button 
+    onClick = {() => setIsOpen(prev => !prev)}
+    className= {`cursor-pointer bg-zinc-100 relative border-2  rounded-md w-[100%] text-black p-2 hover:bg-gray-400 transition-colors`}
+    >
+        <p> {cat.name} </p>
+
+        {/* ID LABEL */}
+        <div className="flex absolute -right-1 -top-2  text-sm  bg-zinc-100 text-black border-1  w-4 m-05 h-4 items-center justify-center  rounded-full"> 
+          {cat.id} 
+        
+        </div>
+    </button>
+
+  
+
+    {/* CHILDREN TREE NODES  */}
+    {hasChildren && isOpen  && ( 
+      // SUBTREES START HERE
+      // DISPLAY CHILDREN SIDE BY SIDE
+     
+      <div 
+      className=" subtree flex gap-2 mt-2"
+    >
+   
+      {cat.children.map(child => (
+        
+        <TreeNode 
+          key= {child.id}
+          cat = {child}
+          depth = {depth + 1}
+          />
+     
+      ))}
+      </div>
+    )}
+   
+    </div>
+  )
+}
+
+```
+
+&nbsp;
+
+This solution above uses Tailwind for styling and Flexbox to distribute the elements. There's more code in my <a class="secondary-a "href= "https://github.com/Kangiriyanka/joe-farah-code-extras/blob/main/post-21/CategoryTreeA.tsx">actual </a> solution, but I only wanted to cover the essential. If you toggle the Tree Visual Aid button below, you can discern the subtrees by the black borders and color on each level. 
+
+&nbsp;
+
+
+
+
 <CategoryTreeA client:load/>
+&nbsp;
 
 
+
+### TreeNode and SVG 
+
+&nbsp;
+
+I don't visually like the solution above because of the limitations of flexbox; the layout can expand or shrink based on the number of nodes.
+
+
+
+<CategoryTreeB client:load/>
+
+<h3 className="text-center"> Under construction </h3>
 
 &nbsp;
 

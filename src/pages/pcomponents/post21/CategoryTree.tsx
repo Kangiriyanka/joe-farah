@@ -38,7 +38,7 @@ function TreeNode( {cat, depth, selectedID, onSelect}: TreeNodeProps) {
   return (
 
     // Render the children if it has any and if we click it.
-    <div className=" ">
+    <div className="">
     <CategoryCard
         title={cat.name}
         isSelected={isSelected}
@@ -49,7 +49,7 @@ function TreeNode( {cat, depth, selectedID, onSelect}: TreeNodeProps) {
       />
 
     {hasChildren && isOpen && (
-        <div className="flex">
+        <div className="flex ">
           {cat.children.map(child => (
             <TreeNode
               key={child.id}
@@ -70,7 +70,7 @@ function TreeNode( {cat, depth, selectedID, onSelect}: TreeNodeProps) {
 
 export default function CategoryTree({onSelect, selectedID}: CategoryTreeProps) {
   return (
-    <div className="flex justify-around bg-blue-100 h-50  p-4 rounded-md border-1">
+    <div className="justify-around bg-blue-100 h-50  p-4 rounded-md border-1">
       {categorydata.map(cat => (
   
         <TreeNode
