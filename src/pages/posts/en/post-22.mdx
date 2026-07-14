@@ -7,10 +7,10 @@ tags: ["react", "programming"]
 postSlug: 'post-22'
 ---
 
-import "../../pcomponents/post23/pokemon.css";
-import PokeDisplayerV1 from "../../pcomponents/post23/PokeDisplayerV1.tsx";
-import PokeDisplayerV2 from "../../pcomponents/post23/PokeDisplayerV2.tsx";
-import PokeDisplayerV3 from "../../pcomponents/post23/PokeDisplayerV3.tsx";
+import "../../pcomponents/post22/pokemon.css";
+import PokeDisplayerV1 from "../../pcomponents/post22/PokeDisplayerV1.tsx";
+import PokeDisplayerV2 from "../../pcomponents/post22/PokeDisplayerV2.tsx";
+import PokeDisplayerV3 from "../../pcomponents/post22/PokeDisplayerV3.tsx";
 
 
 ## Intro
@@ -19,7 +19,7 @@ import PokeDisplayerV3 from "../../pcomponents/post23/PokeDisplayerV3.tsx";
 
 
 Today, we'll explore how to selectively display images based on a custom number range in React. For example, If I had a custom range picker going from 1 to my total number of images, setting 1 to 3 would show the first three images. This functionality comes in hand when memorizing an order of images or
-practicing parts of a song. It's a recurring theme in my apps, such as <a class="secondary-a "href= "https://joefarah.com/projects/segmance">Segmance</a>, to cut objects of study into small digestible steps.
+practicing parts of a song. It's a recurring theme in my apps, such as <a class="secondary-a "href= "https://joefarah.com/projects/segmance">Segmance</a>, to cut objects of study into small digestible units.
 
 &nbsp;
 
@@ -30,7 +30,7 @@ practicing parts of a song. It's a recurring theme in my apps, such as <a class=
 &nbsp;
 
 
-The JPEG images featured are Pokémon I doodled inspired from <a class="secondary-a "href= "https://en.wikipedia.org/wiki/Pok%C3%A9mon_Art_Academy">Pokémon Art Academy</a>. Assume they exist locally in <span class=" underline">public/</span> inside the hypothetical path below; this is where we'll fetch them:
+The JPEG images featured are Pokémon I doodled inspired from <a class="secondary-a "href= "https://en.wikipedia.org/wiki/Pok%C3%A9mon_Art_Academy">Pokémon Art Academy</a>. Assume they exist locally in <span class=" underline">public/</span> at the hypothetical path below; this is where we'll fetch them. They're also conveniently named p1,p2,p3 etc. for looping purposes.
 ```typescript
 // Path we'll utilize for the remainder of this post
 // * => p1.jpeg; p2.jpeg, etc.
@@ -98,8 +98,8 @@ const [endImage, setEndImage] = useState<number>(1);
 // TO-DO
 
 ```
-To access a local directory in React, we sparkle our code with  <span class="bold-rounded">useEffect</span>, which is a hook that fetches external data (API, local files, etc.) after components are rendered in the DOM. The idea is to loop through our pokémon directory and create an n-size array of the image paths. Now, we can't determine dynamically the number of image URLs to be fetched through the loop, thus we specify it in a different file. In the same directory containing our images, we create a manifest.json with a property <span class="bold-rounded">parts</span> representing the total number of images. That number will be used in the <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">Array.from()</a>. <sup><a class="secondary-a" href="#footnotes">1.</a></sup> function to setup <span class="bold-rounded">pokemonImages</span>.
-If we're using Vite, a better solution would have been <a class="secondary-a "href= "https://vite.dev/guide/features">import.meta.glob</a>, but it's not done in this post.
+To access a local directory in React, we sparkle our code with  <span class="bold-rounded">useEffect</span>, which is a hook that fetches external data (API, local files, etc.) after components are rendered to the DOM. The idea is to loop through our pokémon directory and create an n-size array of the image paths. Now, we can't determine dynamically the number of image URLs to be fetched through the loop, thus we specify it in a different file. In the same directory containing our images, we create a manifest.json with a property <span class="bold-rounded">parts</span> representing the predetermined number of images. That number will be used in the <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">Array.from()</a>. <sup><a class="secondary-a" href="#footnotes">1.</a></sup> function to setup <span class="bold-rounded">pokemonImages</span>.
+If we were using Vite, a better solution would have been  <a class="secondary-a "href= "https://vite.dev/guide/features">import.meta.glob</a>, but it's not done in this post.
 &nbsp;
 
 
@@ -188,7 +188,7 @@ export default function PokeDisplayerV1( {folder_name}: PokeProps) {
 &nbsp;
 
 Now that our array is filled, we build a custom range picker where we can pass our <span class="bold-rounded">startIndex</span>, <span class="bold-rounded">endIndex</span> and <span class="bold-rounded">totalItems</span> to a <span class="bold-rounded">RangePicker</span> component. This component will be rendered inside the PokéDisplayer. Whatever change happens inside the picker will be reflected in the parent component, therefore we also need
-to pass callbacks <span class="bold-rounded">onStartSelect</span>  and <span class="bold-rounded">onEndSelect</span>. These callbacks are simply the original set functions in our PokéDisplayer which track down any changes happening inside the picker. 
+to pass callbacks <span class="bold-rounded">onStartSelect</span>  and <span class="bold-rounded">onEndSelect</span>. These callbacks simplify refer to the original setState functions in our PokéDisplayer which track down any changes happening inside the picker. 
 
 &nbsp;
 
@@ -369,7 +369,7 @@ Bulbasaur, Totodile and Golbat. This is done with a number Set rather than a <sp
 &nbsp;
 
 To kick off <sup><a class="secondary-a" href="#footnotes">2.</a></sup>, we're going to create a <span class="bold-rounded">BubblePicker</span> component which renders as many buttons as images. To keep track of any tapped button i, we instantiate a Set of numbers in the PokéDisplayer. This way, we can pass an <span class="bold-rounded">onButtonClick</span> callback to the BubblePicker, which sends back the index of the tapped button to the PokéDisplayer.
-For clarity, the <span class="bold-rounded">BubblePicker</span> sends the index number argument to the main component, <span class="bold-rounded">PokéDisplayer</span> that handles Set operations. 
+For clarity, the <span class="bold-rounded">BubblePicker</span> sends the index number argument to the main component <span class="bold-rounded">PokéDisplayer</span> that handles Set operations. 
 
 &nbsp;
 
@@ -424,7 +424,7 @@ const handleSetChanges = (idx: number) => {
 }
 ```
 
-The <span class="bold-rounded">pokemonImages</span> can now be filtered in relation to the <span class="bold-rounded">indexSet</span>.  Because we're using a Set and Array.filter (preserves the order), the original order of the images is preserved.
+The <span class="bold-rounded">pokemonImages</span> can now be filtered in relation to the <span class="bold-rounded">indexSet</span>.  Because we're using a Set and Array.filter (preserves order), the original order of the images is intact.
 
 ```typescript
 import { useState, useEffect } from "preact/hooks"

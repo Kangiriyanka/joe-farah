@@ -29,6 +29,30 @@
 		"description": "A break tag"
 	},
 
+	"Line skipper": {
+
+		"prefix": ["sk"],
+		"body": "&nbsp;\n",
+		"description": "A tag for skipping lines",
+
+	},
+
+	"underline": {
+
+		"prefix": ["under"],
+		"body": "<u>$1</u>",
+		"description": "Underline tags",
+
+	},
+
+	"italic": {
+
+		"prefix": ["ital"],
+		"body": "<i>$2</i>",
+		"description": "Italic tags",
+
+	},
+
 	"Responsive media query": {
 		"prefix": "media",
 		"body": [
