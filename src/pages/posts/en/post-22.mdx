@@ -98,8 +98,8 @@ const [endImage, setEndImage] = useState<number>(1);
 // TO-DO
 
 ```
-To access a local directory in React, we sparkle our code with  <span class="bold-rounded">useEffect</span>, which is a hook that fetches external data (API, local files, etc.) after components are rendered to the DOM. The idea is to loop through our pokémon directory and create an n-size array of the image paths. Now, we can't determine dynamically the number of image URLs to be fetched through the loop, thus we specify it in a different file. In the same directory containing our images, we create a manifest.json with a property <span class="bold-rounded">parts</span> representing the predetermined number of images. That number will be used in the <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">Array.from()</a>. <sup><a class="secondary-a" href="#footnotes">1.</a></sup> function to setup <span class="bold-rounded">pokemonImages</span>.
-If we were using Vite, a better solution would have been  <a class="secondary-a "href= "https://vite.dev/guide/features">import.meta.glob</a>, but it's not done in this post.
+To access a local directory in React, we sparkle our code with  <span class="bold-rounded">useEffect</span>, which is a hook that fetches external data (API, local files, etc.) after components are rendered to the DOM. The idea is to loop through our pokémon directory and create an n-size array of the image paths. Now, we can't determine dynamically the number of image URLs to be fetched through the loop, thus we specify it in a different file. In the same directory containing our images, we create a manifest.json with a property <span class="bold-rounded">parts</span> representing the predetermined number of images. That number will be used in the <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/from">Array.from()</a> <sup><a class="secondary-a" href="#footnotes">1.</a></sup> function to setup <span class="bold-rounded">pokemonImages</span>.
+If we were using Vite, a wiser choice would have been  <a class="secondary-a "href= "https://vite.dev/guide/features">import.meta.glob</a>, but we'll skip it!
 &nbsp;
 
 
@@ -131,7 +131,7 @@ export default function PokeDisplayerV1( {folder_name}: PokeProps) {
     const [startIndex, setStartIndex] = useState<number>(1);
     const [endIndex, setEndIndex] = useState<number>(1);
 
-
+    // We fetch the # of parts to use it in our map. For looping, te image filenames are conveniently p + a digit.
     useEffect(() => {
     const loadPokemonImages = async () => {
 
@@ -150,6 +150,7 @@ export default function PokeDisplayerV1( {folder_name}: PokeProps) {
     };
 
     loadPokemonImages();
+    // Rerun the effect if we choose a different folder
     }, [folder_name]);
 
 
@@ -188,7 +189,7 @@ export default function PokeDisplayerV1( {folder_name}: PokeProps) {
 &nbsp;
 
 Now that our array is filled, we build a custom range picker where we can pass our <span class="bold-rounded">startIndex</span>, <span class="bold-rounded">endIndex</span> and <span class="bold-rounded">totalItems</span> to a <span class="bold-rounded">RangePicker</span> component. This component will be rendered inside the PokéDisplayer. Whatever change happens inside the picker will be reflected in the parent component, therefore we also need
-to pass callbacks <span class="bold-rounded">onStartSelect</span>  and <span class="bold-rounded">onEndSelect</span>. These callbacks simplify refer to the original setState functions in our PokéDisplayer which track down any changes happening inside the picker. 
+to pass callbacks <span class="bold-rounded">onStartSelect</span>  and <span class="bold-rounded">onEndSelect</span>. These callbacks simply refer to the original setState functions in our PokéDisplayer which signal any changes happening in the Picker to its parent.
 
 &nbsp;
 
@@ -199,6 +200,7 @@ to pass callbacks <span class="bold-rounded">onStartSelect</span>  and <span cla
   startIndex={startIndex}
   endIndex={endIndex}
   totalItems={pokemonImages.length}
+  {/* setStartIndex and setEndIndex inside PokéDisplayer are being passed here. */}
   onStartSelect={setStartIndex}
   onEndSelect={setEndIndex}
 />
@@ -238,7 +240,7 @@ a logical range;  <span class="bold-rounded">endIndex</span>  shouldn't be small
 <input
   type="number"
   min={1}
-  // Guaranteed
+  // Guaranteed the adequate range of the startIndex; it won't surpass the endIndex or be under 1.
   max={endIndex}
   value={startIndex}
   onChange={(e) => onStartSelect(Number(e.target.value))}
@@ -292,7 +294,7 @@ export default function RangePicker({startIndex,endIndex, totalItems, onStartSel
  
 &nbsp;
 
-We can now complete our PokéDisplayer by integrating a <span class="bold-rounded">visiblePokemonImages</span> array which is the sliced <span class="bold-rounded"> pokemonImages</span> array according to the RangePicker range. The full code is:
+We can now complete our PokéDisplayer by integrating a <span class="bold-rounded">visiblePokemonImages</span> array which is the sliced <span class="bold-rounded"> pokemonImages</span> array according to the RangePicker range. The partial code is:
 
 ```typescript
 import {useState, useEffect} from "preact/hooks"

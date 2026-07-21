@@ -1,3 +1,5 @@
+// DIFFERENT PERSPECTIVE: Removing the offset created from the current point to get our top left corner.
+
 import {useState, useRef} from "preact/hooks";
 
 interface Sheet {    
@@ -10,18 +12,18 @@ interface Sheet {
 }
 
 interface DragData {
-  startMouseX: number;
-  startMouseY: number;
+  offsetX: number;
+  offsetY: number;
 }
 
-export default function SheetV3() {
+export default function SheetV2() {
 
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [sheet, setSheet] = useState<Sheet>( 
      {
-       x: 10,
-       y: 10,
+       x: 20,
+       y:10,
        w: 150,
        h: 75,
        color: "#3384ed",
@@ -33,16 +35,18 @@ export default function SheetV3() {
 
   
    const handleMouseDown = (e: MouseEvent) => {
-
+  
     e.preventDefault()
     if (!containerRef.current) return;
+     const rect = containerRef.current.getBoundingClientRect();
+
 
   
 
       dragData.current = {
   
-      startMouseX: e.clientX,
-      startMouseY: e.clientY
+      offsetX: e.clientX - rect.left-sheet.x,
+      offsetY: e.clientY -rect.top - sheet.y
     };
 
     setIsDragging(true)
@@ -56,25 +60,30 @@ export default function SheetV3() {
    }
 
    const handleMouseMove = (e: MouseEvent) => {
-
+    // We defined <DragData | null>, so we make sure it's not null before we access it.
+    // We also need to check if the container ref because we declared in the type that it could be null.
     if (dragData.current && containerRef.current ) {
 
-      const { startMouseX, startMouseY } = dragData.current;
+      
 
-      const rawX = sheet.x + e.clientX - startMouseX 
-      const rawY = sheet.y + e.clientY - startMouseY 
+      const { offsetX, offsetY } = dragData.current;
+      const rect = containerRef.current.getBoundingClientRect();
 
-      const clampedX = Math.max(0, rawX);
-      const clampedY = Math.max(0, rawY);
+      const rawX =  e.clientX - offsetX 
+      const rawY = e.clientY - offsetY
+      const clampedX = Math.max(0, Math.min(rawX, rect.width - sheet.w));
+      const clampedY = Math.max(0, Math.min(rawY, rect.height - sheet.h))
       
       setSheet( prev => ({
-        ...prev,
-        x: clampedX,
-        y: clampedY
-      }))
-    }
-  
+      
+    
 
+      ...prev,
+      x: clampedX,
+      y: clampedY
+      }))
+      
+  }
 
   
 
@@ -97,16 +106,14 @@ export default function SheetV3() {
 
      <div 
      ref={containerRef}
-     class="outer-container flex flex-col justify-between relative h-50 border-1 "> 
-   
-
+     class="outer-container relative h-40 border-1 "> 
      <div 
 
        className="sheet"
        onMouseDown = {(e) => handleMouseDown(e)}
        style = {{
-        // Relative only works if there's nothing before the element
-         position: "absolute",
+        // Both absolute or relative here because we're only adding distances to the viewport 
+         position: "relative",
          left: sheet.x,
          top: sheet.y,
          width: sheet.w,
@@ -125,9 +132,7 @@ export default function SheetV3() {
     
      </div>
 
-      <p style={{fontSize: "24px"}} className="relative  z-2  text-center mt-auto">
-        Hover over the <span className="text-[#3384ed]">blue text</span> to <span className="text-[#3384ed]">hide </span>it
-      </p>
+      <p className="relative text-lg z-50 text-center"> Drag across the <span className="text-[#3384ed]">blue text </span> </p>
 
    
      </div>

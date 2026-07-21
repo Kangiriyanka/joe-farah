@@ -14,7 +14,7 @@ interface DragData {
   startMouseY: number;
 }
 
-export default function SheetV3() {
+export default function SheetVF() {
 
   const [isDragging, setIsDragging] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -56,25 +56,30 @@ export default function SheetV3() {
    }
 
    const handleMouseMove = (e: MouseEvent) => {
-
+    // We defined <DragData | null>, so we make sure it's not null before we access it.
+    // We also need to check if the container ref because we declared in the type that it could be null.
     if (dragData.current && containerRef.current ) {
 
+      
+
       const { startMouseX, startMouseY } = dragData.current;
+      const rect = containerRef.current.getBoundingClientRect();
 
       const rawX = sheet.x + e.clientX - startMouseX 
       const rawY = sheet.y + e.clientY - startMouseY 
-
-      const clampedX = Math.max(0, rawX);
-      const clampedY = Math.max(0, rawY);
+      const clampedX = Math.max(0, Math.min(rawX, rect.width - sheet.w));
+      const clampedY = Math.max(0, Math.min(rawY, rect.height - sheet.h))
       
       setSheet( prev => ({
-        ...prev,
-        x: clampedX,
-        y: clampedY
-      }))
-    }
-  
+      
+    
 
+      ...prev,
+      x: clampedX,
+      y: clampedY
+      }))
+      
+  }
 
   
 
@@ -125,7 +130,7 @@ export default function SheetV3() {
     
      </div>
 
-      <p style={{fontSize: "24px"}} className="relative  z-2  text-center mt-auto">
+      <p style={{fontSize: "24px"}} className="relative  z-2 mt-auto   text-center">
         Hover over the <span className="text-[#3384ed]">blue text</span> to <span className="text-[#3384ed]">hide </span>it
       </p>
 

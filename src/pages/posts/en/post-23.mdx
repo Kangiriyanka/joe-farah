@@ -7,17 +7,23 @@ tags: ["react", "programming"]
 postSlug: 'post-23'
 ---
 
+{/* Proofread on Jul 16, 20:43 EST */}
+
 ## Intro 
 
 
 import SheetV1 from "../../pcomponents/post23/SheetV1.tsx"
 import SheetV2 from "../../pcomponents/post23/SheetV2.tsx"
 import SheetV3 from "../../pcomponents/post23/SheetV3.tsx"
+import SheetVF from "../../pcomponents/post23/SheetVF.tsx"
+import MultipleSheets from "../../pcomponents/post23/MultipleSheets.tsx"
+
+
 
 
 &nbsp;
 
-Have you ever seen <a class="secondary-a "href= "https://www.amazon.co.jp/-/en/Memorization-Sheets-Green-Piece-Underlay/dp/B0FMQSCKMG/357-5314039-3699264?pd_rd_w=PZTBB&content-id=amzn1.sym.289d93c5-bb87-47e6-b56c-76ff89f5333d&pf_rd_p=289d93c5-bb87-47e6-b56c-76ff89f5333d&pf_rd_r=ZM1BFMRZFMNP545FQTYM&pd_rd_wg=fXl7F&pd_rd_r=a586491f-4db7-426d-8906-dd857666c27f&pd_rd_i=B0FMQSCKMG&psc=1">coloured memorization sheets</a>? Some Japanese vocabulary books I've seen mark the key terms in red or green, so upon sliding identical-coloured sheets on top of them, they disappear! This post replicates those sheets in code through rectangle overlays we'll be rendering in React.
+Have you ever seen <a class="secondary-a "href= "https://www.amazon.co.jp/-/en/Memorization-Sheets-Green-Piece-Underlay/dp/B0FMQSCKMG/357-5314039-3699264?pd_rd_w=PZTBB&content-id=amzn1.sym.289d93c5-bb87-47e6-b56c-76ff89f5333d&pf_rd_p=289d93c5-bb87-47e6-b56c-76ff89f5333d&pf_rd_r=ZM1BFMRZFMNP545FQTYM&pd_rd_wg=fXl7F&pd_rd_r=a586491f-4db7-426d-8906-dd857666c27f&pd_rd_i=B0FMQSCKMG&psc=1">coloured memorization sheets</a>? Some Japanese vocabulary books I've seen highlight the key terms of study in red or green, so upon sliding identical-coloured sheets on top of them, they disappear!  This post replicates those sheets in code through rectangle overlays generated in React.
 
  
 
@@ -32,20 +38,19 @@ Have you ever seen <a class="secondary-a "href= "https://www.amazon.co.jp/-/en/M
 
 &nbsp;
 
-Our initial goal is to render a rectangle and drag it across the viewport. We rely on the MouseEvents below. 
+Our rudimentary goal is to draw a rectangle, a sheet, and drag it across the viewport. We rely on the MouseEvents below. 
 
 &nbsp;
 
 
 
-1. The <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event" >mousemove</a> Event. This event fires when  moving our cursor across the screen.
+1. The <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/Element/mousemove_event" >mousemove</a> Event. This event fires when  moving our cursor.
 
 2. The <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/Element/mousedown_event">mousedown </a> Event. This event fires when clicking on an HTML element. The <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/Element/mouseup_event">mouseUp</a> is its counterpart.
 
 &nbsp;
 
-We can pass handler functions, callbacks, to these MouseEvents to make any necessary calculations that suit our needs. In our case, we'll want to calculate the positions before and after an element has been dragged.
-They're also packed with relevant properties like  <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/clientX">clientX</a>: the X coordinate within the viewport. I promise we'll see them in action. 
+We pass handler functions, callbacks, to these MouseEvents to make any necessary calculations that suit our needs. In our case, we'll want to calculate mouse positions before and after an element has been dragged. On a final note for this section, mouse positions relative to the viewport are given by <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent/clientX">clientX</a>: the X coordinate relative to the viewport. 
 
 &nbsp;
 
@@ -56,7 +61,7 @@ They're also packed with relevant properties like  <a class="secondary-a "href= 
 
 
 Our starter code includes a Sheet interface which holds the information of a div Element's position, dimensions and colours. We create a <span class="bold-rounded">sheet</span> state variable and assign it a Sheet object.
-Its properties are then given to the style Attribute of our target element.
+Its properties are then given to the style Attribute of our target element. 
 ```typescript
 // x and y are the positions from the top left corner
 // w and h are the width and height
@@ -87,9 +92,10 @@ export default function Sheet() {
     
 
    return (
-     <div className="outer-container">
+    
      <div 
        className="sheet mx-auto"
+      //  Styles are obtained from the sheet object
        style = {{
          left: sheet.x,
          top: sheet.y,
@@ -103,7 +109,7 @@ export default function Sheet() {
          Cannot be dragged.
        </p>
      </div>
-     </div>
+  
 
    )
 
@@ -111,7 +117,14 @@ export default function Sheet() {
 
 ```
 
-<i>Undraggable sheet</i>
+
+
+
+&nbsp;
+
+<i>Result: a Sheet that cannot be dragged</i>
+
+&nbsp;
 
 <SheetV1 client:load/>
 
@@ -119,16 +132,27 @@ export default function Sheet() {
 &nbsp;
 
 
-## Click, Drag, Release
+## Drag Scheme
 
 &nbsp;
 
-The next step is making that sheet above draggable. Once we click the sheet, we need to register its initial position and start tracking any cursor movement. We'll need to establish a system of functions that link the <u>mouseDown</u>, <u>mouseMove</u>, and <u>mouseUp</u> Events or simply put: click, drag, release. Before moving on, all calculations will be relative to the viewport where the HTML coordinate system starts at the top left corner. Precisely, moving right increases x and moving down increases y.
+### Click: (startMouseX, startMouseY)
+&nbsp;
+
+
+Let's make the sheet draggable; we'll need to establish a system of functions that link <u>mouseDown</u>, <u>mouseMove</u>, and <u>mouseUp</u> Events. In simple terms, it's a click, drag and release.
+For reference, we'll work under the viewport coordinate system where the top-left corner is the origin (0,0). Bear in mind that moving right increases x and moving down increases y in the HTML world.
 
 &nbsp;
 
-The first stage involves keeping track of our initial click position. We create a <span class="bold-rounded">DragData</span>  <a class="secondary-a "href= "https://www.typescriptlang.org/docs/handbook/2/objects.html">type</a> to which we initialize a <a class="secondary-a "href= "https://react.dev/reference/react/useRef">ref</a> object that holds its kind. We use a ref because its information is only used for calculations and doesn't need to trigger re-renders. A simpler explanation is clicking  <sup><a class="secondary-a" href="#footnotes">1.</a></sup> The data stored on the initial click will
-be the offset from the original sheet position to a point clicked inside of it.  It's also where event Listeners  <span class="bold-rounded">mousemove</span> and <span class="bold-rounded">mouseup</span> will be added. 
+Adding a <span class="bold-rounded">onmousedown</span> attribute to our sheet (div), the first stage involves storing the coordinates of our initial mouse click on the sheet: <span class="bold-rounded">startMouseX</span> and <span class="bold-rounded">startMouseY</span>. We create a <span class="bold-rounded">DragData</span>  <a class="secondary-a "href= "https://www.typescriptlang.org/docs/handbook/2/objects.html">type</a> to which we initialize a <a class="secondary-a "href= "https://react.dev/reference/react/useRef">ref</a> object that holds its kind. We use a ref because its information is only used for calculations and doesn't need to trigger re-renders. <sup><a class="secondary-a" href="#footnotes">1.</a></sup>
+
+
+&nbsp;
+
+The <span class="bold-rounded">onmousedown</span>'s event handler, <span class="bold-rounded">handleMouseDown</span>, on top of holding the start coordinates through<span class="bold-rounded">dragData</span> ref, <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener">adds</a> the event listeners and their handler functions for tracking cursor movement and its release. In the next section, we'll explore how to handle changing the position of the sheet with the <span class="bold-rounded">handleMouseMove</span> handler. 
+
+
 
 &nbsp;
 
@@ -145,8 +169,8 @@ const dragData = useRef<DragData | null>(null);
 
 const handleMouseDown = (e: MouseEvent) => {
     dragData.current = {
-      offsetX: e.clientX - sheet.x,
-      offsetY: e.clientY - sheet.y
+      startMouseX: e.clientX,
+      startMouseY: e.clientY
     };
 
     // handleMouseMove and handleMouse up will be shown later.
@@ -162,62 +186,87 @@ const handleMouseDown = (e: MouseEvent) => {
 // ...
 ```
 
-### Dragging vs positioning
-&nbsp;
-
- Assume your sheet's top left corner  sits at (100,100) initially relative to the viewport. 
-     Tapping 70px from the top left of the sheet will give us <span class="bold-rounded ">(e.clientX, e.clientY) = (170,170)</span>, the initial dragging point. Now, here's an important distinction:
-
-     <p class="text-center my-2 text-[#308f4d]"> We drag from point where the user clicked, but we position the element using its top-left corner.</p>
-     
-    Precisely, if we drag the sheet from P1: (170,170) to  P2: (200,400), we need to readjust the sheet's top-left position  by subtracting the original offset between the sheet's top-left corner and the point where the user clicked <u>within the sheet </u>.
-    Without calculating these offsets, every drag would cause the sheet's top-left corner to automatically teleport to the cursor. It's better seen in the figure below:
-&nbsp;
 
 &nbsp;
 
+
+&nbsp;
+
+### Unbound Dragging
+
+&nbsp;
+
+
+
+We can change the sheet's position in different ways according to our end goal: we can either allow our sheet to be dragged anywhere across the viewport or restrain it to an arbitrary container, namely not allowing the sheet to go outside the bounds of its container. In all cases, our sheet has <span class="bold-rounded">position:relative</span>, so its top-left corner given by  <span class="bold-rounded">top</span> and <span class="bold-rounded">left</span> is always being moved by the distance created from the clicked point to the dragged point. All I'm trying to say is don't consider the top and left attributes as exact coordinates, but rather relative distances.
+
+&nbsp;
+
+The first way involves calculating the distance (Δx,Δy) the mouse moved between two points on the (X,Y) axes, and moving the sheet's top left corner accordingly. In our <span class="bold-rounded">handleMouseDown</span> handler, we registered the initial x,y coordinates of the cursor as <span class="bold-rounded">startMouseX</span> and <span class="bold-rounded">startMouseY</span>. Those are utilized in the event handler for <span class="bold-rounded">mousemove</span>, <span class="bold-rounded">handleMouseMove</span>, which adjusts the position of the top-left corner with the new coordinates of the dragged point.
+Essentially, once we finish dragging our cursor to a new point, we subtract the start coordinates from the current ones (clientX2, clientY2), and move the top left corner by the result. For reference, the figure below demonstrates this with the orange lines.
+
+
+&nbsp;
+
+<i>Figure 1: Getting the deltas of our initial and end mouse positions</i>
 
 <div class="post-img-container  p-1">
 
-![Mousedown Event](../../../assets/post_images/mousedown.jpg)
-<p className="text-center my-2">Figure 1: Calculating offsets and storing them in DragData</p>
+![Unbound Dragging](../../../assets/post_images/vpdrag.jpg)
 </div>
 
+
+
 &nbsp;
 
-### Mousemove and Mouseup
-&nbsp;
+To update the sheet's position, we create a new one by shallow copying the original's properties with the spread operator and correcting the position with our deltas from the formulas in the figure 1. The <span class="bold-rounded">handleMouseup</span> has a cleanup role, it removes the event listeners and resets everything.
 
-The event handler for <span class="bold-rounded">mousemove</span>, <span class="bold-rounded">handleMouseMove</span>, is in charge of adjusting the position of the top-left corner of our sheet as shown in the blue text explanation in Figure 1.
-To update the sheet's position, we create a new one by shallow copying its properties with the spread operator and correcting the position with the offset from <span class="bold-rounded">DragData</span>.  <span class="bold-rounded">handleMouseup</span> has a cleanup role, it removes the event listeners and resets the offset to null. Essentially, this is the drag and release.
+&nbsp;
 
 ```typescript
-
 const handleMouseMove = (e: MouseEvent) => {
-    if (dragData.current) {
+  // We defined <DragData | null>, so we make sure it's not null before we access it.
+  if (dragData.current) {
+    const { startMouseX, startMouseY } = dragData.current;
 
-      const { offsetX, offsetY } = dragData.current;
-      setSheet((prev) => ({
-        ...prev,
-        x: e.clientX - offsetX,
-        y: e.clientY - offsetY,
-      }));
-        
-    }
+    setSheet(prev => ({
+      // The sheet's position moves by the delta of the mouse
+      ...prev,
+      x: sheet.x + (e.clientX - startMouseX),
+      y: sheet.y + (e.clientY - startMouseY),
+    }));
+  }
+};
+
 const handleMouseUp = () => {
+  dragData.current = null;
+  
 
-    // The next point we drag the sheet from could be different!
-    dragData.current = null;
-    document.removeEventListener("mousemove", handleMouseMove);
-    document.removeEventListener("mouseup", handleMouseUp);
-  };
+  document.removeEventListener("mousemove", handleMouseMove);
+  document.removeEventListener("mouseup", handleMouseUp);
+};
 
 ```
-
-Here's the full code. I added a <span class="bold-rounded">isDragging</span> state to change the cursor image to a hand grab.
 &nbsp;
 
+Here's the full code with some modifications:
+
+
+
+&nbsp;
+
+1.  I threw in a  <span class="bold-rounded">isDragging</span> state to change the cursor image to a hand grab. 
+2. I added the option to disable default highlighting on click and drag. With <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/Event/preventDefault">preventDefault()</a>, dragging the sheet on text will not highlight it.
+3. I've made a stacking context (relative + z-index shenanigans) to make the blue sheet slide under my **p** tag. You'll also notice that the sheet goes over the text of this post, the reason being that they're in different contexts. 
+&nbsp;
+
+&nbsp;
+
+
+<i>Full code with touch-ups. If you'd like, drag he blue sheet below to your heart's desire.</i>
+
 ```typescript
+// Unbound dragging
 import {useState, useRef} from "preact/hooks";
 
 interface Sheet {    
@@ -230,147 +279,261 @@ interface Sheet {
 }
 
 interface DragData {
-  offsetX: number;
-  offsetY: number;
+  startMouseX: number;
+  startMouseY: number;
 }
 
 export default function SheetV2() {
 
   const [isDragging, setIsDragging] = useState(false);
-   const [sheet, setSheet] = useState<Sheet>( 
-     {
-       x: 0,
-       y:0,
-       w: 150,
-       h: 75,
-       color: "#3384ed",
-       opacity: 1
-     }
-   )
+  const [disableHighlight, setDisableHighlight] = useState(false)
 
-   const dragData = useRef<DragData | null>(null);
+  const [sheet, setSheet] = useState<Sheet>( 
+    {
+      x: 0,
+      y: 0,
+      w: 250,
+      h: 150,
+      color: "#3384ed",
+      opacity: 1
+    }
+  );
 
-  
-   const handleMouseDown = (e: MouseEvent) => {
-   
+  const dragData = useRef<DragData | null>(null);
 
-       dragData.current = {
-  
-      offsetX: e.clientX - sheet.x,
-      offsetY: e.clientY - sheet.y
+  const handleMouseDown = (e: MouseEvent) => {
+
+    {disableHighlight ? e.preventDefault() : ""}
+
+    dragData.current = {
+      startMouseX: e.clientX,
+      startMouseY: e.clientY
     };
 
-    setIsDragging(true)
-
+    setIsDragging(true);
 
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
-   
+  };
 
-
-   }
-
-   const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = (e: MouseEvent) => {
     // We defined <DragData | null>, so we make sure it's not null before we access it.
     if (dragData.current) {
 
-      const { offsetX, offsetY } = dragData.current;
-      
-      setSheet( prev => ({
-      
-    
+      const { startMouseX, startMouseY } = dragData.current;
 
-      ...prev,
-      x: e.clientX - offsetX, 
-      y: e.clientY - offsetY 
-      }))
-      
-  }
+      setSheet(prev => ({
 
-   
-        
+        // The sheet's position moves by the delta of the mouse 
+        ...prev,
+        x: sheet.x + (e.clientX - startMouseX),
+        y: sheet.y + (e.clientY - startMouseY)
+
+      }));
     }
+  };
 
-   const handleMouseUp = () => {
+  const handleMouseUp = () => {
     dragData.current = null;
-    setIsDragging(false)
-    
+    setIsDragging(false);
+
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", handleMouseUp);
   };
-    
-    
 
+  return (
 
-   return (
+    <div className="relative">
 
-     <div class="outer-container relative h-40 border-1 p-3"> 
-     <div 
+      <div className="flex items-center justify-between border-b-1 border-dashed mb-10 p-2">
+        Toggling the disable button to prevent any highlights on text.
 
-       className="sheet"
-       onMouseDown = {(e) => handleMouseDown(e)}
-       style = {{
-         position: "absolute",
-         left: sheet.x,
-         top: sheet.y,
-         width: sheet.w,
-         height: sheet.h,
-         background: sheet.color, 
-         opacity: sheet.opacity,
-         userSelect: "none",
-         zIndex: 1,
-         cursor: isDragging  ? "grabbing" : "grab",
-         
-         
-       }}
-     >  
-    
-     </div>
+        <button  
+          className="cursor-pointer hover:bg-gray-200 transition-colors border-1 p-0.5 rounded-md"
+          style={{background: disableHighlight ? "#3384ed87" : ""}}
+          onClick={() => setDisableHighlight(prev => !prev)}
+        >
+          Disable highlighting
+        </button>
+      </div>
 
-      <p className="relative text-lg z-50 text-center"> Drag across the <span className="text-[#3384ed]">blue text </span> </p>
+      <div 
 
-   
-     </div>
+        className="sheet"
 
-   )
+        // camelCase due to JSX syntax, normally onmousedown
+        onMouseDown={(e) => handleMouseDown(e)}
 
+        style={{
+          position: "relative",
+          left: sheet.x,
+          top: sheet.y,
+          width: sheet.w,
+          height: sheet.h,
+          background: sheet.color, 
+          opacity: sheet.opacity,
+          userSelect: "none",
+          zIndex: 1,
+          cursor: isDragging ? "grabbing" : "grab",
+        }}
+
+      >
+
+      </div>
+
+      <p style={{fontSize: "24px"}} className="relative mt-5 z-2 text-center">
+        Hover over the <span className="text-[#3384ed]">blue text</span> to <span className="text-[#3384ed]">blue text</span>
+      </p>
+
+    </div>
+
+  );
 }
 ```
 
 
-&nbsp;
-
-I've added a stacking context with z-indices to the paragraph and sheet inside the outer-container in the interest of having the sheet behind the text. 
-
-&nbsp;
-
-On drag, we observe that: 
-
-&nbsp;
-
-1. Sliding the sheet on the blue text to make it disappear. 
-2. The sheet can be dragged outside the black-bordered outer container, because we're working with the viewport coordinates <span class="bold-rounded">clientX</span> and <span class="bold-rounded">clientY</span> to calculate the sheet's position.
-3. Dragging the sheet on the text will highlight the text, because this is the default browser behavior.
-&nbsp;
 
 
 &nbsp;
 
+
+&nbsp;
 
 <SheetV2 client:load/>
 
 &nbsp;
 
 
-### getBoundingClientRect()
+### Restrained dragging
 
 &nbsp;
 
-For completeness sake, let's restrain the blue sheet to its outer container. To do so, we need the x and y coordinates of the outer container relative to the viewport. These are obtained with the <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect">getBoundingClientRect</a> API, which only works on DOM elements. To manipulate the DOM directly in React, we'll tag our outer-container with a  <span class="bold-rounded">containerRef</span> to <a class="secondary-a "href= "https://react.dev/learn/manipulating-the-dom-with-refs">access</a> it.
+With unbound dragging, the sheet can go anywhere on the screen, but what if we wanted to restrain it to a container? We proceed with similar logic anew, except this time we must change the sheet's position to <span class="bold-rounded">absolute</span> and ensure mathematically that it respects its parents bounds. We'll make use of the 
+the <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect">getBoundingClientRect</a> API. With the <span class="bold-rounded">rect.width</span>, <span class="bold-rounded">rect.height</span>, we'll construct a formula that clamps our coordinates to prevent our sheet from escaping its captor. 
+
 
 &nbsp;
 
-<i>Tagging the outer-container, a lot of code left out for clarity</i>
+<i>Figure 2: How to clamp the coordinates?</i>
+
+&nbsp;
+
+
+<div class="post-img-container  p-1">
+
+![Restrained Dragging](../../../assets/post_images/containervp.jpg)
+</div>
+
+&nbsp;
+
+In the figure above, the sheet is being dragged to a point inside the outer-container, 
+so the <span class="bold-rounded">rawX</span> and <span class="bold-rounded">rawY</span> are in range<sup><a class="secondary-a" href="#footnotes">2.</a></sup>, 
+however let's solve the problem when this is not the case. Remember that because we're in absolute positiong, the coordinates represent relative distances of the sheet from the outer-container's top left corner.
+
+
+&nbsp;
+
+1. Negative positions: 
+
+&nbsp;
+
+
+A negative <span class="bold-rounded">rawX</span> or <span class="bold-rounded">rawY</span> in this paradigm means that it can go past the outer-container's top and left bounds.
+We prevent this by transforming them back to 0.
+
+
+&nbsp;
+
+<i>Figure 3: Transforming negative positions back to 0</i>
+
+&nbsp;
+
+<div class="post-img-container  p-1">
+
+![Negative coordinates](../../../assets/post_images/negativecoords.jpg)
+</div>
+
+&nbsp;
+
+The preliminary changes in <a class="secondary-a "href= "https://github.com/Kangiriyanka/joe-farah-code-extras/blob/main/post-22/SheetV3.tsx">code</a> affect the <span class="bold-rounded">handleMouseMove</span> handler and the sheet's position attribute. Only the handler is shown here.
+
+```typescript
+
+  /// ... Alot of code omitted
+  const handleMouseMove = (e: MouseEvent) {
+
+    if (dragData.current && containerRef.current ) {
+
+      const { startMouseX, startMouseY } = dragData.current;
+
+      const rawX = sheet.x + e.clientX - startMouseX 
+      const rawY = sheet.y + e.clientY - startMouseY 
+
+      // Transforming negatives to 0.
+      const clampedX = Math.max(0, rawX));
+      const clampedY = Math.max(0, rawY));
+      
+      setSheet( prev => ({
+        ...prev,
+        x: clampedX,
+        y: clampedY
+      }))
+    }
+  }
+```
+
+&nbsp;
+
+Cool, we can no longer drag the sheet past the left and top bounds of the outer container. But wait, we can certainly go past the bottom and right bounds as those positions are still considered positive in the HTML convention. 
+
+
+&nbsp;
+
+<i>The sheet still goes past the right and bottom edges...</i>
+<SheetV3 client:load/>
+
+&nbsp;
+
+
+
+This means we need to also limit
+the sheet from going past the right and bottom bounds. This is where the <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/Element/getBoundingClientRect">getBoundingClientRect</a> comes into play as we'll need the outer-container's width and height for calculations. Conveniently, the API directly gives the bounding box of the outer-container with its padding and margins, which means we don't have to manually insert them in our code.
+Furthermore, to use browser DOM APIs, we need to tag the outer-container (div) with a <a class="secondary-a "href= "https://react.dev/learn/manipulating-the-dom-with-refs">ref</a> attribute, <span class="bold-rounded">containerRef</span>. 
+
+&nbsp;
+
+To set the remaining limits, we can subtract the sheet's width from the<span class="bold-rounded">rect.width</span>, and the sheet's height from the <span class="bold-rounded">rect.height</span> to obtain our max positions. Visually, it's more convincing:<sup><a class="secondary-a" href="#footnotes">3.</a></sup>
+
+&nbsp;
+
+
+<i>Figure 4: Subtracting the outer-container's dimensions from the sheet dimensions to block the sheet on the right and bottom</i>
+
+&nbsp;
+
+
+<div class="post-img-container  p-2">
+
+![Respecting the bottom right bounds](../../../assets/post_images/bottomrightcoords.jpg)
+</div>
+
+
+&nbsp;
+
+
+Adding the negative constraint obtained earlier, the formula then becomes:
+
+<div class=" flex flex-col text-center border-1 rounded-md ">
+<p> const clampedX = Math.max(0, Math.min(rawX, rect.width - sheet.w)); </p>
+<p>const clampedY = Math.max(0, Math.min(rawY, rect.height - sheet.h)); </p>
+</div>
+
+
+
+
+&nbsp;
+
+<i>Tagging the outer-container with a ref</i>
 ```typescript
 
 //... 
@@ -378,11 +541,12 @@ const containerRef = useRef<HTMLDivElement>(null);
 //... 
 <div
   ref={containerRef}
-  className="outer-container relative h-40 border-1 p-3"
+  className="outer-container"
 >
   <div
     className="sheet"
     onMouseDown={(e) => handleMouseDown(e)}
+    // 
     style={{
       position: "absolute",
       left: sheet.x,
@@ -401,49 +565,20 @@ const containerRef = useRef<HTMLDivElement>(null);
 
 ```
 
-We adapt our click,drag, and release functions in consequence: 
-
 &nbsp;
 
-
-1. handleMouseDown: the o<span class="bold-rounded">e.preventDefault()</span> added to prevent the default highlighting behaviour.
-
+<i>Modifying handleMouseMove again</i>
 ```typescript
-
-const handleMouseDown = (e: MouseEvent) => {
-  // Prevent the highlighting when dragging the rectangle
-  e.preventDefault();
-
-  if (!containerRef.current) return;
-
-  const rect = containerRef.current.getBoundingClientRect();
-
-  dragData.current = {
-    offsetX: e.clientX - rect.left - sheet.x,
-    offsetY: e.clientY - rect.top - sheet.y,
-  };
-
-  setIsDragging(true);
-
-  document.addEventListener("mousemove", handleMouseMove);
-  document.addEventListener("mouseup", handleMouseUp);
-};
-```
-
-2. handleMouseMove
-
-
-```typescript
-
+// A lot of code omitted...
 const handleMouseMove = (e: MouseEvent) => {
   // We defined <DragData | null>, so we make sure it's not null before we access it.
   // We also need to check if the container ref because we declared in the type that it could be null.
   if (dragData.current && containerRef.current) {
-    const { offsetX, offsetY } = dragData.current;
+    const { startMouseX, startMouseY } = dragData.current;
     const rect = containerRef.current.getBoundingClientRect();
 
-    const rawX = e.clientX - offsetX - rect.left;
-    const rawY = e.clientY - offsetY - rect.top;
+    const rawX = sheet.x + e.clientX - startMouseX;
+    const rawY = sheet.y + e.clientY - startMouseY;
 
     const clampedX = Math.max(0, Math.min(rawX, rect.width - sheet.w));
     const clampedY = Math.max(0, Math.min(rawY, rect.height - sheet.h));
@@ -456,13 +591,17 @@ const handleMouseMove = (e: MouseEvent) => {
   }
 };
 
+
 ```
+
+The code for this section is <a class="secondary-a "href= "https://github.com/Kangiriyanka/joe-farah-code-extras/blob/main/post-22/SheetVF.tsx">here</a>.
 
 &nbsp;
 
-<SheetV3 client:load/>
 
 
+<i>We've trapped the sheet!</i>
+<SheetVF client:load />
 
 
 &nbsp;
@@ -470,7 +609,16 @@ const handleMouseMove = (e: MouseEvent) => {
 
 ## Adding more sheets
 
+&nbsp;
+
+
 To add more sheets, we can instead create an array of Sheet and assign an id to each.
+
+
+<MultipleSheets client:load/>
+
+&nbsp;
+
 
 ## Footnotes
 
@@ -479,6 +627,14 @@ To add more sheets, we can instead create an array of Sheet and assign an id to 
 1. Assume we had just used let dragData = null and somewhere in our app and then decided to have a setState function that changes the rectangle's color. Upon colour changing, React would re-create the whole component and set our dragData back to null. 
 reset the dragData back to null. 
 
+
 &nbsp;
+
+2. rawX and rawY are the coordinates before our final adjustment to respect the outer-container's bounds.
+
+&nbsp;
+
+
+3.To justify this operation, the bound can't simply be the rect.width as this would allow the sheet's left side to be dragged to the outer-container's right side to align.
 
 

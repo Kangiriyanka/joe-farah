@@ -1,3 +1,4 @@
+// Unbound dragging
 import {useState, useRef} from "preact/hooks";
 
 interface Sheet {    
@@ -10,112 +11,113 @@ interface Sheet {
 }
 
 interface DragData {
-  offsetX: number;
-  offsetY: number;
+  startMouseX: number;
+  startMouseY: number;
 }
 
 export default function SheetV2() {
 
   const [isDragging, setIsDragging] = useState(false);
-   const [sheet, setSheet] = useState<Sheet>( 
-     {
-       x: 0,
-       y:0,
-       w: 150,
-       h: 75,
-       color: "#3384ed",
-       opacity: 1
-     }
-   )
+  const [disableHighlight, setDisableHighlight] = useState(false)
 
-   const dragData = useRef<DragData | null>(null);
+  const [sheet, setSheet] = useState<Sheet>( 
+    {
+      x: 0,
+      y: 0,
+      w: 250,
+      h: 150,
+      color: "#3384ed",
+      opacity: 1
+    }
+  );
 
-  
-   const handleMouseDown = (e: MouseEvent) => {
-   
+  const dragData = useRef<DragData | null>(null);
 
-       dragData.current = {
-  
-      offsetX: e.clientX - sheet.x,
-      offsetY: e.clientY - sheet.y
+  const handleMouseDown = (e: MouseEvent) => {
+
+    {disableHighlight ? e.preventDefault() : ""}
+
+    dragData.current = {
+      startMouseX: e.clientX,
+      startMouseY: e.clientY
     };
 
-    setIsDragging(true)
-
+    setIsDragging(true);
 
     document.addEventListener("mousemove", handleMouseMove);
     document.addEventListener("mouseup", handleMouseUp);
-   
+  };
 
-
-   }
-
-   const handleMouseMove = (e: MouseEvent) => {
+  const handleMouseMove = (e: MouseEvent) => {
     // We defined <DragData | null>, so we make sure it's not null before we access it.
     if (dragData.current) {
 
-      const { offsetX, offsetY } = dragData.current;
-      
-      setSheet( prev => ({
-      
-    
+      const { startMouseX, startMouseY } = dragData.current;
 
-      ...prev,
-      x: e.clientX - offsetX, 
-      y: e.clientY - offsetY 
-      }))
-      
-  }
+      setSheet(prev => ({
 
-  
+        // The sheet's position moves by the delta of the mouse 
+        ...prev,
+        x: sheet.x + (e.clientX - startMouseX),
+        y: sheet.y + (e.clientY - startMouseY)
 
-   
-        
+      }));
     }
+  };
 
-   const handleMouseUp = () => {
+  const handleMouseUp = () => {
     dragData.current = null;
-    setIsDragging(false)
-    
+    setIsDragging(false);
+
     document.removeEventListener("mousemove", handleMouseMove);
     document.removeEventListener("mouseup", handleMouseUp);
   };
-    
-    
 
+  return (
 
-   return (
+    <div className="relative">
 
-     <div class="outer-container relative h-40 border-1 p-3"> 
-     <div 
+      <div className="flex items-center justify-between border-b-1 border-dashed mb-10 p-2">
+        Toggling this button prevents any highlights on the text below.
 
-       className="sheet"
-       onMouseDown = {(e) => handleMouseDown(e)}
-       style = {{
-         position: "absolute",
-         left: sheet.x,
-         top: sheet.y,
-         width: sheet.w,
-         height: sheet.h,
-         background: sheet.color, 
-         opacity: sheet.opacity,
-         userSelect: "none",
-         zIndex: 1,
-         cursor: isDragging  ? "grabbing" : "grab",
-         
-         
-       }}
+        <button  
+          className="cursor-pointer hover:bg-gray-200 transition-colors border-1 p-0.5 rounded-md"
+          style={{background: disableHighlight ? "#3384ed87" : ""}}
+          onClick={() => setDisableHighlight(prev => !prev)}
+        >
+          Disable highlighting
+        </button>
+      </div>
 
-     
-     >  
-    
-     </div>
+      <div 
 
-      <p className="relative text-lg z-50 text-center"> Drag across the <span className="text-[#3384ed]">blue text </span> </p>
+        className="sheet"
 
-   
-     </div>
+        // camelCase due to JSX syntax, normally onmousedown
+        onMouseDown={(e) => handleMouseDown(e)}
 
-   )
+        style={{
+          position: "relative",
+          left: sheet.x,
+          top: sheet.y,
+          width: sheet.w,
+          height: sheet.h,
+          background: sheet.color, 
+          opacity: sheet.opacity,
+          userSelect: "none",
+          zIndex: 1,
+          cursor: isDragging ? "grabbing" : "grab",
+        }}
 
+      >
+
+      </div>
+
+      <p style={{fontSize: "24px"}} className="relative mt-5 z-2 text-center">
+        Hover over the <span className="text-[#3384ed]">blue text</span> to <span className="text-[#3384ed]">hide </span>it
+      </p>
+
+    </div>
+
+  );
 }
