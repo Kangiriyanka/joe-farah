@@ -113,7 +113,6 @@ export default function SheetV3() {
          height: sheet.h,
          background: sheet.color, 
          opacity: sheet.opacity,
-         userSelect: "none",
          zIndex: 1,
          cursor: isDragging  ? "grabbing" : "grab",
          
