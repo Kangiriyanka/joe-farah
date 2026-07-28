@@ -1,0 +1,221 @@
+---
+layout: "@layouts/MarkdownPostLayout.astro"
+title: "Custom Timers"
+pubDate: 2026-07-26T16:13:13-04:00
+description: 'Implementing timers in React'
+tags: ["react", "programming"]
+postSlug: 'post-24'
+---
+
+
+import MissionsDashboard from "../../pcomponents/post24/MissionsDashboard.tsx"
+
+## Intro 
+
+
+&nbsp;
+
+Inspired by the GNOME app <a class="secondary-a "href= "https://gitlab.gnome.org/World/exercise-timer">Exercise Timer</a>, I decided to 
+make custom timers in React given that my previous posts have been focusing on applications that leverage it. In this post, we'll define tasks or activites as <u>Missions</u>, because 
+it sounds nice and implies a sense of duty. A Mission constitutes of timed sessions (workTime) with an associated rest (restTime) for a number of sets. I also threw in a preparation time, a countdown before the mission starts.
+
+&nbsp;
+
+ Our first priority will be making cards that display the general overview of the mission, providing the total time it takes, the set breakdown, etc. Our second priority will be
+linking the custom timer that respects those times.
+
+
+&nbsp;
+
+## Making a Mission Card
+
+### Vanilla Layout
+
+&nbsp;
+
+Our starting point is defining <span class="bold-rounded">Mission</span> object with the properties below: 
+
+- an id
+- a title
+- the work time (in seconds)
+- the rest time (in seconds)
+- the preparation time (in seconds)
+- the number of sets 
+- a colour
+
+&nbsp;
+
+It's worth nothing that the times are stored internally in seconds for consistency, and formatted properly to strings for readability. This will be covered shortly.
+
+
+&nbsp;
+
+We create an array of <span class="bold-rounded">Missions</span> with arbitrary values. For example, the music session is done in 3 sets of 20 minutes with a 5 minute break between each. As mentioned, the preparation time
+acts as a countdown before engaging in the sets.
+
+
+
+```typescript
+const missions = [
+  {
+    id: 1,
+    title: "Quick Coding",
+    workTime: 600,
+    restTime: 60,
+    preparationTime: 120,
+    sets: 2,
+    clr: "#52c22d",
+  },
+  {
+    id: 2,
+    title: "Stretching",
+    workTime: 30,
+    restTime: 15,
+    sets: 3,
+    preparationTime: 60,
+    clr: "#2a5ece",
+  },
+  {
+    id: 3,
+    title: "Music Session",
+    workTime: 1200,
+    restTime: 300,
+    sets: 3,
+    preparationTime: 0,
+    clr: "#c41c13",
+  },
+];
+```
+
+
+Next, we'll make a simple dashboard that presents the missions turned into cards.
+
+```jsx
+import MissionCard from "./MissionCard";
+
+export default function MissionsDashboard() {
+  const missions = [
+    // ...
+  ];
+
+  return (
+    <div>
+      <h3>Missions</h3>
+
+      <div className="mission-container grid md:grid-cols-2 sm:grid-cols-1">
+        {missions.map((mission) => {
+          return (
+            <MissionCard
+              id={mission.id}
+              title={mission.title}
+              workTime={mission.workTime}
+              restTime={mission.restTime}
+              sets={mission.sets}
+              clr={mission.clr}
+            />
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+```
+
+where the <span class="bold-rounded">MissionCard</span> is defined as: 
+```typescript
+interface MissionProps {
+  id: number;
+  title: string;
+  workTime: number;
+  restTime: number;
+  sets: number;
+  clr: string;
+}
+
+export default function MissionCard({
+  id,
+  title,
+  workTime,
+  restTime,
+  sets,
+  clr,
+}: MissionProps) {
+  return (
+    <div
+      style={{ borderColor: clr }}
+      className="border-2 p-2 m-2 rounded-md shadow-md"
+    >
+      <div className="flex justify-between">
+        <h4>{title}</h4>
+        <p>{workTime * sets} seconds</p>
+      </div>
+
+      <p>
+        {sets} sets of {workTime} seconds
+      </p>
+    </div>
+  );
+}
+```
+
+
+The generated output is:
+
+&nbsp;
+
+
+
+<MissionsDashboard client:load/>
+
+
+&nbsp;
+
+### Formatting Times 
+
+&nbsp;
+
+
+Right now, the times shown on the cards are in seconds, but we can convert them for readability (and decency). We'll make a helper function <span class="bold-rounded">formatTimer</span> that will cover 3 cases where the time is:
+
+&nbsp;
+
+
+1. is greater than or equal to an hour, e.g., 4500 seconds →  1 hour and 15 minutes
+2. is less than an hour but greater than a minute, e.g., 1300 seconds →  21 minutes and 40 seconds
+3. is less than a minute, e.g., 58 seconds → 58 seconds
+
+
+
+
+
+
+&nbsp;
+
+<i>Time formatter where the remainders carry all the workload!</i>
+```typescript
+
+function formatMissionTime(seconds: number, decimals = 2) {
+  const remainderSeconds = seconds % 60;
+  const minutes = seconds / 60;
+  const remainderMinutes = minutes % 60;
+  const hours = seconds / 3600;
+
+  // Greater or equal to an hour
+  if (hours >= 1) {
+    return `${Math.round(hours)} hour${
+      Math.floor(hours) > 1 ? "s" : ""
+    } and ${Math.floor(remainderMinutes)} minutes`;
+  }
+  
+  // Less than an hour but greater than a minute
+  if (minutes >= 1) {
+    return `${Math.floor(minutes)} minute${
+      Math.floor(minutes) > 1 ? "s" : ""
+    }${remainder > 0 ? ` and ${remainder} seconds` : ""}`;
+  }
+
+  // Seconds remain
+  return `${remainderSeconds} second${remainderSeconds !== 1 ? "s" : ""}`;
+}
+
+```
