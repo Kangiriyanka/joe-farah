@@ -53,6 +53,29 @@
 
 	},
 
+
+	"img-container": {
+
+		"prefix": ["imgcon"],
+		 "body": [
+
+    "<div class=\"post-img-container p-1\">",
+
+    "",
+
+    "![Description](../../../assets/post_images/replaceme.jpg)",
+
+    "",
+
+    "</div>"
+
+  ],
+		"description": "A tappable img-container",
+
+
+		
+	},
+
 	"Responsive media query": {
 		"prefix": "media",
 		"body": [
