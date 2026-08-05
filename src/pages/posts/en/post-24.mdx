@@ -1,6 +1,6 @@
 ---
 layout: "@layouts/MarkdownPostLayout.astro"
-title: "Custom Timers"
+title: "On A Mission"
 pubDate: 2026-07-26T16:13:13-04:00
 description: 'Implementing timers in React'
 tags: ["react", "programming"]
@@ -9,6 +9,7 @@ postSlug: 'post-24'
 
 
 import MissionsDashboard from "../../pcomponents/post24/MissionsDashboard.tsx"
+import TimeFormatter from "../../pcomponents/post24/TimeFormatter.tsx"
 
 ## Intro 
 
@@ -21,13 +22,16 @@ it sounds nice and implies a sense of duty. A Mission constitutes of timed sessi
 
 &nbsp;
 
- Our first priority will be making cards that display the general overview of the mission, providing the total time it takes, the set breakdown, etc. Our second priority will be
+ Our first priority will be making cards that display the general overview of the mission, namely the total time it takes, the set breakdown, etc. Our second priority will be
 linking the custom timer that respects those times.
 
 
 &nbsp;
 
 ## Making a Mission Card
+
+&nbsp;
+
 
 ### Vanilla Layout
 
@@ -45,7 +49,7 @@ Our starting point is defining <span class="bold-rounded">Mission</span> object 
 
 &nbsp;
 
-It's worth nothing that the times are stored internally in seconds for consistency, and formatted properly to strings for readability. This will be covered shortly.
+It's worth noting that the times are stored internally in seconds for consistency, and formatted properly to strings for readability. This will be covered shortly.
 
 
 &nbsp;
@@ -62,7 +66,7 @@ const missions = [
     title: "Quick Coding",
     workTime: 600,
     restTime: 60,
-    preparationTime: 120,
+    prepTime: 120,
     sets: 2,
     clr: "#52c22d",
   },
@@ -71,8 +75,9 @@ const missions = [
     title: "Stretching",
     workTime: 30,
     restTime: 15,
+    prepTime: 60,
     sets: 3,
-    preparationTime: 60,
+   
     clr: "#2a5ece",
   },
   {
@@ -80,12 +85,14 @@ const missions = [
     title: "Music Session",
     workTime: 1200,
     restTime: 300,
+    prepTime: 0,
     sets: 3,
-    preparationTime: 0,
     clr: "#c41c13",
   },
 ];
 ```
+
+&nbsp;
 
 
 Next, we'll make a simple dashboard that presents the missions turned into cards.
@@ -120,6 +127,8 @@ export default function MissionsDashboard() {
   );
 }
 ```
+
+&nbsp;
 
 where the <span class="bold-rounded">MissionCard</span> is defined as: 
 ```typescript
@@ -165,7 +174,7 @@ The generated output is:
 
 
 
-<MissionsDashboard client:load/>
+<MissionsDashboard version={1} client:load/>
 
 
 &nbsp;
@@ -175,47 +184,296 @@ The generated output is:
 &nbsp;
 
 
-Right now, the times shown on the cards are in seconds, but we can convert them for readability (and decency). We'll make a helper function <span class="bold-rounded">formatTimer</span> that will cover 3 cases where the time is:
-
-&nbsp;
-
-
-1. is greater than or equal to an hour, e.g., 4500 seconds →  1 hour and 15 minutes
-2. is less than an hour but greater than a minute, e.g., 1300 seconds →  21 minutes and 40 seconds
-3. is less than a minute, e.g., 58 seconds → 58 seconds
-
-
+Right now, the times shown on the cards are in seconds, but we can convert them for readability (and decency). We'll make a helper function <span class="bold-rounded">formatTimer</span> that formats seconds into a time string that shows the hour(s), minute(s) and second(s) component. We'll walk through
+how to extract each component from the total number of seconds, call it <span class="bold-rounded"> totalSeconds</span>. We proceed accordingly:
 
 
 
 
 &nbsp;
 
-<i>Time formatter where the remainders carry all the workload!</i>
+
+1. We extract our exact hours from <span class="bold-rounded">totalSeconds</span> by flooring <span class="bold-rounded">totalSeconds</span> / 3600
+
+&nbsp;
+
+2. We get a number of seconds that doesn't contain the hours by doing <span class="bold-rounded">totalSeconds</span> % 3600. Call this <span class="bold-rounded">secondsWithoutHours</span>.
+
+&nbsp;
+
+3. We extract our exact minutes by flooring <span class="bold-rounded">secondsWithoutHours</span> / 60
+
+&nbsp;
+
+4. We extract our exact remaining seconds through <span class="bold-rounded">totalSeconds</span> % 60
+
+&nbsp;
+
+
+
+
+<TimeFormatter client:load/>
+
+ <div className="components-explication">
+          <br/>
+         The <span class="bold-rounded">flooredHours</span>, <span class="bold-rounded">flooredMinutes</span> and <span class="bold-rounded">remainingSeconds</span> are the variables needed to construct the string above.
+         We create a <span class="bold-rounded">components</span> array and push the hours, minutes, and seconds if their value is greater than 0. For example, if we have 3662 total seconds, we push "1 hour", "1 minute" and "2 seconds" to the array. With pluralization taken into consideration, we add commas and conjunctions based on the number of elements in the array.
+
+
+</div>
+
+
+&nbsp;
+
+<i>Implementation of Seconds to H/M/S components</i>
+
+&nbsp;
+
 ```typescript
+// Skipping a bunch of if statements with a components array
+export default function formatMissionTime(totalSeconds: number) {
+  // Extract the hour component
+  const rawHours = totalSeconds / 3600
+  const flooredHours = Math.floor(rawHours)
+  // Remove the hours from the seconds and get the minutes
+  const secondsWithoutHours = totalSeconds % 3600
+  const rawMinutes = secondsWithoutHours / 60
+  const flooredMinutes = Math.floor(rawMinutes)
+  // Extract the second component
+  const remainingSeconds = totalSeconds % 60
+  const components = []
 
-function formatMissionTime(seconds: number, decimals = 2) {
-  const remainderSeconds = seconds % 60;
-  const minutes = seconds / 60;
-  const remainderMinutes = minutes % 60;
-  const hours = seconds / 3600;
-
-  // Greater or equal to an hour
-  if (hours >= 1) {
-    return `${Math.round(hours)} hour${
-      Math.floor(hours) > 1 ? "s" : ""
-    } and ${Math.floor(remainderMinutes)} minutes`;
-  }
-  
-  // Less than an hour but greater than a minute
-  if (minutes >= 1) {
-    return `${Math.floor(minutes)} minute${
-      Math.floor(minutes) > 1 ? "s" : ""
-    }${remainder > 0 ? ` and ${remainder} seconds` : ""}`;
+  // If the floored value is 0, it gets skipped. 
+  // Example: 583 seconds -> 0 flooredHours, 9 minutes and 43 seconds
+  if (flooredHours > 0) {
+    components.push(`${flooredHours} hour${flooredHours > 1 ? "s" : ""}`)
   }
 
-  // Seconds remain
-  return `${remainderSeconds} second${remainderSeconds !== 1 ? "s" : ""}`;
+
+  if (flooredMinutes > 0) {
+    components.push(`${flooredMinutes} minute${flooredMinutes > 1 ? "s" : ""}`)
+  }
+
+
+  if (remainingSeconds > 0) {
+    components.push(`${remainingSeconds} second${remainingSeconds > 1 ? "s" : ""}`)
+  }
+
+  switch (components.length) {
+    case 1:
+      return `${components[0]}`
+    case 2:
+      return `${components[0]} and ${components[1]}`
+    case 3:
+      return `${components[0]}, ${components[1]} and ${components[2]}`
+  }
+
 }
 
 ```
+
+
+
+
+
+
+&nbsp;
+
+
+<MissionsDashboard version={2} client:load/>
+
+
+
+&nbsp;
+
+## Building the Timer Menu UI
+
+&nbsp;
+
+
+Focusing purely on the cosmetics, a tapped card should reveal a menu consisting of:
+
+&nbsp;
+
+
+1. the status of our timer: are we preparing, working or resting?
+2. the appropriate time to according to the status
+3. buttons to start and reset the timer
+4. the number of remaining sets
+
+&nbsp;
+
+
+The timer's string is constructed with the  <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/padStart">padStart</a> function and our <span class="bold-rounded">flooredHours</span>
+<span class="bold-rounded">flooredMinutes</span> and <span class="bold-rounded">remainingSeconds</span>. 
+
+```typescript
+// Formatted string for the timer (initially work time)
+export function formatTimerString(totalSeconds: number) {
+  const flooredHours = Math.floor(totalSeconds / 3600);
+
+  const secondsWithoutHours = totalSeconds % 3600;
+  const flooredMinutes = Math.floor(secondsWithoutHours / 60);
+
+  const remainingSeconds = totalSeconds % 60;
+
+  return `${flooredHours.toString().padStart(2, "0")}:${flooredMinutes
+    .toString()
+    .padStart(2, "0")}:${remainingSeconds.toString().padStart(2, "0")}`;
+}
+
+```
+&nbsp;
+
+A <a class="secondary-a "href= "https://github.com/Kangiriyanka/joe-farah-code-extras/blob/main/post-24/TimerMenuV1.tsx"><span class="bold-rounded">TimerMenu</span></a> component is conditionally rendered upon tapping the card. This version only displays the formatted time string accompanied by the items mentioned above. 
+The next section will focus on changing the timer's display depending on the current phase in our set.
+
+&nbsp;
+
+
+<MissionsDashboard version={3} client:load/>
+
+
+
+
+
+&nbsp;
+
+## Building the Timer 
+
+&nbsp;
+
+
+### Defining Phases
+&nbsp;
+
+For a number of sets, the main flow our timer should adhere to is: &nbsp;
+
+
+&nbsp;
+
+<div class="bold-rounded">
+<p className="text-center"> prepping → working → resting → working → ... </p> 
+</div>
+
+&nbsp;
+
+Specifically, the prepping phase happens once, and the working resting phases cycle runs until the end of our sets. There are special cases we consider for completeness such as not including a resting phase after our final working phase. 
+&nbsp;
+
+
+&nbsp;
+
+On the technical side, we conveniently define a new type <span class="bold-rounded">TimerPhase</span>.
+
+```typescript
+// Prepping <=> Starting in...
+type TimerPhase = "Starting in..." | "Working" | "Resting" | "Finished"
+```
+
+and the state variables we'll be working with: 
+
+```typescript
+// TimerMenuV2.tsx
+interface TimerProps {
+    title: string
+    workTime: number
+    restTime: number
+    prepTime: number
+    sets: number
+    clr: string
+}
+
+// import {useState} from "preact/hooks" or any other React library
+
+export default function TimerMenuV2({workTime,r restTime, prepTime, sets, clr}: TimerProps) {
+const [isPlaying, setIsPlaying] = useState<boolean>(false)
+const [currentPhase, setCurrentPhase] = useState<TimerPhase>("Starting in...")
+const [remainingSets, setRemainingSets] = useState<number>(sets)
+const [timeLeft, setTimeLeft] = useState(prepTime ? prepTime : workTime)
+
+  return (
+    // ...
+  )
+
+}
+```
+
+### useEffect Toolbox
+
+&nbsp;
+
+
+To accomplish our goal, we'll be manoeuvering with two <a class="secondary-a "href= "https://react.dev/reference/react/useEffect">useEffect</a> hooks having distinct purposes. 
+The first one, call it the countdown useEffect, oversees that we decrement the <span class="bold-rounded">timeLeft</span> every second. This is done by creating a timer through the <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/Window/setInterval">setInterval</a> function. That same hook cleans up the timer (removes it from memory) every time <span class="bold-rounded">isPlaying</span>  changes or if the component unmounts. The <a class="secondary-a "href= "https://developer.mozilla.org/en-US/docs/Web/API/Window/clearInterval">clearInterval</a> is the function in charge of being the janitor. The code snippet below 
+directly translates the functionality discussed.
+
+```typescript
+// Countdown useEffect 
+useEffect(() => {
+    // (*) Guard here, because useEffect doensn't care about the initial state of isPlaying
+    if (!isPlaying) return;
+
+    const timer = setInterval(() => {
+        setTimeLeft(prev => prev - 1);
+    }, 1000);
+
+    // Every time the effect re-runs or when the component unmounths, the old timer gets cleared.
+    return () => clearInterval(timer);
+
+}, [isPlaying])
+```
+
+Note: Regardless of whether the play button was tapped, the <span class="bold-rounded">useEffect</span> above will runs on its own as soon as the component mounts. For this reason, there's a guard that returns from the function when the <span class="bold-rounded">isPlaying</span>
+state is false.
+
+
+&nbsp;
+
+The other hook, name it the phase useEffect, switches our phase state when the <span class="bold-rounded">timeLeft</span> hits 0. For example, If we finish a working phase in a <span class="text-[#52c22d]">Quick Coding </span> mission, we'd have to modify
+the <span class="bold-rounded">currentPhase</span> from "Working" to "Resting"
+, and set the <span class="bold-rounded">timeLeft</span> to the restTime of 60 seconds. The sets are decremented as well.
+
+```typescript
+useEffect(() => {
+
+    {/* Other logic branches not shown now */}
+
+    if (timeLeft != 0) return;
+
+    switch (currentPhase) {
+
+        case "Starting in...":
+            setCurrentPhase("Working")
+            setTimeLeft(workTime)
+            break
+
+        case "Working":
+            setCurrentPhase("Resting")
+            setTimeLeft(restTime)
+            setRemainingSets(prev => prev - 1)
+            break;
+
+        case "Resting": 
+            setCurrentPhase("Working")
+            setTimeLeft(workTime)
+            break;
+
+    }
+
+}, [timeLeft])
+
+```
+&nbsp;
+
+
+### Definining Phases
+
+&nbsp;
+
+
+
+
+
+
+<MissionsDashboard version={4} client:load/>
