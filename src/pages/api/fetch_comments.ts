@@ -19,5 +19,5 @@ export async function fetch_comments(postSlug: string) {
 }
 
 
-const all = await db.select().from(Comment);
-console.log("ALL:", all);
+// const all = await db.select().from(Comment);
+// console.log("ALL:", all);

@@ -737,7 +737,7 @@ This is overly simplified and I could very be wrong, but I'll try to present wha
 
 What Flask does is create a way for you to run it in the terminal through its Click package.
 Inside your flask script file in the virtual environment, you'll find:
-```bin
+```
 from flask.cli import main
 # ...
 sys.exit(main())
