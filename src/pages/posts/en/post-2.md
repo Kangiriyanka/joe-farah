@@ -11,6 +11,9 @@ postSlug: 'post-2'
 
 ## Heads up
 
+&nbsp;
+
+
 Starting with <a class="secondary-a"  href="/posts/post-1/" > juggling tips, </a> I've decided to continue the tradition and post more personal tips/advice for the disciplines I like. I've started to enjoy the challenge of modifying personal notes to make them understandable for the public. During that process, I can navigate ways of finding better words to express certain ideas, correct sentences that read awkwardly, and all in all, revamp my writing style. 
 
 &nbsp;
