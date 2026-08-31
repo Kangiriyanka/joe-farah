@@ -1,0 +1,1 @@
+export const selectStyle = "border-2 rounded-md my-2 w-[100%]"
