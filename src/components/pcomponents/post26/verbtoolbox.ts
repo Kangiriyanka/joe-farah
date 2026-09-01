@@ -6,7 +6,7 @@ Integrating querer, poder, preferir, juego, estar, tener
 */
 
 
-export type Tense = "present" | "preterite" | "future" | "imperfect" | "present perfect" | "past perfect" | "future perfect" | "conditional" | "negative" ;
+export type Tense = "present" | "preterite" | "future" | "imperfect" | "imperfect (se)"| "present perfect" | "past perfect" | "future perfect" | "conditional" | "conditional perfect" |  "normal" | "negative" ;
 type Person = "yo" | "tú" | "él/ella/usted" | "usted" | "nosotros" | "ustedes" | "vosotros" | "ellos/ellas/ustedes";
 export type Mood = "indicative" | "subjunctive" | "imperative"
 
@@ -46,6 +46,12 @@ export const regularVerbs = {
         gerund: "acabando"
     },
 
+      quedar: {
+        pp: "quedado",
+        gerund: "quedando"
+    },
+
+
     escribir: {
         pp: "escrito",
         gerund: "escribiendo"
@@ -63,7 +69,9 @@ export const verbTips = {
     "conditional": "The conjugated part is added to the infinitive.",
     "present perfect": "Past actions that continue to have a present effect",
     "past perfect": "Past action happened before another past action (When X, Y had happened)",
-    "future perfect": "Something will have happened before a future event"
+    "future perfect": "Something will have happened before a future event",
+    "conditional perfect": "What would have happened but didn't"
+
 
     },
 
@@ -71,14 +79,16 @@ export const verbTips = {
 
         "present": "The AR verbs use the ER/IR endings and vice-versa.",
         "imperfect": "① Conjugate to indicative preterite 3rd person plural \n ② Remove the ron and add ra",
+         "imperfect (se)" : "Less common version of the imperfect subjunctive (ra)" ,
         "future": "① Conjugate to indicative preterite 3rd person plural \n ② Remove the ron and add ra. Also, Not very used in daily conversation",
+   
 
 
     },
 
     "imperative": {
 
-        "present": "Remember the pattern OXXOX. X takes the letters of the opposite verb forms (AR<-> ER/IR & vice versa). For example, for the usted Person of escribir, it takes the a from AR form to become escriba."
+        "normal": "Remember the pattern OXXOX. X takes the letters of the opposite verb forms (AR<-> ER/IR & vice versa). For example, for the usted Person of escribir, it takes the a from AR form to become escriba."
     ,
         "negative": "Add negation with present subjunctive"
 
@@ -86,6 +96,8 @@ export const verbTips = {
 }
 type VerbEndings = Partial<Partial<Record<Mood,Partial<Record<Tense, Partial<Record<Person, string>>>>>>>;
 
+
+// What the dropdown shows
 export const moodTenses: Record<Mood, Tense[]> = {
 
     indicative: [
@@ -98,6 +110,7 @@ export const moodTenses: Record<Mood, Tense[]> = {
         "present perfect",
         "past perfect",
         "future perfect",
+        "conditional perfect"
 
     ],
 
@@ -105,13 +118,16 @@ export const moodTenses: Record<Mood, Tense[]> = {
 
         "present",
         "imperfect",
-        "future"
+        "imperfect (se)",
+        "present perfect",
+        "past perfect",
+        "future",
 
     ],
 
     imperative: [
 
-        "present",
+        "normal",
         "negative",
 
 
@@ -190,6 +206,18 @@ const ar_endings: VerbEndings = {
 
 
     },
+
+       "past perfect": {
+
+        "yo": "había",
+        "tú": "habías",
+        "él/ella/usted": "había",
+        "nosotros": "habíamos",
+        "vosotros": "habiáis",
+        "ellos/ellas/ustedes": "habían"
+
+
+    },
     "future perfect": {
 
     "yo": "habré",
@@ -198,6 +226,22 @@ const ar_endings: VerbEndings = {
     "nosotros": "habremos",
     "vosotros": "habréis",
     "ellos/ellas/ustedes": "habrán"
+
+},
+
+"conditional perfect": {
+
+    "yo": "habría",
+
+    "tú": "habrías",
+
+    "él/ella/usted": "habría",
+
+    "nosotros": "habríamos",
+
+    "vosotros": "habríais",
+
+    "ellos/ellas/ustedes": "habrían"
 
 },
     
@@ -225,6 +269,40 @@ const ar_endings: VerbEndings = {
 
 },
 
+ "imperfect (se)": {
+
+   "yo": "se",
+"tú": "ses",
+"él/ella/usted": "se",
+"nosotros": "semos",
+"vosotros": "seis",
+"ellos/ellas/ustedes": "sen"
+
+},
+
+"present perfect": {
+
+    "yo": "haya",
+    "tú": "hayas",
+    "él/ella/usted": "haya",
+    "nosotros": "hayamos",
+    "vosotros": "hayáis",
+    "ellos/ellas/ustedes": "hayan"
+
+},
+
+"past perfect": {
+
+    "yo": "hubiera",
+    "tú": "hubieras",
+    "él/ella/usted": "hubiera",
+    "nosotros": "hubiéramos",
+    "vosotros": "hubierais",
+    "ellos/ellas/ustedes": "hubieran"
+
+},
+    
+
   future: {
 
     "yo": "re",
@@ -239,7 +317,7 @@ const ar_endings: VerbEndings = {
 
 
 "imperative": {
-        "present": {
+        "normal": {
         "tú": "a",
         "usted": "e",
         "nosotros": "emos",
@@ -351,6 +429,22 @@ const er_endings: VerbEndings = {
 
 },
 
+"conditional perfect": {
+
+    "yo": "habría",
+
+    "tú": "habrías",
+
+    "él/ella/usted": "habría",
+
+    "nosotros": "habríamos",
+
+    "vosotros": "habríais",
+
+    "ellos/ellas/ustedes": "habrían"
+
+},
+
     
     
     },
@@ -377,6 +471,41 @@ const er_endings: VerbEndings = {
     "ellos/ellas/ustedes": "ran"
 
 },
+
+ "imperfect (se)": {
+
+   "yo": "se",
+"tú": "ses",
+"él/ella/usted": "se",
+"nosotros": "semos",
+"vosotros": "seis",
+"ellos/ellas/ustedes": "sen"
+
+},
+
+"present perfect": {
+
+    "yo": "haya",
+    "tú": "hayas",
+    "él/ella/usted": "haya",
+    "nosotros": "hayamos",
+    "vosotros": "hayáis",
+    "ellos/ellas/ustedes": "hayan"
+
+},
+
+"past perfect": {
+
+    "yo": "hubiera",
+    "tú": "hubieras",
+    "él/ella/usted": "hubiera",
+    "nosotros": "hubiéramos",
+    "vosotros": "hubierais",
+    "ellos/ellas/ustedes": "hubieran"
+
+},
+    
+    
   future: {
 
     "yo": "re",
@@ -390,7 +519,7 @@ const er_endings: VerbEndings = {
     },
 
     "imperative": {
-    "present": {
+    "normal": {
         "tú": "e",
         "usted": "a",
         "nosotros": "amos",
@@ -499,6 +628,22 @@ const ir_endings: VerbEndings = {
     "ellos/ellas/ustedes": "habrán"
 
 },
+
+"conditional perfect": {
+
+    "yo": "habría",
+
+    "tú": "habrías",
+
+    "él/ella/usted": "habría",
+
+    "nosotros": "habríamos",
+
+    "vosotros": "habríais",
+
+    "ellos/ellas/ustedes": "habrían"
+
+},
     
    },
 
@@ -524,6 +669,39 @@ const ir_endings: VerbEndings = {
     "ellos/ellas/ustedes": "ran"
 
 },
+
+ "imperfect (se)": {
+
+   "yo": "se",
+"tú": "ses",
+"él/ella/usted": "se",
+"nosotros": "semos",
+"vosotros": "seis",
+"ellos/ellas/ustedes": "sen"
+
+},
+
+"present perfect": {
+
+    "yo": "haya",
+    "tú": "hayas",
+    "él/ella/usted": "haya",
+    "nosotros": "hayamos",
+    "vosotros": "hayáis",
+    "ellos/ellas/ustedes": "hayan"
+
+},
+
+"past perfect": {
+
+    "yo": "hubiera",
+    "tú": "hubieras",
+    "él/ella/usted": "hubiera",
+    "nosotros": "hubiéramos",
+    "vosotros": "hubierais",
+    "ellos/ellas/ustedes": "hubieran"
+
+},
     
 
      future: {
@@ -539,7 +717,7 @@ const ir_endings: VerbEndings = {
     },
 
     "imperative": {
-    "present": {
+    "normal": {
         "tú": "e",
         "usted": "a",
         "nosotros": "amos",
@@ -572,7 +750,7 @@ export function conjugateVerb(infinitiveVerb: string, tense: Tense, mood: Mood) 
    }
 
 
-   if (tense == "imperfect" && mood == "subjunctive") {
+   if (tense == "imperfect" || tense == "imperfect (se)" && mood=="subjunctive") {
 
      const combo = conjugateVerb(infinitiveVerb, "preterite", "indicative")[5]
      stem = (combo[1] + combo[2]).slice(0,-3)
@@ -615,7 +793,7 @@ export function conjugateVerb(infinitiveVerb: string, tense: Tense, mood: Mood) 
 
    const conjugationTable = endingTable[mood][tense]
    
-   console.log("Conjugation table is now", conjugationTable)
+ 
 
    if (conjugationTable == null) {
     return []
@@ -625,7 +803,7 @@ export function conjugateVerb(infinitiveVerb: string, tense: Tense, mood: Mood) 
    // Return the pronoun, stem and its conjugation
    const conjugatedVerbs = Object.keys(conjugationTable).map((person) => {
 
-        if (tense == "present perfect" || tense == "past perfect" || tense == "future perfect" && mood == "indicative") {
+        if ((tense == "present perfect" || tense == "past perfect" || tense == "future perfect" || tense == "conditional perfect") && (mood == "indicative" || mood == "subjunctive") ) {
 
             return [person + " ", conjugationTable[person as Person] + " ",  regularVerbs[infinitiveVerb]["pp"]]
         }
@@ -636,7 +814,7 @@ export function conjugateVerb(infinitiveVerb: string, tense: Tense, mood: Mood) 
 
         }
 
-         if (tense == "present" && mood == "imperative") {
+         if (tense == "normal" && mood == "imperative") {
          
          return [  "(" + person  + ") ", stem , conjugationTable[person as Person]]
 

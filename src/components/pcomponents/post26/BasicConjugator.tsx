@@ -66,8 +66,8 @@ export default function BasicVerbConjugator() {
                 <div className="flex flex-col items-center">
 
                     
-                    <span className="font- underline">Tip</span>
-                     <span>{verbTips[currentMood][currentTense]}</span>
+                    <span className="font-bold underline text-black">Tip</span>
+                     <span className= "text-black" >{verbTips[currentMood][currentTense]}</span>
                 </div>
                  </div>
 
