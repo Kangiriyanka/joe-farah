@@ -1,24 +1,48 @@
 ---
 layout: "@layouts/MarkdownPostLayout.astro"
-title: "Conjugate the Spanish Verbs!"
+title: "Implementing a Basic Spanish Verb Conjugator"
 pubDate: 2026-08-28T15:29:13-04:00
-description: 'Discovering ways to make a basic verb conjugator in Spanish' 
+description: 'Verbos en español!' 
 tags: ["language", "programming", "react", "spanish"]
 postSlug: 'post-26'
 ---
 
 
-## Introducción
+## Los Verbos
 
 &nbsp;
 
 
 For any average Spanish learner, verb conjugations are particularily difficult to wrap your head around. 
-The How should we go about learning them? Should we focus on grinding out conjugation tables? 
+In my experience, a mix of table drilling, reading the <a class="secondary-a "href= "https://www.bbc.com/mundo">news</a>, and speaking with native speakers produces satisfactory results.<sup><a class="secondary-a" href="#footnotes">1.</a></sup>
+Verbs are all the more better practiced when applying them to your personal world. If you're into snowboarding, learning the conjugation of verbs such as slide, jump and fall on your behind is ideal for describing your exhilarating glades.
+
+
+
+
+
+
+
 
 &nbsp;
 
-When I fall out of practice, I read <a className="secondary-a" href="https://www.bbc.com/mundo"> BBC Mundo </a> and accumulate frustration when I don't grasp the reason why certain tenses are used. Albeit sometimes I do naturally, but I wouldn't be able to explain it to someone else.  I recently downloaded a Spanish verb conjugation app called <a className="secondary-a" href="https://apps.apple.com/ca/app/conjugato-learn-spanish-verbs/id1388189747"> ConjuGato</a>.
+
+
+## Joe's Basic Conjugator
+
+&nbsp;
+
+I recommend downloading the Spanish verb conjugation app called <a className="secondary-a" href="https://apps.apple.com/ca/app/conjugato-learn-spanish-verbs/id1388189747"> ConjuGato</a> to refresh your memory on all the available patterns as  the app does a terrific job at highlighting them. 
+Out of inspiration and curiosity for its inner workings, I replicated a basic conjugator as an exercise. 
+
+&nbsp;
+
+Working around the irregular verbs was simultaneously intellectually stimulating and frustrating;
+the changes can occur in the stem, the ending or both. For example,  the verb <u>poder</u> is irregular in the indicative preterite form, as every "o" in its stem gets replaced with "u". Moreover, the first and third singular person have irregular endings where í changes to e and ío changes to ó respectively. 
+
+&nbsp;
+
+In my conjugator, the irregular changes on the stem are highlighted in <span className="text-[#308f4d]"> green</span> for substituted letters and underlined for removed letters. Irregular endings are highlighted in <span className="text-[#ea6565]">red</span>. Additionally, some tips are available for a designated verb/mood/tense combination.
 
 
 
@@ -26,17 +50,28 @@ When I fall out of practice, I read <a className="secondary-a" href="https://www
 &nbsp;
 
 
-
-## Verbos Regulares
-
-&nbsp;
 
 import BasicConjugator from "@components/pcomponents/post26/BasicConjugator.tsx"
 
-Regular verbs are the most common.
 
 &nbsp;
+
+
 
 
 <BasicConjugator client:load/>
 
+
+<span className="sm"> Source code:  </span>
+
+&nbsp;
+
+
+
+## Footnotes
+
+&nbsp;
+
+
+1. Eventually, intuition takes over; marking the time to drop table drilling. 
+2. Find & replace <a class="secondary-a "href= "https://www.rexegg.com/regex-quickstart.php">regex</a> pattern

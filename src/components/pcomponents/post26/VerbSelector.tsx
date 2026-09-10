@@ -1,5 +1,4 @@
-import {regularVerbs} from "./verbtoolbox"
-import {useState} from "preact/hooks"
+import {verbs} from "./verbbank"
 import { selectStyle } from "./tailwindstyles"
 
 type VerbSelectorProps = {
@@ -26,7 +25,7 @@ return (
     value = {verb}
     className={selectStyle} onChange = {(e) => onVerbSelect(e.target.value)} >
 
-        {Object.keys(regularVerbs).map(verb => (
+        {Object.keys(verbs).sort().map(verb => (
 
             <option key={verb} value={verb}> {verb}</option>
 

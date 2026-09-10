@@ -1,6 +1,5 @@
 import  {tenses} from "./verbtoolbox"
 import type { Tense } from "./verbtoolbox"
-import {useState} from "preact/hooks"
 import { selectStyle } from "./tailwindstyles"
 
 type TenseSelectorProps = {
