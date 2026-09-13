@@ -1,5 +1,5 @@
-import {verbs} from "./verbbank"
-import { selectStyle } from "./tailwindstyles"
+import {verbs} from "../verbbank"
+import { selectStyle } from "../tailwindstyles"
 
 type VerbSelectorProps = {
     

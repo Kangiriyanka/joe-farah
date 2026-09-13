@@ -1,6 +1,6 @@
-import { moods } from "./verbtoolbox";
-import type { Mood } from "./verbtoolbox";
-import { selectStyle } from "./tailwindstyles"
+import { moods } from "../verbtoolbox";
+import type { Mood } from "../verbtoolbox";
+import { selectStyle } from "../tailwindstyles"
 type MoodSelectorProps = {
     mood: Mood
     onMoodSelect: (mood: Mood) => void;

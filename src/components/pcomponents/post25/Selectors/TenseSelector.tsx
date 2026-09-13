@@ -1,6 +1,6 @@
-import  {tenses} from "./verbtoolbox"
-import type { Tense } from "./verbtoolbox"
-import { selectStyle } from "./tailwindstyles"
+
+import type { Tense } from "../verbtoolbox"
+import { selectStyle } from "../tailwindstyles"
 
 type TenseSelectorProps = {
     tense: string

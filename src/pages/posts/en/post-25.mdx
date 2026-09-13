@@ -1,83 +1,66 @@
 ---
 layout: "@layouts/MarkdownPostLayout.astro"
-title: "Personal Notes on Blues Theory"
-pubDate: 2026-08-27T15:29:13-04:00
-description: 'Fragments of personal notes on blues theory' 
-tags: ["music", "programming", "react"]
+title: "Frolicking in Spanish Conjugation"
+pubDate: 2026-09-13T13:49:13-04:00
+description: 'Coding a rudimentary Spanish verb conjugator' 
+tags: ["language", "programming", "react", "spanish"]
 postSlug: 'post-25'
 ---
 
 
-import BluesForm from "@components/pcomponents/post25/BluesForm.tsx"
-
-
-
-## Heads up 
-
-&nbsp;
-
-This virtual space<sup><a class="secondary-a" href="#footnotes">2.</a></sup> will serve as a hub for sharing my personal notes on Blues. Thus, the content herein will be better understood with elementary knowledge of music theory, but any brave individual willing to traverse the stretch of Blues hills is welcome!
-
-
-&nbsp;
-
-## My Blues History
-
-&nbsp;
-
-My introduction to the Blues dates from my teenage years, a time where I bought a C harmonica only to leave it in hanging in the dust up until my mid-twenties. I wanted to pick up an instrument at the time, but I wasn't too serious about it.
-
-&nbsp;
-
-Sometimes, the flow of life steers our life in  directions that make us forget the activities we were once interested in, that is until they resurface again in different parts of our lives.
-
-&nbsp;
-
-As mentioned in my last music <a class="secondary-a "href= "https://joefarah.com/posts/post-2">post</a> (<i>almost a year ago</i>), my re-exposure to Blues, and by extension music, was thanks to crossing paths with colleagues who happened to be musicians. Eventually, I had 
-sterling opportunities to jam alongside them, displaying my quasi inexistent skills. 
+## Intro
 
 &nbsp;
 
 
-Whenever we partaked in a Blues session, I felt absolutely lost playing my rusty old harp, because I hadn't developed my musical intuition enough to know which notes to play over the chords, nor was I aware of the various techniques the harp had to offer. In spite of my struggles, it was great to be in an environment that rekindled my musical flame. It propelled me to start learning  <a class="secondary-a "href= "https://joefarah.com/projects/tk-music/">other instruments</a>, and learn about music in depth.
+For any average Spanish learner, verb conjugations are particularily difficult to wrap your head around. 
+In my experience, a mix of table drilling, reading the <a class="secondary-a "href= "https://www.bbc.com/mundo">news</a>, and speaking with native speakers produces satisfactory results.<sup><a class="secondary-a" href="#footnotes">1.</a></sup>
+Verbs are all the more better practiced when applying them to your personal world. If you're into snowboarding, learning the conjugation of verbs like slide, jump and fall on your behind is ideal for describing your exhilarating glades.
 
 &nbsp;
 
-
-## I'm a Dummy!
-
-&nbsp;
+Another decent strategy is actively listening to your favourite episode of a TV show on repeat with Spanish subtitles and/or audio, while getting a feel for how they're applied — my go-to media is  <a class="secondary-a "href= "https://en.wikipedia.org/wiki/Slam_Dunk_(manga)">Slam Dunk</a>. 
 
 
- Some time ago, I bought two books to dig deeper into the <a class="secondary-a "href= "https://en.wikipedia.org/wiki/Blues">Blues</a> with the intention of learning how to properly improvise over a progression, and ultimately compose my own track. <sup><a class="secondary-a" href="#footnotes">1.</a></sup> Here's a picture of 
-<a class="secondary-a "href= "https://winslowyerxa.com/books/blues-harmonica-for-dummies/">Blues Harmonica For Dummies by Winslow Yerxa</a>
-and <a class="secondary-a "href= "https://www.amazon.ca/Blues-Guitar-Dummies-Jon-Chappell/dp/0470049200"> Blues Guitar For Dummies by Jon Chappell</a>. 
+
+
 
 
 
 &nbsp;
 
 
-<div class="post-img-container p-1">
 
-<i>I'm a Blues Dummy!</i>
-&nbsp;
-
-
-![Blues for Dummies Books](../../../assets/post_images/bluesbooks.jpg)
+## Joe's Conjugator
 
 &nbsp;
 
-They cover a wide range of topics, from blues history, to techniques, to the breakdown of specific blues styles. What I found enriching from the authors were their wisdom
-on what notes work over specific chords, and how to move across and manipulate the instrument to make them sound more bluesy.
+If I may, I recommend downloading the Spanish verb conjugation app called <a className="secondary-a" href="https://apps.apple.com/ca/app/conjugato-learn-spanish-verbs/id1388189747"> ConjuGato</a> to refresh your memory on all the available patterns, since the app does a terrific job at supplying
+comprehensive tables with explanations. 
+
+&nbsp;
+
+Out of curiosity for its inner workings, I put my own spin on coding a basic conjugator as an exercise. In sum, working around the irregular verbs was simultaneously  stimulating and frustrating, because the 
+exceptions can be found in the stem, the ending or both. 
+
+&nbsp;
+
+
+For example,  the verb <u>poder</u> is irregular in the indicative preterite form, as every "o" in its stem gets replaced with "u". Moreover, the first and third singular person have irregular endings where í changes to e and ío changes to ó respectively. 
+
+
+&nbsp;
+
+In the Joe conjugator <sup><a class="secondary-a" href="#footnotes">2.</a></sup>, the irregular changes on the stem are highlighted in <span className="text-[#308f4d]"> green</span> for substituted/added letters and <span className="underline decoration-[#308f4d]"> underlined</span> for removed letters. Irregular endings are highlighted in <span className="text-[#ea6565]">red</span>. Wild verb conjugations defying human logic, in highly irregular verbs such as ser and ir, are marked in <span className="text-[#3384ed]"> blue</span>.
+For comparison purposes, tapping the <u>Show Unmodified</u> button allows you to see the  <span className=" text-[#D878F0]"> conjugation </span> had we ignored the rules and conjugated with the standard rules (not explained in this post). <sup><a class="secondary-a" href="#footnotes">3.</a></sup>
+
+
 
 &nbsp;
 
 
 
-
-</div>
-
+import BasicConjugator from "@components/pcomponents/post25/BasicConjugator"
 
 
 &nbsp;
@@ -86,16 +69,12 @@ on what notes work over specific chords, and how to move across and manipulate t
 
 
 
-## Blues Formats
+<BasicConjugator client:load/>
 
 
 
 
-
-
-
-<BluesForm client:load/>
-
+&nbsp;
 
 
 
@@ -107,13 +86,13 @@ on what notes work over specific chords, and how to move across and manipulate t
 &nbsp;
 
 
-1. I've also been wishiwashi about fully comitting to building an iOS app, since I haven't found the vision yet on what to target. 
+1. Eventually, drilling tables becomes less meaningful once you develop your verb muscles.
+
+&nbsp;
+
+2.  By all means, please use dedicated applications to practice conjugation, because my tool is missing verbs and potentially has mistakes.  On another note, the source code is found <a class="secondary-a "href= "https://github.com/Kangiriyanka/joe-farah-code-extras/tree/main/post-25">here</a>.
 
 
 &nbsp;
 
-
-2. Virtual space → This post
-
-
-
+3. I'm happy I thought of integrating this feature.

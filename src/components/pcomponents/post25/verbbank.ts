@@ -1,5 +1,7 @@
 
+// Verbs with their gerund and past participle
 export const verbs = {
+
     beber: {
         pp: "bebido",
         gerund: "bebiendo"
@@ -45,4 +47,52 @@ export const verbs = {
         pp: "logrado",
         gerund: "logrando"
     },
+
+    ser: {
+        pp: "sido",
+        gerund: "siendo"
+    },
+
+    estar: {
+        pp: "estado",
+        gerund: "estando"
+    },
+
+    haber: {
+
+        pp: "habido",
+        gerund: "habiendo"
+
+
+    },
+
+      ir: {
+
+        pp: "ido",
+        gerund: "yendo"
+
+
+    },
+
+
+      decir: {
+
+        pp: "dicho",
+        gerund: "diciendo"
+
+
+    },
+
+     dar: {
+
+        pp: "dado",
+        gerund: "dando"
+
+
+    },
+
+    ver: {
+        pp: "visto",
+        gerund: "viendo"
+    }
 }
