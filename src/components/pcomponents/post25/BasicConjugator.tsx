@@ -8,8 +8,8 @@ import { useState } from "preact/hooks"
 import { moodTenses } from "./verbmoodtenses"
 
 export default function BasicVerbConjugator() {
-    const [currentVerb, setCurrentVerb] = useState("ver")
-    const [currentMood, setCurrentMood] = useState<Mood>("subjunctive")
+    const [currentVerb, setCurrentVerb] = useState("acabar")
+    const [currentMood, setCurrentMood] = useState<Mood>("indicative")
     const [currentTense, setCurrentTense] = useState<Tense>("present")
     const [showBasicTip, setShowBasicTip] = useState<boolean>(false)
     const [showOriginalConjugation, setShowOriginalConjugation] = useState<boolean>(true)
@@ -77,7 +77,7 @@ export default function BasicVerbConjugator() {
           {/* Conjugated Table with the exceptions accounted for */}
 
 
-          <div className="flex gap-15">
+          <div className="flex flex-col md:flex-row gap-15">
             <ul className=" ">
                {conjugateVerb(currentVerb, currentTense, currentMood).map(
     (conjugatedVerb) =>
