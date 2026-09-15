@@ -1520,7 +1520,203 @@ export const irregularVerbs = {
 
 
 
+    "saber": {
 
+    indicative: {
+
+        present: {
+
+            rules: {
+    1: ["*", "sé"],
+  
+}
+
+        },
+
+        preterite: {
+
+    rules: {
+        1: ["*", "supe"],
+        2: ["*", "supiste"],
+        3: ["*", "supo"],
+        4: ["*", "supimos"],
+        5: ["*", "supisteis"],
+        6: ["*", "supieron"]
+    }
+},
+
+
+
+     conditional: {
+
+                rules: {
+
+                    1: ["e", ""],
+                          
+
+                    2: ["e", ""],
+
+                    3: ["e", ""],
+
+                    4: ["e", ""],
+
+                    5: ["e", ""],
+
+                    6: ["e", ""]
+                },
+
+                endingOverride: {
+
+                    1: ["e", ""],
+
+                    2: ["e", ""],
+
+                    3: ["e", ""],
+
+                    4: ["e", ""],
+
+                    5: ["e", ""],
+
+                    6: ["e", ""]
+
+                }
+},
+
+   
+
+
+
+
+
+
+        future: {
+
+             
+
+                rules: {
+
+                    1: ["e", ""],
+                          
+
+                    2: ["e", ""],
+
+                    3: ["e", ""],
+
+                    4: ["e", ""],
+
+                    5: ["e", ""],
+
+                    6: ["e", ""]
+                },
+
+                endingOverride: {
+
+                    1: ["e", ""],
+
+                    2: ["e", ""],
+
+                    3: ["e", ""],
+
+                    4: ["e", ""],
+
+                    5: ["e", ""],
+
+                    6: ["e", ""]
+
+                }
+
+        
+
+        },
+
+
+    },
+
+    subjunctive: {
+
+        present: {
+
+            rules: {
+                 1: ["ab", "ep"],
+    2: ["ab", "ep"],
+    3: ["ab", "ep"],
+    4: ["ab", "ep"],
+    5: ["ab", "ep"],
+    6: ["ab", "ep"],
+            }
+
+        },
+
+        imperfect: {
+
+                  rules: {
+                 1: ["ab", "up"],
+    2: ["ab", "up"],
+    3: ["ab", "up"],
+    4: ["ab", "up"],
+    5: ["ab", "up"],
+    6: ["ab", "up"],
+            }
+
+        },
+
+        "imperfect (se)": {
+
+              rules: {
+                 1: ["ab", "up"],
+                2: ["ab", "up"],
+                3: ["ab", "up"],
+                4: ["ab", "up"],
+                5: ["ab", "up"],
+                6: ["ab", "up"],
+                        }
+
+        },
+
+        "future": {
+
+            rules: {
+                    1: ["ab", "up"],
+    2: ["ab", "up"],
+    3: ["ab", "up"],
+    4: ["ab", "up"],
+    5: ["ab", "up"],
+    6: ["ab", "up"],
+            }
+
+        }
+
+        
+
+    },
+
+    imperative: {
+
+        
+        normal: {
+            rules: {
+               
+                2: ["ab", "ep"],
+                3: ["ab", "ep"],
+             
+                5: ["ab", "ep"]
+            }
+        },
+
+        negative: {
+            rules: {
+                1: ["ab", "ep"],
+                2: ["ab", "ep"],
+                3: ["ab", "ep"],
+                4: ["ab", "ep"],
+                5: ["ab", "ep"],
+           
+            }
+        }
+
+    }
+
+},
     
 };
 

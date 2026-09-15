@@ -107,18 +107,34 @@ const getPreteriteStem = (verb: string, isVanilla?: boolean) => {
     
 
     const combo = !isVanilla ? conjugateVerb(verb, "preterite", "indicative")[5]: vanillaConjugateVerb(verb, "preterite", "indicative")[5];
-    console.log(combo)
+  
     let preteriteForm: string;
-    console.log(combo)
+
 
     if (isVanilla) return combo[0]
 
     if (combo.length == 6) {
 
-        preteriteForm = combo[1] + combo[2] + combo[3];
 
-    } else {
+        preteriteForm = combo[1] + combo[2] + combo[3];
+    }
+        
+
+    else if (combo.length == 4) {
+   
+         preteriteForm = combo[1] + combo[2]
+         preteriteForm = preteriteForm.replace("false", "")
+     
+        
+
+    }
+
+    else {
+
+     
         preteriteForm = combo[1] + combo[2]
+
+      
     }
   
    
@@ -133,7 +149,7 @@ const getPreteriteStem = (verb: string, isVanilla?: boolean) => {
 
 // Not all tenses use the same stem as the initial one.
 // In the indicative conditional, we attach an ending to the infinitve verb.
-const stemModifier = (mood: Mood, tense: Tense, stem: string, verb: string, isVanilla?: boolean) => {
+const stemModifier = (mood: Mood, tense: Tense, stem: string, verb: string, isVanilla: boolean = false) => {
    
    
     // Conditional takes the full verb and adds ía
@@ -280,7 +296,7 @@ export function conjugateVerb(infinitiveVerb: string, tense: Tense, mood: Mood) 
         
    
        
-        console.log(parts)
+     
         if (parts) return [person + " ",  parts[0] , parts[1], parts[2], modifiedEnding, endingChanged]
 
       
