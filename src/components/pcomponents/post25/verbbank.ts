@@ -99,5 +99,10 @@ export const verbs = {
       saber: {
         pp: "sabido",
         gerund: "sabiendo"
+    },
+
+     querer: {
+        pp: "querido",
+        gerund: "queriendo"
     }
 }

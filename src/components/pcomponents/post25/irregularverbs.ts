@@ -1717,6 +1717,205 @@ export const irregularVerbs = {
     }
 
 },
+
+
+  "querer": {
+
+        indicative: {
+
+            present: {
+
+                rules: {
+
+                    1: ["e", "ie"],
+
+                    2: ["e", "ie"],
+
+                    3: ["e", "ie"],
+
+                    6: ["e", "ie"]
+
+                }
+
+            },
+
+            preterite: {
+
+                rules: {
+
+                    1: ["er", "is"],
+
+                    2: ["er", "is"],
+
+                    3: ["er", "is"],
+
+                    4: ["er", "is"],
+
+                    5: ["er", "is"],
+
+                    6: ["er", "is"],
+
+                },
+
+                endingOverride: {
+
+                    1: ["í", "e"],
+
+                    3: ["ió", "o"]
+
+                }
+
+            },
+
+            conditional: {
+
+                rules: {
+
+                    1: ["re", "r"],
+                    2: ["re", "r"],
+                    3: ["re", "r"],
+                    4: ["re", "r"],
+                    5: ["re", "r"],
+                    6: ["re", "r"],
+
+                },
+
+                endingOverride: {
+
+                   
+
+               
+
+                }
+
+            },
+
+            future: {
+
+                rules: {     1: ["re", "r"],
+                    2: ["re", "r"],
+                    3: ["re", "r"],
+                    4: ["re", "r"],
+                    5: ["re", "r"],
+                    6: ["re", "r"],
+
+                },
+
+
+                endingOverride: {
+
+                    1: ["e", ""],
+                    2: ["e", ""],
+                    3: ["e", ""],
+                    4: ["e", ""],
+                    5: ["e", ""],
+                    6:  ["e", ""]
+
+               
+
+                 
+
+                }
+
+            }
+
+        },
+
+        subjunctive: {
+
+            present: {
+
+                rules: {
+
+                
+                    1: ["e", "ie"],
+
+                    2: ["e", "ie"],
+
+                    3: ["e", "ie"],
+
+                    6: ["e", "ie"]
+
+                }
+
+            },
+
+            imperfect: {
+
+                rules: {
+
+                   1: ["er", "is"],
+
+                    2: ["er", "is"],
+
+                    3: ["er", "is"],
+
+                    4: ["er", "is"],
+
+                    5: ["er", "is"],
+
+                    6: ["er", "is"],
+                }
+
+            },
+
+            "imperfect (se)": {
+
+                rules: {
+
+                     1: ["er", "is"],
+
+                    2: ["er", "is"],
+
+                    3: ["er", "is"],
+
+                    4: ["er", "is"],
+
+                    5: ["er", "is"],
+
+                    6: ["er", "is"],
+
+                }
+
+            }
+
+        },
+
+        imperative: {
+
+            normal: {
+
+                rules: {
+
+                         1: ["e", "ie"],
+
+                       2: ["e", "ie"],
+
+                    5: ["e", "ie"],
+
+                }
+
+            },
+
+            negative: {
+
+                  rules: {
+
+                 
+                  
+                         1: ["e", "ie"],
+
+                       2: ["e", "ie"],
+
+                    5: ["e", "ie"],
+
+                }
+
+            }
+
+        }
+
+    },
     
 };
 

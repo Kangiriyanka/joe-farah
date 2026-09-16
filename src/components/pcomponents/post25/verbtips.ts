@@ -87,9 +87,7 @@ export const irregularVerbTips = {
     },
 
     "subjunctive": {
-        "present": "Change o->ue for all pronouns except nosotros and vosotros",
-          "imperfect": "Change o->u",
-              "imperfect (se)": "Change o->u",
+   
    
 
 
