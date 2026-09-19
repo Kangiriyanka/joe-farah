@@ -82,7 +82,7 @@ const checkImperative  = (tense: Tense, mood: Mood, person: Person, stem: string
     if (isVanilla)    return [  stem , conjugationTable[person as Person]]
 
  
-    if (parts) return [  "(" + person  + ") ", parts[0] , parts[1], parts[2], conjugationTable[person as Person], endingChanged]
+    if (parts) return [  "(" + person  + ") ", parts[0] , parts[1], parts[2], modifiedEnding, endingChanged]
     
    
     return [ "(" + person  + ") ", stem , modifiedEnding, endingChanged]

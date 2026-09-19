@@ -2,6 +2,7 @@
 layout: "@layouts/MarkdownPostLayout.astro"
 title: 'Personal Music Tips'
 pubDate: 2025-06-20T19:45:00-04:00
+upDate:  2026-09-19T13:46:00-56:00
 description: 'Fragments of personal notes on music' 
 tags: ["music"]
 postSlug: 'post-2'
@@ -21,11 +22,16 @@ Starting with <a class="secondary-a"  href="/posts/post-1/" > juggling tips, </a
 
 ## Mindset 
 
+&nbsp;
+
+
 What role does music play in your life? For my part, the idea of learning an instrument was always tucked somewhere in the folds of my brain. I never capitalized on it until I met good friends who were musicians <sup> <a  class="secondary-a" href="#footnotes"> 1. </a> </sup>. At that time, I already knew how to juggle and dance, and since I enjoy combining my skills, music fit perfectly with the other two. There's no deep emotional charge that draws me to music, it doesn't feel like an escape or anything of the sort. I do genuinely enjoy it, that's the only reason that matters.  
 
 &nbsp; 
 
 ## General tips 
+
+&nbsp;
 
 - Watch your posture and stretch the relevant parts of the body you're using for your instrument.
 - Practice your scales at different tempos with a metronome. 
@@ -39,15 +45,28 @@ What role does music play in your life? For my part, the idea of learning an ins
 - Make it fun. Playing simple chord progressions and freestyling lyrics is incredibly fun.
 
 
+&nbsp;
 
 ## Ear training
 
+&nbsp;
+
+
 When it comes to ear training, all I know is that recognizing the interval between the notes is a valuable skill. For example, if you heard a C followed by a G, you can recognize it as perfect 5th. Even more valuable is being able to anticipate what a note is going to sound like. If you hear a note, what would a (insert interval) above or below sound like? You can take it further:   what would that <u>chord</u> sound like when played over this <u>scale</u>?  I'm not at this stage yet.
+
+&nbsp;
+
+
+I started taking ear training a bit more seriously in August 2026. The principal app I use to this effect  is <a classname="secondary-a" href="https://musicate.app/earpeggio"> Earpeggio </a> on iOS. I've also experimented with <a class= "secondary-a" href="https://en.wikipedia.org/wiki/GNU_Solfege" > GNU Solfege </a>, which I found in the Software Manager of <a class="secondary-a" href="https://linuxmint.com/"> Linux Mint </a>
+
  
 
 &nbsp;
 
 ## Harmonica 
+
+&nbsp;
+
 
 Charlie McCoy and James Cotton are insane!
 
@@ -103,6 +122,10 @@ For improvisation and blues, you can check out this <a class="secondary-a" href=
 
 ## Guitar 
 
+
+&nbsp;
+
+
 I only truly felt comfortable with the fretboard and the dreaded CAGED system once I built one with python using <a class="secondary-a" href="../projects/tk-music"> tkinter.  </a> If you're lost on where to start,  a fantastic resource I used to support my guitar journey <sup> <a class="secondary-a" href="#footnotes"> 3. <a> </sup> is  <a class="secondary-a"  href="https://www.justinguitar.com/"> Justin Guitar</a>. In his videos, he introduces two concepts that are great for practicing chords: '1 minute changes' and 'anchor fingers'. 
 
 For the former, he suggests counting the maximum number of chord changes you can make in a minute without worrying about how it sounds. A variation of that exercise is perfect chord changes where you try to make it sound good. For the latter, an anchor finger is one that doesn't change positions even when switching chords.
@@ -138,6 +161,9 @@ For the former, he suggests counting the maximum number of chord changes you can
 
 ## Piano
 
+&nbsp;
+
+
 I never had any formal training in harmonica and guitar, but I really wanted to for piano. When I was living in Japan, I took 30-minute lessons every Thursday for less than a year. I had forgotten how great it was to have a teacher<sup> <a class= "secondary-a" href="#footnotes"> 4.</sup> </a> point out your mistakes and tell you what to focus on. I improved quite fast thanks to her and because of how much I loved the instrument. 
 
 
@@ -167,6 +193,9 @@ MuseScore is a great tool for practice. You can write out your sheet to the prog
 
 ## Practice Sessions
 
+&nbsp;
+
+
 My ideal practice session (1 hour):
 
 - Technical practice. That consists of playing scales with a metronome, ear training or anything I want to polish.
@@ -178,6 +207,9 @@ My ideal practice session (1 hour):
 &nbsp;
 ### Song Review
 Here's what some of my notes look like for a song on guitar I was learning. The song is  <a class="secondary-a" href="https://www.youtube.com/watch?v=KsiU8ppBzEo"> Kakariko Village </a>. They're much messier, I'm showing you my good side.  <br/>
+
+&nbsp;
+
 
 
 - Don't push the neck forwards with your left hand to see your notes, it just creates an awkward position for your neck.
@@ -198,21 +230,24 @@ The irony is that you internalize and forget about all the notes you've done. Hu
 &nbsp;
 
 
-### Extras: Joe's Musical Focus
+## Extras: Joe's Musical Focus
+
+&nbsp;
+
 
 These are some areas of focus I’ve set for myself in a curriculum-like structure. 
 
 &nbsp;
 
 
-<div class="bold-rounded">
+<div class="bold-rounded p-2!">
 Being able to relax and comfortably read and play the score even if I don't completely grasp everything every musical notation, note  tempo. When I learn this <a class="secondary-a"  href="https://drive.google.com/file/d/1dN24APGfwmlKujP7ZNnTnH10n3sFzSfZ/view">  cover </a> of Littleroot Town from LotusFlower, I can take as much time as you want, play simpler songs, dedicate 5 minutes to sight-reading before practicing the main song. 
 
 </div>
 
 &nbsp;
 
-<div class="bold-rounded">
+<div class="bold-rounded p-2!">
 Being able to close my eyes and quickly visualize notes, chords and scales for piano, guitar and harmonica. If you were told to play a G# Major Pentatonic on guitar, how easy would it be for you to tell me what notes are in there? Can you close your eyes and see them across the instruments you play?  What smart mental shortcuts would you use to reduce overhead while thinking about it? The next level to that would be hearing them, but take it one half-step at a time without rushing. Use what you <a class="secondary-a" href="https://joefarah.com/projects/tk-music/"> made</a>. Make it automatic, snap your fingers and tell me the answer all while struggling.
 </div>
 
@@ -227,11 +262,25 @@ Being able to close my eyes and quickly visualize notes, chords and scales for p
 
 ## Footnotes
 
+&nbsp;
+
+
 1. Everything I undertake undoubtedly begins with: "Huh, what if I did that?". 
+
+&nbsp;
 
 
 2. Bottleneck in this context means the action that's preventing us the most from becoming better. Not tackling our weakest links in a skill stagnates our progress. In what ways are you self-handicapping? 
 
+&nbsp;
+
+
 3. The word journey is pretty cringy. 
+
+&nbsp;
+
 4. If I was stinking rich, I'd get a private teacher for everything.
+
+&nbsp;
+
 5. I was stuck trying to progress in one song I was learning for guitar. When I was practicing easier songs during my piano lessons, I realized I didn't have enough basics in guitar. You can always review the basics. It's ok to take detours and come back later to tackle the problems you had. This is relevant for any skill acquisition. 

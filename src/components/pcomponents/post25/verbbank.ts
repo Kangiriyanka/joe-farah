@@ -111,5 +111,26 @@ export const verbs = {
          pp: "caído",
         gerund: "cayendo"
         
+    },
+
+      pensar: {
+
+         pp: "pensado",
+        gerund: "pensando"
+        
+    },
+
+       limpiar: {
+
+         pp: "limpiado",
+        gerund: "limpiando"
+        
+    },
+
+     tener: {
+
+         pp: "tenido",
+        gerund: "teniendo"
+        
     }
 }
