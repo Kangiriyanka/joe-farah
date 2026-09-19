@@ -54,6 +54,7 @@ const getEndingTable = (ending: Ending) => {
 
 
 // ----- ENDING VERB CHECKS -----
+// Don't forget to add the modified ending
 const checkImperative  = (tense: Tense, mood: Mood, person: Person, stem: string, conjugationTable: ConjugationTable, parts: any, modifiedEnding: string, endingChanged: boolean, isVanilla?: boolean ) => {
 
 
@@ -83,8 +84,8 @@ const checkImperative  = (tense: Tense, mood: Mood, person: Person, stem: string
  
     if (parts) return [  "(" + person  + ") ", parts[0] , parts[1], parts[2], conjugationTable[person as Person], endingChanged]
     
-    
-    return [ "(" + person  + ") ", stem , conjugationTable[person as Person], endingChanged]
+   
+    return [ "(" + person  + ") ", stem , modifiedEnding, endingChanged]
 
 }
 
@@ -290,7 +291,7 @@ export function conjugateVerb(infinitiveVerb: string, tense: Tense, mood: Mood) 
         const perfect = checkPerfect(tense,mood,person, conjugationTable, infinitiveVerb)
         
         if (perfect) return perfect;
-        const imperative = checkImperative(tense,  mood, person, modifiedStem, conjugationTable, parts, modifiedEnding ?? "", endingChanged )
+        const imperative = checkImperative(tense,  mood, person, modifiedStem, conjugationTable, parts, modifiedEnding ?? "" , endingChanged )
     
         if (imperative) return imperative;
         

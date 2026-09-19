@@ -1916,6 +1916,203 @@ export const irregularVerbs = {
         }
 
     },
+
+      "caer": {
+
+        indicative: {
+
+            present: {
+
+                rules: {
+
+                    1: ["a", "aig"],
+
+                  
+
+                }
+
+            },
+
+            preterite: {
+
+                rules: {
+
+
+                },
+
+                endingOverride: {
+                    
+                    2: ["i", "í"],
+                    3: ["i", "y"],
+                    4: ["i", "í"],
+                    5: ["i", "í"],
+                    6: ["i", "y"]
+
+
+                   
+
+                }
+
+            },
+
+           
+
+         
+
+        },
+
+        subjunctive: {
+
+            present: {
+
+                rules: {
+
+              
+
+                },
+                endingOverride: {
+
+                    1: ["a", "iga"],
+                    2:  ["a", "iga"],
+                    3: ["a", "iga"],
+                    4: ["a", "iga"],
+                    5: ["áis", "igáis"],
+                    6: ["a", "iga"],
+
+                }
+
+            },
+
+            imperfect: {
+
+                rules: {
+
+                    1: ["yeron", ""],
+                    2: ["yeron", ""],
+                    3: ["yeron", ""],
+                    4: ["yeron", ""],
+                    5: ["yeron", ""],
+                    6: ["yeron", ""]
+
+             
+                },
+
+                endingOverride: {
+
+                    1: ["i", "y"],
+                    2:  ["i", "y"],
+                    3: ["i", "y"],
+                    4: ["i", "y"],
+                    5: ["i", "y"],
+                    6: ["i", "y"],
+
+                }
+
+            },
+
+            "imperfect (se)": {
+
+               
+                rules: {
+
+                    1: ["yeron", ""],
+                    2: ["yeron", ""],
+                    3: ["yeron", ""],
+                    4: ["yeron", ""],
+                    5: ["yeron", ""],
+                    6: ["yeron", ""]
+
+             
+                },
+
+                endingOverride: {
+
+                    1: ["i", "y"],
+                    2:  ["i", "y"],
+                    3: ["i", "y"],
+                    4: ["i", "y"],
+                    5: ["i", "y"],
+                    6: ["i", "y"],
+
+                }
+
+            },
+
+            "future": {
+                 rules: {
+
+                    1: ["yeron", ""],
+                    2: ["yeron", ""],
+                    3: ["yeron", ""],
+                    4: ["yeron", ""],
+                    5: ["yeron", ""],
+                    6: ["yeron", ""]
+
+             
+                },
+
+                endingOverride: {
+
+                    1: ["i", "y"],
+                    2:  ["i", "y"],
+                    3: ["i", "y"],
+                    4: ["i", "y"],
+                    5: ["i", "y"],
+                    6: ["i", "y"],
+
+                }
+            }
+
+        },
+
+        imperative: {
+
+            normal: {
+
+                rules: {
+
+                  
+                
+
+                },
+
+                endingOverride: {
+
+                    2: ["a", "iga"],
+                    3: ["a", "iga"],
+                    5: ["a", "iga"]
+
+                  
+
+
+                }
+
+            },
+
+            negative: {
+
+                  rules: {
+
+                 
+                 
+
+                },
+
+
+                endingOverride: {
+
+                    1: ["a", "iga"],
+                    2: ["a", "iga"],
+                    3: ["a", "iga"],
+                    4: ["á", "igá"],
+                    5: ["a", "iga"],
+                }
+
+            }
+
+        }
+
+    },
     
 };
 

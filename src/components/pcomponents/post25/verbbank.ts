@@ -104,5 +104,12 @@ export const verbs = {
      querer: {
         pp: "querido",
         gerund: "queriendo"
+    },
+
+    caer: {
+
+         pp: "caído",
+        gerund: "cayendo"
+        
     }
 }
