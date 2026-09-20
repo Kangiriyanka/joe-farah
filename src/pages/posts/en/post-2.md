@@ -57,7 +57,7 @@ When it comes to ear training, all I know is that recognizing the interval betwe
 &nbsp;
 
 
-I started taking ear training a bit more seriously in August 2026. The principal app I use to this effect  is <a classname="secondary-a" href="https://musicate.app/earpeggio"> Earpeggio </a> on iOS. I've also experimented with <a class= "secondary-a" href="https://en.wikipedia.org/wiki/GNU_Solfege" > GNU Solfege </a>, which I found in the Software Manager of <a class="secondary-a" href="https://linuxmint.com/"> Linux Mint </a>
+I started taking ear training a bit more seriously in August 2026. The principal app I use to this effect  is <a classname="secondary-a" href="https://musicate.app/earpeggio"> Earpeggio </a> on iOS. I've also experimented with <a class= "secondary-a" href="https://en.wikipedia.org/wiki/GNU_Solfege" >GNU Solfege</a>, which I found in the Software Manager of <a class="secondary-a" href="https://linuxmint.com/">Linux Mint</a>.
 
  
 
