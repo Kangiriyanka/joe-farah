@@ -434,6 +434,9 @@ hr {
   html.dark .draw-line {
       stroke: hsla(0, 0%, 100%, 0.886)
     }
+  html.dark select {
+    background-color: var(--background-dark-color);
+  }
 
 
 

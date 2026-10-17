@@ -132,5 +132,19 @@ export const verbs = {
          pp: "tenido",
         gerund: "teniendo"
         
+    },
+
+      practicar: {
+
+         pp: "practicado",
+        gerund: "practicando"
+        
+    },
+
+      salir: {
+
+        pp: "salido",
+        gerund: "saliendo"
+        
     }
 }

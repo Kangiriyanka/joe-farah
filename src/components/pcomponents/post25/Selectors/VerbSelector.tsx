@@ -16,7 +16,7 @@ export default function VerbSelector({verb, onVerbSelect}: VerbSelectorProps) {
 return (
     <div>
     <label 
-            className="text-lg text-bold"
+            className="text-lg text-bold "
             htmlFor="verb-select">
                 Choose a Verb:
             </label>

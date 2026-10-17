@@ -2430,6 +2430,195 @@ export const irregularVerbs = {
 
     },
 
+      "practicar": {
+
+        indicative: {
+
+          
+
+            preterite: {
+
+                 rules: {
+        1: [/(?<=c[^c]*)c/, "qu"],
+    },
+
+                endingOverride: {
+
+                    
+
+                  
+
+                }
+
+            },
+
+         
+        },
+
+        subjunctive: {
+
+            present: {
+
+                rules: {
+
+                    1: [/(?<=c[^c]*)c/, "qu"],
+
+                    2: [/(?<=c[^c]*)c/, "qu"],
+
+                    3: [/(?<=c[^c]*)c/, "qu"],
+
+                    4: [/(?<=c[^c]*)c/, "qu"],
+                    
+                    5: [/(?<=c[^c]*)c/, "qu"],
+
+                    6: [/(?<=c[^c]*)c/, "qu"],
+
+                }
+
+            },
+
+         
+
+        },
+
+        imperative: {
+
+            normal: {
+
+                rules: {
+
+                    
+
+                    2: [/(?<=c[^c]*)c/, "qu"],
+                    3: [/(?<=c[^c]*)c/, "qu"],
+
+                  
+                    5: [/(?<=c[^c]*)c/, "qu"],
+
+                   
+
+                }
+
+            },
+
+            negative: {
+
+                  rules: {
+
+                 
+                   1: [/(?<=c[^c]*)c/, "qu"],
+
+                    2: [/(?<=c[^c]*)c/, "qu"],
+
+                    3: [/(?<=c[^c]*)c/, "qu"],
+
+                    4: [/(?<=c[^c]*)c/, "qu"],
+                    
+                    5: [/(?<=c[^c]*)c/, "qu"],
+
+                    6: [/(?<=c[^c]*)c/, "qu"],
+
+                }
+
+            }
+
+        }
+
+    },
+
+       "salir": {
+
+    indicative: {
+
+        present: {
+            rules: {
+                1: ["l", "lg"],
+              
+            }
+        },
+
+     
+
+        conditional: {
+            rules: {
+
+                 1: ["ir", "dr"],
+                 2: ["ir", "dr"],
+                 3: ["ir", "dr"],
+                4: ["ir", "dr"],
+                 5: ["ir", "dr"],
+                6: ["ir", "dr"],
+
+               
+            },
+             endingOverride: {
+
+                 
+                }
+
+        },
+
+        future: {
+            rules: {
+
+         
+            },
+
+             endingOverride: {
+
+                    1: ["ir", "dr"],
+                    2: ["ir", "dr"],
+                    3: ["ir", "dr"],
+                    4: ["ir", "dr"],
+                    5: ["ir", "dr"],
+                    6: ["ir", "dr"],
+                }
+
+        }
+    },
+
+    subjunctive: {
+
+        present: {
+            rules: {
+                1: ["l", "lg"],
+                2: ["l", "lg"],
+                3: ["l", "lg"],
+                4: ["l", "lg"],
+                5: ["l", "lg"],
+                6: ["l", "lg"],
+            }
+        },
+
+       
+    },
+
+    imperative: {
+
+        normal: {
+            rules: {
+                1: ["*", "sal"],
+                2: ["l", "lg"],
+                3: ["l", "lg"],
+             
+                5: ["l", "lg"]
+            }
+        },
+
+        negative: {
+            rules: {
+                  1: ["l", "lg"],
+                2: ["l", "lg"],
+                3: ["l", "lg"],
+                4: ["l", "lg"],
+                5: ["l", "lg"],
+                6: ["l", "lg"],
+           
+            }
+        }
+    }
+},
+
     
 
 
